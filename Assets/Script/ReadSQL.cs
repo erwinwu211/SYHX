@@ -7,7 +7,6 @@ public class ReadSQL : MonoBehaviour {
 
     void Start()
     {
-
         SqliteDatabase sqlDB = new SqliteDatabase("1.db");
         string query = string.Format("select * from Card");
         DataTable dataTable = sqlDB.ExecuteQuery(query);
