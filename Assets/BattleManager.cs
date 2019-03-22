@@ -18,6 +18,7 @@ public enum BattleStatus
 public class BattleManager : MonoBehaviour {
 
     public BattleStatus BattleStatus;
+    public GameObject Card;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,11 @@ public class BattleManager : MonoBehaviour {
     public void BattleEnd()
     {
         ChangeStatus(BattleStatus.None);
+    }
+
+    public void TurnEndBtnClicked()
+    {
+        ChangeStatus(BattleStatus.PlayerTurnEnd);
     }
 
     public void ChangeStatus(BattleStatus status)

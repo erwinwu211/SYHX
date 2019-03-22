@@ -37,12 +37,14 @@ public class GameManager : MonoBehaviour {
     {
         mainCamera.SetActive(false);
         battleCamera.SetActive(true);
+        battleManager.BattleStart();
     }
 
     public void BattleEnd()
     {
         mainCamera.SetActive(true);
         battleCamera.SetActive(false);
+        battleManager.BattleEnd();
     }
 
 }
