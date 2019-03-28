@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
         mainCamera.SetActive(false);
         battleCamera.SetActive(true);
         Hero hero = new Hero();
-        battleManager.BattleStart(hero);
+        battleManager.BattleStart(0,this);
     }
 
     public void BattleEnd()
