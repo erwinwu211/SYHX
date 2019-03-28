@@ -47,13 +47,27 @@ public class BattleManager : MonoBehaviour {
 
     public ABattleStatus mBattleStatus = null;
     public GameObject Card;
-    public int RountCount;
+
+    //回合数计数器
+    public int RountCount { get; set; }
+
+    //能量值计数器
+    public int correctEP { get; set; }
+    public int maxEP { get; set; }
+    public int moreEP { get; set; }
+
+    //卡牌存储区域
+    //牌库
+    private List<ICard> deckPile;
+    //手牌
+    private List<ICard> handPile;
+    //当前使用区
+    private List<ICard> usedPile;
+    //弃牌堆
+    private List<ICard> foldPile;
+
     public Hero hero;
 
-
-	void Start () {
-	}
-	
 
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.D))
@@ -68,6 +82,13 @@ public class BattleManager : MonoBehaviour {
 
     public void BattleStart(int id,GameManager context)
     {
+        //重置各卡牌存储空间
+        deckPile = new List<ICard>();
+        handPile = new List<ICard>();
+        usedPile = new List<ICard>();
+        foldPile = new List<ICard>();
+
+        //战斗状态切换
         ChangeStatus(new InitializationStatus(this));
     }
 
@@ -81,5 +102,32 @@ public class BattleManager : MonoBehaviour {
     {
         this.mBattleStatus = status;
         status.Start();
+    }
+
+    //回复能量
+    public void EnergyPointRegain()
+    {
+        //当前能量=上限
+        correctEP = maxEP;
+
+        //若有额外恢复值，再继续添加
+        if (moreEP>0)
+        {
+            correctEP += moreEP;
+        }
+    }
+
+    //触发BUFF效果
+    public void BuffTrigger()
+    {
+
+    }
+
+    //检测战斗是否结束
+    public bool IsBattleOver()
+    {
+        if (false)
+            return true;
+        return false;
     }
 }

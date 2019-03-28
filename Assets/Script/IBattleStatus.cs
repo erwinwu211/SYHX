@@ -28,6 +28,9 @@ public class InitializationStatus : ABattleStatus
     {
         //数据加载
         LoadData();
+
+        //初始化回合数
+        context.RountCount = 0;
     }
 
     public override  void Update()
@@ -64,9 +67,14 @@ public class PlayerTurnStartStatus : ABattleStatus
 
     public override void Start()
     {
+        //回合数加1
+        context.RountCount++;
+
         //触发BUFF
+        context.BuffTrigger();
 
         //回复能量
+        context.EnergyPointRegain();
 
         //发牌
     }
@@ -74,6 +82,8 @@ public class PlayerTurnStartStatus : ABattleStatus
     public override void Update()
     {
         //当发牌动画播放完成，打开EndFlag
+        Check();
+
         if (EndFlag)
         {
             End();
@@ -82,10 +92,17 @@ public class PlayerTurnStartStatus : ABattleStatus
 
     public override void End()
     {
-        context.ChangeStatus(new PlayerTurnGoingStatus(context));
+        if (context.IsBattleOver()==false)
+        {
+            context.ChangeStatus(new PlayerTurnGoingStatus(context));
+        }
     }
 
-    private void BuffEffect() { }
+    private void Check()
+    {
+        EndFlag = true;
+    }
+
 }
 
 
@@ -109,7 +126,10 @@ public class PlayerTurnGoingStatus : ABattleStatus
 
     public override void End()
     {
-        context.ChangeStatus(new PlayerTurnEndStatus(context));
+        if (context.IsBattleOver() == false)
+        {
+            context.ChangeStatus(new PlayerTurnEndStatus(context));
+        }
     }
 
     public void OnTurnEndBtnClicked()
@@ -132,6 +152,7 @@ public class PlayerTurnEndStatus : ABattleStatus
     public override void Start()
     {
         //触发BUFF
+        context.BuffTrigger();
 
         //将牌移入弃牌堆
 
@@ -139,6 +160,9 @@ public class PlayerTurnEndStatus : ABattleStatus
 
     public override void Update()
     {
+        //当各种动画完成后打开Flag
+        Check();
+
         if (EndFlag)
         {
             End();
@@ -147,7 +171,15 @@ public class PlayerTurnEndStatus : ABattleStatus
 
     public override void End()
     {
-        context.ChangeStatus(new EnemyTurnStartStatus(context));
+        if (context.IsBattleOver() == false)
+        {
+            context.ChangeStatus(new EnemyTurnStartStatus(context));
+        }
+    }
+
+    private void Check()
+    {
+        EndFlag = true;
     }
 }
 
@@ -165,6 +197,7 @@ public class EnemyTurnStartStatus : ABattleStatus
     public override void Start()
     {
         //触发BUFF
+        context.BuffTrigger();
 
         //执行AI
     }
@@ -172,6 +205,8 @@ public class EnemyTurnStartStatus : ABattleStatus
     public override void Update()
     {
         //当AI动作播放完成后，打开Flag
+        Check();
+
         if (EndFlag)
         {
             End();
@@ -180,7 +215,15 @@ public class EnemyTurnStartStatus : ABattleStatus
 
     public override void End()
     {
-        context.ChangeStatus(new EnemyTurnEndStatus(context));
+        if (context.IsBattleOver() == false)
+        {
+            context.ChangeStatus(new EnemyTurnEndStatus(context));
+        }
+    }
+
+    private void Check()
+    {
+        EndFlag = true;
     }
 }
 
@@ -197,18 +240,49 @@ public class EnemyTurnEndStatus : ABattleStatus
     public override void Start()
     {
         //触发BUFF
+        context.BuffTrigger();
     }
 
     public override void Update()
     {
+        //当各种动画播放完成后，打开Flag
+        Check();
+
         if (EndFlag)
         {
             End();
         }
     }
 
+
     public override void End()
     {
-        context.ChangeStatus(new PlayerTurnStartStatus(context));
+        if (context.IsBattleOver() == false)
+        {
+            context.ChangeStatus(new PlayerTurnStartStatus(context));
+        }
+    }
+
+
+    private void Check()
+    {
+        EndFlag = true;
+    }
+}
+
+
+
+
+public class ResultStatus : ABattleStatus
+{
+    public ResultStatus(BattleManager context) : base(context) { }
+
+    public override void Start()
+    {
+    }
+
+    public void OnConfirmBtnClicked()
+    {
+        context.BattleEnd();
     }
 }

@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// 战斗开始的入口，切换摄像机画面
+    /// </summary>
     public void BattleStart()
     {
         mainCamera.SetActive(false);
@@ -41,6 +43,10 @@ public class GameManager : MonoBehaviour {
         battleManager.BattleStart(0,this);
     }
 
+
+    /// <summary>
+    /// 战斗结束后的处理，切回摄像机画面
+    /// </summary>
     public void BattleEnd()
     {
         mainCamera.SetActive(true);
