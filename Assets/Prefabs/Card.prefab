@@ -21,13 +21,26 @@ GameObject:
   - component: {fileID: 224738991623253510}
   - component: {fileID: 222806250773743630}
   - component: {fileID: 114635187522032892}
+  - component: {fileID: 65357828866739856}
   m_Layer: 5
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &65357828866739856
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975153678487156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 152.08556, z: 1}
+  m_Center: {x: 0, y: 0.7183047, z: 0}
 --- !u!114 &114635187522032892
 MonoBehaviour:
   m_ObjectHideFlags: 1

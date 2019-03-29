@@ -66,6 +66,19 @@ public class BattleManager : MonoBehaviour {
     //弃牌堆
     private List<ICard> foldPile;
 
+    //每回合抽卡数量
+    private int drawCountPerTurn = 5;
+    public int DrawCountPerTurn {
+        get
+        {
+            return drawCountPerTurn;
+        }
+        set
+        {
+            drawCountPerTurn = value;
+        }
+     }
+
     public Hero hero;
 
 
@@ -96,6 +109,53 @@ public class BattleManager : MonoBehaviour {
     {
         mBattleStatus = null;
     }
+
+    //抽牌
+    public void Draw(int count)
+    {
+        if (deckPile.Count == 0)
+        {
+            if (foldPile.Count > 0)
+            {
+                Shuffle();
+                Draw(count);
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            ICard card = deckPile[0];
+            deckPile.Remove(card);
+            handPile.Add(card);
+            count--;
+            card.OnDraw();
+            if (count > 0) { Draw(count); } else { return; }
+        }
+    }
+
+    //洗牌
+    private void Shuffle()
+    {
+        List<ICard> temp = new List<ICard>();
+        //先将弃牌堆打乱
+        foreach (ICard card in foldPile)
+        {
+            temp.Insert(Random.Range(0, temp.Count), card);
+        }
+        //将所有弃牌放入牌堆中
+        foreach (ICard card in temp)
+        {
+            deckPile.Add(card);
+        }
+        //清空弃牌堆
+        foldPile.Clear();
+    }
+
+
 
     //状态切换的方法
     public void ChangeStatus(ABattleStatus status)
