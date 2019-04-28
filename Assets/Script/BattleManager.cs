@@ -14,10 +14,12 @@ public class BattleManager : MonoBehaviour
 
     public ABattleStatus mBattleStatus = null;
     public GameObject Card;
+    public GameObject testEnemy;
     public BattleHero hero;
 
     private EnemyGroup mBattleModel;
     public EnemyGroup BattleModel { get { return mBattleModel; } }
+    public Enemy selectedEnemy;
 
     //回合数计数器
     public int RountCount { get; set; }
@@ -78,6 +80,8 @@ public class BattleManager : MonoBehaviour
     {
         //读取战斗数据
         mBattleModel = new EnemyGroup(id, 1);
+        GameObject.Instantiate(testEnemy);
+
 
         //重置各卡牌存储空间
         deckPile = new List<CardContent>();
