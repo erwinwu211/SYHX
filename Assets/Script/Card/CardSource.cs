@@ -3,16 +3,19 @@ using UnityEditor;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public abstract class ICard : ScriptableObject
+public abstract class CardSource : ScriptableObject
 {
+    [SerializeField]
     protected int mID;
+    [SerializeField]
     protected string mName;
+    [SerializeField]
     protected string mDesc;
 
     public int ID { get { return mID; } }
     public string Name { get { return mName; } }
     public string Desc { get { return mDesc; } }
-    
+
 
     /// <summary>
     /// ❌事件：当抽到手上时
@@ -37,6 +40,6 @@ public abstract class ICard : ScriptableObject
     /// <summary>
     /// 事件：当其它的卡牌被使用时触发
     /// </summary>
-    public virtual void OnOtherCardUse(ICard context) { }
+    public virtual void OnOtherCardUse(CardSource context) { }
 
 }

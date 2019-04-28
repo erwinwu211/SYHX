@@ -9,35 +9,38 @@ public enum BattleResult
     Lose,
 }
 
-public class BattleManager : MonoBehaviour {
+public class BattleManager : MonoBehaviour
+{
 
     public ABattleStatus mBattleStatus = null;
     public GameObject Card;
+    public BattleHero hero;
 
-    private BattleModel mBattleModel;
-    public BattleModel BattleModel { get { return mBattleModel; } }
+    private EnemyGroup mBattleModel;
+    public EnemyGroup BattleModel { get { return mBattleModel; } }
 
     //回合数计数器
     public int RountCount { get; set; }
 
     //能量值计数器
-    public int correctEP { get; set; }
-    public int maxEP { get; set; }
-    public int moreEP { get; set; }
+    public int correctEP { get => this.hero.currentEP; set => this.hero.currentEP = value; }
+    public int maxEP { get => this.hero.maxEP; set => this.hero.maxEP = value; }
+    public int moreEP { get => this.hero.moreEP; set => this.hero.moreEP = value; }
 
     //卡牌存储区域
     //牌库
-    private List<ICard> deckPile;
+    private List<CardContent> deckPile;
     //手牌
-    private List<ICard> handPile;
+    private List<CardContent> handPile;
     //当前使用区
-    private List<ICard> usedPile;
+    private List<CardContent> usedPile;
     //弃牌堆
-    private List<ICard> foldPile;
+    private List<CardContent> foldPile;
 
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
-    public int DrawCountPerTurn {
+    public int DrawCountPerTurn
+    {
         get
         {
             return drawCountPerTurn;
@@ -46,14 +49,15 @@ public class BattleManager : MonoBehaviour {
         {
             drawCountPerTurn = value;
         }
-     }
+    }
 
-    public Hero hero = new Hero();
+    // public Hero hero = new Hero();
     private List<Enemy> enemyList;
 
 
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.D))
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("现在是：" + mBattleStatus.ToString() + "状态");
         }
@@ -61,7 +65,7 @@ public class BattleManager : MonoBehaviour {
         {
             mBattleStatus.Update();
         }
-	}
+    }
 
 
 
@@ -70,16 +74,16 @@ public class BattleManager : MonoBehaviour {
     /// </summary>
     /// <param name="id">战斗数据的键值</param>
     /// <param name="context">将GameManager作为上下文传入</param>
-    public void BattleStart(int id,GameManager context)
+    public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        mBattleModel = new BattleModel(id, 1);
+        mBattleModel = new EnemyGroup(id, 1);
 
         //重置各卡牌存储空间
-        deckPile = new List<ICard>();
-        handPile = new List<ICard>();
-        usedPile = new List<ICard>();
-        foldPile = new List<ICard>();
+        deckPile = new List<CardContent>();
+        handPile = new List<CardContent>();
+        usedPile = new List<CardContent>();
+        foldPile = new List<CardContent>();
 
         //战斗状态切换为初始化阶段
         ChangeStatus(new InitializationStatus(this));
@@ -120,7 +124,7 @@ public class BattleManager : MonoBehaviour {
         }
         else
         {
-            ICard card = deckPile[0];
+            CardContent card = deckPile[0];
             deckPile.Remove(card);
             handPile.Add(card);
             count--;
@@ -137,14 +141,14 @@ public class BattleManager : MonoBehaviour {
     /// </summary>
     private void Shuffle()
     {
-        List<ICard> temp = new List<ICard>();
+        List<CardContent> temp = new List<CardContent>();
         //先将弃牌堆打乱
-        foreach (ICard card in foldPile)
+        foreach (CardContent card in foldPile)
         {
             temp.Insert(Random.Range(0, temp.Count), card);
         }
         //将所有弃牌放入牌堆中
-        foreach (ICard card in temp)
+        foreach (CardContent card in temp)
         {
             deckPile.Add(card);
         }
@@ -177,7 +181,7 @@ public class BattleManager : MonoBehaviour {
         correctEP = maxEP;
 
         //若有额外恢复值，再继续添加
-        if (moreEP>0)
+        if (moreEP > 0)
         {
             correctEP += moreEP;
             moreEP = 0;
@@ -206,7 +210,7 @@ public class BattleManager : MonoBehaviour {
 
     }
 
-    
+
 
     /// <summary>
     /// 检测战斗是否结束
@@ -225,7 +229,7 @@ public class BattleManager : MonoBehaviour {
                 res = BattleResult.Continue;
             }
         }
-        if (hero.GetCorrectHp() <= 0)
+        if (hero.currentHp <= 0)
         {
             res = BattleResult.Lose;
         }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleModel {
+public class EnemyGroup
+{
 
     public Enemy Enemy_1 { get { return Enemy_1; } }
     public Enemy Enemy_2 { get { return Enemy_2; } }
@@ -13,7 +14,7 @@ public class BattleModel {
     public List<Enemy> enemyList { get { return enemyList; } }
 
     private float difficultLevel;
-	public BattleModel(int id,float difficultLevel)
+    public EnemyGroup(int id, float difficultLevel)
     {
         this.difficultLevel = difficultLevel;
     }
