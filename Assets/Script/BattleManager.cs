@@ -82,7 +82,8 @@ public class BattleManager : MonoBehaviour
     {
         //读取战斗数据
         // mBattleModel = new EnemyGroup(id, 1);
-        EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
+        enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
+        selectedEnemy = enemyList[0];
 
 
         //重置各卡牌存储空间
