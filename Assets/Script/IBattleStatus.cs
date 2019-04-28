@@ -93,7 +93,7 @@ public class PlayerTurnStartStatus : ABattleStatus
 
     public override void End()
     {
-        if (context.IsBattleOver()==false)
+        if (context.IsBattleOver() == BattleResult.Continue)
         {
             context.ChangeStatus(new PlayerTurnGoingStatus(context));
         }
@@ -153,7 +153,7 @@ public class PlayerTurnGoingStatus : ABattleStatus
 
     public override void End()
     {
-        if (context.IsBattleOver() == false)
+        if (context.IsBattleOver() == BattleResult.Continue)
         {
             context.ChangeStatus(new PlayerTurnEndStatus(context));
         }
@@ -198,7 +198,7 @@ public class PlayerTurnEndStatus : ABattleStatus
 
     public override void End()
     {
-        if (context.IsBattleOver() == false)
+        if (context.IsBattleOver() == BattleResult.Continue)
         {
             context.ChangeStatus(new EnemyTurnStartStatus(context));
         }
@@ -242,7 +242,7 @@ public class EnemyTurnStartStatus : ABattleStatus
 
     public override void End()
     {
-        if (context.IsBattleOver() == false)
+        if (context.IsBattleOver() == BattleResult.Continue)
         {
             context.ChangeStatus(new EnemyTurnEndStatus(context));
         }
@@ -284,7 +284,7 @@ public class EnemyTurnEndStatus : ABattleStatus
 
     public override void End()
     {
-        if (context.IsBattleOver() == false)
+        if (context.IsBattleOver() == BattleResult.Continue)
         {
             context.ChangeStatus(new PlayerTurnStartStatus(context));
         }

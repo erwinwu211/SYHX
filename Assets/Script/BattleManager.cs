@@ -2,51 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BattleStatus
+public enum BattleResult
 {
-    Initialization,
-    PlayerTurnStart,
-    PlayerTurnGoing,
-    PlayerTurnEnd,
-    EnemyTurnStart,
-    EnemyTurnGoing,
-    EnemyTurnEnd,
-    Result,
-    None
-}
-
-public class Hero
-{
-    public int lv { get; set; }
-    public int maxHp { get; set; }
-    public int correctHp { get; set; }
-    public int maxEp { get; set; }
-    public int correctEp { get; set; }
-    public int atk { get; set; }
-    public int atkAdd { get; set; }
-    public int atkMult { get; set; }
-    public int atkPara { get; set; }
-    public int def { get; set; }
-    public int defAdd { get; set; }
-    public int defMult { get; set; }
-    public int defPara { get; set; }
-
-    public Hero()
-    {
-        lv = 1;
-        maxHp = 100;
-        correctHp = 100;
-        maxEp = 5;
-        correctEp = 5;
-        atk = 10;
-        def = 10;
-    }
+    Continue,
+    Win,
+    Lose,
 }
 
 public class BattleManager : MonoBehaviour {
 
     public ABattleStatus mBattleStatus = null;
     public GameObject Card;
+
+    private BattleModel mBattleModel;
+    public BattleModel BattleModel { get { return mBattleModel; } }
 
     //回合数计数器
     public int RountCount { get; set; }
@@ -79,7 +48,8 @@ public class BattleManager : MonoBehaviour {
         }
      }
 
-    public Hero hero;
+    public Hero hero = new Hero();
+    private List<Enemy> enemyList;
 
 
 	void Update () {
@@ -93,24 +63,46 @@ public class BattleManager : MonoBehaviour {
         }
 	}
 
+
+
+    /// <summary>
+    /// 战斗开始，战斗场景的入口
+    /// </summary>
+    /// <param name="id">战斗数据的键值</param>
+    /// <param name="context">将GameManager作为上下文传入</param>
     public void BattleStart(int id,GameManager context)
     {
+        //读取战斗数据
+        mBattleModel = new BattleModel(id, 1);
+
         //重置各卡牌存储空间
         deckPile = new List<ICard>();
         handPile = new List<ICard>();
         usedPile = new List<ICard>();
         foldPile = new List<ICard>();
 
-        //战斗状态切换
+        //战斗状态切换为初始化阶段
         ChangeStatus(new InitializationStatus(this));
     }
 
+
+
+    /// <summary>
+    /// 战斗结束，做BattleManager的收尾工作
+    /// </summary>
     public void BattleEnd()
     {
         mBattleStatus = null;
+        mBattleModel = null;
     }
 
-    //抽牌
+
+
+
+    /// <summary>
+    /// 抽牌方法
+    /// </summary>
+    /// <param name="count">抽牌的张数</param>
     public void Draw(int count)
     {
         if (deckPile.Count == 0)
@@ -137,7 +129,12 @@ public class BattleManager : MonoBehaviour {
         }
     }
 
-    //洗牌
+
+
+
+    /// <summary>
+    /// 洗牌方法
+    /// </summary>
     private void Shuffle()
     {
         List<ICard> temp = new List<ICard>();
@@ -157,14 +154,23 @@ public class BattleManager : MonoBehaviour {
 
 
 
-    //状态切换的方法
+
+    /// <summary>
+    /// 战斗状态切换的方法
+    /// </summary>
+    /// <param name="status">实例化一个新的战斗状态出来</param>
     public void ChangeStatus(ABattleStatus status)
     {
         this.mBattleStatus = status;
         status.Start();
     }
 
-    //回复能量
+
+
+
+    /// <summary>
+    /// 回复能量值的方法
+    /// </summary>
     public void EnergyPointRegain()
     {
         //当前能量=上限
@@ -174,20 +180,55 @@ public class BattleManager : MonoBehaviour {
         if (moreEP>0)
         {
             correctEP += moreEP;
+            moreEP = 0;
         }
     }
 
-    //触发BUFF效果
+
+
+    /// <summary>
+    /// 在下一回合回复额外能量值的方法
+    /// </summary>
+    /// <param name="count"></param>
+    public void RegainMoreEnergyPointNextTurn(int count)
+    {
+        moreEP = count;
+    }
+
+
+
+
+    /// <summary>
+    /// 触发BUFF效果
+    /// </summary>
     public void BuffTrigger()
     {
 
     }
 
-    //检测战斗是否结束
-    public bool IsBattleOver()
+    
+
+    /// <summary>
+    /// 检测战斗是否结束
+    /// 检测方式：
+    /// 是否所有敌人均已死亡
+    /// 是否角色死亡
+    /// </summary>
+    /// <returns></returns>
+    public BattleResult IsBattleOver()
     {
-        if (false)
-            return true;
-        return false;
+        BattleResult res = BattleResult.Win;
+        foreach (Enemy enemy in enemyList)
+        {
+            if (enemy.IsAlive())
+            {
+                res = BattleResult.Continue;
+            }
+        }
+        if (hero.GetCorrectHp() <= 0)
+        {
+            res = BattleResult.Lose;
+        }
+        return res;
     }
 }
