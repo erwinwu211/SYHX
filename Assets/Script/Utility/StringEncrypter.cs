@@ -3,6 +3,9 @@ using System.Text;
 using System.Security.Cryptography;
 
 
+/// <summary>
+/// 加密解密用
+/// </summary>
 public static class StringEncryptor
 {
     public static string Encrypt(string source)
@@ -46,7 +49,7 @@ public static class StringEncryptor
         var deriveBytes = new Rfc2898DeriveBytes("rQX8!sRgNcMtRRf5", salt, 1000);
 
         rijndael.Key = deriveBytes.GetBytes(rijndael.KeySize / 8);
-        
+
         rijndael.IV = deriveBytes.GetBytes(rijndael.BlockSize / 8);
     }
 }

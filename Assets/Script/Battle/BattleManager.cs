@@ -12,9 +12,8 @@ public enum BattleResult
 public class BattleManager : MonoBehaviour
 {
 
-    public ABattleStatus mBattleStatus = null;
+    public ABattleState mBattleStatus = null;
     public GameObject Card;
-    public BattleHero hero = new BattleHero();
 
     private EnemyGroup mBattleModel;
     public EnemyGroup BattleModel { get { return mBattleModel; } }
@@ -93,7 +92,7 @@ public class BattleManager : MonoBehaviour
         foldPile = new List<CardContent>();
 
         //战斗状态切换为初始化阶段
-        ChangeStatus(new InitializationStatus(this));
+        ChangeStatus(new InitializationState(this));
     }
 
 
@@ -170,7 +169,7 @@ public class BattleManager : MonoBehaviour
     /// 战斗状态切换的方法
     /// </summary>
     /// <param name="status">实例化一个新的战斗状态出来</param>
-    public void ChangeStatus(ABattleStatus status)
+    public void ChangeStatus(ABattleState status)
     {
         this.mBattleStatus = status;
         status.Start();
