@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public abstract class ICard
+public abstract class ICard : ScriptableObject
 {
     protected int mID;
     protected string mName;
