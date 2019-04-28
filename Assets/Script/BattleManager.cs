@@ -14,8 +14,7 @@ public class BattleManager : MonoBehaviour
 
     public ABattleStatus mBattleStatus = null;
     public GameObject Card;
-    public GameObject testEnemy;
-    public BattleHero hero;
+    public BattleHero hero = new BattleHero();
 
     private EnemyGroup mBattleModel;
     public EnemyGroup BattleModel { get { return mBattleModel; } }
@@ -25,9 +24,12 @@ public class BattleManager : MonoBehaviour
     public int RountCount { get; set; }
 
     //能量值计数器
-    public int correctEP { get => this.hero.currentEP; set => this.hero.currentEP = value; }
-    public int maxEP { get => this.hero.maxEP; set => this.hero.maxEP = value; }
-    public int moreEP { get => this.hero.moreEP; set => this.hero.moreEP = value; }
+    public int correctEP;
+    //  { get => this.hero.currentEP; set => this.hero.currentEP = value; }
+    public int maxEP;
+    //  { get => this.hero.maxEP; set => this.hero.maxEP = value; }
+    public int moreEP;
+    //  { get => this.hero.moreEP; set => this.hero.moreEP = value; }
 
     //卡牌存储区域
     //牌库
@@ -79,8 +81,8 @@ public class BattleManager : MonoBehaviour
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        mBattleModel = new EnemyGroup(id, 1);
-        GameObject.Instantiate(testEnemy);
+        // mBattleModel = new EnemyGroup(id, 1);
+        EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
 
 
         //重置各卡牌存储空间
@@ -225,6 +227,7 @@ public class BattleManager : MonoBehaviour
     /// <returns></returns>
     public BattleResult IsBattleOver()
     {
+#if COMPLETE
         BattleResult res = BattleResult.Win;
         foreach (Enemy enemy in enemyList)
         {
@@ -237,6 +240,8 @@ public class BattleManager : MonoBehaviour
         {
             res = BattleResult.Lose;
         }
-        return res;
+#endif
+        return BattleResult.Continue;
+
     }
 }

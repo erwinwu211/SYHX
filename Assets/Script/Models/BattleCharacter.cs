@@ -6,7 +6,7 @@ public class BattleCharacter : MonoBehaviour
 {
     protected bool isAlive;
     protected int maxHp;
-    public int currentHp { get; private set; }
+    public int currentHp { get; protected set; }
     protected int attack;
     protected int defence;
 
