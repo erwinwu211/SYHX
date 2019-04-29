@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardContent : Assitant<CardSource>
 {
+    public CardContent(CardSource owner) : base(owner) { }
     public void OnDraw() => owner.OnDraw();
     public void OnUse() => owner.OnUse();
     public void OnFold() => owner.OnFold();

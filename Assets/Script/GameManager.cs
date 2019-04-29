@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     private GameObject mainCamera;
     private GameObject battleCamera;
     private BattleManager battleManager;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         mainCamera = GameObject.Find("Main Camera");
         battleCamera = GameObject.Find("Battle Camera");
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour {
         mainCamera.SetActive(false);
         battleCamera.SetActive(true);
         Hero hero = new Hero();
-        battleManager.BattleStart(0,this);
+        battleManager.BattleStart(0, this);
     }
 
 

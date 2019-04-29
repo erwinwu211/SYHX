@@ -2,17 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnState_FSM : MonoBehaviour
+public class TurnState_FSM : AssitantMonobehaviour<TurnManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum State
     {
-        
+        First, PlayerStart, PlayerTurn, PlayerEnd, EnemyStart, EnemyEnd, Result
     }
+    public PlayMakerFSM fsm;
+    private State state;
 
-    // Update is called once per frame
-    void Update()
+    public void OnEnterState(State state)
     {
-        
+        this.state = state;
+        owner.stateManager.OnEnterFsmState(GetCurrentState());
+    }
+    public TurnState GetCurrentState()
+    {
+        switch (state)
+        {
+            case State.First:
+                return owner.stateManager.firstState;
+            case State.PlayerStart:
+                return owner.stateManager.playerStartState;
+            case State.PlayerTurn:
+                return owner.stateManager.playerTurnState;
+            case State.PlayerEnd:
+                return owner.stateManager.playerEndState;
+            case State.EnemyStart:
+                return owner.stateManager.enemyStartState;
+            case State.EnemyEnd:
+                return owner.stateManager.enemyEndState;
+            default:
+                return null;
+        }
+    }
+    public void TryTransition(TurnState state)
+    {
+        fsm.SendEvent(state.FsmName());
     }
 }

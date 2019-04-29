@@ -9,10 +9,10 @@ public enum BattleResult
     Lose,
 }
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
 
-    public ABattleState mBattleStatus = null;
+    // public TurnState mBattleStatus = null;
     public GameObject Card;
 
     private EnemyGroup mBattleModel;
@@ -40,6 +40,8 @@ public class BattleManager : MonoBehaviour
     //弃牌堆
     private List<CardContent> foldPile;
 
+    public CardManager cardManager;
+
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
     public int DrawCountPerTurn
@@ -57,17 +59,22 @@ public class BattleManager : MonoBehaviour
     // public Hero hero = new Hero();
     private List<Enemy> enemyList;
 
+    protected override void UnityAwake()
+    {
+
+    }
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("现在是：" + mBattleStatus.ToString() + "状态");
-        }
-        if (mBattleStatus != null)
-        {
-            mBattleStatus.Update();
-        }
+        // if (Input.GetKeyDown(KeyCode.D))
+        // {
+        //     Debug.Log("现在是：" + mBattleStatus.ToString() + "状态");
+        // }
+        // if (mBattleStatus != null)
+        // {
+        //     mBattleStatus.Update();
+        // }
     }
 
 
@@ -92,7 +99,7 @@ public class BattleManager : MonoBehaviour
         foldPile = new List<CardContent>();
 
         //战斗状态切换为初始化阶段
-        ChangeStatus(new InitializationState(this));
+        // ChangeStatus(new InitializationState(this));
     }
 
 
@@ -102,7 +109,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void BattleEnd()
     {
-        mBattleStatus = null;
+        // mBattleStatus = null;
         mBattleModel = null;
     }
 
@@ -169,10 +176,10 @@ public class BattleManager : MonoBehaviour
     /// 战斗状态切换的方法
     /// </summary>
     /// <param name="status">实例化一个新的战斗状态出来</param>
-    public void ChangeStatus(ABattleState status)
+    public void ChangeStatus(TurnState status)
     {
-        this.mBattleStatus = status;
-        status.Start();
+        // this.mBattleStatus = status;
+        status.Enter();
     }
 
 
