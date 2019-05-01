@@ -188,8 +188,6 @@ public class PlayerEndState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnPlayerTurnEnd();
-        //触发BUFF
-        context.BuffTrigger();
 
         //将牌移入弃牌堆
         owner.owner.fsmManager.TryTransition(owner.enemyStartState);
@@ -238,8 +236,6 @@ public class EnemyStartState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnStart();
-        //触发BUFF
-        context.BuffTrigger();
 
         //执行AI
     }
@@ -284,8 +280,6 @@ public class EnemyEndState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnEnd();
-        //触发BUFF
-        context.BuffTrigger();
     }
 
     public override void Update()

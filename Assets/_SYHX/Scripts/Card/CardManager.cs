@@ -60,7 +60,7 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
     /// <summary>
     /// 洗牌方法
     /// </summary>
-    private void Shuffle()
+    public void Shuffle()
     {
         List<CardContent> temp = new List<CardContent>();
         //先将弃牌堆打乱
