@@ -6,18 +6,23 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
 {
     //卡牌存储区域
     //牌库
-    private List<CardContent> deckPile;
+    private List<CardContent> deckPile = new List<CardContent>();
     //手牌
-    private List<CardContent> handPile;
+    private List<CardContent> handPile = new List<CardContent>();
     //当前使用区
-    private List<CardContent> usedPile;
+    private List<CardContent> usedPile = new List<CardContent>();
     //弃牌堆
-    private List<CardContent> foldPile;
+    private List<CardContent> foldPile = new List<CardContent>();
     public GameObject cardPos;
-    public GameObject cardGo;
+    public BattleCardUI cardGo;
+
+
+    //测试用
+    public CardSource card;
+    //
     protected override void UnityAwake()
     {
-
+        card.GenerateCard(10);
     }
     /// <summary>
     /// 抽牌方法
@@ -47,8 +52,10 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
             card.OnDraw();
 
             //TODO : 动画改进
-            var go = cardGo.Create(cardPos);
-            go.transform.localPosition -= handPile.Count * new Vector3(0f, 0f, 0.5f);
+            var go = GameObject.Instantiate(cardGo, cardPos.transform.position, cardPos.transform.rotation, cardPos.transform);
+            // var go = cardGo.Create(cardPos);
+            go.transform.localPosition -= handPile.Count * new Vector3(3f, 0f, 0f);
+            go.SetCard(card);
 
             if (count > 0) { Draw(count); } else { return; }
         }
@@ -75,5 +82,10 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
         }
         //清空弃牌堆
         foldPile.Clear();
+    }
+
+    public void AddToDeck(CardContent cc)
+    {
+        deckPile.Add(cc);
     }
 }

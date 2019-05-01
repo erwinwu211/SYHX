@@ -74,18 +74,10 @@ public class PlayerStartState : TurnState
 
     public override void Enter()
     {
+        BattleManager.Ins.RountCount++;
         BattleProgressEvent.Ins.OnPlayerTurnStart();
-        //回合数加1
-        // context.RountCount++;
-
-        //触发BUFF
-        // context.BuffTrigger();
-
-        //回复能量
-        // context.EnergyPointRegain();
-
-        //发牌
-        // context.Draw(context.DrawCountPerTurn);
+        BattleManager.Ins.EnergyPointRegain();
+        BattleManager.Ins.Draw(BattleManager.Ins.DrawCountPerTurn);
         owner.owner.fsmManager.TryTransition(owner.playerTurnState);
 
     }
@@ -158,13 +150,7 @@ public class PlayerTurnState : TurnState
         }
     }
 
-    public override void Exit()
-    {
-        // if (context.IsBattleOver() == BattleResult.Continue)
-        // {
-        //     context.ChangeStatus(new PlayerTurnEndState(context));
-        // }
-    }
+    public override void Exit() { }
     public override string FsmName() => "PlayerTurn";
 
 
@@ -206,13 +192,7 @@ public class PlayerEndState : TurnState
         }
     }
 
-    public override void Exit()
-    {
-        // if (context.IsBattleOver() == BattleResult.Continue)
-        // {
-        //     context.ChangeStatus(new EnemyTurnStartState(context));
-        // }
-    }
+    public override void Exit() { }
     public override string FsmName() => "PlayerEnd";
 
 
@@ -251,13 +231,7 @@ public class EnemyStartState : TurnState
         }
     }
 
-    public override void Exit()
-    {
-        // if (context.IsBattleOver() == BattleResult.Continue)
-        // {
-        //     context.ChangeStatus(new EnemyTurnEndState(context));
-        // }
-    }
+    public override void Exit() { }
     public override string FsmName() => "EnemyStart";
 
 
@@ -294,13 +268,7 @@ public class EnemyEndState : TurnState
     }
 
 
-    public override void Exit()
-    {
-        // if (context.IsBattleOver() == BattleResult.Continue)
-        // {
-        //     context.ChangeStatus(new PlayerStartState(context));
-        // }
-    }
+    public override void Exit() { }
 
     public override string FsmName() => "PlayerEnd";
 

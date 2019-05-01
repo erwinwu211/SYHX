@@ -44,6 +44,16 @@ public abstract class CardSource : ScriptableObject
     /// </summary>
     public virtual void OnOtherCardUse(CardSource context) { }
 
+
+    //TODO : 现在是加入抽牌堆，以后改进为加入牌堆
+    public virtual void GenerateCard(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            CardManager.Ins.AddToDeck(new CardContent(this));
+        }
+    }
+
 }
 
 public enum CardType

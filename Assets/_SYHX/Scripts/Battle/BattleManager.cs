@@ -11,9 +11,12 @@ public enum BattleResult
 
 public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
-    private EnemyGroup mBattleModel;
-    public EnemyGroup BattleModel { get { return mBattleModel; } }
-    public Enemy selectedEnemy;
+    [HideInInspector] private EnemyGroup mBattleModel;
+
+    [HideInInspector] public EnemyGroup BattleModel { get { return mBattleModel; } }
+    [HideInInspector] public Enemy selectedEnemy { get; private set; }
+    [SerializeField] public BattleHero hero;
+    private List<Enemy> enemyList;
 
     //回合数计数器
     public int RountCount { get; set; }
@@ -28,14 +31,16 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
     public int DrawCountPerTurn => drawCountPerTurn;
-    // public Hero hero = new Hero();
-    private List<Enemy> enemyList;
+
 
     protected override void UnityAwake()
     {
 
     }
-
+    void Start()
+    {
+        BattleStart(0, null);
+    }
 
     // void Update() { }
 
@@ -49,14 +54,8 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        // mBattleModel = new EnemyGroup(id, 1);
         enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
         selectedEnemy = enemyList[0];
-
-
-        //重置各卡牌存储空间
-        //战斗状态切换为初始化阶段
-        // ChangeStatus(new InitializationState(this));
     }
 
 

@@ -7,9 +7,9 @@ public class Enemy : BattleCharacter
 {
     // [SerializeField]
     public TextMeshProUGUI text;
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(BattleCharacter bc, int damage)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(bc, damage);
         ShowHp();
     }
     public void SetEnemy(EnemySource enemySource)

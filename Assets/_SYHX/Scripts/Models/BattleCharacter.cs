@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BattleCharacter : MonoBehaviour
 {
@@ -12,17 +13,16 @@ public class BattleCharacter : MonoBehaviour
 
     protected int AI_id;
 
-
-    // public BattleCharacter (int id)
-    // {
-
-    // }
+    public event Action<BattleCharacter, int> onTakeDamage = delegate { };
+    public event Action<BattleCharacter> onGiveDamage = delegate { };
+    public event Action onDeath = delegate { };
 
     /// <summary>
     /// 死亡
     /// </summary>
     public virtual void Death()
     {
+        onDeath();
         isAlive = false;
     }
 
@@ -61,13 +61,18 @@ public class BattleCharacter : MonoBehaviour
         return isAlive;
     }
 
-    public virtual void GiveDamage(BattleCharacter bc)
+    public virtual void GiveDamage(BattleCharacter bc, int damage)
     {
-        var damage = this.attack - bc.defence;
-        bc.TakeDamage(damage);
+        onGiveDamage(bc);
+        bc.TakeDamage(this, damage);
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(BattleCharacter bc, int damage)
+    {
+        onTakeDamage(bc, damage);
+        this.DecreaseHp(damage);
+    }
+    public virtual void TakeNoSourceDamage(int damage)
     {
         this.DecreaseHp(damage);
     }
