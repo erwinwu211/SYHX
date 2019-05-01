@@ -48,7 +48,7 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
 
             //TODO : 动画改进
             var go = cardGo.Create(cardPos);
-            // go.transform.
+            go.transform.localPosition -= handPile.Count * new Vector3(0f, 0f, 0.5f);
 
             if (count > 0) { Draw(count); } else { return; }
         }
