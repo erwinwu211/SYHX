@@ -2,50 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ABattleStatus {
+public abstract class TurnState : Assitant<TurnStateManager>
+{
+    protected TurnState_FSM fsm => owner.owner.fsmManager;
 
-    public virtual void Start() { }
-    public virtual void Update () { }
-    public virtual void End() { }
+    public virtual void Enter() { }
+    public virtual void Update() { }
+    public virtual void Exit() { }
+    public abstract string FsmName();
+    public void TrySetCurrent()
+    {
+        fsm.TryTransition(this);
+    }
+    public bool IsCurrent()
+    {
+        return base.owner.current == this;
+    }
     protected BattleManager context;
 
-    public ABattleStatus(BattleManager context)
-    {
-        this.context = context;
-    }
+    public TurnState(TurnStateManager owner) : base(owner) { }
 }
 
 
 /// <summary>
 /// 1.初始化阶段
 /// </summary>
-public class InitializationStatus : ABattleStatus
+public class FirstState : TurnState
 {
-    public InitializationStatus(BattleManager context) : base(context) { }
+    public FirstState(TurnStateManager owner) : base(owner) { }
     private bool EndFlag = false;
 
-    public override void Start()
+    public override void Enter()
     {
         //数据加载
         LoadData();
 
         //初始化回合数
-        context.RountCount = 0;
+        // context.RountCount = 0;
+        owner.owner.fsmManager.TryTransition(owner.playerStartState);
     }
 
-    public override  void Update()
+    public override void Update()
     {
         //当数据加载完成，打开Flag
         if (EndFlag)
         {
-            End();
+            Exit();
         }
     }
 
-    public override void End()
-    {
-        context.ChangeStatus(new PlayerTurnStartStatus(context));
-    }
+    public override void Exit() { }
+    public override string FsmName() => "First";
 
     //数据加载的方法
     private void LoadData()
@@ -60,24 +67,26 @@ public class InitializationStatus : ABattleStatus
 /// <summary>
 /// 玩家回合开始阶段
 /// </summary>
-public class PlayerTurnStartStatus : ABattleStatus
+public class PlayerStartState : TurnState
 {
-    public PlayerTurnStartStatus(BattleManager context) : base(context) { }
+    public PlayerStartState(TurnStateManager owner) : base(owner) { }
     private bool EndFlag = false;
 
-    public override void Start()
+    public override void Enter()
     {
         //回合数加1
-        context.RountCount++;
+        // context.RountCount++;
 
         //触发BUFF
-        context.BuffTrigger();
+        // context.BuffTrigger();
 
         //回复能量
-        context.EnergyPointRegain();
+        // context.EnergyPointRegain();
 
         //发牌
-        context.Draw(context.DrawCountPerTurn);
+        // context.Draw(context.DrawCountPerTurn);
+        owner.owner.fsmManager.TryTransition(owner.playerTurnState);
+
     }
 
     public override void Update()
@@ -87,17 +96,12 @@ public class PlayerTurnStartStatus : ABattleStatus
 
         if (EndFlag)
         {
-            End();
+            Exit();
         }
     }
 
-    public override void End()
-    {
-        if (context.IsBattleOver() == BattleResult.Continue)
-        {
-            context.ChangeStatus(new PlayerTurnGoingStatus(context));
-        }
-    }
+    public override void Exit() { }
+    public override string FsmName() => "PlayerStart";
 
     private void Check()
     {
@@ -112,9 +116,9 @@ public class PlayerTurnStartStatus : ABattleStatus
 /// <summary>
 /// 玩家回合进行阶段
 /// </summary>
-public class PlayerTurnGoingStatus : ABattleStatus
+public class PlayerTurnState : TurnState
 {
-    public PlayerTurnGoingStatus(BattleManager context) : base(context) { }
+    public PlayerTurnState(TurnStateManager owner) : base(owner) { }
 
     public override void Update()
     {
@@ -139,11 +143,13 @@ public class PlayerTurnGoingStatus : ABattleStatus
                 {
                     Debug.Log("Use Card");
                 }
-                if(gameObj.name=="TurnEndBtn")
+                if (gameObj.name == "TurnEndBtn")
                 {
-                    End();
+                    owner.owner.fsmManager.TryTransition(owner.playerEndState);
+
+                    Exit();
                 }
-                if (gameObj.name=="")
+                if (gameObj.name == "")
                 {
 
                 }
@@ -151,17 +157,19 @@ public class PlayerTurnGoingStatus : ABattleStatus
         }
     }
 
-    public override void End()
+    public override void Exit()
     {
-        if (context.IsBattleOver() == BattleResult.Continue)
-        {
-            context.ChangeStatus(new PlayerTurnEndStatus(context));
-        }
+        // if (context.IsBattleOver() == BattleResult.Continue)
+        // {
+        //     context.ChangeStatus(new PlayerTurnEndState(context));
+        // }
     }
+    public override string FsmName() => "PlayerTurn";
+
 
     public void OnTurnEndBtnClicked()
     {
-        End();
+        Exit();
     }
 }
 
@@ -171,17 +179,19 @@ public class PlayerTurnGoingStatus : ABattleStatus
 /// <summary>
 /// 玩家回合结束阶段
 /// </summary>
-public class PlayerTurnEndStatus : ABattleStatus
+public class PlayerEndState : TurnState
 {
-    public PlayerTurnEndStatus(BattleManager context) : base(context) { }
+    public PlayerEndState(TurnStateManager owner) : base(owner) { }
     private bool EndFlag = false;
 
-    public override void Start()
+    public override void Enter()
     {
         //触发BUFF
         context.BuffTrigger();
 
         //将牌移入弃牌堆
+        owner.owner.fsmManager.TryTransition(owner.enemyStartState);
+
 
     }
 
@@ -192,17 +202,19 @@ public class PlayerTurnEndStatus : ABattleStatus
 
         if (EndFlag)
         {
-            End();
+            Exit();
         }
     }
 
-    public override void End()
+    public override void Exit()
     {
-        if (context.IsBattleOver() == BattleResult.Continue)
-        {
-            context.ChangeStatus(new EnemyTurnStartStatus(context));
-        }
+        // if (context.IsBattleOver() == BattleResult.Continue)
+        // {
+        //     context.ChangeStatus(new EnemyTurnStartState(context));
+        // }
     }
+    public override string FsmName() => "PlayerEnd";
+
 
     private void Check()
     {
@@ -216,12 +228,12 @@ public class PlayerTurnEndStatus : ABattleStatus
 /// <summary>
 /// 敌方回合开始阶段
 /// </summary>
-public class EnemyTurnStartStatus : ABattleStatus
+public class EnemyStartState : TurnState
 {
-    public EnemyTurnStartStatus(BattleManager context) : base(context) { }
+    public EnemyStartState(TurnStateManager owner) : base(owner) { }
     private bool EndFlag = false;
 
-    public override void Start()
+    public override void Enter()
     {
         //触发BUFF
         context.BuffTrigger();
@@ -236,17 +248,19 @@ public class EnemyTurnStartStatus : ABattleStatus
 
         if (EndFlag)
         {
-            End();
+            Exit();
         }
     }
 
-    public override void End()
+    public override void Exit()
     {
-        if (context.IsBattleOver() == BattleResult.Continue)
-        {
-            context.ChangeStatus(new EnemyTurnEndStatus(context));
-        }
+        // if (context.IsBattleOver() == BattleResult.Continue)
+        // {
+        //     context.ChangeStatus(new EnemyTurnEndState(context));
+        // }
     }
+    public override string FsmName() => "EnemyStart";
+
 
     private void Check()
     {
@@ -259,12 +273,12 @@ public class EnemyTurnStartStatus : ABattleStatus
 /// <summary>
 /// 敌方回合结束阶段
 /// </summary>
-public class EnemyTurnEndStatus : ABattleStatus
+public class EnemyEndState : TurnState
 {
-    public EnemyTurnEndStatus(BattleManager context) : base(context) { }
+    public EnemyEndState(TurnStateManager context) : base(context) { }
     private bool EndFlag = false;
 
-    public override void Start()
+    public override void Enter()
     {
         //触发BUFF
         context.BuffTrigger();
@@ -277,18 +291,21 @@ public class EnemyTurnEndStatus : ABattleStatus
 
         if (EndFlag)
         {
-            End();
+            Exit();
         }
     }
 
 
-    public override void End()
+    public override void Exit()
     {
-        if (context.IsBattleOver() == BattleResult.Continue)
-        {
-            context.ChangeStatus(new PlayerTurnStartStatus(context));
-        }
+        // if (context.IsBattleOver() == BattleResult.Continue)
+        // {
+        //     context.ChangeStatus(new PlayerStartState(context));
+        // }
     }
+
+    public override string FsmName() => "PlayerEnd";
+
 
 
     private void Check()
@@ -300,11 +317,11 @@ public class EnemyTurnEndStatus : ABattleStatus
 
 
 
-public class ResultStatus : ABattleStatus
+public class ResultState : TurnState
 {
-    public ResultStatus(BattleManager context) : base(context) { }
+    public ResultState(TurnStateManager context) : base(context) { }
 
-    public override void Start()
+    public override void Enter()
     {
     }
 
@@ -312,4 +329,6 @@ public class ResultStatus : ABattleStatus
     {
         context.BattleEnd();
     }
+    public override string FsmName() => "Result";
+
 }

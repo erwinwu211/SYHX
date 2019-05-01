@@ -1,61 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class Enemy {
-
-    private bool isAlive;
-    private int maxHp;
-    private int correctHp;
-    private int attack;
-    private int AI_id;
-
-    public Enemy (int id)
+public class Enemy : BattleCharacter
+{
+    // [SerializeField]
+    public TextMeshProUGUI text;
+    public override void TakeDamage(int damage)
     {
-
+        base.TakeDamage(damage);
+        ShowHp();
     }
-
-    /// <summary>
-    /// 死亡
-    /// </summary>
-    public void Death()
+    public void SetEnemy(EnemySource enemySource)
     {
-        isAlive = false;
+        this.currentHp = enemySource.currentHp;
+        this.maxHp = enemySource.maxHp;
+        this.attack = enemySource.attack;
+        this.defence = enemySource.defence;
+        this.isAlive = true;
+        ShowHp();
     }
-
-    /// <summary>
-    /// 回血
-    /// </summary>
-    public void IncreaseHp(int count)
+    public void ShowHp()
     {
-        correctHp += count;
-        if (correctHp > maxHp)
-        {
-            correctHp = maxHp;
-        }
+        text.text = $"{this.currentHp}/{this.maxHp}";
     }
-
-    /// <summary>
-    /// 掉血
-    /// </summary>
-    /// <param name="count"></param>
-    public void DecreaseHp(int count)
+    public virtual void OnSelected()
     {
-        correctHp -= count;
-        if (correctHp <= 0)
-        {
-            correctHp = 0;
-            Death();
-        }
-    }
 
-    /// <summary>
-    /// 返回是否存活
-    /// </summary>
-    /// <returns></returns>
-    public bool IsAlive()
-    {
-        return isAlive;
     }
 
 }
