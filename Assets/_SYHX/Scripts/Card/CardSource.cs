@@ -16,6 +16,8 @@ public abstract class CardSource : ScriptableObject
     public string Name { get { return mName; } }
     public string Desc { get { return mDesc; } }
 
+    public CardType cardType;
+
 
     /// <summary>
     /// ❌事件：当抽到手上时
@@ -42,4 +44,9 @@ public abstract class CardSource : ScriptableObject
     /// </summary>
     public virtual void OnOtherCardUse(CardSource context) { }
 
+}
+
+public enum CardType
+{
+    强袭技, 灵巧技, 神秘技, 连接技
 }

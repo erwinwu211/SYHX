@@ -74,6 +74,7 @@ public class PlayerStartState : TurnState
 
     public override void Enter()
     {
+        BattleProgressEvent.Ins.OnPlayerTurnStart();
         //回合数加1
         // context.RountCount++;
 
@@ -186,6 +187,7 @@ public class PlayerEndState : TurnState
 
     public override void Enter()
     {
+        BattleProgressEvent.Ins.OnPlayerTurnEnd();
         //触发BUFF
         context.BuffTrigger();
 
@@ -235,6 +237,7 @@ public class EnemyStartState : TurnState
 
     public override void Enter()
     {
+        BattleProgressEvent.Ins.OnEnemyTurnStart();
         //触发BUFF
         context.BuffTrigger();
 
@@ -280,6 +283,7 @@ public class EnemyEndState : TurnState
 
     public override void Enter()
     {
+        BattleProgressEvent.Ins.OnEnemyTurnEnd();
         //触发BUFF
         context.BuffTrigger();
     }

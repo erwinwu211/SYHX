@@ -5,6 +5,8 @@ using UnityEngine;
 public class CardContent : Assitant<CardSource>
 {
     public CardContent(CardSource owner) : base(owner) { }
+    public CardType cardType { get; private set; }
+    public int EP { get; private set; }
     public void OnDraw() => owner.OnDraw();
     public void OnUse() => owner.OnUse();
     public void OnFold() => owner.OnFold();

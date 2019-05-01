@@ -19,7 +19,7 @@ where T : Singleton<T>, new()
             return ins;
         }
     }
-    public abstract void OnGenerate();
+    protected abstract void OnGenerate();
     public virtual void Destroy() => Reset();
     public static void Reset() => ins = null;
 }
