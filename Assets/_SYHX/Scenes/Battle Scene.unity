@@ -2465,8 +2465,8 @@ MonoBehaviour:
   cardManager: {fileID: 920204240}
   currentEPUI: {fileID: 1917486128}
   maxEPUI: {fileID: 1291322765}
-  currentEP: 0
-  maxEP: 0
+  currentEP: 10
+  maxEP: 10
 --- !u!114 &1891757748
 MonoBehaviour:
   m_ObjectHideFlags: 0

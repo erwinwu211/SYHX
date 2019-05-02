@@ -15,5 +15,7 @@ MonoBehaviour:
   mID: 0
   mName: test
   mDesc: attak
+  mEP: 0
   cardType: 0
   damage: 10
+  isAOE: 1
