@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BattleInfoManager : Assitant<BattleManager>
 {
-    public BattleInfoManager(BattleManager bm) : base(bm) { }
+    //可能弃用
+    public BattleInfoManager(BattleManager bm, int currentEP, int maxEP) : base(bm)
+    {
+        this.currentEP = currentEP;
+        this.maxEP = maxEP;
+    }
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
     public int DrawCountPerTurn => drawCountPerTurn;
@@ -16,6 +21,12 @@ public class BattleInfoManager : Assitant<BattleManager>
     public int moreEP { get; private set; }
     public CardType currentType { get; private set; }
     public int cardConnectionCount { get; private set; }
+
+    public void RefreshUI()
+    {
+        owner.currentEPUI.text = $"{currentEP.ToString()}";
+        owner.maxEPUI.text = $"{maxEP.ToString()}";
+    }
 
     public void AddTurn()
     {
@@ -35,11 +46,13 @@ public class BattleInfoManager : Assitant<BattleManager>
             currentEP += moreEP;
             moreEP = 0;
         }
+        RefreshUI();
     }
 
     public void ChangeEnergy(int ep)
     {
         currentEP += ep;
+        RefreshUI();
     }
     /// <summary>
     /// 在下一回合回复额外能量值的方法

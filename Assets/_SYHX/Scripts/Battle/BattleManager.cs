@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum BattleResult
 {
@@ -16,15 +17,20 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     [HideInInspector] public EnemyGroup BattleModel { get { return mBattleModel; } }
     [HideInInspector] public Enemy selectedEnemy { get; private set; }
     [SerializeField] public BattleHero hero;
+
     public List<Enemy> enemyList { get; private set; }
-    //卡牌管理器
     public CardManager cardManager;
     public BattleInfoManager biManager;
+    public TextMeshProUGUI currentEPUI;
+    public TextMeshProUGUI maxEPUI;
 
-
+    //可能弃用
+    public int currentEP;
+    public int maxEP;
     protected override void UnityAwake()
     {
-        biManager = new BattleInfoManager(this);
+        biManager = new BattleInfoManager(this, currentEP, maxEP);
+        biManager.RefreshUI();
     }
     void Start()
     {
