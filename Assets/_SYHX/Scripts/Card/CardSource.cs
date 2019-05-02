@@ -5,19 +5,20 @@ using System.Collections.Generic;
 
 public abstract class CardSource : ScriptableObject
 {
-    [SerializeField]
-    protected int mID;
-    [SerializeField]
-    protected string mName;
-    [SerializeField]
-    protected string mDesc;
+    [SerializeField] protected int mID;
+    [SerializeField] protected string mName;
+    [SerializeField] protected string mDesc;
+    [SerializeField] protected int mEP;
 
-    public int ID { get { return mID; } }
-    public string Name { get { return mName; } }
-    public string Desc { get { return mDesc; } }
+    public int ID { get => mID; }
+    public string Name { get => mName; }
+    public string Desc { get => mDesc; }
+    public int EP { get => mEP; }
 
     public CardType cardType;
 
+    public bool CanUse(CardContent cc) => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() > cc.EP && UseOption(cc);
+    protected virtual bool UseOption(CardContent cc) => true;
 
     /// <summary>
     /// ❌事件：当抽到手上时
@@ -27,7 +28,13 @@ public abstract class CardSource : ScriptableObject
     /// <summary>
     /// ❌事件：当卡牌在打出后，经过选择之后的效果
     /// </summary>
-    public virtual void OnUse() { }
+    public void OnUse(CardContent cc)
+    {
+        if (!CanUse(cc)) return;
+        BattleManager.Ins.ChangeEnergy(-EP);
+        Effect(cc);
+    }
+    public virtual void Effect(CardContent cc) { }
 
     /// <summary>
     /// ❌事件：当弃牌时
@@ -50,12 +57,13 @@ public abstract class CardSource : ScriptableObject
     {
         for (int i = 0; i < count; i++)
         {
-            CardManager.Ins.AddToDeck(new CardContent(this));
+            var cc = new CardContent();
+            cc.SetOwner(this);
+            CardManager.Ins.AddToDeck(cc);
         }
     }
 
 }
-
 public enum CardType
 {
     强袭技, 灵巧技, 神秘技, 连接技

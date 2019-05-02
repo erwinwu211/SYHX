@@ -54,7 +54,7 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
             //TODO : 动画改进
             var go = GameObject.Instantiate(cardGo, cardPos.transform.position, cardPos.transform.rotation, cardPos.transform);
             // var go = cardGo.Create(cardPos);
-            go.transform.localPosition -= handPile.Count * new Vector3(3f, 0f, 0f);
+            go.transform.localPosition -= handPile.Count * new Vector3(100f, 0f, 0f);
             go.SetCard(card);
 
             if (count > 0) { Draw(count); } else { return; }

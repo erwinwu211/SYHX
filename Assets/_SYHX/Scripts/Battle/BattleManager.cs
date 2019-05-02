@@ -16,35 +16,20 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     [HideInInspector] public EnemyGroup BattleModel { get { return mBattleModel; } }
     [HideInInspector] public Enemy selectedEnemy { get; private set; }
     [SerializeField] public BattleHero hero;
-    private List<Enemy> enemyList;
-
-    //回合数计数器
-    public int RountCount { get; set; }
-
-    //能量值计数器
-    public int correctEP;
-    public int maxEP;
-    public int moreEP;
+    public List<Enemy> enemyList { get; private set; }
     //卡牌管理器
     public CardManager cardManager;
-
-    //每回合抽卡数量
-    private int drawCountPerTurn = 5;
-    public int DrawCountPerTurn => drawCountPerTurn;
+    public BattleInfoManager biManager;
 
 
     protected override void UnityAwake()
     {
-
+        biManager = new BattleInfoManager(this);
     }
     void Start()
     {
         BattleStart(0, null);
     }
-
-    // void Update() { }
-
-
 
     /// <summary>
     /// 战斗开始，战斗场景的入口
@@ -56,6 +41,8 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
         //读取战斗数据
         enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
         selectedEnemy = enemyList[0];
+        biManager.ResetCardType();
+        biManager.ResetConnection();
     }
 
 
@@ -72,46 +59,15 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
 
 
-
-
-    /// <summary>
-    /// 抽牌方法
-    /// </summary>
-    /// <param name="count">抽牌的张数</param>
+    public void AddTurn() => biManager.AddTurn();
+    public int GetEP() => biManager.currentEP;
+    public void TurnStartDraw() => Draw(biManager.DrawCountPerTurn);
     public void Draw(int count) => CardManager.Ins.Draw(count);
-
-    /// <summary>
-    /// 洗牌方法
-    /// </summary>
-    private void Shuffle() => CardManager.Ins.Shuffle();
-
-    /// <summary>
-    /// 回复能量值的方法
-    /// </summary>
-    public void EnergyPointRegain()
-    {
-        //当前能量=上限
-        correctEP = maxEP;
-
-        //若有额外恢复值，再继续添加
-        if (moreEP > 0)
-        {
-            correctEP += moreEP;
-            moreEP = 0;
-        }
-    }
-
-
-
-    /// <summary>
-    /// 在下一回合回复额外能量值的方法
-    /// </summary>
-    /// <param name="count"></param>
-    public void RegainMoreEnergyPointNextTurn(int count)
-    {
-        moreEP = count;
-    }
-
+    public void Shuffle() => CardManager.Ins.Shuffle();
+    public void EnergyPointRegain() => biManager.EnergyPointRegain();
+    public void ChangeEnergy(int ep) => biManager.ChangeEnergy(ep);
+    public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);
+    public void RegainMoreEnergyPointNextTurn(int count) => biManager.RegainMoreEnergyPointNextTurn(count);
     /// <summary>
     /// 检测战斗是否结束
     /// 检测方式：

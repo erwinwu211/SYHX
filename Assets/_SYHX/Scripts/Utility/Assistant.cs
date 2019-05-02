@@ -11,6 +11,16 @@ public class Assitant<T>
     }
 }
 
+public class SAssitant<T>
+{
+    public T owner;
+    public SAssitant() { }
+    public virtual void SetOwner(T owner)
+    {
+        this.owner = owner;
+    }
+}
+
 public class AssitantMonobehaviour<T> : MonoBehaviour
 where T : Component
 {

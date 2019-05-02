@@ -914,7 +914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1375453525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2234,9 +2234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hero: {fileID: 1399497701}
-  correctEP: 0
-  maxEP: 0
-  moreEP: 0
   cardManager: {fileID: 0}
 --- !u!114 &1891757748
 MonoBehaviour:
@@ -2538,6 +2535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219574756537783187, guid: e85092a8d0cda0c41a12adcd809ad42c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4219574756537783186, guid: e85092a8d0cda0c41a12adcd809ad42c,
         type: 3}

@@ -74,10 +74,10 @@ public class PlayerStartState : TurnState
 
     public override void Enter()
     {
-        BattleManager.Ins.RountCount++;
+        BattleManager.Ins.AddTurn();
         BattleProgressEvent.Ins.OnPlayerTurnStart();
         BattleManager.Ins.EnergyPointRegain();
-        BattleManager.Ins.Draw(BattleManager.Ins.DrawCountPerTurn);
+        BattleManager.Ins.TurnStartDraw();
         owner.owner.fsmManager.TryTransition(owner.playerTurnState);
 
     }
