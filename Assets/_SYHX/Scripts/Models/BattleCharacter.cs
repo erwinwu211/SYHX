@@ -11,11 +11,10 @@ public class BattleCharacter : MonoBehaviour
     protected int attack;
     protected int defence;
 
-    protected int AI_id;
-
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
     public event Action onDeath = delegate { };
+    public List<AbnormalStatus> buffs { get; private set; } = new List<AbnormalStatus>();
 
     /// <summary>
     /// 死亡
