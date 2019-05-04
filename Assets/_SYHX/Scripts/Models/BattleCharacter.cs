@@ -14,7 +14,11 @@ public class BattleCharacter : MonoBehaviour
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
     public event Action onDeath = delegate { };
-    public List<AbnormalStatus> buffs { get; private set; } = new List<AbnormalStatus>();
+    public Buffs buffs;
+    void Awake()
+    {
+        buffs = new Buffs(this);
+    }
 
     /// <summary>
     /// 死亡
@@ -60,7 +64,7 @@ public class BattleCharacter : MonoBehaviour
         return isAlive;
     }
 
-    public virtual void GiveDamage(BattleCharacter bc, int damage)
+    public virtual void GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
     {
         onGiveDamage(bc);
         bc.TakeDamage(this, damage);
@@ -75,4 +79,9 @@ public class BattleCharacter : MonoBehaviour
     {
         this.DecreaseHp(damage);
     }
+}
+
+public enum DamageTrigger
+{
+    ByCard, ByEnemy
 }

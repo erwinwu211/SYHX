@@ -12,12 +12,12 @@ public class AttackCard : CardSource
         {
             foreach (var enemy in BattleManager.Ins.enemyList)
             {
-                BattleManager.Ins.hero.GiveDamage(enemy, damage);
+                BattleManager.Ins.hero.GiveDamage(enemy, damage, DamageTrigger.ByCard);
             }
         }
         else
         {
-            BattleManager.Ins.hero.GiveDamage(BattleManager.Ins.selectedEnemy, damage);
+            BattleManager.Ins.hero.GiveDamage(BattleManager.Ins.selectedEnemy, damage, DamageTrigger.ByCard);
         }
     }
 }
