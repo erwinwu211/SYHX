@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760af873b9a7bf64785a9e271b2c3077, type: 3}
-  m_Name: AttackCard
+  m_Script: {fileID: 11500000, guid: fa8534212875a3446811fa88f717616a, type: 3}
+  m_Name: PowerUpSource
   m_EditorClassIdentifier: 
-  mID: 0
-  mName: test
-  mDesc: attak
-  mEP: 0
-  cardType: 0
-  damageRate: 1
-  isAOE: 1
+  id: 0
+  isTurnBased: 1
+  showCount: 0
+  constant:
+    attackRate: 1

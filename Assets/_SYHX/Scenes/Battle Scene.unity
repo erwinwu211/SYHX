@@ -836,7 +836,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPos: {fileID: 1304378608}
   cardGo: {fileID: 5444214861292780424, guid: 98a9e6aa1b6c2324bad041cc5359e65b, type: 3}
-  card: {fileID: 11400000, guid: 3f60e29d2ef96444a83a7adcbb3362b8, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 3f60e29d2ef96444a83a7adcbb3362b8, type: 2}
+  - {fileID: 11400000, guid: 90620129840b42a47969ce2bdeca5457, type: 2}
 --- !u!4 &920204241
 Transform:
   m_ObjectHideFlags: 0
@@ -1069,7 +1071,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1208,6 +1210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c26d22a5185004589ff889d0300d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 0
+  attack: 0
 --- !u!1 &1638658465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,7 +2704,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}

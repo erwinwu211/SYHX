@@ -11,7 +11,8 @@ namespace SYHX.Buff
         public void Increase(BuffSource buffSource, int count)
         {
             if (buffSource == null) return;
-            GetOrCreate(buffSource);
+            var buff = GetOrCreate(buffSource);
+            buff.Increase(count);
         }
         public Buff GetOrCreate(BuffSource buffSource)
         {
@@ -21,6 +22,10 @@ namespace SYHX.Buff
             }
             var buff = buffSource.Generate(owner);
             buffDisc.Add(buffSource.id, buff);
+            if (buffSource.isTurnBased)
+            {
+                BattleProgressEvent.Ins.onPlayerTurnStart += () => DecreaseByTurn(buff);
+            }
             return buff;
         }
 
@@ -31,6 +36,11 @@ namespace SYHX.Buff
                 return buffDisc[buffSource.id].isActive;
             }
             return false;
+        }
+
+        public void DecreaseByTurn(Buff buff)
+        {
+            buff.Decrease(1);
         }
 
         public T GetSource<T>()

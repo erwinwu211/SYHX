@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class AttackCard : CardSource
+﻿public class AttackCard : CardSource
 {
-    public int damage;
+    public int damageRate;
     public bool isAOE;
     public override void Effect(CardContent cc)
     {
@@ -12,12 +8,12 @@ public class AttackCard : CardSource
         {
             foreach (var enemy in BattleManager.Ins.enemyList)
             {
-                BattleManager.Ins.hero.GiveDamage(enemy, damage, DamageTrigger.ByCard);
+                Damage.CalculateAndApply(BattleManager.Ins.hero, enemy, damageRate, DamageTrigger.ByCard);
             }
         }
         else
         {
-            BattleManager.Ins.hero.GiveDamage(BattleManager.Ins.selectedEnemy, damage, DamageTrigger.ByCard);
+            Damage.CalculateAndApply(BattleManager.Ins.hero, BattleManager.Ins.selectedEnemy, damageRate, DamageTrigger.ByCard);
         }
     }
 }

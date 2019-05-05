@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damage
+public static class Damage
 {
-    // public int
-    public BattleCharacter giver { get; private set; }
-    public BattleCharacter receiver { get; private set; }
-    public Damage(BattleCharacter giver, BattleCharacter receiver)
-    {
 
-    }
-
-    public static int CalculateAndGet(BattleCharacter giver, BattleCharacter receiver, float value)
+    public static int CalculateAndGet(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger)
     {
         return 0;
     }
-    public static void CalculateAndApply()
+    public static void CalculateAndApply(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger, int times = 1)
     {
-
+        BattleProgressEvent.Ins.OnGiveDamage(giver, receiver, trigger);
+        var damage = giver.attack * rate;
+        damage *= (1 + giver.attackRate) * (1 - receiver.defenceRate);
+        for (int i = 0; i < times; i++)
+        {
+            BattleProgressEvent.Ins.OnGiveDamagePertime(giver, receiver, trigger);
+            giver.GiveDamage(receiver, (int)damage, trigger);
+            BattleProgressEvent.Ins.OnReceiveDamagePertime(giver, receiver, trigger);
+        }
+        BattleProgressEvent.Ins.OnReceiveDamage(giver, receiver, trigger);
     }
 }
 

@@ -12,6 +12,7 @@ namespace SYHX.Buff
         public abstract Buff Generate(BattleCharacter owner);
     }
 
+
     public class BuffSource<T1, T2> : BuffSource
     where T1 : Buff, new()
     where T2 : struct

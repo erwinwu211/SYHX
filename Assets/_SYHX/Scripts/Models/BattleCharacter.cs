@@ -8,8 +8,8 @@ public class BattleCharacter : MonoBehaviour
 {
     protected bool isAlive;
     protected int maxHp;
-    public int currentHp { get; protected set; }
-    protected int attack;
+    public int currentHp;
+    public int attack;
     protected int defence;
     public float attackRate { get; protected set; }
     public float defenceRate { get; protected set; }
@@ -91,7 +91,3 @@ public class BattleCharacter : MonoBehaviour
     }
 }
 
-public enum DamageTrigger
-{
-    ByCard, ByEnemy
-}

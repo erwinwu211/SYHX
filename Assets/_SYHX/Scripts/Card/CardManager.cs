@@ -18,11 +18,14 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
 
 
     //测试用
-    public CardSource card;
+    public List<CardSource> cards;
     //
     protected override void UnityAwake()
     {
-        card.GenerateCard(10);
+        foreach (var card in cards)
+        {
+            card.GenerateCard(1);
+        }
     }
     /// <summary>
     /// 抽牌方法

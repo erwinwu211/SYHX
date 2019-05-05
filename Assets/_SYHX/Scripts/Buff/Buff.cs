@@ -13,6 +13,11 @@ namespace SYHX.Buff
         public int count { get; protected set; }
         public virtual void Increase(int count)
         {
+            if (!this.isActive)
+            {
+                this.isActive = true;
+                this.OnAdd(owner);
+            }
             this.count += count;
             if (count == 0)
             {
@@ -23,14 +28,14 @@ namespace SYHX.Buff
         public virtual void Decrease(int count)
         {
             this.count -= count;
-            if (count <= 0)
+            if (this.isActive && count <= 0)
             {
                 count = 0;
                 isActive = false;
                 this.OnClear(owner);
             }
         }
-        public virtual void Clear(BattleCharacter owner)
+        public virtual void Remove(BattleCharacter owner)
         {
             this.count = 0;
             this.isActive = false;
@@ -56,8 +61,9 @@ namespace SYHX.Buff
             var initOption = constant.GetType().GetFields();
             foreach (var option in initOption)
             {
-                if (option.GetType() == typeof(float))
+                if (option.FieldType == typeof(float))
                 {
+                    UDebug.Log($"option.Name :  {option.Name} , value : {(float)option.GetValue(constant)}");
                     optionalValue.Add(option.Name, (float)option.GetValue(constant));
                 }
             }

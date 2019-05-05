@@ -19,3 +19,8 @@ public class CardContent : SAssitant<CardSource>
     public void OnExiled() => owner.OnExiled();
     public void OnOtherCardUse(CardSource context) => owner.OnOtherCardUse(context);
 }
+
+public enum CardUseTrigger
+{
+    ByUser, ByCard
+}
