@@ -11,6 +11,8 @@ public class BattleCharacter : MonoBehaviour
     public int currentHp { get; protected set; }
     protected int attack;
     protected int defence;
+    public float attackRate { get; protected set; }
+    public float defenceRate { get; protected set; }
 
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
@@ -20,7 +22,14 @@ public class BattleCharacter : MonoBehaviour
     {
         buffs = new Buffs(this);
     }
-
+    public void ChangeAttackRate(float value)
+    {
+        attackRate += value;
+    }
+    public void ChangeDefenceRate(float value)
+    {
+        defenceRate += value;
+    }
     /// <summary>
     /// 死亡
     /// </summary>
