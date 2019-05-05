@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using SYHX.Buff;
 
 public class BattleCharacter : MonoBehaviour
 {
