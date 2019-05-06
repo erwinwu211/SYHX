@@ -16,6 +16,8 @@ public class InvokeAction : FsmStateAction
     {
         if (action != null)
         {
+            action.SetEnemy(handler.enemy);
+            action.Execute();
         }
         Finish();
     }
