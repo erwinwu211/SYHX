@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyGroup : ScriptableObject
 {
-    public GameObject go;
     [SerializeField] public List<EnemySource> enemyList;
 
     private float difficultLevel;
@@ -19,8 +18,8 @@ public class EnemyGroup : ScriptableObject
         var enemyParent = EnemyGroupManager.Ins.EnemyParent;
         foreach (var enemy in enemyList)
         {
-            var enemyGo = go.Create(enemyParent);
-            enemyGo.transform.localPosition += new Vector3(0f, 0f, i * -1f);
+            var enemyGo = enemy.enemyObject.Create(enemyParent);
+            enemyGo.transform.localPosition += new Vector3(0f, 0f, i * -50f);
             var thisEnemy = enemyGo.GetComponent<Enemy>();
             thisEnemy.SetEnemy(enemy);
             generatedEnemyList.Add(thisEnemy);

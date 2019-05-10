@@ -12,13 +12,9 @@ public enum BattleResult
 
 public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
-    [HideInInspector] private EnemyGroup mBattleModel;
-
-    [HideInInspector] public EnemyGroup BattleModel { get { return mBattleModel; } }
-    [HideInInspector] public Enemy selectedEnemy { get; private set; }
     [SerializeField] public BattleHero hero;
-
-    public List<Enemy> enemyList { get; private set; }
+    public Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
+    public List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
     public CardManager cardManager;
     public BattleInfoManager biManager;
     public TextMeshProUGUI currentEPUI;
@@ -29,6 +25,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public int maxEP;
     protected override void UnityAwake()
     {
+        BattleCharacterManager.Ins.SetHero(hero);
         biManager = new BattleInfoManager(this, currentEP, maxEP);
         biManager.RefreshUI();
     }
@@ -45,8 +42,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
-        selectedEnemy = enemyList[0];
+        BattleCharacterManager.Ins.GenerateEnemyGroup(id);
         biManager.ResetCardType();
         biManager.ResetConnection();
     }
@@ -59,7 +55,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleEnd()
     {
         // mBattleStatus = null;
-        mBattleModel = null;
         BattleCharacterManager.Ins.Destroy();
         BattleProgressEvent.Ins.Destroy();
     }

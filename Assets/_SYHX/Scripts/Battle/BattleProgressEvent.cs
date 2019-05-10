@@ -2,7 +2,6 @@
 
 public class BattleProgressEvent : Singleton<BattleProgressEvent>
 {
-    protected override void OnGenerate() { }
     public event Action onPlayerTurnStart = delegate { };
     public void OnPlayerTurnStart()
     {

@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using SYHX.Buff;
 
 public class BattleCharacter : MonoBehaviour
 {
     protected bool isAlive;
-    protected int maxHp;
+    [SerializeField] protected int maxHp;
     public int currentHp;
     public int attack;
     protected int defence;
     public float attackRate { get; protected set; }
     public float defenceRate { get; protected set; }
+    public Canvas canvas;
 
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
@@ -21,6 +23,14 @@ public class BattleCharacter : MonoBehaviour
     void Awake()
     {
         buffs = new Buffs(this);
+        ChildAwake();
+    }
+
+
+    //可能消失
+    public virtual void ChildAwake()
+    {
+        canvas.worldCamera = Camera.allCameras[0];
     }
     public void ChangeAttackRate(float value)
     {

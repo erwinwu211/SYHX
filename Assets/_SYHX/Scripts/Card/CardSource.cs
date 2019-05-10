@@ -63,6 +63,15 @@ public abstract class CardSource : ScriptableObject
         }
     }
 
+#if UNITY_EDITOR
+    public void GenerateToDeck()
+    {
+        var cc = new CardContent();
+        cc.SetOwner(this);
+        CardManager.Ins.AddToDeck(cc);
+    }
+#endif
+
 }
 public enum CardType
 {

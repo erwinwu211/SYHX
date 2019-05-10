@@ -8,4 +8,6 @@ public class EnemySource : ScriptableObject
     public int currentHp;
     public int attack;
     public int defence;
+
+    public GameObject enemyObject;
 }

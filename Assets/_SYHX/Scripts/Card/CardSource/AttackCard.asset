@@ -18,4 +18,4 @@ MonoBehaviour:
   mEP: 0
   cardType: 0
   damageRate: 1
-  isAOE: 1
+  isAOE: 0

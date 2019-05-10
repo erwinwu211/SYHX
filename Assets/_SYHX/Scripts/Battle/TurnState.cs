@@ -121,33 +121,33 @@ public class PlayerTurnState : TurnState
         //3.点击道具/技能切换按钮，切换卡牌列表
         //4.点击弃牌堆，弹出弃牌堆列表
         //5.点击敌人，将敌人选中为目标
-        if (Input.GetMouseButtonDown(0))
-        {
-            Camera c = GameObject.Find("UI Camera").GetComponent<Camera>();
-            Ray ray = c.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
-            Physics.Raycast(ray, out hitInfo);
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                Debug.DrawLine(ray.origin, hitInfo.point);
-                GameObject gameObj = hitInfo.collider.gameObject;
-                //当射线碰撞目标为卡牌类型，使用卡牌
-                if (gameObj.tag == "Card")
-                {
-                    Debug.Log("Use Card");
-                }
-                if (gameObj.name == "TurnEndBtn")
-                {
-                    owner.owner.fsmManager.TryTransition(owner.playerEndState);
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     Camera c = GameObject.Find("UI Camera").GetComponent<Camera>();
+        //     Ray ray = c.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit hitInfo;
+        //     Physics.Raycast(ray, out hitInfo);
+        //     if (Physics.Raycast(ray, out hitInfo))
+        //     {
+        //         Debug.DrawLine(ray.origin, hitInfo.point);
+        //         GameObject gameObj = hitInfo.collider.gameObject;
+        //         //当射线碰撞目标为卡牌类型，使用卡牌
+        //         if (gameObj.tag == "Card")
+        //         {
+        //             Debug.Log("Use Card");
+        //         }
+        //         if (gameObj.name == "TurnEndBtn")
+        //         {
+        //             owner.owner.fsmManager.TryTransition(owner.playerEndState);
 
-                    Exit();
-                }
-                if (gameObj.name == "")
-                {
+        //             Exit();
+        //         }
+        //         if (gameObj.name == "")
+        //         {
 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
 
     public override void Exit() { }
