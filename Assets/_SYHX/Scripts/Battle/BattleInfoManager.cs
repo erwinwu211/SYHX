@@ -31,6 +31,7 @@ public class BattleInfoManager : Assitant<BattleManager>
     public void AddTurn()
     {
         TurnCount++;
+        owner.roundText.text = $"第{TurnCount}回合";
     }
     /// <summary>
     /// 回复能量值的方法

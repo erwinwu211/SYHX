@@ -19,7 +19,7 @@ public class EnemyGroup : ScriptableObject
         foreach (var enemy in enemyList)
         {
             var enemyGo = enemy.enemyObject.Create(enemyParent);
-            enemyGo.transform.localPosition += new Vector3(0f, 0f, i * -50f);
+            enemyGo.transform.localPosition += new Vector3(0f, 0f, i * -1f);
             var thisEnemy = enemyGo.GetComponent<Enemy>();
             thisEnemy.SetEnemy(enemy);
             generatedEnemyList.Add(thisEnemy);

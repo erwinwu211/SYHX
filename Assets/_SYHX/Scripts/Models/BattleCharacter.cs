@@ -14,7 +14,7 @@ public class BattleCharacter : MonoBehaviour
     protected int defence;
     public float attackRate { get; protected set; }
     public float defenceRate { get; protected set; }
-    public Canvas canvas;
+    // public Canvas canvas;
 
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
@@ -30,7 +30,7 @@ public class BattleCharacter : MonoBehaviour
     //可能消失
     public virtual void ChildAwake()
     {
-        canvas.worldCamera = Camera.allCameras[0];
+        // canvas.worldCamera = Camera.allCameras[0];
     }
     public void ChangeAttackRate(float value)
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public enum BattleResult
 {
@@ -17,8 +18,10 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
     public CardManager cardManager;
     public BattleInfoManager biManager;
+    public TurnManager turnManager => TurnManager.Ins;
     public TextMeshProUGUI currentEPUI;
     public TextMeshProUGUI maxEPUI;
+    public Text roundText;
 
     //可能弃用
     public int currentEP;
@@ -69,6 +72,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void ChangeEnergy(int ep) => biManager.ChangeEnergy(ep);
     public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);
     public void RegainMoreEnergyPointNextTurn(int count) => biManager.RegainMoreEnergyPointNextTurn(count);
+    public void TurnEnd() => turnManager.EndPlayerTurn();
     /// <summary>
     /// 检测战斗是否结束
     /// 检测方式：

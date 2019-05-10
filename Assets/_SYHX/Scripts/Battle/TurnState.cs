@@ -216,7 +216,7 @@ public class EnemyStartState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnStart();
-
+        owner.owner.fsmManager.TryTransition(owner.enemyEndState);
         //执行AI
     }
 
@@ -254,6 +254,8 @@ public class EnemyEndState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnEnd();
+        owner.owner.fsmManager.TryTransition(owner.playerStartState);
+
     }
 
     public override void Update()
@@ -270,7 +272,7 @@ public class EnemyEndState : TurnState
 
     public override void Exit() { }
 
-    public override string FsmName() => "PlayerEnd";
+    public override string FsmName() => "EnemyEnd";
 
 
 

@@ -12,4 +12,6 @@
     {
         stateManager.current.Update();
     }
+
+    public void EndPlayerTurn() => fsmManager.TryTransition(stateManager.playerEndState);
 }
