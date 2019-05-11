@@ -6,7 +6,7 @@ using HutongGames.PlayMaker;
 [Tooltip("Action Invoker（激活敌方行动）")]
 public class InvokeAction : FsmStateAction
 {
-    public EnemyAction action;
+    public EnemyActionSource actionSource;
     private EnemyAIHandler handler;
     public override void Awake()
     {
@@ -14,10 +14,11 @@ public class InvokeAction : FsmStateAction
     }
     public override void OnEnter()
     {
-        if (action != null)
+        if (actionSource != null)
         {
+            var action = actionSource.GenerateAction();
+            handler.enemy.SetAction(action);
             action.SetEnemy(handler.enemy);
-            action.Execute();
         }
         Finish();
     }

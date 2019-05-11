@@ -52,6 +52,7 @@ MonoBehaviour:
   attack: 10
   text: {fileID: 3772818539838947705}
   enemy: {fileID: 4485900160369496117}
+  aiHandler: {fileID: 929849162546343755}
 --- !u!114 &7314683569394302660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,9 +460,9 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 79961000
+        actionHashCodes: d2d3fc00
         unityObjectParams:
-        - {fileID: 0}
+        - {fileID: 11400000, guid: 7afc9745e1eda624295edcf3a2c86789, type: 2}
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
         animationCurveParams: []
@@ -491,7 +492,7 @@ MonoBehaviour:
         customTypeNames: []
         paramDataType: 05000000
         paramName:
-        - action
+        - actionSource
         paramDataPos: 00000000
         paramByteDataSize: 00000000
     - name: Action2
@@ -523,9 +524,9 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 79961000
+        actionHashCodes: d2d3fc00
         unityObjectParams:
-        - {fileID: 0}
+        - {fileID: 11400000, guid: 62a8ed5470635014bb0bff1da5cc7341, type: 2}
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
         animationCurveParams: []
@@ -555,7 +556,7 @@ MonoBehaviour:
         customTypeNames: []
         paramDataType: 05000000
         paramName:
-        - action
+        - actionSource
         paramDataPos: 00000000
         paramByteDataSize: 00000000
     - name: ToA
@@ -764,6 +765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4749a77d0715046973514a0154106c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 4239592697578008076}
+  fsm: {fileID: 7314683569394302660}
 --- !u!1 &2770987801763998625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,11 +1038,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

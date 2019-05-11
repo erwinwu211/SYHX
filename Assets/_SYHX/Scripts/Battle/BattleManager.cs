@@ -73,6 +73,11 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);
     public void RegainMoreEnergyPointNextTurn(int count) => biManager.RegainMoreEnergyPointNextTurn(count);
     public void TurnEnd() => turnManager.EndPlayerTurn();
+
+    public Coroutine CoroutineUtil(IEnumerator couroutine)
+    {
+        return this.StartCoroutine(couroutine);
+    }
     /// <summary>
     /// 检测战斗是否结束
     /// 检测方式：

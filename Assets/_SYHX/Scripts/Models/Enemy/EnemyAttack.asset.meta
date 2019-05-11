@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 7afc9745e1eda624295edcf3a2c86789
+labels:
+- Data
+- EnemyAttack
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

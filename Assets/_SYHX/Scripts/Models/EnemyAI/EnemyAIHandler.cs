@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayMakerFSM))]
 public class EnemyAIHandler : MonoBehaviour
 {
-    [NonSerialized] public Enemy enemy;
-    [NonSerialized] public PlayMakerFSM fsm;
+    public Enemy enemy;
+    public PlayMakerFSM fsm;
     void Awake()
     {
         enemy = this.GetComponent<Enemy>();

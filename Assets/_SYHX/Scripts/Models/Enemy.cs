@@ -11,7 +11,8 @@ public class Enemy : BattleCharacter
     public TextMeshProUGUI text;
     public Button enemy;
     private ColorBlock defaultBlock;
-    private EnemyAIHandler aiHandler;
+    public EnemyAIHandler aiHandler;
+    private EnemyAction nextAction;
     public override void TakeDamage(BattleCharacter bc, int damage)
     {
         base.TakeDamage(bc, damage);
@@ -49,8 +50,21 @@ public class Enemy : BattleCharacter
     public void StartAI() => aiHandler.DoStart();
     public void NextAI() => aiHandler.DoNext();
 
+    //临时用
+    public override bool IsAlive() => true;
+
     public void SelectThis()
     {
         BattleCharacterManager.Ins.SelectEnemy(this);
+    }
+
+    public void SetAction(EnemyAction action)
+    {
+        this.nextAction = action;
+    }
+    public IEnumerator Execute()
+    {
+        yield return StartCoroutine(nextAction.Execute());
+        yield break;
     }
 }
