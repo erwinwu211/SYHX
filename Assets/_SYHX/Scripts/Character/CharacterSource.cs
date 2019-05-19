@@ -28,16 +28,3 @@ public abstract class CharacterSource
         }
     }
 }
-
-public class FukasakiKotone : CharacterSource
-{
-    public FukasakiKotone()
-    {
-        Name = "深崎琴音";
-        HpMax = 70;
-        Attack = 6;
-        Defend = 5;
-        DrawCount = 5;
-        Energy = 3;
-    }
-}

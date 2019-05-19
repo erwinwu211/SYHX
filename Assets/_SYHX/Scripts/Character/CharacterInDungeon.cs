@@ -17,17 +17,28 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public List<CardContent> equip_deck { get; private set; }
     public List<EquipmentContent> Equipments { get; private set; }
 
-    public void Init(CharacterContent character)
+    public void Start()
     {
         //这里先暂时用一下预设好的人物
         FukasakiKotone c = new FukasakiKotone();
-        this.character = c.GenerateCharacter();
+        CharacterContent cc = c.GenerateCharacter();
+        Init(cc);
+    }
+
+    public void Init(CharacterContent cc)
+    {
+        character = cc;
         Energy_max = character.Energy;
         Draw_count = character.DrawCount;
         hp_max_from_dungeon = 0;
         attack_from_dungeon = 0;
         defend_from_dungeon = 0;
+        deck = new List<CardContent>();
+        character_deck = new List<CardContent>();
+        equip_deck = new List<CardContent>();
+        Equipments = new List<EquipmentContent>();
         InitDeck();
+        Debug.Log("当前生命值：" + GetHpMax());
     }
 
     /// <summary>
@@ -259,6 +270,5 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 
     protected override void UnityAwake()
     {
-        throw new System.NotImplementedException();
     }
 }
