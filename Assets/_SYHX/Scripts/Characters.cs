@@ -15,4 +15,9 @@ public class Characters : SingletonMonoBehaviour<Characters>
     public int Agi { get => mAgi; }
     public int Int { get => mInt; }
     public List<CardSource> Cards { get => mCards; }
+
+    protected override void UnityAwake()
+    {
+        throw new System.NotImplementedException();
+    }
 }
