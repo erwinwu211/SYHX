@@ -14,9 +14,9 @@ public class CharacterInDungeon : MonoBehaviour
     public int hp_currect { get; private set; }
     public int Energy_max { get; private set; }
     public int Draw_count { get; private set; }
-    public List<CardContent> Deck { get; private set; }
-    public List<CardContent> Job_Deck { get; private set; }
-    public List<CardContent> Equip_Deck { get; private set; }
+    public List<CardContent> deck { get; private set; }
+    public List<CardContent> character_deck { get; private set; }
+    public List<CardContent> equip_deck { get; private set; }
     public List<EquipmentContent> Equipments { get; private set; }
 
     /// <summary>
@@ -68,15 +68,15 @@ public class CharacterInDungeon : MonoBehaviour
     /// <returns></returns>
     public void RefreshDeck()
     {
-        Deck.Clear();
-        Job_Deck.Clear();
-        Equip_Deck.Clear();
+        deck.Clear();
+        character_deck.Clear();
+        equip_deck.Clear();
         foreach (EquipmentContent ec in Equipments)
         {
             foreach (CardContent card in ec.Cards())
             {
-                Equip_Deck.Add(card);
-                Deck.Add(card);
+                equip_deck.Add(card);
+                deck.Add(card);
             }
         }
     }
@@ -140,10 +140,10 @@ public class CharacterInDungeon : MonoBehaviour
     /// <param name="card"></param>
     public void RemoveJobCard(CardContent card)
     {
-        if (Job_Deck.Contains(card))
+        if (character_deck.Contains(card))
         {
-            Job_Deck.Remove(card);
-            Deck.Remove(card);
+            character_deck.Remove(card);
+            deck.Remove(card);
         }
     }
 
@@ -153,8 +153,8 @@ public class CharacterInDungeon : MonoBehaviour
     /// <param name="card"></param>
     public void JoinCard(CardContent card)
     {
-        Job_Deck.Add(card);
-        Deck.Add(card);
+        character_deck.Add(card);
+        deck.Add(card);
     }
 
     /// <summary>
