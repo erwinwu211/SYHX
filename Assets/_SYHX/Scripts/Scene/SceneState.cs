@@ -44,3 +44,10 @@ public class BattleState : SceneState
 
     public override string SceneName() => "Battle Scene";
 }
+
+public class CharacterState : SceneState
+{
+    public CharacterState(SceneStateManager owner) : base(owner) { }
+
+    public override string SceneName() => "Character";
+}

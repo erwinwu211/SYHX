@@ -59,4 +59,9 @@ public class SceneStateManager : SingletonMonoBehaviour<SceneStateManager>
     {
         SetSceneStatus(new ChooseState(this));
     }
+
+    public void OnCharacterBtnClick()
+    {
+        SetSceneStatus(new CharacterState(this));
+    }
 }

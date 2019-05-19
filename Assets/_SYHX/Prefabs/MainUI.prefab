@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 684668407522479591}
   - component: {fileID: 684668407522479576}
   m_Layer: 5
-  m_Name: JobBtn
+  m_Name: CharacterBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,7 +793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u804C\u4E1A"
+  m_Text: "\u4EBA\u7269"
 --- !u!1 &684668409412440494
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_SYHX/Scenes/Main.unity
     guid: dd8ce657c95046c4b85d9e2018e52778
   - enabled: 1
+    path: Assets/_SYHX/Scenes/Character.unity
+    guid: a009eeb4a5de2624a86cc4124ae0248d
+  - enabled: 1
     path: Assets/_SYHX/Scenes/Dungeon Choose.unity
     guid: 4aa9b34c276fce247b35029cb482d12f
   - enabled: 1
