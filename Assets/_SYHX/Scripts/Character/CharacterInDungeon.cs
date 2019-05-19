@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CharacterInDungeon : MonoBehaviour
+public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 {
-    public int hp_max_from_job;
+    public CharacterContent character;
     public int hp_max_from_dungeon;
-    public int attack_from_job;
     public int attack_from_dungeon;
-    public int defend_from_job;
     public int defend_from_dungeon;
     public int hp_currect { get; private set; }
     public int Energy_max { get; private set; }
@@ -19,13 +17,26 @@ public class CharacterInDungeon : MonoBehaviour
     public List<CardContent> equip_deck { get; private set; }
     public List<EquipmentContent> Equipments { get; private set; }
 
+    public void Init(CharacterContent character)
+    {
+        //这里先暂时用一下预设好的人物
+        FukasakiKotone c = new FukasakiKotone();
+        this.character = c.GenerateCharacter();
+        Energy_max = character.Energy;
+        Draw_count = character.DrawCount;
+        hp_max_from_dungeon = 0;
+        attack_from_dungeon = 0;
+        defend_from_dungeon = 0;
+        InitDeck();
+    }
+
     /// <summary>
     /// 获取生命最大值
     /// </summary>
     /// <returns></returns>
     public int GetHpMax()
     {
-        int hp_max = hp_max_from_job + hp_max_from_dungeon;
+        int hp_max = character.HpMax + hp_max_from_dungeon;
         foreach (EquipmentContent ec in Equipments)
         {
             hp_max += ec.Hp;
@@ -39,7 +50,7 @@ public class CharacterInDungeon : MonoBehaviour
     /// <returns></returns>
     public int GetAttack()
     {
-        int attack = attack_from_job + attack_from_dungeon;
+        int attack = character.Attack + attack_from_dungeon;
         foreach (EquipmentContent ec in Equipments)
         {
             attack += ec.Attack;
@@ -53,7 +64,7 @@ public class CharacterInDungeon : MonoBehaviour
     /// <returns></returns>
     public int GetDefend()
     {
-        int defend = defend_from_job + defend_from_dungeon;
+        int defend = character.Defend + defend_from_dungeon;
         foreach (EquipmentContent ec in Equipments)
         {
             defend += ec.Defend;
@@ -66,19 +77,33 @@ public class CharacterInDungeon : MonoBehaviour
     /// 根据玩家的装备与天赋，刷新玩家的牌库
     /// </summary>
     /// <returns></returns>
-    public void RefreshDeck()
+    public void InitDeck()
     {
         deck.Clear();
         character_deck.Clear();
         equip_deck.Clear();
         foreach (EquipmentContent ec in Equipments)
         {
-            foreach (CardContent card in ec.Cards())
+            foreach (CardContent cc in ec.Cards())
             {
-                equip_deck.Add(card);
-                deck.Add(card);
+                equip_deck.Add(cc);
+                deck.Add(cc);
             }
         }
+        foreach (CardContent cc in character.Cards)
+        {
+            character_deck.Add(cc);
+            deck.Add(cc);
+        }
+    }
+
+    /// <summary>
+    /// 返回玩家的牌库
+    /// </summary>
+    /// <returns></returns>
+    public List<CardContent> GetDeck()
+    {
+        return deck;
     }
 
     /// <summary>
@@ -135,6 +160,46 @@ public class CharacterInDungeon : MonoBehaviour
     }
 
     /// <summary>
+    /// 增加攻击力
+    /// </summary>
+    /// <param name="count"></param>
+    public void IncreaseAttack(int count)
+    {
+        if (count < 0) return;
+        attack_from_dungeon += count;
+    }
+
+    /// <summary>
+    /// 减少攻击力
+    /// </summary>
+    /// <param name="count"></param>
+    public void DecreaseAttack(int count)
+    {
+        if (count < 0) return;
+        attack_from_dungeon -= count;
+    }
+
+    /// <summary>
+    /// 增加防御力
+    /// </summary>
+    /// <param name="count"></param>
+    public void IncreaseDefend(int count)
+    {
+        if (count < 0) return;
+        defend_from_dungeon += count;
+    }
+
+    /// <summary>
+    /// 减少防御力
+    /// </summary>
+    /// <param name="count"></param>
+    public void DecreaseDefend(int count)
+    {
+        if (count < 0) return;
+        defend_from_dungeon -= count;
+    }
+
+    /// <summary>
     /// 移除一张职业卡牌
     /// </summary>
     /// <param name="card"></param>
@@ -164,6 +229,11 @@ public class CharacterInDungeon : MonoBehaviour
     public void Equip(EquipmentContent ec)
     {
         Equipments.Add(ec);
+        foreach (CardContent cc in ec.Cards())
+        {
+            equip_deck.Add(cc);
+            deck.Add(cc);
+        }
     }
 
     /// <summary>
@@ -176,5 +246,19 @@ public class CharacterInDungeon : MonoBehaviour
         {
             Equipments.Remove(ec);
         }
+        else
+        {
+            return;
+        }
+        foreach (CardContent cc in ec.Cards())
+        {
+            equip_deck.Remove(cc);
+            deck.Remove(cc);
+        }
+    }
+
+    protected override void UnityAwake()
+    {
+        throw new System.NotImplementedException();
     }
 }
