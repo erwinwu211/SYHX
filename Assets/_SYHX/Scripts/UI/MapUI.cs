@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MapUI : MonoBehaviour
 {
     public GameObject DungeonGO;
     public GameObject DungeonInfoGO;
     public GameObject DungeonParent;
-    private DungeonContent d01;
-    private DungeonContent d02;
-    private DungeonContent d03;
-    private DungeonContent d04;
-    private List<DungeonContent> dungeons;
+    public GameObject Mask;
+    private List<DungeonSource> dungeons;
+    private Vector3 DungeonInfoHidePos;
 
     private void Start()
     {
-        d01 = new Dungeon01().GenerateDungeon();
-        d02 = new Dungeon01().GenerateDungeon();
-        d03 = new Dungeon01().GenerateDungeon();
-        d04 = new Dungeon01().GenerateDungeon();
-        dungeons = new List<DungeonContent>();
-        dungeons.Add(d01);
-        dungeons.Add(d02);
-        dungeons.Add(d03);
-        dungeons.Add(d04);
-        foreach (DungeonContent dc in dungeons)
+        DungeonInfoHidePos = DungeonInfoGO.transform.localPosition;
+        Mask.SetActive(false);
+        dungeons = new List<DungeonSource>()
         {
-            GameObject go = GameObject.Instantiate(DungeonGO, dc.Pos, Quaternion.identity, DungeonParent.transform);
-            go.transform.localPosition = dc.Pos;
+            new Dungeon01(),
+            new Dungeon02(),
+            new Dungeon03(),
+            new Dungeon04(),
+        };
+
+        foreach (DungeonSource  ds in dungeons)
+        {
+            GameObject go = GameObject.Instantiate(DungeonGO, ds.Pos, Quaternion.identity, DungeonParent.transform);
+            go.transform.localPosition = ds.Pos;
+            go.GetComponent<Button>().onClick.AddListener(delegate() {
+                OnDungeonIconClick(ds);
+            });
+            go.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = ds.Name;
         }
 
     }
@@ -36,5 +40,27 @@ public class MapUI : MonoBehaviour
     public void OnReturnBtnClick()
     {
         SceneStateManager.Ins.SetSceneStatus(new MainState(SceneStateManager.Ins));
+    }
+
+    public void OnDungeonIconClick(DungeonSource ds)
+    {
+        DungeonInfoGO.transform.localPosition = Vector3.zero;
+        Mask.SetActive(true);
+        RefreshDungeonInfo(ds);
+    }
+
+    public void OnDungeonInfoCloseBtnClick()
+    {
+        DungeonInfoGO.transform.localPosition = DungeonInfoHidePos;
+        Mask.SetActive(false);
+    }
+
+    private void RefreshDungeonInfo(DungeonSource ds)
+    {
+        Transform tf = DungeonInfoGO.transform;
+        TextMeshProUGUI name = tf.Find("Info/Name").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI desc = tf.Find("Info/Desc").GetComponent<TextMeshProUGUI>();
+        name.text = ds.Name;
+        desc.text = ds.Desc;
     }
 }
