@@ -33,6 +33,7 @@ public class CharacterContent : SAssitant<CharacterSource>
         }
         foreach (Talent t in owner.Talents)
         {
+            Talents.Add(t);
             t.SetOwner(this);
             t.DoEffect();
         }

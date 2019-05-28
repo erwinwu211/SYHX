@@ -18,6 +18,10 @@ public class FukasakiKotone : CharacterSource
         Talents[0].IsEffect = true;
     }
 
+    /// <summary>
+    /// TODO:这个方法里要读取存档然后返回一个content
+    /// </summary>
+    /// <returns></returns>
     public override CharacterContent GenerateCharacter()
     {
         return base.GenerateCharacter();

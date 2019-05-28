@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1279409453494496307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2780556275241046624}
+  m_Layer: 5
+  m_Name: DescFrame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2780556275241046624
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279409453494496307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6549466241690336964}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1200, y: 680}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4123433650198579825
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +301,7 @@ RectTransform:
   m_Children:
   - {fileID: 4978017643410453410}
   m_Father: {fileID: 6549466241690336964}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -361,6 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6549466241690336964}
+  - component: {fileID: 4059866119973352640}
   m_Layer: 5
   m_Name: TalentUI
   m_TagString: Untagged
@@ -382,6 +418,7 @@ RectTransform:
   - {fileID: 6549466242725612246}
   - {fileID: 6549466243155064874}
   - {fileID: 6549466242577323536}
+  - {fileID: 2780556275241046624}
   - {fileID: 7162521440652153919}
   - {fileID: 4887116888765474294}
   m_Father: {fileID: 0}
@@ -392,6 +429,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -80, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4059866119973352640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549466241690336965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399720ff4cf36bc498e9a5e7d031e5eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TalentGO: {fileID: 6549466243155064875}
+  FrameTF: {fileID: 6549466242577323537}
 --- !u!1 &6549466241790544363
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6549466243155064874}
+  - component: {fileID: 1292747224054967937}
   m_Layer: 5
   m_Name: talent
   m_TagString: Untagged
@@ -873,6 +925,20 @@ RectTransform:
   m_AnchoredPosition: {x: -142, y: -90}
   m_SizeDelta: {x: 140, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1292747224054967937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549466243155064875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6847d0093e772ae4ba2e56789aa0169d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TalentDescGO: {fileID: 7961548569888596457}
+  TalentFrameGO: {fileID: 1279409453494496307}
 --- !u!1 &6682993350028880083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,10 +1122,10 @@ RectTransform:
   - {fileID: 4834812474066288193}
   - {fileID: 2420415364956123785}
   m_Father: {fileID: 6549466241690336964}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -820.6, y: 73.20001}
+  m_AnchoredPosition: {x: -969.19995, y: 131.04996}
   m_SizeDelta: {x: 297.2, y: 115.7}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}

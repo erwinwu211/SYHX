@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterUI : MonoBehaviour
+public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
 {
     public GameObject TalentPanel;
     public GameObject EquipmentPanel;
 
     private GameObject TalentBtnTip;
-    private CharacterContent selectedCharacter;
     private Transform Info;
     private TextMeshProUGUI NameText;
     private TextMeshProUGUI AttackCount;
@@ -20,7 +19,7 @@ public class CharacterUI : MonoBehaviour
     private TextMeshProUGUI DeckCount;
     public GameObject Mask;
 
-    private CharacterContent FukasakiKotone;
+    public CharacterContent selectedCharacter { get; private set; }
 
     void Start()
     {
@@ -35,10 +34,9 @@ public class CharacterUI : MonoBehaviour
         DeckCount = Info.Find("DeckCount/Count").GetComponent<TextMeshProUGUI>();
 
         //创建好人物信息
-        FukasakiKotone = new FukasakiKotone().GenerateCharacter();
 
         //进行初始化设定
-        selectedCharacter = FukasakiKotone;
+        selectedCharacter = CharacterManager.Ins.FukasakiKotone;
         TalentBtnTip.SetActive(false);
         RefreshSelectedCharacterInfo();
     }
@@ -69,7 +67,7 @@ public class CharacterUI : MonoBehaviour
         switch (i)
         {
             case 1:
-                selectedCharacter = FukasakiKotone;
+                selectedCharacter = CharacterManager.Ins.FukasakiKotone;
                 return;
             case 2:
                 return;
@@ -90,6 +88,7 @@ public class CharacterUI : MonoBehaviour
             Mask.SetActive(false);
             Destroy(go);
         });
+        go.GetComponent<TalentPanelUI>().UpdateTalent(selectedCharacter);
     }
 
     public void OnEquipmentBtnClick()
@@ -102,5 +101,9 @@ public class CharacterUI : MonoBehaviour
             Mask.SetActive(false);
             Destroy(go);
         });
+    }
+
+    protected override void UnityAwake()
+    {
     }
 }
