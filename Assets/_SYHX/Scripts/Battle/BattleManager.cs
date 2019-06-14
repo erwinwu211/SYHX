@@ -13,24 +13,22 @@ public enum BattleResult
 
 public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
+    #region 人物寻找
     [SerializeField] public BattleHero hero;
     public Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
     public List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
+    #endregion
     public CardManager cardManager;
-    public BattleInfoManager biManager;
+    // public BattleInfoManager biManager;
     public TurnManager turnManager => TurnManager.Ins;
-    public TextMeshProUGUI currentEPUI;
-    public TextMeshProUGUI maxEPUI;
-    public Text roundText;
 
-    //可能弃用
-    public int currentEP;
-    public int maxEP;
+    public Text roundText;
+    public int TurnCount { get; set; }
+
     protected override void UnityAwake()
     {
         BattleCharacterManager.Ins.SetHero(hero);
-        biManager = new BattleInfoManager(this, currentEP, maxEP);
-        biManager.RefreshUI();
+        BattleCharacterManager.Ins.RefreshHeroUI();
     }
     void Start()
     {
@@ -46,8 +44,9 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     {
         //读取战斗数据
         BattleCharacterManager.Ins.GenerateEnemyGroup(id);
-        biManager.ResetCardType();
-        biManager.ResetConnection();
+        BattleCharacterManager.Ins.hero.bInfo.ResetCardType();
+        BattleCharacterManager.Ins.hero.bInfo.ResetConnection();
+        BattleCharacterManager.Ins.RefreshEnemyUI();
     }
 
 
@@ -63,15 +62,19 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
 
 
-    public void AddTurn() => biManager.AddTurn();
-    public int GetEP() => biManager.currentEP;
-    public void TurnStartDraw() => Draw(biManager.DrawCountPerTurn);
+    public void AddTurn()
+    {
+        TurnCount++;
+        roundText.text = $"第{TurnCount}回合";
+    }
+    public int GetEP() => BattleCharacterManager.Ins.hero.bInfo.currentEP;
+    public void TurnStartDraw() => Draw(BattleCharacterManager.Ins.hero.bInfo.DrawCountPerTurn);
     public void Draw(int count) => CardManager.Ins.Draw(count);
     public void Shuffle() => CardManager.Ins.Shuffle();
-    public void EnergyPointRegain() => biManager.EnergyPointRegain();
-    public void ChangeEnergy(int ep) => biManager.ChangeEnergy(ep);
-    public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);
-    public void RegainMoreEnergyPointNextTurn(int count) => biManager.RegainMoreEnergyPointNextTurn(count);
+    public void EnergyPointRegain() => BattleCharacterManager.Ins.hero.bInfo.EnergyPointRegain();
+    public void ChangeEnergy(int ep) => BattleCharacterManager.Ins.hero.bInfo.ChangeEnergy(ep);
+    public void CalculateConnection(CardType type, int count) => BattleCharacterManager.Ins.hero.bInfo.CalculateConnection(type, count);
+    public void RegainMoreEnergyPointNextTurn(int count) => BattleCharacterManager.Ins.hero.bInfo.RegainMoreEnergyPointNextTurn(count);
     public void TurnEnd() => turnManager.EndPlayerTurn();
     /// <summary>
     /// 检测战斗是否结束

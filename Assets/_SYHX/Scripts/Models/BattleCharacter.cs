@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using SYHX.Buff;
+using TMPro;
 
 public class BattleCharacter : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class BattleCharacter : MonoBehaviour
     public int currentHp;
     public int attack;
     protected int defence;
+    public int currentEP;
+    public int maxEP;
     public float attackRate { get; protected set; }
     public float defenceRate { get; protected set; }
     // public Canvas canvas;
+    public TextMeshProUGUI currentEPUI;
+    public TextMeshProUGUI maxEPUI;
+
+    public BattleInfoManager bInfo;
 
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
@@ -23,6 +30,7 @@ public class BattleCharacter : MonoBehaviour
     void Awake()
     {
         buffs = new Buffs(this);
+        bInfo = new BattleInfoManager(this, currentEP, maxEP);
         ChildAwake();
     }
 
@@ -32,22 +40,10 @@ public class BattleCharacter : MonoBehaviour
     {
         // canvas.worldCamera = Camera.allCameras[0];
     }
-    public void ChangeAttackRate(float value)
-    {
-        attackRate += value;
-    }
-    public void ChangeDefenceRate(float value)
-    {
-        defenceRate += value;
-    }
-    /// <summary>
-    /// 死亡
-    /// </summary>
-    public virtual void Death()
-    {
-        onDeath();
-        isAlive = false;
-    }
+
+    #region  HP相关
+
+
 
     /// <summary>
     /// 回血
@@ -74,6 +70,14 @@ public class BattleCharacter : MonoBehaviour
             Death();
         }
     }
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    public virtual void Death()
+    {
+        onDeath();
+        isAlive = false;
+    }
 
     /// <summary>
     /// 返回是否存活
@@ -83,6 +87,17 @@ public class BattleCharacter : MonoBehaviour
     {
         return isAlive;
     }
+
+    public void ChangeAttackRate(float value)
+    {
+        attackRate += value;
+    }
+    public void ChangeDefenceRate(float value)
+    {
+        defenceRate += value;
+    }
+
+    #region 伤害相关
 
     public virtual void GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
     {
@@ -99,5 +114,21 @@ public class BattleCharacter : MonoBehaviour
     {
         this.DecreaseHp(damage);
     }
+    #endregion
+
+    #endregion
+
+    #region EP代理
+
+    public void EnergyPointRegain() => bInfo.EnergyPointRegain();
+    public void ChangeEnergy(int ep) => bInfo.ChangeEnergy(ep);
+    public void RegainMoreEnergyPointNextTurn(int count) => bInfo.RegainMoreEnergyPointNextTurn(count);
+
+    #endregion
+
+    #region 卡牌颜色代理
+    public void CalculateConnection(CardType type, int count) => bInfo.CalculateConnection(type, count);
+    #endregion
+
 }
 

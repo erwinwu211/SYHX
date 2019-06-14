@@ -9,6 +9,7 @@ public class TurnStateManager : Assitant<TurnManager>
     public PlayerTurnState playerTurnState;
     public PlayerEndState playerEndState;
     public EnemyStartState enemyStartState;
+    public EnemyTurnState enemyTurnState;
     public EnemyEndState enemyEndState;
     public ResultState resultState;
 
@@ -20,6 +21,7 @@ public class TurnStateManager : Assitant<TurnManager>
         playerTurnState = new PlayerTurnState(this);
         playerEndState = new PlayerEndState(this);
         enemyStartState = new EnemyStartState(this);
+        enemyTurnState = new EnemyTurnState(this);
         enemyEndState = new EnemyEndState(this);
         resultState = new ResultState(this);
         current = firstState;

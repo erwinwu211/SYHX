@@ -73,6 +73,11 @@ public abstract class CardSource : ScriptableObject
 #endif
 
 }
+
+public class CardSource<T1, T2> : CardSource
+{
+
+}
 public enum CardType
 {
     强袭技, 灵巧技, 神秘技, 连接技

@@ -6,7 +6,7 @@ public class TurnState_FSM : AssitantMonobehaviour<TurnManager>
 {
     public enum State
     {
-        First, PlayerStart, PlayerTurn, PlayerEnd, EnemyStart, EnemyEnd, Result
+        First, PlayerStart, PlayerTurn, PlayerEnd, EnemyStart, EnemyTurn, EnemyEnd, Result
     }
     public PlayMakerFSM fsm;
     private State state;
@@ -28,6 +28,8 @@ public class TurnState_FSM : AssitantMonobehaviour<TurnManager>
                 return owner.stateManager.playerTurnState;
             case State.PlayerEnd:
                 return owner.stateManager.playerEndState;
+            case State.EnemyTurn:
+                return owner.stateManager.enemyTurnState;
             case State.EnemyStart:
                 return owner.stateManager.enemyStartState;
             case State.EnemyEnd:

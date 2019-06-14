@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleInfoManager : Assitant<BattleManager>
+public class BattleInfoManager : Assitant<BattleCharacter>
 {
     //可能弃用
-    public BattleInfoManager(BattleManager bm, int currentEP, int maxEP) : base(bm)
+    public BattleInfoManager(BattleCharacter bc, int currentEP, int maxEP) : base(bc)
     {
         this.currentEP = currentEP;
         this.maxEP = maxEP;
@@ -13,14 +13,6 @@ public class BattleInfoManager : Assitant<BattleManager>
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
     public int DrawCountPerTurn => drawCountPerTurn;
-    //回合数计数器
-    public int TurnCount { get; set; }
-    //能量值计数器
-    public int currentEP { get; private set; }
-    public int maxEP { get; private set; }
-    public int moreEP { get; private set; }
-    public CardType currentType { get; private set; }
-    public int cardConnectionCount { get; private set; }
 
     public void RefreshUI()
     {
@@ -28,11 +20,12 @@ public class BattleInfoManager : Assitant<BattleManager>
         owner.maxEPUI.text = $"{maxEP.ToString()}";
     }
 
-    public void AddTurn()
-    {
-        TurnCount++;
-        owner.roundText.text = $"第{TurnCount}回合";
-    }
+    #region 能量相关
+
+    //能量值计数器
+    public int currentEP { get; private set; }
+    public int maxEP { get; private set; }
+    public int moreEP { get; private set; }
     /// <summary>
     /// 回复能量值的方法
     /// </summary>
@@ -63,6 +56,11 @@ public class BattleInfoManager : Assitant<BattleManager>
     {
         moreEP = count;
     }
+    #endregion
+
+    #region  卡牌颜色相关
+    public CardType currentType { get; private set; }
+    public int cardConnectionCount { get; private set; }
     public void CalculateConnection(CardType type, int count)
     {
         if (type == CardType.连接技)
@@ -83,5 +81,6 @@ public class BattleInfoManager : Assitant<BattleManager>
         cardConnectionCount = 0;
     }
 
+    #endregion
 
 }

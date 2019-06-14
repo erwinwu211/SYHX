@@ -78,7 +78,7 @@ public class PlayerStartState : TurnState
         BattleProgressEvent.Ins.OnPlayerTurnStart();
         BattleManager.Ins.EnergyPointRegain();
         BattleManager.Ins.TurnStartDraw();
-        owner.owner.fsmManager.TryTransition(owner.playerTurnState);
+        owner.owner.fsmManager.TryTransition(owner.enemyStartState);
 
     }
 
@@ -216,7 +216,7 @@ public class EnemyStartState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnStart();
-        owner.owner.fsmManager.TryTransition(owner.enemyEndState);
+        owner.owner.fsmManager.TryTransition(owner.playerTurnState);
         //执行AI
     }
 
@@ -233,6 +233,39 @@ public class EnemyStartState : TurnState
 
     public override void Exit() { }
     public override string FsmName() => "EnemyStart";
+
+
+    private void Check()
+    {
+        EndFlag = true;
+    }
+}
+
+public class EnemyTurnState : TurnState
+{
+    public EnemyTurnState(TurnStateManager owner) : base(owner) { }
+    private bool EndFlag = false;
+
+    public override void Enter()
+    {
+        BattleProgressEvent.Ins.OnEnemyTurnStart();
+        owner.owner.fsmManager.TryTransition(owner.playerEndState);
+        //执行AI
+    }
+
+    public override void Update()
+    {
+        //当AI动作播放完成后，打开Flag
+        Check();
+
+        if (EndFlag)
+        {
+            Exit();
+        }
+    }
+
+    public override void Exit() { }
+    public override string FsmName() => "EnemyTurn";
 
 
     private void Check()
