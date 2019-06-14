@@ -69,8 +69,8 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
     public int GetEP() => BattleCharacterManager.Ins.hero.bInfo.currentEP;
     public void TurnStartDraw() => Draw(BattleCharacterManager.Ins.hero.bInfo.DrawCountPerTurn);
-    public void Draw(int count) => CardManager.Ins.Draw(count);
-    public void Shuffle() => CardManager.Ins.Shuffle();
+    public void Draw(int count) => BattleCharacterManager.Ins.hero.cManager.Draw(count);
+    public void Shuffle() => BattleCharacterManager.Ins.hero.cManager.Shuffle();
     public void EnergyPointRegain() => BattleCharacterManager.Ins.hero.bInfo.EnergyPointRegain();
     public void ChangeEnergy(int ep) => BattleCharacterManager.Ins.hero.bInfo.ChangeEnergy(ep);
     public void CalculateConnection(CardType type, int count) => BattleCharacterManager.Ins.hero.bInfo.CalculateConnection(type, count);

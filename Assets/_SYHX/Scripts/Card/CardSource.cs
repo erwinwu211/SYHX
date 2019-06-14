@@ -53,13 +53,13 @@ public abstract class CardSource : ScriptableObject
 
 
     //TODO : 现在是加入抽牌堆，以后改进为加入牌堆
-    public virtual void GenerateCard(int count)
+    public virtual void GenerateCard(CardManager cManager, int count)
     {
         for (int i = 0; i < count; i++)
         {
             var cc = new CardContent();
             cc.SetOwner(this);
-            CardManager.Ins.AddToDeck(cc);
+            cManager.AddToDeck(cc);
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class CardSource : ScriptableObject
     {
         var cc = new CardContent();
         cc.SetOwner(this);
-        CardManager.Ins.AddToDeck(cc);
+        BattleCharacterManager.Ins.hero.cManager.AddToDeck(cc);
     }
 #endif
 

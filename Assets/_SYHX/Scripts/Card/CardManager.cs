@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : SingletonMonoBehaviour<CardManager>
+public class CardManager : Assitant<BattleCharacter>
 {
     //卡牌存储区域
     //牌库
@@ -18,15 +18,7 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
 
 
     //测试用
-    public List<CardSource> cards;
-    //
-    protected override void UnityAwake()
-    {
-        foreach (var card in cards)
-        {
-            card.GenerateCard(1);
-        }
-    }
+    public CardManager(BattleCharacter bc) : base(bc) { }
     /// <summary>
     /// 抽牌方法
     /// </summary>
@@ -90,5 +82,13 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
     public void AddToDeck(CardContent cc)
     {
         deckPile.Add(cc);
+    }
+
+    public void GenerateCard(List<CardSource> test)
+    {
+        foreach (var card in test)
+        {
+            card.GenerateCard(this, 1);
+        }
     }
 }

@@ -22,15 +22,19 @@ public class BattleCharacter : MonoBehaviour
     public TextMeshProUGUI maxEPUI;
 
     public BattleInfoManager bInfo;
+    public CardManager cManager;
 
     public event Action<BattleCharacter, int> onTakeDamage = delegate { };
     public event Action<BattleCharacter> onGiveDamage = delegate { };
     public event Action onDeath = delegate { };
     public Buffs buffs;
+    public List<CardSource> testSource;
     void Awake()
     {
         buffs = new Buffs(this);
         bInfo = new BattleInfoManager(this, currentEP, maxEP);
+        cManager = new CardManager(this);
+        cManager.GenerateCard(testSource);
         ChildAwake();
     }
 

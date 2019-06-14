@@ -980,54 +980,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &920204239
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 920204241}
-  - component: {fileID: 920204240}
-  m_Layer: 0
-  m_Name: CardManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &920204240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920204239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5013f61a200e544979b9bac3907e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardPos: {fileID: 1304378608}
-  cardGo: {fileID: 5444214861292780424, guid: 98a9e6aa1b6c2324bad041cc5359e65b, type: 3}
-  cards:
-  - {fileID: 11400000, guid: 3f60e29d2ef96444a83a7adcbb3362b8, type: 2}
-  - {fileID: 11400000, guid: 90620129840b42a47969ce2bdeca5457, type: 2}
---- !u!4 &920204241
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920204239}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16046238, y: 0.4077427, z: 10.037473}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1891757746}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1082316384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1345,7 @@ MonoBehaviour:
   maxEP: 0
   currentEPUI: {fileID: 1917486128}
   maxEPUI: {fileID: 1291322765}
+  testSource: []
   text: {fileID: 585795747}
 --- !u!1 &1638658465
 GameObject:
@@ -1425,7 +1378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1891757746}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1638658467
 MonoBehaviour:
@@ -2767,7 +2720,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 920204241}
   - {fileID: 1638658466}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2785,10 +2737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hero: {fileID: 1399497701}
-  cardManager: {fileID: 920204240}
   roundText: {fileID: 1082316386}
-  currentEP: 10
-  maxEP: 10
 --- !u!114 &1891757748
 MonoBehaviour:
   m_ObjectHideFlags: 0
