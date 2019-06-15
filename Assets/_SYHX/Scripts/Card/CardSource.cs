@@ -58,6 +58,12 @@ public abstract class CardSource : ScriptableObject
     {
         CardManager.Ins.AddToDeck(GenerateCard());
     }
+
+    [Button(ButtonSizes.Large)]
+    public void DrawCard()
+    {
+        CardManager.Ins.Draw(1);
+    }
 #endif
     #endregion
 }
