@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: a49a47b12b4c4e5428ec99c6d83998d3
+labels:
+- ChangeEPCardSource
+- Data
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

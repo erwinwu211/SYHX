@@ -15,7 +15,7 @@ MonoBehaviour:
   mID: 0
   mName: "\u62A4\u7F69"
   mDesc: "\u9632\u5FA1\u7387{defenceRate}"
-  mEP: 0
+  mEP: 1
   cardType: 0
   origin:
     owner: {fileID: 11400000}

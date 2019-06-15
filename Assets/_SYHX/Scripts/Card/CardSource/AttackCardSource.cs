@@ -6,7 +6,7 @@ public class AttackCardContent : CardContent
     [CloneField] public float damageRate;
     [CloneField] public bool isAOE;
     [CardDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
-    public override void OnUse()
+    protected override void UseEffect(CardUseTrigger trigger)
     {
         if (isAOE)
         {

@@ -26,7 +26,7 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
         foreach (var card in cards)
         {
             card.Init();
-            card.GenerateCard();
+            card.GenerateToDeck();
         }
     }
     /// <summary>

@@ -5,38 +5,29 @@ using System.Collections.Generic;
 
 public abstract class CardSource : ScriptableObject
 {
+    #region 序列化数据
     [SerializeField] protected int mID;
     [SerializeField] protected string mName;
     [SerializeField] protected string mDesc;
     [SerializeField] protected int mEP;
+    [SerializeField] public CardType cardType;
+    #endregion
 
+    #region 获取用数据
     public int ID { get => mID; }
     public string Name { get => mName; }
     public string Desc { get => mDesc; }
     public int EP { get => mEP; }
-
-    public CardType cardType;
-
-    public bool CanUse(CardContent cc) => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() > cc.EP && UseOption(cc);
-    protected virtual bool UseOption(CardContent cc) => true;
+    #endregion
 
     public abstract void Init();
+
+    #region 以后会都废弃
 
     /// <summary>
     /// ❌事件：当抽到手上时
     /// </summary>
     public virtual void OnDraw() { }
-
-    /// <summary>
-    /// ❌事件：当卡牌在打出后，经过选择之后的效果
-    /// </summary>
-    public void OnUse(CardContent cc)
-    {
-        if (!CanUse(cc)) return;
-        BattleManager.Ins.ChangeEnergy(-EP);
-        Effect(cc);
-    }
-    public virtual void Effect(CardContent cc) { }
 
     /// <summary>
     /// ❌事件：当弃牌时
@@ -53,13 +44,20 @@ public abstract class CardSource : ScriptableObject
     /// </summary>
     public virtual void OnOtherCardUse(CardSource context) { }
 
+    #endregion
 
-    //TODO : 现在是加入抽牌堆，以后改进为加入牌堆
-    public abstract void GenerateCard();
+    #region 卡牌生成相关
+
+    //TODO : 获取被生成的卡牌
+    public abstract CardContent GenerateCard();
 
 #if UNITY_EDITOR
-    public virtual void GenerateToDeck() { }
+    public virtual void GenerateToDeck()
+    {
+        CardManager.Ins.AddToDeck(GenerateCard());
+    }
 #endif
+    #endregion
 }
 
 public class CardSource<T> : CardSource
@@ -86,7 +84,7 @@ where T : CardContent, new()
         this.descOption = dictionary;
         UDebug.Log("===============");
     }
-    public override void GenerateCard()
+    public override CardContent GenerateCard()
     {
         var cc = new T();
         var fields = typeof(T).GetFields();
@@ -99,7 +97,7 @@ where T : CardContent, new()
             }
         }
         cc.SetOwnerWithDic(this, this.descOption);
-        CardManager.Ins.AddToDeck(cc);
+        return cc;
     }
 
 }
@@ -113,9 +111,4 @@ public enum CardType
  *用来做卡牌原型模式初期化
  */
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public sealed class CloneFieldAttribute : Attribute
-{
-
-    // This is a positional argument
-    public CloneFieldAttribute() { }
-}
+public sealed class CloneFieldAttribute : Attribute { public CloneFieldAttribute() { } }

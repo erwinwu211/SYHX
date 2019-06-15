@@ -22,9 +22,22 @@ public abstract class CardContent : SAssitant<CardSource>
     public int EP { get; private set; }
     public void OnDraw() => owner.OnDraw();
 
-    public bool CanUse(CardContent cc) => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() > cc.EP && UseOption(cc);
-    protected virtual bool UseOption(CardContent cc) => true;
-    public virtual void OnUse() => owner.OnUse(this);
+    public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() >= this.EP && UseOption();
+    protected virtual bool UseOption() => true;
+    /// <summary>
+    /// ❌事件：当卡牌在打出后，经过选择之后的效果
+    /// </summary>
+    public virtual void OnUse(CardUseTrigger trigger)
+    {
+        if (CanUse())
+        {
+            BattleManager.Ins.ChangeEnergy(-this.EP);
+            UseEffect(trigger);
+        }
+
+    }
+
+    protected abstract void UseEffect(CardUseTrigger trigger);
     public void OnFold() => owner.OnFold();
     public void OnExiled() => owner.OnExiled();
     public void OnOtherCardUse(CardSource context) => owner.OnOtherCardUse(context);

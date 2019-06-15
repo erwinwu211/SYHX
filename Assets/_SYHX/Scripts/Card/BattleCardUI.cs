@@ -28,6 +28,6 @@ public class BattleCardUI : MonoBehaviour
     }
     void OnMouseDown()
     {
-        cc.OnUse();
+        cc.OnUse(CardUseTrigger.ByUser);
     }
 }

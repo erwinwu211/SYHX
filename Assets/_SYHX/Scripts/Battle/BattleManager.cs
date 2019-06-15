@@ -101,12 +101,3 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
 }
 
-// /// <summary>
-// /// 战斗状态切换的方法
-// /// </summary>
-// /// <param name="status">实例化一个新的战斗状态出来</param>
-// public void ChangeStatus(TurnState status)
-// {
-//     // this.mBattleStatus = status;
-//     status.Enter();
-// }
