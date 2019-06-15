@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Sirenix.OdinInspector;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ public abstract class CardSource : ScriptableObject
     public abstract CardContent GenerateCard();
 
 #if UNITY_EDITOR
+    [Button(ButtonSizes.Large)]
     public virtual void GenerateToDeck()
     {
         CardManager.Ins.AddToDeck(GenerateCard());
