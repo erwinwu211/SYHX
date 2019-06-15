@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEditor;
-using UnityEngine.UI;
+using System;
+using System.Reflection;
 using System.Collections.Generic;
 
 public abstract class CardSource : ScriptableObject
@@ -19,6 +19,8 @@ public abstract class CardSource : ScriptableObject
 
     public bool CanUse(CardContent cc) => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() > cc.EP && UseOption(cc);
     protected virtual bool UseOption(CardContent cc) => true;
+
+    public abstract void Init();
 
     /// <summary>
     /// ❌事件：当抽到手上时
@@ -53,27 +55,67 @@ public abstract class CardSource : ScriptableObject
 
 
     //TODO : 现在是加入抽牌堆，以后改进为加入牌堆
-    public virtual void GenerateCard(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            var cc = new CardContent();
-            cc.SetOwner(this);
-            CardManager.Ins.AddToDeck(cc);
-        }
-    }
+    public abstract void GenerateCard();
 
 #if UNITY_EDITOR
-    public void GenerateToDeck()
+    public virtual void GenerateToDeck() { }
+#endif
+}
+
+public class CardSource<T> : CardSource
+where T : CardContent, new()
+{
+    [SerializeField] T origin;
+
+    private Dictionary<string, PropertyInfo> descOption;
+    public override void Init()
     {
-        var cc = new CardContent();
-        cc.SetOwner(this);
+        UDebug.Log("==============");
+        UDebug.Log("In Start");
+        var dictionary = new Dictionary<string, PropertyInfo>();
+        var properties = typeof(T).GetProperties();
+        foreach (var property in properties)
+        {
+            var att = (CardDescAttribute)Attribute.GetCustomAttribute(property, typeof(CardDescAttribute));
+            if (att != null)
+            {
+                dictionary.Add(att.descName, property);
+                UDebug.Log(att.descName);
+            }
+        }
+        this.descOption = dictionary;
+        UDebug.Log("===============");
+    }
+    public override void GenerateCard()
+    {
+        var cc = new T();
+        var fields = typeof(T).GetFields();
+        foreach (var field in fields)
+        {
+            if (field.IsDefined(typeof(CloneFieldAttribute), false))
+            {
+                var obj = field.GetValue(origin);
+                field.SetValue(cc, obj);
+            }
+        }
+        cc.SetOwnerWithDic(this, this.descOption);
         CardManager.Ins.AddToDeck(cc);
     }
-#endif
 
 }
 public enum CardType
 {
     强袭技, 灵巧技, 神秘技, 连接技
+}
+
+
+/*
+ *用来做卡牌原型模式初期化
+ */
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+public sealed class CloneFieldAttribute : Attribute
+{
+
+    // This is a positional argument
+    public CloneFieldAttribute() { }
 }

@@ -22,9 +22,11 @@ public class CardManager : SingletonMonoBehaviour<CardManager>
     //
     protected override void UnityAwake()
     {
+
         foreach (var card in cards)
         {
-            card.GenerateCard(1);
+            card.Init();
+            card.GenerateCard();
         }
     }
     /// <summary>

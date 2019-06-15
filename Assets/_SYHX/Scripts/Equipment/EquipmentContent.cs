@@ -12,7 +12,7 @@ public class EquipmentContent : SAssitant<EquipmentSource>
         this.Hp = owner.Hp;
         this.Defend = owner.Defend;
     }
-    
+
     public int Attack { get; private set; }
     public int Hp { get; private set; }
     public int Defend { get; private set; }
@@ -21,9 +21,9 @@ public class EquipmentContent : SAssitant<EquipmentSource>
         List<CardContent> res = new List<CardContent>();
         foreach (CardSource card in owner.Cards)
         {
-            var cc = new CardContent();
-            cc.SetOwner(card);
-            res.Add(cc);
+            // var cc = new CardContent();
+            // cc.SetOwner(card);
+            // res.Add(cc);
         }
         return res;
     }

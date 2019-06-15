@@ -6,8 +6,8 @@ using TMPro;
 public class BattleCardUI : MonoBehaviour
 {
     public CardContent cc;
-    [SerializeField]
-    public TextMeshProUGUI tmPro;
+    [SerializeField] public TextMeshProUGUI nameField;
+    [SerializeField] public TextMeshProUGUI descField;
     private bool refreshed = false;
     public void SetCard(CardContent cc)
     {
@@ -19,7 +19,8 @@ public class BattleCardUI : MonoBehaviour
         {
             if (cc != null)
             {
-                this.tmPro.text = cc.owner.Desc;
+                this.nameField.text = cc.name;
+                this.descField.text = cc.Desc;
                 refreshed = true;
             }
         }
