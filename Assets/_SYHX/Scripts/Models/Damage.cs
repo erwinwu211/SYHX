@@ -13,7 +13,7 @@ public static class Damage
     {
         BattleProgressEvent.Ins.OnGiveDamage(giver, receiver, trigger);
         var damage = giver.attack * rate;
-        damage *= (1 + giver.attackRate) * (1 - receiver.defenceRate);
+        damage *= (1 + giver.attackRate);
         for (int i = 0; i < times; i++)
         {
             BattleProgressEvent.Ins.OnGiveDamagePertime(giver, receiver, trigger);

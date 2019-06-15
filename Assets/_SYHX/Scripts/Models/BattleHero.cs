@@ -5,19 +5,24 @@ using TMPro;
 
 public class BattleHero : BattleCharacter
 {
-    public TextMeshProUGUI text;
-    public void ShowHp()
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI barrierText;
+    public override void RefreshUI()
     {
-        text.text = $"{this.currentHp}/{this.maxHp}";
+        ShowHP();
+        ShowBarrier();
+    }
+    public void ShowHP()
+    {
+        hpText.text = $"{this.currentHp}/{this.maxHp}";
+    }
+    public void ShowBarrier()
+    {
+        barrierText.text = $"护盾：{this.barrier}";
     }
     public override void ChildAwake()
     {
-        ShowHp();
-    }
-    public override void TakeDamage(BattleCharacter bc, int damage)
-    {
-        base.TakeDamage(bc, damage);
-        ShowHp();
+        RefreshUI();
     }
 
     public override void Death()

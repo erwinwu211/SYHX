@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using System;
 using SYHX.Buff;
 
@@ -11,13 +8,11 @@ public class BattleCharacter : MonoBehaviour
     [SerializeField] protected int maxHp;
     public int currentHp;
     public int attack;
-    protected int defence;
+    public int defence;
+    public int barrier;
     public float attackRate { get; protected set; }
     public float defenceRate { get; protected set; }
     // public Canvas canvas;
-
-    public event Action<BattleCharacter, int> onTakeDamage = delegate { };
-    public event Action<BattleCharacter> onGiveDamage = delegate { };
     public event Action onDeath = delegate { };
     public Buffs buffs;
     void Awake()
@@ -26,12 +21,10 @@ public class BattleCharacter : MonoBehaviour
         ChildAwake();
     }
 
+    public virtual void RefreshUI() { }
 
     //可能消失
-    public virtual void ChildAwake()
-    {
-        // canvas.worldCamera = Camera.allCameras[0];
-    }
+    public virtual void ChildAwake() { }
     public void ChangeAttackRate(float value)
     {
         attackRate += value;
@@ -68,9 +61,11 @@ public class BattleCharacter : MonoBehaviour
     public virtual void DecreaseHp(int count)
     {
         currentHp -= count;
+        RefreshUI();
         if (currentHp <= 0)
         {
             currentHp = 0;
+            RefreshUI();
             Death();
         }
     }
@@ -86,18 +81,22 @@ public class BattleCharacter : MonoBehaviour
 
     public virtual void GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
     {
-        onGiveDamage(bc);
         bc.TakeDamage(this, damage);
     }
 
     public virtual void TakeDamage(BattleCharacter bc, int damage)
     {
-        onTakeDamage(bc, damage);
         this.DecreaseHp(damage);
     }
     public virtual void TakeNoSourceDamage(int damage)
     {
         this.DecreaseHp(damage);
+    }
+
+    public virtual void GetBarrier(float ratio)
+    {
+        barrier += (int)(defence * ratio * (1 + defenceRate));
+        RefreshUI();
     }
 }
 

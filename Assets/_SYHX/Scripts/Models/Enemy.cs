@@ -12,9 +12,9 @@ public class Enemy : BattleCharacter
     public Button enemy;
     private ColorBlock defaultBlock;
     private EnemyAIHandler aiHandler;
-    public override void TakeDamage(BattleCharacter bc, int damage)
+
+    public override void RefreshUI()
     {
-        base.TakeDamage(bc, damage);
         ShowHp();
     }
     public void SetEnemy(EnemySource enemySource)
@@ -25,7 +25,7 @@ public class Enemy : BattleCharacter
         this.defence = enemySource.defence;
         this.isAlive = true;
         defaultBlock = enemy.colors;
-        ShowHp();
+        RefreshUI();
     }
     public void ShowHp()
     {
