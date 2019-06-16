@@ -1,33 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
-public class BattleCardUI : MonoBehaviour
+namespace SYHX.Cards
 {
-    public CardContent cc;
-    [SerializeField] public TextMeshProUGUI nameField;
-    [SerializeField] public TextMeshProUGUI descField;
-    private bool refreshed = false;
-    public void SetCard(CardContent cc)
+    public class BattleCardUI : MonoBehaviour
     {
-        this.cc = cc;
-    }
-    void Update()
-    {
-        if (!refreshed)
+        public CardContent cc;
+        public CardPosition position;
+        [SerializeField] public TextMeshProUGUI nameField;
+        [SerializeField] public TextMeshProUGUI descField;
+        [SerializeField] public TextMeshProUGUI EPField;
+        public void SetCard(CardContent cc)
         {
-            if (cc != null)
-            {
-                this.nameField.text = cc.name;
-                this.descField.text = cc.Desc;
-                refreshed = true;
-            }
+            this.cc = cc;
         }
 
+        public void RefreshUI()
+        {
+            this.nameField.text = cc.name;
+            this.descField.text = cc.Desc;
+            this.EPField.text = cc.TempEP.ToString();
+        }
+        void OnMouseDown()
+        {
+            cc.OnUse(CardUseTrigger.ByUser);
+        }
     }
-    void OnMouseDown()
-    {
-        cc.OnUse(CardUseTrigger.ByUser);
-    }
+}
+public enum CardPosition
+{
+    Hand, Deck, Exhaust, Discard, Used
 }

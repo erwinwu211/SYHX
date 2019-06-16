@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3142ac526a0a7ff4d973999fa2b97a8d, type: 3}
-  m_Name: GiveBuffSource
+  m_Name: "\u529B\u91CF\u52A0\u500D\u5361"
   m_EditorClassIdentifier: 
   mID: 0
   mName: "\u529B\u91CF\u52A0\u5F3A"
@@ -19,5 +19,6 @@ MonoBehaviour:
   cardType: 0
   origin:
     owner: {fileID: 11400000}
+    bUI: {fileID: 0}
     source: {fileID: 11400000, guid: ae9c0176e259df840a8dce87a5462a3e, type: 2}
     count: 1

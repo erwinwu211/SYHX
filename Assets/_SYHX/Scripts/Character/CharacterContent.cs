@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using SYHX.Cards;
 
 public class CharacterContent : SAssitant<CharacterSource>
 {

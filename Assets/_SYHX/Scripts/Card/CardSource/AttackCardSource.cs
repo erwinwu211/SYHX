@@ -1,23 +1,28 @@
-﻿public class AttackCardSource : CardSource<AttackCardContent> { }
-
-[System.Serializable]
-public class AttackCardContent : CardContent
+﻿namespace SYHX.Cards
 {
-    [CloneField] public float damageRate;
-    [CloneField] public bool isAOE;
-    [CardDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
-    protected override void UseEffect(CardUseTrigger trigger)
+    public class AttackCardSource : CardSource<AttackCardContent> { }
+
+    [System.Serializable]
+    public class AttackCardContent : CardContent
     {
-        if (isAOE)
+        [CloneField] public float damageRate;
+        [CloneField] public bool isAOE;
+        [CardDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
+        protected override void UseEffect(CardUseTrigger trigger)
         {
-            foreach (var enemy in BattleManager.Ins.enemyList)
+            if (isAOE)
             {
-                Damage.CalculateAndApply(BattleManager.Ins.hero, enemy, damageRate, DamageTrigger.ByCard);
+                foreach (var enemy in BattleManager.Ins.enemyList)
+                {
+                    Damage.CalculateAndApply(BattleManager.Ins.hero, enemy, damageRate, DamageTrigger.ByCard);
+                }
+            }
+            else
+            {
+                Damage.CalculateAndApply(BattleManager.Ins.hero, BattleManager.Ins.selectedEnemy, damageRate, DamageTrigger.ByCard);
             }
         }
-        else
-        {
-            Damage.CalculateAndApply(BattleManager.Ins.hero, BattleManager.Ins.selectedEnemy, damageRate, DamageTrigger.ByCard);
-        }
     }
+
 }
+

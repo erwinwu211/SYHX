@@ -1,15 +1,19 @@
 ﻿using SYHX.Buff;
-
-public class GiveBuffSource : CardSource<GiveBuffContent> { }
-
-[System.Serializable]
-public class GiveBuffContent : CardContent
+namespace SYHX.Cards
 {
-    [CloneField] public BuffSource source;
-    [CloneField] public int count;
+    public class GiveBuffSource : CardSource<GiveBuffContent> { }
 
-    protected override void UseEffect(CardUseTrigger trigger)
+    [System.Serializable]
+    public class GiveBuffContent : CardContent
     {
-        BattleManager.Ins.hero.buffs.Increase(source, count);
+        [CloneField] public BuffSource source;
+        [CloneField] public int count;
+
+        protected override void UseEffect(CardUseTrigger trigger)
+        {
+            BattleManager.Ins.hero.buffs.Increase(source, count);
+        }
     }
+
+
 }

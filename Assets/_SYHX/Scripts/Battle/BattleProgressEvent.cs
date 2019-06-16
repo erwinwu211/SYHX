@@ -1,4 +1,5 @@
 ﻿using System;
+using SYHX.Cards;
 
 public class BattleProgressEvent : Singleton<BattleProgressEvent>
 {

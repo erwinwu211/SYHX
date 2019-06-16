@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SYHX.Cards;
 
 public abstract class EquipmentSource : ScriptableObject
 {

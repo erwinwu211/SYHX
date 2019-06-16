@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using SYHX.Cards;
 
 public enum BattleResult
 {
@@ -16,7 +17,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     [SerializeField] public BattleHero hero;
     public Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
     public List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
-    public CardManager cardManager;
+    public BattleCardManager cardManager;
     public BattleInfoManager biManager;
     public TurnManager turnManager => TurnManager.Ins;
     public TextMeshProUGUI currentEPUI;
@@ -66,8 +67,8 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void AddTurn() => biManager.AddTurn();
     public int GetEP() => biManager.currentEP;
     public void TurnStartDraw() => Draw(biManager.DrawCountPerTurn);
-    public void Draw(int count) => CardManager.Ins.Draw(count);
-    public void Shuffle() => CardManager.Ins.Shuffle();
+    public void Draw(int count) => BattleCardManager.Ins.Draw(count);
+    public void Shuffle() => BattleCardManager.Ins.Shuffle();
     public void EnergyPointRegain() => biManager.EnergyPointRegain();
     public void ChangeEnergy(int ep) => biManager.ChangeEnergy(ep);
     public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);

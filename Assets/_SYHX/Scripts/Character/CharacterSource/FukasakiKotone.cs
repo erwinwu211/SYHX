@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using SYHX.Cards;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class FukasakiKotone : CharacterSource
 {

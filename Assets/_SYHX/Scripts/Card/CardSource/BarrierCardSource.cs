@@ -1,12 +1,17 @@
-﻿public class BarrierCardSource : CardSource<BarrierCardContent> { }
-
-[System.Serializable]
-public class BarrierCardContent : CardContent
+﻿namespace SYHX.Cards
 {
-    [CloneField] public float defenceRate;
-    [CardDesc("defenceRate")] public string dRateString { get => (defenceRate * 100).ToString() + "%"; }
-    protected override void UseEffect(CardUseTrigger trigger)
+    public class BarrierCardSource : CardSource<BarrierCardContent> { }
+
+    [System.Serializable]
+    public class BarrierCardContent : CardContent
     {
-        BattleCharacterManager.Ins.hero.GetBarrier(defenceRate);
+        [CloneField] public float defenceRate;
+        [CardDesc("defenceRate")] public string dRateString { get => (defenceRate * 100).ToString() + "%"; }
+        protected override void UseEffect(CardUseTrigger trigger)
+        {
+            BattleCharacterManager.Ins.hero.GetBarrier(defenceRate);
+        }
     }
+
+
 }
