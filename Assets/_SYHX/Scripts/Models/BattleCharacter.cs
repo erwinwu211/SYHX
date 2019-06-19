@@ -14,10 +14,10 @@ public class BattleCharacter : MonoBehaviour
     public float defenceRate { get; protected set; }
     // public Canvas canvas;
     public event Action onDeath = delegate { };
-    public Buffs buffs;
+    public BuffManager buffs;
     void Awake()
     {
-        buffs = new Buffs(this);
+        buffs = new BuffManager(this);
         ChildAwake();
     }
 

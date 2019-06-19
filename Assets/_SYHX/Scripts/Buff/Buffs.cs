@@ -4,17 +4,17 @@ using UnityEngine;
 namespace SYHX.Buff
 {
 
-    public class Buffs : Assitant<BattleCharacter>
+    public class BuffManager : Assitant<BattleCharacter>
     {
-        public Buffs(BattleCharacter owner) : base(owner) { }
-        private Dictionary<int, Buff> buffDisc = new Dictionary<int, Buff>();
+        public BuffManager(BattleCharacter owner) : base(owner) { }
+        private Dictionary<int, BuffContent> buffDisc = new Dictionary<int, BuffContent>();
         public void Increase(BuffSource buffSource, int count)
         {
             if (buffSource == null) return;
             var buff = GetOrCreate(buffSource);
             buff.Increase(count);
         }
-        public Buff GetOrCreate(BuffSource buffSource)
+        public BuffContent GetOrCreate(BuffSource buffSource)
         {
             if (buffDisc.ContainsKey(buffSource.id))
             {
@@ -38,7 +38,7 @@ namespace SYHX.Buff
             return false;
         }
 
-        public void DecreaseByTurn(Buff buff)
+        public void DecreaseByTurn(BuffContent buff)
         {
             buff.Decrease(1);
         }
@@ -50,7 +50,7 @@ namespace SYHX.Buff
             if (res != null) return GetBuff(res) as T;
             return null;
         }
-        public Buff GetBuff(BuffSource source)
+        public BuffContent GetBuff(BuffSource source)
         {
             if (ContainBuff(source)) return buffDisc[source.id];
             return null;

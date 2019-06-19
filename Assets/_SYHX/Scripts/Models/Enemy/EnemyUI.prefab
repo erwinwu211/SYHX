@@ -50,6 +50,8 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 100
   attack: 10
+  defence: 0
+  barrier: 0
   text: {fileID: 3772818539838947705}
   enemy: {fileID: 4485900160369496117}
 --- !u!114 &7314683569394302660
@@ -717,7 +719,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -751,7 +753,7 @@ MonoBehaviour:
     handleAnimatorMove: 0
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
-  eventHandlerComponentsAdded: 0
+  eventHandlerComponentsAdded: 1
 --- !u!114 &929849162546343755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,11 +1037,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

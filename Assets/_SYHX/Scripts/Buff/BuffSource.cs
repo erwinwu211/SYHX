@@ -9,16 +9,16 @@ namespace SYHX.Buff
         public int id;
         public bool isTurnBased;
         public bool showCount;
-        public abstract Buff Generate(BattleCharacter owner);
+        public abstract BuffContent Generate(BattleCharacter owner);
     }
 
 
     public class BuffSource<T1, T2> : BuffSource
-    where T1 : Buff, new()
+    where T1 : BuffContent, new()
     where T2 : struct
     {
         public T2 constant;
-        public override Buff Generate(BattleCharacter owner)
+        public override BuffContent Generate(BattleCharacter owner)
         {
             var buff = new T1();
             buff.Init(this, owner, constant);

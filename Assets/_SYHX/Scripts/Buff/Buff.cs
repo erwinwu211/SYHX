@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SYHX.Buff
 {
-    public abstract class Buff
+    public abstract class BuffContent
     {
         public BuffSource source { get; protected set; }
         public bool isActive { get; protected set; }
@@ -48,7 +48,7 @@ namespace SYHX.Buff
         public abstract void Init(BuffSource source, BattleCharacter owner, object constant);
     }
 
-    public abstract class Buff<T1, T2, T3> : Buff
+    public abstract class Buff<T1, T2, T3> : BuffContent
     where T1 : Buff<T1, T2, T3>, new()
     where T2 : BuffSource
     where T3 : struct

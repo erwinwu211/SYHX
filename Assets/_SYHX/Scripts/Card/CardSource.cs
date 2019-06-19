@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SYHX.Cards
 {
@@ -55,8 +56,8 @@ namespace SYHX.Cards
         //TODO : 获取被生成的卡牌
         public abstract CardContent GenerateCard();
 
-#if UNITY_EDITOR
         [Button(ButtonSizes.Large)]
+        [Conditional("UNITY_EDITOR")]
         public virtual void GenerateToDeck()
         {
             var cc = GenerateCard();
@@ -67,11 +68,11 @@ namespace SYHX.Cards
         }
 
         [Button(ButtonSizes.Large)]
+        [Conditional("UNITY_EDITOR")]
         public void DrawCard()
         {
             BattleCardManager.Ins.Draw(1);
         }
-#endif
         #endregion
     }
 
