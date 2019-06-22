@@ -1,17 +1,16 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using System;
-
+﻿
 namespace SYHX.AbnormalStatus
 {
     public class PowerUpSource : AbnormalStatusSource<PowerUp>
     {
     }
+    [System.Serializable]
     public class PowerUp : AbnormalStatusContent
     {
         [CloneField] public float attackRate;
-        public override void OnAdd()
+        [CustomDesc("damageRate")]public string dAttackRate { get => (attackRate*100).ToString() + "%";}
+        [CustomDesc("turn")]public string dTurn{get=>count.ToString();}
+        public override void OnGenerate()
         {
             owner.ChangeAttackRate(attackRate);
         }

@@ -15,5 +15,8 @@ MonoBehaviour:
   id: 0
   isTurnBased: 1
   showCount: 0
-  constant:
+  canRepeat: 0
+  desc: "\u589E\u52A0\u653B\u51FB\u529B{damageRate} \u5269\u4F59\u56DE\u5408{turn}"
+  type: 0
+  origin:
     attackRate: 1

@@ -11,6 +11,7 @@ public class BattleHero : BattleCharacter
     {
         ShowHP();
         ShowBarrier();
+        ShowStatus();
     }
     public void ShowHP()
     {

@@ -9,7 +9,7 @@
         [CustomDesc("GainEP")] public string dRateString { get => GainEP.ToString(); }
         protected override void UseEffect(CardUseTrigger trigger)
         {
-            BattleManager.Ins.ChangeEnergy(GainEP);
+            BattleManager.SChangeEnergy(GainEP);
         }
     }
 

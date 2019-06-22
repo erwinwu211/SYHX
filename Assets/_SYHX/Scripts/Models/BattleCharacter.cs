@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using SYHX.AbnormalStatus;
+using TMPro;
 
-public class BattleCharacter : MonoBehaviour
+
+public partial class BattleCharacter : MonoBehaviour
 {
     protected bool isAlive;
     [SerializeField] protected int maxHp;
@@ -15,10 +17,16 @@ public class BattleCharacter : MonoBehaviour
     // public Canvas canvas;
     public event Action onDeath = delegate { };
     public AbnormalStatusManager asManager;
-    void Awake()
+
+    public TextMeshProUGUI statusText;
+    void Start()
     {
         asManager = new AbnormalStatusManager(this);
         ChildAwake();
+    }
+    public virtual void ShowStatus()
+    {
+        statusText.text = asManager.GetText();
     }
 
     public virtual void RefreshUI() { }
@@ -37,6 +45,17 @@ public class BattleCharacter : MonoBehaviour
     {
         onDeath();
         isAlive = false;
+        var enemy = this as Enemy;
+        if(enemy != null)
+        {
+            BattleCharacterManager.RemoveEnemy(enemy);
+        }
+        var hero = this as BattleHero;
+        if(hero != null)
+        {
+            BattleCharacterManager.RemoveHero();
+        }
+        Destroy(this.gameObject);    
     }
 
     /// <summary>

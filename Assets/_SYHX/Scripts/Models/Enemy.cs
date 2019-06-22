@@ -16,6 +16,7 @@ public class Enemy : BattleCharacter
     public override void RefreshUI()
     {
         ShowHp();
+        ShowStatus();
     }
     public void SetEnemy(EnemySource enemySource)
     {
@@ -25,7 +26,6 @@ public class Enemy : BattleCharacter
         this.defence = enemySource.defence;
         this.isAlive = true;
         defaultBlock = enemy.colors;
-        RefreshUI();
     }
     public void ShowHp()
     {

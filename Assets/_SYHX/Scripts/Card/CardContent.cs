@@ -41,7 +41,7 @@ namespace SYHX.Cards
         }
         public void OnDraw() => owner.OnDraw();
 
-        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.Ins.GetEP() >= this.EP && UseOption();
+        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.SGetEP() >= this.EP && UseOption();
         protected virtual bool UseOption() => true;
         /// <summary>
         /// ❌事件：当卡牌在打出后，经过选择之后的效果
@@ -50,7 +50,7 @@ namespace SYHX.Cards
         {
             if (CanUse())
             {
-                BattleManager.Ins.ChangeEnergy(-this.EP);
+                BattleManager.SChangeEnergy(-this.EP);
                 UseEffect(trigger);
                 BattleCardManager.Ins.Discard(this);
             }

@@ -11,7 +11,7 @@ namespace SYHX.Cards
 
         protected override void UseEffect(CardUseTrigger trigger)
         {
-            BattleManager.Ins.hero.asManager.Increase(source, count);
+            BattleManager.Hero.AddAbnormalStatus(source, count);
         }
     }
 

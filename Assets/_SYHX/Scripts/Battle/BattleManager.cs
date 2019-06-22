@@ -12,23 +12,25 @@ public enum BattleResult
     Lose,
 }
 
-public class BattleManager : SingletonMonoBehaviour<BattleManager>
+public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
-    [SerializeField] public BattleHero hero;
-    public Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
-    public List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
-    public BattleCardManager cardManager;
+    [SerializeField] private BattleHero hero;
+    public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
+    public static List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
+    public static BattleCharacter Hero => BattleCharacterManager.Ins.hero;
     public BattleInfoManager biManager;
     public TurnManager turnManager => TurnManager.Ins;
     public TextMeshProUGUI currentEPUI;
     public TextMeshProUGUI maxEPUI;
+    public Button result;
+    public TextMeshProUGUI resultUI;
     public Text roundText;
-
     //可能弃用
     public int currentEP;
     public int maxEP;
     protected override void UnityAwake()
     {
+        result.gameObject.SetActive(false);
         BattleCharacterManager.Ins.SetHero(hero);
         biManager = new BattleInfoManager(this, currentEP, maxEP);
         biManager.RefreshUI();
@@ -51,8 +53,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
         biManager.ResetConnection();
     }
 
-
-
     /// <summary>
     /// 战斗结束，做BattleManager的收尾工作
     /// </summary>
@@ -64,16 +64,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
 
 
-    public void AddTurn() => biManager.AddTurn();
-    public int GetEP() => biManager.currentEP;
-    public void TurnStartDraw() => Draw(biManager.DrawCountPerTurn);
-    public void Draw(int count) => BattleCardManager.Ins.Draw(count);
-    public void Shuffle() => BattleCardManager.Ins.Shuffle();
-    public void EnergyPointRegain() => biManager.EnergyPointRegain();
-    public void ChangeEnergy(int ep) => biManager.ChangeEnergy(ep);
-    public void CalculateConnection(CardType type, int count) => biManager.CalculateConnection(type, count);
-    public void RegainMoreEnergyPointNextTurn(int count) => biManager.RegainMoreEnergyPointNextTurn(count);
-    public void TurnEnd() => turnManager.EndPlayerTurn();
     /// <summary>
     /// 检测战斗是否结束
     /// 检测方式：
@@ -81,24 +71,53 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     /// 是否角色死亡
     /// </summary>
     /// <returns></returns>
-    public BattleResult IsBattleOver()
+    public void EndBattle()
     {
-#if COMPLETE
-        BattleResult res = BattleResult.Win;
-        foreach (Enemy enemy in enemyList)
-        {
-            if (enemy.IsAlive())
-            {
-                res = BattleResult.Continue;
-            }
-        }
-        if (hero.currentHp <= 0)
-        {
-            res = BattleResult.Lose;
-        }
-#endif
-        return BattleResult.Continue;
-
+        StartCoroutine(Result());
     }
+    private IEnumerator Result()
+    {
+        yield return new WaitForSeconds(0.1f);
+        switch(BattleCharacterManager.Ins.result)
+        {
+            case BattleResult.Win:
+                Win();
+                break;
+            case BattleResult.Lose:
+                Lose();
+                break;
+            default:
+                break;
+        }
+        yield break;
+    }
+    private void Win()
+    { 
+        resultUI.text = "you win";
+        result.gameObject.SetActive(true);
+    }
+    private void Lose()
+    {
+        resultUI.text = "you lose";
+        result.gameObject.SetActive(true);  
+    }
+}
+
+
+public partial class BattleManager
+{
+    
+    public static void SAddTurn() => Ins.biManager.AddTurn();
+    public static int SGetEP() => Ins.biManager.currentEP;
+    public static void STurnStartDraw() => SDraw(Ins.biManager.DrawCountPerTurn);
+    public static void SDraw(int count) => BattleCardManager.Ins.Draw(count);
+    public static void SShuffle() => BattleCardManager.Ins.Shuffle();
+    public static void SEnergyPointRegain() => Ins.biManager.EnergyPointRegain();
+    public static void SChangeEnergy(int ep) => Ins.biManager.ChangeEnergy(ep);
+    public static void sCalculateConnection(CardType type, int count) => Ins.biManager.CalculateConnection(type, count);
+    public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
+    public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
+    public static void sResult() => Ins.turnManager.Result();
+    public void TurnEnd() => sTurnEnd();
 }
 

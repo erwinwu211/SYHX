@@ -14,6 +14,7 @@ namespace SYHX.AbnormalStatus
         public bool isTurnBased;
         public bool showCount;
         public bool canRepeat;
+        public string desc;
         public AbnormalStatusType type;
 
         public abstract void Init();

@@ -12,14 +12,14 @@
         {
             if (isAOE)
             {
-                foreach (var enemy in BattleManager.Ins.enemyList)
+                foreach (var enemy in BattleManager.enemyList)
                 {
-                    Damage.CalculateAndApply(BattleManager.Ins.hero, enemy, damageRate, DamageTrigger.ByCard);
+                    Damage.CalculateAndApply(BattleManager.Hero, enemy, damageRate, DamageTrigger.ByCard);
                 }
             }
             else
             {
-                Damage.CalculateAndApply(BattleManager.Ins.hero, BattleManager.Ins.selectedEnemy, damageRate, DamageTrigger.ByCard);
+                Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
             }
         }
     }

@@ -32,6 +32,8 @@ public class TurnState_FSM : AssitantMonobehaviour<TurnManager>
                 return owner.stateManager.enemyStartState;
             case State.EnemyEnd:
                 return owner.stateManager.enemyEndState;
+            case State.Result:
+                return owner.stateManager.resultState;
             default:
                 return null;
         }

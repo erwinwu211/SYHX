@@ -32,6 +32,7 @@ namespace SYHX.AbnormalStatus
             this.type = source.type;
             this.owner = owner;
             this.descOption = descOption;
+            this.desc = source.desc;
         }
 
 
@@ -40,31 +41,41 @@ namespace SYHX.AbnormalStatus
         {
             if (!this.isActive)
             {
-                this.isActive = true;
-                this.OnAdd();
+                Generate();
             }
             this.count += count;
-            if (count == 0)
+            if(count > 0)
             {
-                isActive = false;
-                this.OnClear();
+                this.OnIncrease();
+            }
+            if (this.count == 0)
+            {
+                owner.ClearAbnormalStatus(this);
             }
         }
         public virtual void Decrease(int count)
         {
             this.count -= count;
-            if (this.isActive && count <= 0)
+            if (this.isActive && this.count <= 0)
             {
                 count = 0;
                 this.OnDecrease();
-                isActive = false;
-                this.OnClear();
+                owner.ClearAbnormalStatus(this);
             }
-            else
+            else if(this.isActive)
             {
                 this.OnDecrease();
             }
         }
+
+        //生成时
+        public void Generate()
+        {
+            this.count = 0;
+            this.isActive = true;
+            this.OnGenerate();
+        }
+        //净化
         public void Remove()
         {
             this.count = 0;
@@ -72,8 +83,14 @@ namespace SYHX.AbnormalStatus
             this.OnRemove();
         }
 
+        //自然消失
+        public void Clear()
+        {
+            this.count = 0;
+            this.isActive = false;
+            this.OnClear();
+        }
 
-        public virtual void OnAdd() { }
         public virtual void OnDecrease() { }
         public virtual void OnIncrease() { }
         public virtual void OnRemove() => OnClear();

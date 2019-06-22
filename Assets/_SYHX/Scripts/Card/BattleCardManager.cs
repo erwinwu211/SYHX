@@ -26,8 +26,9 @@ namespace SYHX.Cards
 
         //测试用
         public List<CardSource> cards;
+        protected override void UnityAwake(){}
         //
-        protected override void UnityAwake()
+        void Start()
         {
 
             foreach (var card in cards)
