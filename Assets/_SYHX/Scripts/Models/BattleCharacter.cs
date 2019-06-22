@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using SYHX.Buff;
+using SYHX.AbnormalStatus;
 
 public class BattleCharacter : MonoBehaviour
 {
@@ -14,10 +14,10 @@ public class BattleCharacter : MonoBehaviour
     public float defenceRate { get; protected set; }
     // public Canvas canvas;
     public event Action onDeath = delegate { };
-    public BuffManager buffs;
+    public AbnormalStatusManager asManager;
     void Awake()
     {
-        buffs = new BuffManager(this);
+        asManager = new AbnormalStatusManager(this);
         ChildAwake();
     }
 
@@ -25,14 +25,11 @@ public class BattleCharacter : MonoBehaviour
 
     //可能消失
     public virtual void ChildAwake() { }
-    public void ChangeAttackRate(float value)
-    {
-        attackRate += value;
-    }
-    public void ChangeDefenceRate(float value)
-    {
-        defenceRate += value;
-    }
+
+
+
+
+    #region 生命相关
     /// <summary>
     /// 死亡
     /// </summary>
@@ -79,6 +76,8 @@ public class BattleCharacter : MonoBehaviour
         return isAlive;
     }
 
+    #region 伤害相关
+
     public virtual void GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
     {
         bc.TakeDamage(this, damage);
@@ -98,5 +97,15 @@ public class BattleCharacter : MonoBehaviour
         barrier += (int)(defence * ratio * (1 + defenceRate));
         RefreshUI();
     }
+    public void ChangeAttackRate(float value)
+    {
+        attackRate += value;
+    }
+    public void ChangeDefenceRate(float value)
+    {
+        defenceRate += value;
+    }
+    #endregion
+    #endregion
 }
 

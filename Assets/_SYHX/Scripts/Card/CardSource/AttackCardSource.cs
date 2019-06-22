@@ -7,7 +7,7 @@
     {
         [CloneField] public float damageRate;
         [CloneField] public bool isAOE;
-        [CardDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
+        [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
         protected override void UseEffect(CardUseTrigger trigger)
         {
             if (isAOE)

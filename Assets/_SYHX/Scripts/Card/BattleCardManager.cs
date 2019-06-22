@@ -32,7 +32,6 @@ namespace SYHX.Cards
 
             foreach (var card in cards)
             {
-                card.Init();
                 card.GenerateToDeck();
             }
         }

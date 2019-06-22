@@ -77,15 +77,3 @@ public enum CardUseTrigger
     ByUser, ByCard
 }
 
-/*
- *用于做卡牌描述
- */
-[AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-sealed class CardDescAttribute : Attribute
-{
-    public readonly string descName;
-    public CardDescAttribute(string descName)
-    {
-        this.descName = descName;
-    }
-}

@@ -6,7 +6,7 @@
     public class DrawCardContent : CardContent
     {
         [CloneField] public int drawNumber;
-        [CardDesc("number")] public string dRateString { get => drawNumber.ToString(); }
+        [CustomDesc("number")] public string dRateString { get => drawNumber.ToString(); }
         protected override void UseEffect(CardUseTrigger trigger)
         {
             BattleCardManager.Ins.Draw(drawNumber);

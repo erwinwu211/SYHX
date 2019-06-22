@@ -6,7 +6,7 @@
     public class ChangeEPCardContent : CardContent
     {
         [CloneField] public int GainEP;
-        [CardDesc("GainEP")] public string dRateString { get => GainEP.ToString(); }
+        [CustomDesc("GainEP")] public string dRateString { get => GainEP.ToString(); }
         protected override void UseEffect(CardUseTrigger trigger)
         {
             BattleManager.Ins.ChangeEnergy(GainEP);

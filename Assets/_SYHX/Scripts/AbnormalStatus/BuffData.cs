@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SYHX.Buff;
+using SYHX.AbnormalStatus;
 
 public class BuffData : SingletonMonoBehaviour<BuffData>
 {
-    public List<BuffSource> buffSources;
+    public List<AbnormalStatusSource> buffSources;
     protected override void UnityAwake() { }
     public T Get<T>()
-    where T : BuffSource
+    where T : AbnormalStatusSource
     {
         foreach (var b in buffSources)
         {

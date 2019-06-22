@@ -90,7 +90,7 @@ namespace SYHX.Cards
             var properties = typeof(T).GetProperties();
             foreach (var property in properties)
             {
-                var att = (CardDescAttribute)Attribute.GetCustomAttribute(property, typeof(CardDescAttribute));
+                var att = (CustomDescAttribute)Attribute.GetCustomAttribute(property, typeof(CustomDescAttribute));
                 if (att != null)
                 {
                     dictionary.Add(att.descName, property);
@@ -117,16 +117,12 @@ namespace SYHX.Cards
         }
 
     }
+    public enum CardType
+    {
+        强袭技, 灵巧技, 神秘技, 连接技
+    }
+
 }
 
-public enum CardType
-{
-    强袭技, 灵巧技, 神秘技, 连接技
-}
 
 
-/*
- *用来做卡牌原型模式初期化
- */
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public sealed class CloneFieldAttribute : Attribute { public CloneFieldAttribute() { } }
