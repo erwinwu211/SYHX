@@ -77,6 +77,7 @@ public partial class BattleCharacter : MonoBehaviour
     /// <param name="count"></param>
     public virtual void DecreaseHp(int count)
     {
+        if(count <= 0) return;
         currentHp -= count;
         RefreshUI();
         if (currentHp <= 0)
@@ -105,6 +106,13 @@ public partial class BattleCharacter : MonoBehaviour
 
     public virtual void TakeDamage(BattleCharacter bc, int damage)
     {
+        var temp = damage;
+        temp -= barrier;
+        barrier -= damage;
+        if(barrier <= 0)
+        {
+            barrier = 0;
+        }
         this.DecreaseHp(damage);
     }
     public virtual void TakeNoSourceDamage(int damage)

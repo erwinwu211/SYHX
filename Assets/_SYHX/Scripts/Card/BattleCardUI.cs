@@ -21,7 +21,7 @@ namespace SYHX.Cards
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
         }
-        void OnMouseDown()
+        public void OnPointClick()
         {
             cc.OnUse(CardUseTrigger.ByUser);
         }

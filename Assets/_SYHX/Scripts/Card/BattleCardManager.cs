@@ -58,7 +58,7 @@ namespace SYHX.Cards
             else
             {
                 CardContent card = deckPile[0];
-                GoToHand(card);
+                GoTo(card,CardPosition.Hand);
                 count--;
                 card.OnDraw();
                 card.bUI.transform.SetParent(cardPos.transform, false);
@@ -69,7 +69,7 @@ namespace SYHX.Cards
 
         public void Discard(CardContent cc)
         {
-            GoToDiscard(cc);
+            GoTo(cc,CardPosition.Discard);
             cc.OnFold();
             cc.bUI.transform.SetParent(initPos.transform);
             cc.bUI.transform.localPosition = Vector3.zero;
@@ -91,7 +91,7 @@ namespace SYHX.Cards
         }
         public void Exhaust(CardContent cc)
         {
-            GoToExhaust(cc);
+            GoTo(cc,CardPosition.Exhaust);
             cc.bUI.transform.SetParent(initPos.transform);
             cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
@@ -99,9 +99,14 @@ namespace SYHX.Cards
 
         public void Used(CardContent cc)
         {
-            GoToUsed(cc);
+            GoTo(cc,CardPosition.Used);
             cc.bUI.transform.SetParent(initPos.transform);
             cc.bUI.transform.localPosition = Vector3.zero;
+            RefreshUI();
+        }
+        public void ReturnToDeck(CardContent cc)
+        {
+            GoTo(cc,CardPosition.Deck);
             RefreshUI();
         }
         public void RefreshUI()
@@ -118,39 +123,32 @@ namespace SYHX.Cards
 
 
         #region 卡牌去向
-        public void GoToHand(CardContent cc)
+        private void GoTo(CardContent cc,CardPosition position)
         {
             GetCurrentList(cc).Remove(cc);
-            cc.bUI.position = CardPosition.Hand;
-            handPile.Add(cc);
-        }
-        public void GoToDiscard(CardContent cc)
-        {
-            GetCurrentList(cc).Remove(cc);
-            cc.bUI.position = CardPosition.Discard;
-            foldPile.Add(cc);
-        }
-        public void GoToExhaust(CardContent cc)
-        {
-            GetCurrentList(cc).Remove(cc);
-            cc.bUI.position = CardPosition.Exhaust;
-            exhaustPile.Add(cc);
-        }
-        public void GoToUsed(CardContent cc)
-        {
-            GetCurrentList(cc).Remove(cc);
-            cc.bUI.position = CardPosition.Used;
-            usedPile.Add(cc);
-        }
-        public void GoToDeck(CardContent cc)
-        {
-            GetCurrentList(cc).Remove(cc);
-            cc.bUI.position = CardPosition.Deck;
-            deckPile.Add(cc);
+            cc.bUI.position = position;
+            switch(position)
+            {
+                case CardPosition.Deck:
+                deckPile.Add(cc);
+                break;
+                case CardPosition.Discard:
+                foldPile.Add(cc);
+                break;
+                case CardPosition.Exhaust:
+                exhaustPile.Add(cc);
+                break;
+                case CardPosition.Hand:
+                handPile.Add(cc);
+                break;
+                case CardPosition.Used:
+                usedPile.Add(cc);
+                break;
+            }
         }
         #endregion
 
-        public List<CardContent> GetCurrentList(CardContent cc)
+        private List<CardContent> GetCurrentList(CardContent cc)
         {
             switch (cc.bUI.position)
             {
@@ -187,7 +185,7 @@ namespace SYHX.Cards
             //将所有弃牌放入牌堆中
             foreach (CardContent card in temp)
             {
-                GoToDeck(card);
+                GoTo(card,CardPosition.Deck);
             }
             //清空弃牌堆
             foldPile.Clear();
