@@ -1,12 +1,26 @@
 ﻿using UnityEngine;
+using System.Collections;
+
 
 public abstract class EnemyAction : ScriptableObject
 {
     protected Enemy enemy;
-    public abstract void Execute();
-
-    public void SetEnemy(Enemy enemy)
+    public virtual void Execute()
     {
-        if (this.enemy == null) this.enemy = enemy;
+        BattleManager.enemyOnGoing = true;
+        BattleManager.ManagerCoroutine(Decorator());
+    }
+
+    IEnumerator Decorator()
+    {
+        yield return execute();
+        BattleManager.enemyOnGoing = false;
+        yield break;
+    }
+    protected abstract IEnumerator execute();
+
+    public void SetEnemy(EnemyAIHandler handler)
+    {
+        this.enemy = handler.enemy;
     }
 }

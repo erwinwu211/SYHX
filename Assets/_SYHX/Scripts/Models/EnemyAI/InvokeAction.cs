@@ -16,9 +16,22 @@ public class InvokeAction : FsmStateAction
     {
         if (action != null)
         {
-            action.SetEnemy(handler.enemy);
+            BattleManager.canExeNextEnemy = false;
+            action.SetEnemy(handler);
             action.Execute();
         }
-        Finish();
+        else
+        {
+            BattleManager.canExeNextEnemy = true;
+        }
+    }
+
+    public override void OnUpdate()
+    {
+        if(!BattleManager.enemyOnGoing)
+        {
+            BattleManager.canExeNextEnemy = true;
+            Finish();
+        }
     }
 }

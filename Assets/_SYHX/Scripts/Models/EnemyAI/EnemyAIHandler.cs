@@ -7,10 +7,13 @@ public class EnemyAIHandler : MonoBehaviour
 {
     [NonSerialized] public Enemy enemy;
     [NonSerialized] public PlayMakerFSM fsm;
+
     void Awake()
     {
         enemy = this.GetComponent<Enemy>();
+        enemy.SetAIHandler(this);
         fsm = this.GetComponent<PlayMakerFSM>();
+        DoStart();
     }
 
     public void DoNext()

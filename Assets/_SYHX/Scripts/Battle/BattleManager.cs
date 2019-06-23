@@ -14,12 +14,20 @@ public enum BattleResult
 
 public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
+    #region 外部调用
     [SerializeField] private BattleHero hero;
     public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
     public static List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
     public static BattleCharacter Hero => BattleCharacterManager.Ins.hero;
     public BattleInfoManager biManager;
     public TurnManager turnManager => TurnManager.Ins;
+    public static bool enemyOnGoing = false;
+    public static bool canExeNextEnemy = true;
+    public static bool finishEnemyAction = false;
+    #endregion
+
+
+    #region  UI
     public TextMeshProUGUI currentEPUI;
     public TextMeshProUGUI maxEPUI;
     public Button result;
@@ -28,6 +36,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     //可能弃用
     public int currentEP;
     public int maxEP;
+    #endregion
     protected override void UnityAwake()
     {
         result.gameObject.SetActive(false);
@@ -118,6 +127,8 @@ public partial class BattleManager
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
     public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
     public static void sResult() => Ins.turnManager.Result();
+    public static void ManagerCoroutine(IEnumerator enumarator)=>Ins.StartCoroutine(enumarator);
+    public static void sStartEnemyAction() => BattleCharacterManager.Ins.StartEnemyAction();
     public void TurnEnd() => sTurnEnd();
 }
 

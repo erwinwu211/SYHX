@@ -211,34 +211,26 @@ public class PlayerEndState : TurnState
 public class EnemyStartState : TurnState
 {
     public EnemyStartState(TurnStateManager owner) : base(owner) { }
-    private bool EndFlag = false;
 
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnEnemyTurnStart();
-        owner.owner.fsmManager.TryTransition(owner.enemyEndState);
         //执行AI
+        BattleManager.sStartEnemyAction();
     }
 
     public override void Update()
     {
-        //当AI动作播放完成后，打开Flag
-        Check();
 
-        if (EndFlag)
+        if (BattleManager.finishEnemyAction)
         {
             Exit();
         }
     }
 
-    public override void Exit() { }
+    public override void Exit() =>owner.owner.fsmManager.TryTransition(owner.enemyEndState);
+
     public override string FsmName() => "EnemyStart";
-
-
-    private void Check()
-    {
-        EndFlag = true;
-    }
 }
 
 

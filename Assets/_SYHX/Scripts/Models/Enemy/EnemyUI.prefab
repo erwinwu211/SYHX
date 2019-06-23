@@ -145,17 +145,17 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5879421586487604811}
+  - {fileID: 8247499124336008906}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -628,7 +628,7 @@ MonoBehaviour:
         actionStartIndex: 00000000
         actionHashCodes: 79961000
         unityObjectParams:
-        - {fileID: 0}
+        - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
         animationCurveParams: []
@@ -692,7 +692,7 @@ MonoBehaviour:
         actionStartIndex: 00000000
         actionHashCodes: 79961000
         unityObjectParams:
-        - {fileID: 0}
+        - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
         animationCurveParams: []
@@ -884,7 +884,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 1
+    preprocessed: 0
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -983,7 +983,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2228924341637254205}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3339190258000597443}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -1350,11 +1350,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
