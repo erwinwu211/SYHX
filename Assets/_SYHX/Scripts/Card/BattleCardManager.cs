@@ -75,9 +75,31 @@ namespace SYHX.Cards
             cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
         }
+
+        public void DiscardAll()
+        {
+            var HandPile = handPile.ToArray();
+            foreach(var hand in HandPile)
+            {
+                Discard(hand);
+            }
+            var UsedPile = usedPile.ToArray();
+            foreach(var used in UsedPile)
+            {
+                Discard(used);
+            }
+        }
         public void Exhaust(CardContent cc)
         {
             GoToExhaust(cc);
+            cc.bUI.transform.SetParent(initPos.transform);
+            cc.bUI.transform.localPosition = Vector3.zero;
+            RefreshUI();
+        }
+
+        public void Used(CardContent cc)
+        {
+            GoToUsed(cc);
             cc.bUI.transform.SetParent(initPos.transform);
             cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
@@ -165,7 +187,7 @@ namespace SYHX.Cards
             //将所有弃牌放入牌堆中
             foreach (CardContent card in temp)
             {
-                deckPile.Add(card);
+                GoToDeck(card);
             }
             //清空弃牌堆
             foldPile.Clear();

@@ -129,6 +129,7 @@ public partial class BattleManager
     public static void sResult() => Ins.turnManager.Result();
     public static void ManagerCoroutine(IEnumerator enumarator)=>Ins.StartCoroutine(enumarator);
     public static void sStartEnemyAction() => BattleCharacterManager.Ins.StartEnemyAction();
+    public static void sDiscardAll() => BattleCardManager.Ins.DiscardAll();
     public void TurnEnd() => sTurnEnd();
 }
 

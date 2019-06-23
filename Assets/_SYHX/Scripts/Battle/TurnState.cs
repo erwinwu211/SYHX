@@ -174,11 +174,9 @@ public class PlayerEndState : TurnState
     public override void Enter()
     {
         BattleProgressEvent.Ins.OnPlayerTurnEnd();
-
         //将牌移入弃牌堆
         owner.owner.fsmManager.TryTransition(owner.enemyStartState);
-
-
+        BattleManager.sDiscardAll();
     }
 
     public override void Update()

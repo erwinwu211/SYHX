@@ -52,7 +52,7 @@ namespace SYHX.Cards
             {
                 BattleManager.SChangeEnergy(-this.EP);
                 UseEffect(trigger);
-                BattleCardManager.Ins.Discard(this);
+                BattleCardManager.Ins.Used(this);
             }
 
         }
