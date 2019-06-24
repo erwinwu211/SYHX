@@ -127,9 +127,44 @@ public partial class BattleManager
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
     public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
     public static void sResult() => Ins.turnManager.Result();
-    public static void ManagerCoroutine(IEnumerator enumarator)=>Ins.StartCoroutine(enumarator);
     public static void sStartEnemyAction() => BattleCharacterManager.Ins.StartEnemyAction();
     public static void sDiscardAll() => BattleCardManager.Ins.DiscardAll();
     public void TurnEnd() => sTurnEnd();
 }
 
+//协程相关
+
+public partial class BattleManager
+{
+    public static void ManagedCoroutine(IEnumerator enumarator)=>Ins.StartCoroutine(enumarator);
+    public static Dictionary<CoroutineType,List<IEnumerator>> coroutineLock;
+
+
+
+    //顺序携程，可能不用
+    public static void ManagedCoroutineWithLock(IEnumerator enumarator,CoroutineType type)
+    {
+        if(coroutineLock.ContainsKey(type))
+        {
+            coroutineLock[type].Add(enumarator);
+        }
+        else
+        {
+            Ins.LockedCoroutine(type);
+        }
+    }
+    private IEnumerator LockedCoroutine(CoroutineType type)
+    {
+        while(coroutineLock[type].Count > 0)
+        {
+            yield return coroutineLock[type][0];
+            coroutineLock[type].RemoveAt(0);
+        }
+        coroutineLock.Remove(type);
+    }
+}
+
+public enum CoroutineType
+{
+enemyOnGoing,canExeNextEnemy,finishEnemyAction
+}

@@ -8,7 +8,7 @@ public abstract class EnemyAction : ScriptableObject
     public virtual void Execute()
     {
         BattleManager.enemyOnGoing = true;
-        BattleManager.ManagerCoroutine(Decorator());
+        BattleManager.ManagedCoroutine(Decorator());
     }
 
     IEnumerator Decorator()
@@ -24,3 +24,4 @@ public abstract class EnemyAction : ScriptableObject
         this.enemy = handler.enemy;
     }
 }
+
