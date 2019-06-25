@@ -35,7 +35,7 @@ public abstract class EnemyActionContent : Content
     protected Enemy enemy;
     public virtual void Execute()
     {
-        BattleManager.ManagerCoroutine(Decorator());
+        BattleManager.ManagedCoroutine(Decorator());
     }
 
     IEnumerator Decorator()
@@ -64,3 +64,4 @@ public abstract class EnemyActionContent : Content
         return desc;
     }
 }
+

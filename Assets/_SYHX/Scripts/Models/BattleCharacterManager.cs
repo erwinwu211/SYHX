@@ -54,7 +54,7 @@ public class BattleCharacterManager : Singleton<BattleCharacterManager>
     public void StartEnemyAction()
     {
         BattleManager.finishEnemyAction = false;
-        BattleManager.ManagerCoroutine(AllEnemyAction());
+        BattleManager.ManagedCoroutine(AllEnemyAction());
     }
     IEnumerator AllEnemyAction()
     {
