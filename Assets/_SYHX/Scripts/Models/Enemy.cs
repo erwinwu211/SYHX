@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
+
+
 
 [RequireComponent(typeof(EnemyAIHandler))]
 public class Enemy : BattleCharacter
 {
     // [SerializeField]
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI actionText;
     public Button enemy;
     private ColorBlock defaultBlock;
     private EnemyAIHandler aiHandler;
+    [ShowInInspector] private EnemyActionContent currentAction;
 
     public override void RefreshUI()
     {
         ShowHp();
         ShowStatus();
+        ShowAction();
     }
     public void SetEnemy(EnemySource enemySource)
     {
@@ -29,7 +35,14 @@ public class Enemy : BattleCharacter
     }
     public void ShowHp()
     {
-        text.text = $"{this.currentHp}/{this.maxHp}";
+        hpText.text = $"{this.currentHp}/{this.maxHp}";
+    }
+    public void ShowAction()
+    {
+        if (currentAction != null)
+        {
+            actionText.text = currentAction.Desc;
+        }
     }
     public virtual void OnSelected()
     {
@@ -48,6 +61,8 @@ public class Enemy : BattleCharacter
     }
     public void StartAI() => aiHandler.DoStart();
     public void NextAI() => aiHandler.DoNext();
+    public void SetAction(EnemyActionContent action) => currentAction = action;
+    public void ExecuteAction() => currentAction.Execute();
 
     public void SelectThis()
     {

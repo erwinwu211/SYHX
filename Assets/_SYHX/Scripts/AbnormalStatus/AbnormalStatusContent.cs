@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace SYHX.AbnormalStatus
 {
-    public abstract class AbnormalStatusContent
+    public abstract class AbnormalStatusContent : Content
     {
         #region meta数据
         public int id { get; private set; }
@@ -44,7 +44,7 @@ namespace SYHX.AbnormalStatus
                 Generate();
             }
             this.count += count;
-            if(count > 0)
+            if (count > 0)
             {
                 this.OnIncrease();
             }
@@ -62,7 +62,7 @@ namespace SYHX.AbnormalStatus
                 this.OnDecrease();
                 owner.ClearAbnormalStatus(this);
             }
-            else if(this.isActive)
+            else if (this.isActive)
             {
                 this.OnDecrease();
             }

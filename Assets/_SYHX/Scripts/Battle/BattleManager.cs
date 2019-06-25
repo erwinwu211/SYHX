@@ -87,7 +87,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     private IEnumerator Result()
     {
         yield return new WaitForSeconds(0.1f);
-        switch(BattleCharacterManager.Ins.result)
+        switch (BattleCharacterManager.Ins.result)
         {
             case BattleResult.Win:
                 Win();
@@ -101,21 +101,21 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         yield break;
     }
     private void Win()
-    { 
+    {
         resultUI.text = "you win";
         result.gameObject.SetActive(true);
     }
     private void Lose()
     {
         resultUI.text = "you lose";
-        result.gameObject.SetActive(true);  
+        result.gameObject.SetActive(true);
     }
 }
 
 
 public partial class BattleManager
 {
-    
+
     public static void SAddTurn() => Ins.biManager.AddTurn();
     public static int SGetEP() => Ins.biManager.currentEP;
     public static void STurnStartDraw() => SDraw(Ins.biManager.DrawCountPerTurn);
@@ -127,7 +127,7 @@ public partial class BattleManager
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
     public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
     public static void sResult() => Ins.turnManager.Result();
-    public static void ManagerCoroutine(IEnumerator enumarator)=>Ins.StartCoroutine(enumarator);
+    public static void ManagerCoroutine(IEnumerator enumarator) => Ins.StartCoroutine(enumarator);
     public static void sStartEnemyAction() => BattleCharacterManager.Ins.StartEnemyAction();
     public static void sDiscardAll() => BattleCardManager.Ins.DiscardAll();
     public void TurnEnd() => sTurnEnd();

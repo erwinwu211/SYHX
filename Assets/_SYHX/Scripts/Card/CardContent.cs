@@ -4,11 +4,10 @@ using System.Reflection;
 
 namespace SYHX.Cards
 {
-    public abstract class CardContent : SAssitant<CardSource>
+    public abstract class CardContent : SAssitant<CardSource>, Content
     {
         public string name { get; private set; }
-        private string desc;
-        public string Desc => GetDesc(desc);
+
         public Dictionary<string, PropertyInfo> descOption;
         public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
@@ -39,7 +38,7 @@ namespace SYHX.Cards
             get => tempEP;
             private set => tempEP = value >= 0 ? value : 0;
         }
-        public void OnDraw() => owner.OnDraw();
+        public void OnDraw() { }
 
         public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.SGetEP() >= this.EP && UseOption();
         protected virtual bool UseOption() => true;
@@ -58,9 +57,11 @@ namespace SYHX.Cards
         }
 
         protected abstract void UseEffect(CardUseTrigger trigger);
-        public void OnFold() => owner.OnFold();
-        public void OnExiled() => owner.OnExiled();
-        public void OnOtherCardUse(CardSource context) => owner.OnOtherCardUse(context);
+        public void OnFold() { }
+        public void OnExiled() { }
+        public void OnOtherCardUse(CardSource context) { }
+        private string desc;
+        public string Desc => GetDesc(desc);
         public virtual string GetDesc(string desc)
         {
             foreach (KeyValuePair<string, PropertyInfo> pairs in descOption)

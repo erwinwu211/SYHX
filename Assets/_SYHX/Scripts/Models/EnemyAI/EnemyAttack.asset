@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9820c2eccac2b5949b4975ccefc22b8d, type: 3}
   m_Name: EnemyAttack
   m_EditorClassIdentifier: 
-  damageRate: 1
+  desc: "\u4F24\u5BB3\u7387{damageRate}"
+  origin:
+    damageRate: 1

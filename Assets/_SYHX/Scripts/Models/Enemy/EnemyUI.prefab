@@ -196,6 +196,7 @@ Transform:
   - {fileID: 4058778080157654798}
   - {fileID: 989098675381796883}
   - {fileID: 4924503774079091413}
+  - {fileID: 7740625923244945002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -217,7 +218,8 @@ MonoBehaviour:
   defence: 0
   barrier: 0
   statusText: {fileID: 2532725870861986521}
-  text: {fileID: 3772818539838947705}
+  hpText: {fileID: 3772818539838947705}
+  actionText: {fileID: 8133215515749195428}
   enemy: {fileID: 4485900160369496117}
 --- !u!114 &7314683569394302660
 MonoBehaviour:
@@ -243,7 +245,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 54
-        y: 186
+        y: 250
         width: 100
         height: 32
       isBreakpoint: 0
@@ -302,8 +304,8 @@ MonoBehaviour:
       colorIndex: 1
       position:
         serializedVersion: 2
-        x: 325
-        y: 111
+        x: 330
+        y: 147
         width: 100
         height: 48
       isBreakpoint: 0
@@ -386,7 +388,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 224
-        y: 183
+        y: 247
         width: 102.666664
         height: 16
       isBreakpoint: 0
@@ -482,8 +484,8 @@ MonoBehaviour:
       colorIndex: 1
       position:
         serializedVersion: 2
-        x: 502
-        y: 122
+        x: 493
+        y: 190
         width: 100
         height: 32
       isBreakpoint: 0
@@ -543,7 +545,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 501
-        y: 192
+        y: 256
         width: 100
         height: 32
       isBreakpoint: 0
@@ -603,7 +605,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 654
-        y: 143
+        y: 207
         width: 100
         height: 32
       isBreakpoint: 0
@@ -626,7 +628,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 79961000
+        actionHashCodes: d2d3fc00
         unityObjectParams:
         - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
         fsmGameObjectParams: []
@@ -667,7 +669,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 650
-        y: 207
+        y: 271
         width: 100
         height: 32
       isBreakpoint: 0
@@ -690,7 +692,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 79961000
+        actionHashCodes: d2d3fc00
         unityObjectParams:
         - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
         fsmGameObjectParams: []
@@ -731,7 +733,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 845.15625
-        y: 205.01562
+        y: 269.01562
         width: 100
         height: 16
       isBreakpoint: 0
@@ -822,6 +824,70 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000
         paramByteDataSize: 00000000000000000000000001000000
+    - name: Action
+      description: 
+      colorIndex: 1
+      position:
+        serializedVersion: 2
+        x: 136.60938
+        y: 106.890625
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: A Pattern
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - InvokeAction
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: d2d3fc00
+        unityObjectParams:
+        - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 05000000
+        paramName:
+        - action
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -846,7 +912,7 @@ MonoBehaviour:
         name: ToA
         isSystemEvent: 0
         isGlobal: 0
-      toState: A Pattern
+      toState: Action
       linkStyle: 0
       linkConstraint: 0
       colorIndex: 0
@@ -1208,6 +1274,166 @@ MonoBehaviour:
   m_canvasRenderer: {fileID: 7249120070647616786}
   m_TextComponent: {fileID: 2532725870861986521}
   m_materialReferenceIndex: 1
+--- !u!1 &4477501251553037770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7740625923244945002}
+  - component: {fileID: 6488552444256747335}
+  - component: {fileID: 8133215515749195428}
+  m_Layer: 0
+  m_Name: action
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7740625923244945002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477501251553037770}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 36}
+  m_LocalScale: {x: 0.88180995, y: 1, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 2018194814777302139}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 170}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6488552444256747335
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477501251553037770}
+  m_CullTransparentMesh: 0
+--- !u!114 &8133215515749195428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477501251553037770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: hp
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 0}
+    characterCount: 2
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 1
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6022382431199917683
 GameObject:
   m_ObjectHideFlags: 0

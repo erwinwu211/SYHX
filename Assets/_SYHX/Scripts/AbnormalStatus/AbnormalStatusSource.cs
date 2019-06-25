@@ -8,7 +8,7 @@ using System;
 
 namespace SYHX.AbnormalStatus
 {
-    public abstract class AbnormalStatusSource : ScriptableObject
+    public abstract class AbnormalStatusSource : ScriptableObject, Source
     {
         public int id;
         public bool isTurnBased;
@@ -28,36 +28,10 @@ namespace SYHX.AbnormalStatus
     {
         [SerializeField] public T origin;
         private Dictionary<string, PropertyInfo> descOption;
-        public override void Init()
-        {
-            UDebug.Log("==============");
-            UDebug.Log("In Start");
-            var dictionary = new Dictionary<string, PropertyInfo>();
-            var properties = typeof(T).GetProperties();
-            foreach (var property in properties)
-            {
-                var att = (CustomDescAttribute)Attribute.GetCustomAttribute(property, typeof(CustomDescAttribute));
-                if (att != null)
-                {
-                    dictionary.Add(att.descName, property);
-                    UDebug.Log(att.descName);
-                }
-            }
-            this.descOption = dictionary;
-            UDebug.Log("===============");
-        }
+        public override void Init() => descOption = this.InitDescOption<AbnormalStatusSource, T>();
         public override AbnormalStatusContent Generate(BattleCharacter owner)
         {
-            var abnormalStatus = new T();
-            var fields = typeof(T).GetFields();
-            foreach (var field in fields)
-            {
-                if (field.IsDefined(typeof(CloneFieldAttribute), false))
-                {
-                    var obj = field.GetValue(origin);
-                    field.SetValue(abnormalStatus, obj);
-                }
-            }
+            var abnormalStatus = this.GenerateContent<AbnormalStatusSource, T>(origin);
             abnormalStatus.Init(this, owner, descOption);
             return abnormalStatus;
         }
