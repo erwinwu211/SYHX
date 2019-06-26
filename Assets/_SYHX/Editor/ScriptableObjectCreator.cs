@@ -11,7 +11,7 @@ public class ScriptableObjectCreatorWindow : EditorWindow
     static string objectPath = "Assets/_SYHX/Scripts/Card/CardScriptableObject";
     static int index = -1;
     public static List<ScriptableObject> objects;
-    [MenuItem("自作/Window/Creator")]
+    [MenuItem("自作/SO制造器/卡牌")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(ScriptableObjectCreatorWindow));
