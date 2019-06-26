@@ -36,6 +36,8 @@ public class ScriptableObjectCreatorWindow : EditorWindow
     {
         EditorGUILayout.BeginVertical();
 
+        // var tempList = objects.ToArray();
+
         foreach (var obj in objects)
         {
             EditorGUILayout.BeginHorizontal();
@@ -49,8 +51,6 @@ public class ScriptableObjectCreatorWindow : EditorWindow
                 AssetDatabase.SetLabels(sobj, labels);
                 EditorUtility.SetDirty(sobj);
                 index = objects.IndexOf(obj);
-                ScriptableObject obj2 = ScriptableObject.CreateInstance(obj.GetType());
-                objects[index] = obj2;
             }
             EditorGUILayout.EndHorizontal();
         }
