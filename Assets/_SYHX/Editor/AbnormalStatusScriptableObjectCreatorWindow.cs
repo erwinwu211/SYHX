@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-public class ScriptableObjectCreatorWindow : EditorWindow
+public class AbnormalStatusScriptableObjectCreatorWindow : EditorWindow
 {
     readonly static string[] labels = { "Data", "ScriptableObject", string.Empty };
-    static string sourcePath = "Assets/_SYHX/Scripts/Card/CardSource";
-    static string objectPath = "Assets/_SYHX/Scripts/Card/CardScriptableObject";
+    static string sourcePath = "Assets/_SYHX/Scripts/AbnormalStatus/Source";
+    static string objectPath = "Assets/_SYHX/Scripts/AbnormalStatus/ScriptableObject";
     static int index = -1;
     public static List<ScriptableObject> objects;
-    [MenuItem("自作/SO制造器/卡牌")]
+    [MenuItem("自作/SO制造器/状态")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(ScriptableObjectCreatorWindow));
+        EditorWindow.GetWindow(typeof(AbnormalStatusScriptableObjectCreatorWindow));
         DirectoryInfo dir = new DirectoryInfo(sourcePath);
         FileInfo[] files = dir.GetFiles("*.cs");
         objects = new List<ScriptableObject>();
@@ -51,6 +51,7 @@ public class ScriptableObjectCreatorWindow : EditorWindow
                 AssetDatabase.SetLabels(sobj, labels);
                 EditorUtility.SetDirty(sobj);
                 index = objects.IndexOf(obj);
+                EditorGUIUtility.PingObject(sobj);
             }
             EditorGUILayout.EndHorizontal();
         }
