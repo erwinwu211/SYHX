@@ -23,28 +23,37 @@ public class BattleRoomScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         { // if left button pressed...
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit,100f,layerMask) && MoveJudge(hit.transform))
+            var mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+
+            if (judgePos(mousePos) && judgeNearby())
             {
-                Move(hit.transform.position );
+                Move(this.transform.position);
             }
         }
     }
 
-    bool MoveJudge(Transform tar)
-    {   bool result = false;
-        if (tar.name == this.name)
+    bool judgeNearby()
+    {
+
+        // TODO
+        return true;
+    }
+
+    bool judgePos(Vector3 pos )
+    {
+        var roomPos = this.transform.position;
+        bool result = false;
+        if (pos.x < roomPos.x + 0.5f && pos.x > roomPos.x - 0.5f && pos.z < roomPos.z + 0.5f && pos.z > roomPos.z- 0.5f)
         {
             print(roomNum);
             result = true;
         }
-        return result; 
+        return result;
     }
 
 
     void Move(Vector3 pos)
     {   //temp move, add animation later
-        player.transform.position = pos;
+        player.transform.position = new Vector3 (pos.x, player.transform.position.y, pos.z);
     }
 }
