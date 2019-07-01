@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System;
+using System.Reflection;
+
 
 public class ScriptableObjectCreatorWindow : EditorWindow
 {
@@ -22,7 +25,7 @@ public class ScriptableObjectCreatorWindow : EditorWindow
         {
             var name = file.Name;
             name = name.Replace(".cs", "");
-            UDebug.Log(name);
+            // UDebug.Log(name);
             ScriptableObject obj = ScriptableObject.CreateInstance(name);
             objects.Add(obj);
         }
@@ -41,6 +44,12 @@ public class ScriptableObjectCreatorWindow : EditorWindow
         foreach (var obj in objects)
         {
             EditorGUILayout.BeginHorizontal();
+            var type = obj.GetType();
+            var att = (SourceNameAttribute)type.GetCustomAttribute(typeof(SourceNameAttribute));
+            if (att != null)
+            {
+                EditorGUILayout.LabelField(att.desc, GUILayout.Width(50));
+            }
             EditorGUILayout.ObjectField(obj, typeof(ScriptableObject), null);
             if (GUILayout.Button("Create"))
             {
@@ -70,7 +79,7 @@ public class ScriptableObjectCreatorWindow : EditorWindow
         index = -1;
     }
 
-    static string GetSavePath(Object selectedObject)
+    static string GetSavePath(UnityEngine.Object selectedObject)
     {
         string objectName = selectedObject.GetType().Name;
         string path = $"{objectPath}/{objectName}.asset";

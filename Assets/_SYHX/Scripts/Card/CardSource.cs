@@ -16,6 +16,8 @@ namespace SYHX.Cards
         [SerializeField] protected string mDesc;
         [SerializeField] protected int mEP;
         [SerializeField] public CardType cardType;
+        [SerializeField] public List<CardSource> upgradeList;
+        [SerializeField] public List<CardKeyWord> keyWords;
         #endregion
 
         #region 获取用数据
@@ -69,7 +71,6 @@ namespace SYHX.Cards
     {
         强袭技, 灵巧技, 神秘技, 连接技
     }
-
 }
 
 

@@ -1,5 +1,6 @@
 ﻿namespace SYHX.Cards
 {
+    [SourceName("护盾")]
     public class BarrierCardSource : CardSource<BarrierCardContent> { }
 
     [System.Serializable]

@@ -1,5 +1,6 @@
 ﻿namespace SYHX.Cards
 {
+    [SourceName("抽牌")]
     public class DrawCardSource : CardSource<DrawCardContent> { }
 
     [System.Serializable]

@@ -1,5 +1,6 @@
 ﻿namespace SYHX.Cards
 {
+    [SourceName("能量")]
     public class ChangeEPCardSource : CardSource<ChangeEPCardContent> { }
 
     [System.Serializable]

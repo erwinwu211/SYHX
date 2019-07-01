@@ -1,5 +1,7 @@
 ﻿namespace SYHX.Cards
+
 {
+    [SourceName("攻击")]
     public class AttackCardSource : CardSource<AttackCardContent> { }
 
     [System.Serializable]

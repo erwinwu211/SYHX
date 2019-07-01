@@ -9,10 +9,13 @@ namespace SYHX.Cards
         public string name { get; private set; }
 
         public Dictionary<string, PropertyInfo> descOption;
+        private List<CardKeyWord> keyWords;
         public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
-        public CardContent()
-        { }
+        public CardContent() { }
+
+
+
         public void SetOwnerWithDic(CardSource owner, Dictionary<string, PropertyInfo> descOption = null)
         {
             this.owner = owner;
@@ -22,6 +25,7 @@ namespace SYHX.Cards
             this.name = owner.Name;
             this.desc = owner.Desc;
             this.descOption = descOption;
+            this.keyWords = owner.keyWords.Clone();
         }
         public CardType cardType { get; private set; }
 

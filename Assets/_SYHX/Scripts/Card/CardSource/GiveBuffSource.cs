@@ -1,6 +1,7 @@
 ﻿using SYHX.AbnormalStatus;
 namespace SYHX.Cards
 {
+    [SourceName("给与buff")]
     public class GiveBuffSource : CardSource<GiveBuffContent> { }
 
     [System.Serializable]
