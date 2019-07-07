@@ -1,0 +1,60 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using SYHX.Cards;
+using UnityEngine.UI;
+
+public class Feo : BattleHero
+{
+    public override void ChildStart()
+    {
+        connectionSignal = BattleManager.Ins.signals.CreateSignal<ConnectionSignal>("connection");
+        BattleProgressEvent.Ins.onCardUsed += CalculateConnection;
+        BattleProgressEvent.Ins.onPlayerTurnEnd += ResetConnection;
+        base.ChildStart();
+    }
+    public Text typeField;
+    public Text numberField;
+    public override void RefreshUI()
+    {
+        base.RefreshUI();
+        this.typeField.text = currentType.ToString();
+        this.numberField.text = connectionSignal.signalValue.ToString();
+    }
+    public ConnectionSignal connectionSignal;
+    public ConnectionType currentType { get; private set; }
+    public void CalculateConnection(CardContent card,CardUseTrigger trigger)
+    {
+        CalculateConnection(card.connectionType);
+    }
+    public void CalculateConnection(ConnectionType type)
+    {
+        if (type == ConnectionType.连接技)
+        {
+            connectionSignal.signalValue += 1;
+            return;
+        }
+        currentType = type;
+        connectionSignal.signalValue = currentType == type ? connectionSignal.signalValue + 1 : 1;
+        RefreshUI();
+    }
+    public void ResetCardType()
+    {
+        currentType = ConnectionType.无;
+    }
+
+    public void ResetConnection()
+    {
+        connectionSignal.Reset();
+        if(connectionSignal.signalValue == 0 ) ResetCardType();
+        RefreshUI();
+    }
+}
+public class ConnectionSignal : Signal<int>
+{
+    public int stopReset;
+    public void Reset()
+    {
+        if(stopReset == 0) signalValue = 0;
+    }
+}

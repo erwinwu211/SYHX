@@ -69,7 +69,7 @@ namespace SYHX.Cards
     }
     public enum ConnectionType
     {
-        强袭技, 灵巧技, 神秘技, 连接技
+        强袭技, 灵巧技, 神秘技, 连接技,无
     }
 
     public enum CardType

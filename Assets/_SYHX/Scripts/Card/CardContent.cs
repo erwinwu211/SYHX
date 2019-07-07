@@ -68,6 +68,7 @@ namespace SYHX.Cards
             BattleManager.sChangeEnergy(-this.EP);
             yield return UseEffect(trigger);
             BattleCardManager.Ins.Used(this);
+            BattleProgressEvent.Ins.OnCardUsed(this,trigger);
             yield break;
         }
 

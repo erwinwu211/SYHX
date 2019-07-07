@@ -22,8 +22,8 @@ public partial class BattleCharacter : MonoBehaviour
     void Start()
     {
         asManager = new AbnormalStatusManager(this);
+        ChildStart();
         RefreshUI();
-        ChildAwake();
     }
     public virtual void ShowStatus()
     {
@@ -33,7 +33,7 @@ public partial class BattleCharacter : MonoBehaviour
     public virtual void RefreshUI() { }
 
     //可能消失
-    public virtual void ChildAwake() { }
+    public virtual void ChildStart() { }
 
 
 

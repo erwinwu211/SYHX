@@ -44,6 +44,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         BattleCharacterManager.Ins.SetHero(hero);
         biManager = new BattleInfoManager(this, currentEP, maxEP);
         biManager.RefreshUI();
+        this.signals = new SignalController();  
     }
     void Start()
     {
@@ -59,8 +60,6 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     {
         //读取战斗数据
         BattleCharacterManager.Ins.GenerateEnemyGroup(id);
-        biManager.ResetCardType();
-        biManager.ResetConnection();
     }
 
     /// <summary>
@@ -124,7 +123,6 @@ public partial class BattleManager
     public static void sShuffle() => BattleCardManager.Ins.Shuffle();
     public static void sEnergyPointRegain() => Ins.biManager.EnergyPointRegain();
     public static void sChangeEnergy(int ep) => Ins.biManager.ChangeEnergy(ep);
-    public static void sCalculateConnection(ConnectionType type, int count) => Ins.biManager.CalculateConnection(type, count);
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
     public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
     public static void sResult() => Ins.turnManager.Result();
@@ -163,6 +161,11 @@ public partial class BattleManager
         }
         coroutineLock.Remove(type);
     }
+}
+
+public partial class BattleManager
+{
+    public SignalController signals;
 }
 
 public enum CoroutineType

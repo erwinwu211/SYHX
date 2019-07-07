@@ -21,7 +21,7 @@ public class BattleHero : BattleCharacter
     {
         barrierText.text = $"护盾：{this.barrier}";
     }
-    public override void ChildAwake()
+    public override void ChildStart()
     {
         RefreshUI();
     }

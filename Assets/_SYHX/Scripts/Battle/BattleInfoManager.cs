@@ -17,8 +17,6 @@ public class BattleInfoManager : Assitant<BattleManager>
     public int currentEP { get; private set; }
     public int maxEP { get; private set; }
     public int moreEP { get; private set; }
-    public ConnectionType currentType { get; private set; }
-    public int cardConnectionCount { get; private set; }
 
     public void RefreshUI()
     {
@@ -60,25 +58,6 @@ public class BattleInfoManager : Assitant<BattleManager>
     public void RegainMoreEnergyPointNextTurn(int count)
     {
         moreEP = count;
-    }
-    public void CalculateConnection(ConnectionType type, int count)
-    {
-        if (type == ConnectionType.连接技)
-        {
-            this.cardConnectionCount += count;
-            return;
-        }
-        currentType = type;
-        cardConnectionCount = currentType == type ? cardConnectionCount + count : 0;
-    }
-    public void ResetCardType()
-    {
-        currentType = ConnectionType.连接技;
-    }
-
-    public void ResetConnection()
-    {
-        cardConnectionCount = 0;
     }
 
 
