@@ -69,7 +69,7 @@ namespace SYHX.Cards
     }
     public enum CardType
     {
-        攻击, 技能,防御 
+        强袭技, 灵巧技, 神秘技, 连接技
     }
 }
 
