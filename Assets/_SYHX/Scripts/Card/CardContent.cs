@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -44,7 +44,7 @@ namespace SYHX.Cards
         }
         public void OnDraw() { }
 
-        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.SGetEP() >= this.EP && UseOption();
+        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.sGetEP() >= this.EP && UseOption();
         protected virtual bool UseOption() => true;
         /// <summary>
         /// ❌事件：当卡牌在打出后，经过选择之后的效果
@@ -53,14 +53,20 @@ namespace SYHX.Cards
         {
             if (CanUse())
             {
-                BattleManager.SChangeEnergy(-this.EP);
-                UseEffect(trigger);
-                BattleCardManager.Ins.Used(this);
+                BattleManager.ManagedCoroutine(UseCard(trigger));
             }
 
         }
 
-        protected abstract void UseEffect(CardUseTrigger trigger);
+        public IEnumerator UseCard(CardUseTrigger trigger)
+        {
+            BattleManager.sChangeEnergy(-this.EP);
+            yield return UseEffect(trigger);
+            BattleCardManager.Ins.Used(this);
+            yield break;
+        }
+
+        protected abstract IEnumerator UseEffect(CardUseTrigger trigger);
         public void OnFold() { }
         public void OnExiled() { }
         public void OnOtherCardUse(CardSource context) { }

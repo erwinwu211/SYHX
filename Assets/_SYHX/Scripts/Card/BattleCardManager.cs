@@ -23,6 +23,8 @@ namespace SYHX.Cards
         public Vector3 zeroPosition;
         public Vector3 shiftPosition;
 
+        public CardContent[] safeDeckPile => handPile.ToArray();
+
         //测试用
         public List<CardSource> cards;
         protected override void UnityAwake() { }
@@ -73,6 +75,14 @@ namespace SYHX.Cards
             cc.bUI.transform.SetParent(initPos.transform);
             cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
+        }
+
+        public void Discard(List<CardContent> ccList)
+        {
+            foreach(var cc in ccList)
+            {
+                Discard(cc);
+            }
         }
 
         public void DiscardAll()

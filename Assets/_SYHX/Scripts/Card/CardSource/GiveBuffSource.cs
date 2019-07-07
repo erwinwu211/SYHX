@@ -1,4 +1,5 @@
 ﻿using SYHX.AbnormalStatus;
+using System.Collections;
 namespace SYHX.Cards
 {
     [SourceName("给与buff")]
@@ -10,9 +11,10 @@ namespace SYHX.Cards
         [CloneField] public AbnormalStatusSource source;
         [CloneField] public int count;
 
-        protected override void UseEffect(CardUseTrigger trigger)
+        protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleManager.Hero.AddAbnormalStatus(source, count);
+            yield break;
         }
     }
 

@@ -1,4 +1,6 @@
-﻿namespace SYHX.Cards
+﻿using System.Collections;
+
+namespace SYHX.Cards
 {
     [SourceName("抽牌")]
     public class DrawCardSource : CardSource<DrawCardContent> { }
@@ -8,9 +10,10 @@
     {
         [CloneField] public int drawNumber;
         [CustomDesc("number")] public string dRateString { get => drawNumber.ToString(); }
-        protected override void UseEffect(CardUseTrigger trigger)
+        protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleCardManager.Ins.Draw(drawNumber);
+            yield break;
         }
     }
 

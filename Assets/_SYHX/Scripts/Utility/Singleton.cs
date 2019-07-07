@@ -29,7 +29,7 @@ where T : Singleton<T>, new()
 public abstract class SingletonMonoBehaviour<T> : MonoBehaviour
      where T : SingletonMonoBehaviour<T>
 {
-    public static T Ins { get; private set; }
+    public static T Ins { get; protected set; }
 
     protected abstract void UnityAwake();
 
@@ -56,7 +56,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        Ins = null;
+        if(this == Ins) Ins = null; 
     }
 }
 

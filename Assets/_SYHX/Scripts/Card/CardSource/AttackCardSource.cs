@@ -1,4 +1,5 @@
-﻿namespace SYHX.Cards
+﻿using System.Collections;
+namespace SYHX.Cards
 
 {
     [SourceName("攻击")]
@@ -10,7 +11,7 @@
         [CloneField] public float damageRate;
         [CloneField] public bool isAOE;
         [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
-        protected override void UseEffect(CardUseTrigger trigger)
+        protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             if (isAOE)
             {
@@ -23,6 +24,7 @@
             {
                 Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
             }
+            yield break;
         }
     }
 
