@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace SYHX.Cards
@@ -7,9 +8,10 @@ namespace SYHX.Cards
     {
         public CardContent cc;
         public CardPosition position;
-        [SerializeField] public TextMeshProUGUI nameField;
-        [SerializeField] public TextMeshProUGUI descField;
-        [SerializeField] public TextMeshProUGUI EPField;
+        [SerializeField] public Text nameField;
+        [SerializeField] public Text descField;
+        [SerializeField] public Text EPField;
+        [SerializeField] public Text typeField;
         public void SetCard(CardContent cc)
         {
             this.cc = cc;
@@ -20,9 +22,11 @@ namespace SYHX.Cards
             this.nameField.text = cc.name;
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
+            this.typeField.text = cc.cardType.ToString();
         }
         public void OnPointClick()
         {
+            if(position == CardPosition.Hand)
             cc.OnUse(CardUseTrigger.ByUser);
         }
     }

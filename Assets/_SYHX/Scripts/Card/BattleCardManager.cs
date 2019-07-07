@@ -10,15 +10,22 @@ namespace SYHX.Cards
         //卡牌存储区域
         //牌库
         private List<CardContent> deckPile = new List<CardContent>();
+        public GameObject deckPos;        
         //手牌
         [ShowInInspector] private List<CardContent> handPile = new List<CardContent>();
+        public GameObject handPos;
+
         private List<CardContent> exhaustPile = new List<CardContent>();
+        public GameObject exhaustPos;
+
         //当前使用区
         private List<CardContent> usedPile = new List<CardContent>();
+        public GameObject usedPos;
         //弃牌堆
-        private List<CardContent> foldPile = new List<CardContent>();
-        public GameObject cardPos;
-        public GameObject initPos;
+        private List<CardContent> discardPile = new List<CardContent>();
+        public GameObject discardPos;
+
+
         public BattleCardUI cardGo;
         public Vector3 zeroPosition;
         public Vector3 shiftPosition;
@@ -45,7 +52,7 @@ namespace SYHX.Cards
         {
             if (deckPile.Count == 0)
             {
-                if (foldPile.Count > 0)
+                if (discardPile.Count > 0)
                 {
                     Shuffle();
                     Draw(count);
@@ -62,7 +69,6 @@ namespace SYHX.Cards
                 GoTo(card, CardPosition.Hand);
                 count--;
                 card.OnDraw();
-                card.bUI.transform.SetParent(cardPos.transform, false);
                 RefreshUI();
                 if (count > 0) { Draw(count); } else { return; }
             }
@@ -72,8 +78,6 @@ namespace SYHX.Cards
         {
             GoTo(cc, CardPosition.Discard);
             cc.OnFold();
-            cc.bUI.transform.SetParent(initPos.transform);
-            cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
         }
 
@@ -101,16 +105,12 @@ namespace SYHX.Cards
         public void Exhaust(CardContent cc)
         {
             GoTo(cc, CardPosition.Exhaust);
-            cc.bUI.transform.SetParent(initPos.transform);
-            cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
         }
 
         public void Used(CardContent cc)
         {
             GoTo(cc, CardPosition.Used);
-            cc.bUI.transform.SetParent(initPos.transform);
-            cc.bUI.transform.localPosition = Vector3.zero;
             RefreshUI();
         }
         public void ReturnToDeck(CardContent cc)
@@ -140,22 +140,31 @@ namespace SYHX.Cards
             {
                 case CardPosition.Deck:
                     deckPile.Add(cc);
+                    cc.bUI.transform.SetParent(deckPos.transform);
+                    cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Discard:
-                    foldPile.Add(cc);
+                    discardPile.Add(cc);
+                    cc.bUI.transform.SetParent(discardPos.transform);
+                    cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Exhaust:
                     exhaustPile.Add(cc);
+                    cc.bUI.transform.SetParent(exhaustPos.transform);
+                    cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Hand:
                     handPile.Add(cc);
+                    cc.bUI.transform.SetParent(handPos.transform, false);
                     break;
                 case CardPosition.Used:
                     usedPile.Add(cc);
+                    cc.bUI.transform.SetParent(usedPos.transform);
+                    cc.bUI.transform.localPosition = Vector3.zero;
                     break;
             }
         }
-        #endregion
+        
 
         private List<CardContent> GetCurrentList(CardContent cc)
         {
@@ -166,7 +175,7 @@ namespace SYHX.Cards
                 case CardPosition.Deck:
                     return deckPile;
                 case CardPosition.Discard:
-                    return foldPile;
+                    return discardPile;
                 case CardPosition.Used:
                     return usedPile;
                 case CardPosition.Exhaust:
@@ -175,6 +184,7 @@ namespace SYHX.Cards
                     return deckPile;
             }
         }
+        #endregion
 
 
 
@@ -187,7 +197,7 @@ namespace SYHX.Cards
         {
             List<CardContent> temp = new List<CardContent>();
             //先将弃牌堆打乱
-            foreach (CardContent card in foldPile)
+            foreach (CardContent card in discardPile)
             {
                 temp.Insert(Random.Range(0, temp.Count), card);
             }
@@ -197,12 +207,12 @@ namespace SYHX.Cards
                 GoTo(card, CardPosition.Deck);
             }
             //清空弃牌堆
-            foldPile.Clear();
+            discardPile.Clear();
         }
 
         public void GenerateCardUI(CardContent cc)
         {
-            var go = GameObject.Instantiate(cardGo, initPos.transform.position, initPos.transform.rotation, initPos.transform);
+            var go = GameObject.Instantiate(cardGo, deckPos.transform.position, deckPos.transform.rotation, deckPos.transform);
             go.SetCard(cc);
             cc.bUI = go;
         }
