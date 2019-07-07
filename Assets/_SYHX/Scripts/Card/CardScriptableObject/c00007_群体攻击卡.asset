@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc70033bafe74c4ca79cd2f5d384de6, type: 3}
-  m_Name: "\u9632\u5FA1\u5361"
+  m_Script: {fileID: 11500000, guid: be100f03dec08784d832c0fcf30c0f82, type: 3}
+  m_Name: "c00007_\u7FA4\u4F53\u653B\u51FB\u5361"
   m_EditorClassIdentifier: 
-  mID: 0
-  mName: "\u62A4\u7F69"
-  mDesc: "\u9632\u5FA1\u7387{defenceRate}"
+  mID: 7
+  mName: "\u653B\u51FB"
+  mDesc: "\u4F24\u5BB3\u7387{damageRate}"
   mEP: 1
+  connectionType: 0
   cardType: 0
+  rarity: 1
+  upgradeList: []
+  keyWords: []
   origin:
     owner: {fileID: 11400000}
     bUI: {fileID: 0}
-    defenceRate: 1
+    damageRate: 1
+    isAOE: 1

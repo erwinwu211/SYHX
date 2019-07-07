@@ -12,7 +12,7 @@ namespace SYHX.Cards
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleManager.sChangeEnergy(GainEP);
-            yield break;
+            yield break;    
         }
     }
 

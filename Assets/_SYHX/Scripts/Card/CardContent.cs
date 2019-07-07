@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace SYHX.Cards
 {
@@ -10,7 +11,7 @@ namespace SYHX.Cards
 
         public Dictionary<string, PropertyInfo> descOption;
         private List<CardKeyWord> keyWords;
-        public BattleCardUI bUI;
+        [HideInInspector]public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
         public CardContent() { }
 
@@ -22,12 +23,16 @@ namespace SYHX.Cards
             this.EP = owner.EP;
             this.tempEP = owner.EP;
             this.cardType = owner.cardType;
+            this.rarity = owner.rarity;
+            this.connectionType = owner.connectionType;
             this.name = owner.Name;
             this.desc = owner.Desc;
             this.descOption = descOption;
             this.keyWords = new List<CardKeyWord>(owner.keyWords);
         }
-        public CardType cardType { get; private set; }
+        public ConnectionType connectionType{ get; private set; }
+        public CardType cardType{ get; private set; }
+        public Rarity rarity{ get; private set; }
 
         private int ep;
         public int EP

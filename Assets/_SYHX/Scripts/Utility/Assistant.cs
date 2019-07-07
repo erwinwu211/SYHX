@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Assitant<T>
 {
-    public T owner;
+    [HideInInspector] public T owner;
     public Assitant(T owner)
     {
         this.owner = owner;
@@ -13,7 +13,7 @@ public class Assitant<T>
 
 public class SAssitant<T>
 {
-    public T owner;
+    [HideInInspector] public T owner;
     public SAssitant() { }
     public virtual void SetOwner(T owner)
     {

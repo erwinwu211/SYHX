@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ecdc70f3d9b0674fb138b155b1a5920, type: 3}
+  m_Name: "\u5F03\u724C\u4F24\u5BB3"
+  m_EditorClassIdentifier: 
+  mID: 0
+  mName: "\u5F03\u724C\u4F24\u5BB3"
+  mDesc: "\u5F03{number}\u5F20\u724C\uFF0C\u5E76\u5BF9\u76EE\u6807\u9020\u6210{damageRate}\u4F24\u5BB3"
+  mEP: 0
+  connectionType: 0
+  cardType: 0
+  rarity: 0
+  upgradeList: []
+  keyWords: []
+  origin:
+    owner: {fileID: 0}
+    bUI: {fileID: 0}
+    count: 1
+    damageRate: 2

@@ -124,7 +124,7 @@ public partial class BattleManager
     public static void sShuffle() => BattleCardManager.Ins.Shuffle();
     public static void sEnergyPointRegain() => Ins.biManager.EnergyPointRegain();
     public static void sChangeEnergy(int ep) => Ins.biManager.ChangeEnergy(ep);
-    public static void sCalculateConnection(CardType type, int count) => Ins.biManager.CalculateConnection(type, count);
+    public static void sCalculateConnection(ConnectionType type, int count) => Ins.biManager.CalculateConnection(type, count);
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);
     public static void sTurnEnd() => Ins.turnManager.EndPlayerTurn();
     public static void sResult() => Ins.turnManager.Result();

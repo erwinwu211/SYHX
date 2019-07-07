@@ -210,11 +210,18 @@ namespace SYHX.Cards
             discardPile.Clear();
         }
 
-        public void GenerateCardUI(CardContent cc)
+        private void GenerateCardUI(CardContent cc)
         {
             var go = GameObject.Instantiate(cardGo, deckPos.transform.position, deckPos.transform.rotation, deckPos.transform);
             go.SetCard(cc);
             cc.bUI = go;
+        }
+
+        public void GenerateCardTo(CardContent cc,CardPosition position)
+        {
+            GenerateCardUI(cc);
+            GoTo(cc,position);
+            cc.RefreshUI();
         }
 
         public void AddToDeck(CardContent cc) => deckPile.Add(cc);

@@ -15,7 +15,9 @@ namespace SYHX.Cards
         [SerializeField] protected string mName;
         [SerializeField] protected string mDesc;
         [SerializeField] protected int mEP;
+        [SerializeField] public ConnectionType connectionType;
         [SerializeField] public CardType cardType;
+        [SerializeField] public Rarity rarity;
         [SerializeField] public List<CardSource> upgradeList;
         [SerializeField] public List<CardKeyWord> keyWords;
         #endregion
@@ -37,9 +39,7 @@ namespace SYHX.Cards
         public virtual void GenerateToDeck()
         {
             var cc = GenerateCard();
-            BattleCardManager.Ins.AddToDeck(cc);
-            BattleCardManager.Ins.GenerateCardUI(cc);
-            cc.bUI.position = CardPosition.Deck;
+            BattleCardManager.Ins.GenerateCardTo(cc,CardPosition.Deck);
             cc.RefreshUI();
         }
 
@@ -67,9 +67,19 @@ namespace SYHX.Cards
         }
 
     }
-    public enum CardType
+    public enum ConnectionType
     {
         强袭技, 灵巧技, 神秘技, 连接技
+    }
+
+    public enum CardType
+    {
+        攻击,技能,防御
+    }
+
+    public enum Rarity
+    {
+        初始,初级,中级,高级
     }
 }
 

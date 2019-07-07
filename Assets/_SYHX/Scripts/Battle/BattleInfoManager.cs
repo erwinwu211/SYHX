@@ -17,7 +17,7 @@ public class BattleInfoManager : Assitant<BattleManager>
     public int currentEP { get; private set; }
     public int maxEP { get; private set; }
     public int moreEP { get; private set; }
-    public CardType currentType { get; private set; }
+    public ConnectionType currentType { get; private set; }
     public int cardConnectionCount { get; private set; }
 
     public void RefreshUI()
@@ -61,9 +61,9 @@ public class BattleInfoManager : Assitant<BattleManager>
     {
         moreEP = count;
     }
-    public void CalculateConnection(CardType type, int count)
+    public void CalculateConnection(ConnectionType type, int count)
     {
-        if (type == CardType.连接技)
+        if (type == ConnectionType.连接技)
         {
             this.cardConnectionCount += count;
             return;
@@ -73,7 +73,7 @@ public class BattleInfoManager : Assitant<BattleManager>
     }
     public void ResetCardType()
     {
-        currentType = CardType.连接技;
+        currentType = ConnectionType.连接技;
     }
 
     public void ResetConnection()
