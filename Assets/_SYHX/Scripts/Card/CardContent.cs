@@ -25,7 +25,7 @@ namespace SYHX.Cards
             this.name = owner.Name;
             this.desc = owner.Desc;
             this.descOption = descOption;
-            this.keyWords = owner.keyWords.Clone();
+            this.keyWords = new List<CardKeyWord>(owner.keyWords);
         }
         public CardType cardType { get; private set; }
 
