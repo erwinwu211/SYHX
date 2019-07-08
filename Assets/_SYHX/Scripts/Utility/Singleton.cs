@@ -47,6 +47,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour
         }
         else if (Ins != this)
         {
+            GameObject.Destroy(this.gameObject);
         }
         else
         {

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f07f16668bd1a447afc0620b0b08bf3, type: 3}
   m_Name: "as00001_\u6613\u4F24"
   m_EditorClassIdentifier: 
+  Name: "\u6613\u4F24"
   id: 1
   isTurnBased: 1
   showCount: 0
   canRepeat: 0
-  desc: "\u53D7\u5230\u4F24\u5BB3\u589E\u52A0{receiveRate}"
+  desc: "\u53D7\u5230\u4F24\u5BB3\u589E\u52A0{receiveRate}\uFF0C\u5269\u4F59\u6570\u56DE\u5408\u6570{turn}"
   type: 0
   origin:
     receiveRate: 0.5

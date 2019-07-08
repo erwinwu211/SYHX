@@ -47,22 +47,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae9c0176e259df840a8dce87a5462a3e, type: 2}
   - {fileID: 11400000, guid: c233ad77b30bdbe479af6540f37f1625, type: 2}
   cSource:
-  - {fileID: 11400000, guid: 901be0f4d4e11c343a867808f300260e, type: 2}
-  - {fileID: 11400000, guid: 69db0e167e824894f805b20a3a5e850c, type: 2}
-  - {fileID: 11400000, guid: 6dde6fd257b514c479eb1b015e94ad58, type: 2}
   - {fileID: 11400000, guid: abb10f85fc57f5a49bb650b58d21f068, type: 2}
-  - {fileID: 11400000, guid: a49a47b12b4c4e5428ec99c6d83998d3, type: 2}
-  - {fileID: 11400000, guid: 87db404662c98f746af7ea0d809fe8e1, type: 2}
+  - {fileID: 11400000, guid: 901be0f4d4e11c343a867808f300260e, type: 2}
   - {fileID: 11400000, guid: fd6f427fdb118ba4b92d70823a1d7d27, type: 2}
   - {fileID: 11400000, guid: d27ab233b49d3ef4296e61b8df0ac17b, type: 2}
   - {fileID: 11400000, guid: d08e9cbce613fa64588a2293546a42bd, type: 2}
   - {fileID: 11400000, guid: 5f897377cc9e8804eba2141e67f12cc0, type: 2}
   - {fileID: 11400000, guid: c60a390cd444b1c4d8e343b6b327594f, type: 2}
   - {fileID: 11400000, guid: f6fff6423e7a97949a8dde1daf60e5a0, type: 2}
+  - {fileID: 11400000, guid: 69db0e167e824894f805b20a3a5e850c, type: 2}
+  - {fileID: 11400000, guid: 6dde6fd257b514c479eb1b015e94ad58, type: 2}
+  - {fileID: 11400000, guid: a49a47b12b4c4e5428ec99c6d83998d3, type: 2}
+  - {fileID: 11400000, guid: 87db404662c98f746af7ea0d809fe8e1, type: 2}
   - {fileID: 11400000, guid: d3c6f1c8a5f47c647bce11bcd3025a61, type: 2}
   - {fileID: 11400000, guid: 51c9f4d64407efa4e84f269021d78fa7, type: 2}
   - {fileID: 11400000, guid: 1cb77a13f711f8945a5b7c3a80156fc3, type: 2}
   - {fileID: 11400000, guid: 989c22a63ca147348b898a4205690e86, type: 2}
+  - {fileID: 11400000, guid: e3696430a8a964d42bbecc51ca0bd425, type: 2}
   eaSource:
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
-  factors: []
+  factors:
+  - Force: 0.8
+    Aglie: 0.8
+    Constitution: 0.8
+  - Force: 0.85
+    Aglie: 0.85
+    Constitution: 0.85
+  - Force: 0.9
+    Aglie: 0.9
+    Constitution: 0.9
+  - Force: 0.95
+    Aglie: 0.95
+    Constitution: 0.95
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1.1
+    Aglie: 1.1
+    Constitution: 1.1
+  - Force: 1.2
+    Aglie: 1.2
+    Constitution: 1.2
+  - Force: 1.3
+    Aglie: 1.3
+    Constitution: 1.3
+  - Force: 1.4
+    Aglie: 1.4
+    Constitution: 1.4

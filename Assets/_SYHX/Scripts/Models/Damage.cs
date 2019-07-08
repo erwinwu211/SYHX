@@ -11,7 +11,7 @@ public static class Damage
     }
     public static int CalculateAndApply(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger)
     {
-        return giver.GiveDamage(receiver, (int)rate, trigger);
+        return giver.GiveDamage(receiver, rate, trigger);
     }
 }
 

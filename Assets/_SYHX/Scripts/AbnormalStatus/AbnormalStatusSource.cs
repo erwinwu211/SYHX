@@ -10,6 +10,7 @@ namespace SYHX.AbnormalStatus
 {
     public abstract class AbnormalStatusSource : ScriptableObject, Source
     {
+        public string Name;
         public int id;
         public bool isTurnBased;
         public bool showCount;
