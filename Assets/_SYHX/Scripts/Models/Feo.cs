@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SYHX.Cards;
+﻿using SYHX.Cards;
 using UnityEngine.UI;
 
 public class Feo : BattleHero
@@ -25,17 +22,20 @@ public class Feo : BattleHero
     public ConnectionType currentType { get; private set; }
     public void CalculateConnection(CardContent card,CardUseTrigger trigger)
     {
-        CalculateConnection(card.connectionType);
+        CalculateConnection(card.connectionType,card.keyWords.Exists(kw=>kw.Name == "承接"));
     }
-    public void CalculateConnection(ConnectionType type)
+    public void CalculateConnection(ConnectionType type,bool isKeyWord)
     {
         if (type == ConnectionType.连接技)
         {
             connectionSignal.signalValue += 1;
             return;
         }
-        currentType = type;
-        connectionSignal.signalValue = currentType == type ? connectionSignal.signalValue + 1 : 1;
+        if(!isKeyWord || currentType == type)
+        {
+            connectionSignal.signalValue = currentType == type ? connectionSignal.signalValue + 1 : 1;
+            currentType = type;
+        }
         RefreshUI();
     }
     public void ResetCardType()

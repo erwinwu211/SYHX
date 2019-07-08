@@ -13,7 +13,7 @@ namespace SYHX.Cards
         #region 序列化数据
         [SerializeField] protected int mID;
         [SerializeField] protected string mName;
-        [SerializeField] protected string mDesc;
+        [Multiline] [SerializeField] protected string mDesc;
         [SerializeField] protected int mEP;
         [SerializeField] public ConnectionType connectionType;
         [SerializeField] public CardType cardType;

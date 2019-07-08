@@ -10,7 +10,7 @@ namespace SYHX.Cards
         public string name { get; private set; }
 
         public Dictionary<string, PropertyInfo> descOption;
-        private List<CardKeyWord> keyWords;
+        public List<CardKeyWord> keyWords{get; private set;}
         [HideInInspector]public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
         public CardContent() { }

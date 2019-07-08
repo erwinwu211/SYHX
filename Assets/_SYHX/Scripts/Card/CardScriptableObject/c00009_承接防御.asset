@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc70033bafe74c4ca79cd2f5d384de6, type: 3}
+  m_Name: "c00009_\u627F\u63A5\u9632\u5FA1"
+  m_EditorClassIdentifier: 
+  mID: 9
+  mName: "\u627F\u63A5\u9632\u5FA1"
+  mDesc: "\u627F\u63A5\n\u9632\u5FA1\u7387{defenceRate}"
+  mEP: 1
+  connectionType: 0
+  cardType: 2
+  rarity: 0
+  upgradeList: []
+  keyWords:
+  - {fileID: 11400000, guid: 41ca23f36fd58294d848f913ffde95f2, type: 2}
+  origin:
+    owner: {fileID: 11400000}
+    bUI: {fileID: 0}
+    defenceRate: 1

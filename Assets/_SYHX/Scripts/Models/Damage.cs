@@ -9,18 +9,11 @@ public static class Damage
     {
         return 0;
     }
-    public static void CalculateAndApply(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger, int times = 1)
+    public static int CalculateAndApply(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger)
     {
-        BattleProgressEvent.Ins.OnGiveDamage(giver, receiver, trigger);
         var damage = giver.attack * rate;
         damage *= (1 + giver.attackRate);
-        for (int i = 0; i < times; i++)
-        {
-            BattleProgressEvent.Ins.OnGiveDamagePertime(giver, receiver, trigger);
-            giver.GiveDamage(receiver, (int)damage, trigger);
-            BattleProgressEvent.Ins.OnReceiveDamagePertime(giver, receiver, trigger);
-        }
-        BattleProgressEvent.Ins.OnReceiveDamage(giver, receiver, trigger);
+        return giver.GiveDamage(receiver, (int)damage, trigger);
     }
 }
 

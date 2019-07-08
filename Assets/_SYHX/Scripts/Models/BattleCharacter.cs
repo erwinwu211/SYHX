@@ -75,9 +75,10 @@ public partial class BattleCharacter : MonoBehaviour
     /// 掉血
     /// </summary>
     /// <param name="count"></param>
-    public virtual void DecreaseHp(int count)
+    public virtual int DecreaseHp(int count)
     {
-        if(count <= 0) return;
+        if(count <= 0) return 0;
+        var temp = currentHp;
         currentHp -= count;
         RefreshUI();
         if (currentHp <= 0)
@@ -86,6 +87,7 @@ public partial class BattleCharacter : MonoBehaviour
             RefreshUI();
             Death();
         }
+        return temp - currentHp;
     }
 
     /// <summary>
@@ -99,12 +101,12 @@ public partial class BattleCharacter : MonoBehaviour
 
     #region 伤害相关
 
-    public virtual void GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
+    public virtual int GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
     {
-        bc.TakeDamage(this, damage);
+        return bc.TakeDamage(this, damage);
     }
 
-    public virtual void TakeDamage(BattleCharacter bc, int damage)
+    public virtual int TakeDamage(BattleCharacter bc, int damage)
     {
         var temp = damage;
         temp -= barrier;
@@ -113,7 +115,7 @@ public partial class BattleCharacter : MonoBehaviour
         {
             barrier = 0;
         }
-        this.DecreaseHp(damage);
+        return this.DecreaseHp(damage);
     }
     public virtual void TakeNoSourceDamage(int damage)
     {
@@ -123,6 +125,11 @@ public partial class BattleCharacter : MonoBehaviour
     public virtual void GetBarrier(float ratio)
     {
         barrier += (int)(defence * ratio * (1 + defenceRate));
+        RefreshUI();
+    }
+    public virtual void GetBarrier(int value)
+    {
+        barrier += value;
         RefreshUI();
     }
     public void ChangeAttackRate(float value)
