@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26855bea73f75940b24a13a5b5059ce, type: 3}
+  m_Name: "as00002_\u7EF4\u6301"
+  m_EditorClassIdentifier: 
+  Name: "\u7EF4\u6301"
+  id: 2
+  isTurnBased: 1
+  showCount: 0
+  canRepeat: 0
+  desc: "\u56DE\u5408\u7ED3\u675F\u65F6\u4E0D\u4F1A\u51CF\u5C11\u8FDE\u51FB\u6570\uFF0C\u6301\u7EED\u56DE\u5408{turn}\u3002"
+  type: 0

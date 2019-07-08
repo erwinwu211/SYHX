@@ -48,30 +48,33 @@ namespace SYHX.Cards
         /// 抽牌方法
         /// </summary>
         /// <param name="count">抽牌的张数</param>
-        public void Draw(int count)
+        public List<CardContent> Draw(int count)
         {
-            if (deckPile.Count == 0)
+            var drawList = new List<CardContent>();
+            var leftCount = count;
+            while(leftCount > 0)
             {
-                if (discardPile.Count > 0)
+                if(deckPile.Count == 0)
                 {
-                    Shuffle();
-                    Draw(count);
-                    return;
+                    if(discardPile.Count > 0)
+                    {
+                        Shuffle();
+                        continue;
+                    }
+                    else break;
                 }
                 else
                 {
-                    return;
+                    CardContent card = deckPile[0];
+                    GoTo(card,CardPosition.Hand);
+                    leftCount--;
+                    card.OnDraw();
+                    RefreshUI();
+                    drawList.Add(card);
+                    if(leftCount == 0) break;
                 }
             }
-            else
-            {
-                CardContent card = deckPile[0];
-                GoTo(card, CardPosition.Hand);
-                count--;
-                card.OnDraw();
-                RefreshUI();
-                if (count > 0) { Draw(count); } else { return; }
-            }
+            return drawList;
         }
 
         public void Discard(CardContent cc)
@@ -206,8 +209,6 @@ namespace SYHX.Cards
             {
                 GoTo(card, CardPosition.Deck);
             }
-            //清空弃牌堆
-            discardPile.Clear();
         }
 
         private void GenerateCardUI(CardContent cc)

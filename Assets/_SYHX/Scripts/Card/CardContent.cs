@@ -67,7 +67,14 @@ namespace SYHX.Cards
         {
             BattleManager.sChangeEnergy(-this.EP);
             yield return UseEffect(trigger);
-            BattleCardManager.Ins.Used(this);
+            if(keyWords.Exists(kw => kw.Name == "移除"))
+            {
+                BattleCardManager.Ins.Exhaust(this);
+            }
+            else
+            {
+                BattleCardManager.Ins.Used(this);
+            }
             BattleProgressEvent.Ins.OnCardUsed(this,trigger);
             yield break;
         }
