@@ -15,6 +15,7 @@ namespace SYHX.Cards
         public void SetCard(CardContent cc)
         {
             this.cc = cc;
+            this.name = cc.name;
         }
 
         public void RefreshUI()
@@ -26,8 +27,8 @@ namespace SYHX.Cards
         }
         public void OnPointClick()
         {
-            if(position == CardPosition.Hand)
-            cc.OnUse(CardUseTrigger.ByUser);
+            if (position == CardPosition.Hand)
+                cc.OnUse(CardUseTrigger.ByUser);
         }
     }
 }

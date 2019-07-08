@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 989c22a63ca147348b898a4205690e86
+labels:
+- BarrierWithEPSource
+- Data
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

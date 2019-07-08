@@ -17,10 +17,11 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     #region 外部调用
     [SerializeField] private BattleHero hero;
     [SerializeField] public CardSelectorManager cardSelectorManager;
+    [SerializeField] public BattleInfoManager biManager;
+
     public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
     public static List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
     public static BattleCharacter Hero => BattleCharacterManager.Ins.hero;
-    public BattleInfoManager biManager;
     public TurnManager turnManager => TurnManager.Ins;
     public static bool canExeNextEnemy = true;
     public static bool finishEnemyAction = false;
@@ -28,11 +29,8 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 
 
     #region  UI
-    public TextMeshProUGUI currentEPUI;
-    public TextMeshProUGUI maxEPUI;
     public Button result;
     public TextMeshProUGUI resultUI;
-    public Text roundText;
     //可能弃用
     public int currentEP;
     public int maxEP;
@@ -42,12 +40,11 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         CardSelectorManager.SetIns(cardSelectorManager);
         result.gameObject.SetActive(false);
         BattleCharacterManager.Ins.SetHero(hero);
-        biManager = new BattleInfoManager(this, currentEP, maxEP);
-        biManager.RefreshUI();
-        this.signals = new SignalController();  
+        this.signals = new SignalController();
     }
     void Start()
     {
+        biManager.Initial(currentEP, maxEP);
         BattleStart(0, null);
     }
 

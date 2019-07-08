@@ -1,12 +1,21 @@
 ﻿using SYHX.Cards;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class BattleInfoManager : Assitant<BattleManager>
+public class BattleInfoManager : MonoBehaviour
 {
+    public Text currentEPUI;
+    public Text maxEPUI;
+
+    public Text moreEPUI;
+    public Text roundText;
     //可能弃用
-    public BattleInfoManager(BattleManager bm, int currentEP, int maxEP) : base(bm)
+    public void Initial(int currentEP, int maxEP)
     {
+        this.TurnCount = 0;
         this.currentEP = currentEP;
         this.maxEP = maxEP;
+        RefreshUI();
     }
     //每回合抽卡数量
     private int drawCountPerTurn = 5;
@@ -20,14 +29,26 @@ public class BattleInfoManager : Assitant<BattleManager>
 
     public void RefreshUI()
     {
-        owner.currentEPUI.text = $"{currentEP.ToString()}";
-        owner.maxEPUI.text = $"{maxEP.ToString()}";
+        currentEPUI.text = $"{currentEP.ToString()}";
+        maxEPUI.text = $"{maxEP.ToString()}";
+        roundText.text = $"第{TurnCount}回合";
+        if (moreEP > 0)
+        {
+            moreEPUI.text = $"+{moreEP}";
+        }
+        else if (moreEP < 0)
+        {
+            moreEPUI.text = $"{moreEP}";
+        }
+        else
+        {
+            moreEPUI.text = "";
+        }
     }
 
     public void AddTurn()
     {
         TurnCount++;
-        owner.roundText.text = $"第{TurnCount}回合";
         RefreshUI();
     }
     /// <summary>
@@ -59,7 +80,6 @@ public class BattleInfoManager : Assitant<BattleManager>
     public void RegainMoreEnergyPointNextTurn(int count)
     {
         moreEP = count;
+        RefreshUI();
     }
-
-
 }
