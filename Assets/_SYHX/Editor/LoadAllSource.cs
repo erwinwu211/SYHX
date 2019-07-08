@@ -5,6 +5,7 @@ using UnityEditor;
 using System.IO;
 using SYHX.Cards;
 using SYHX.AbnormalStatus;
+using System.Text.RegularExpressions;
 
 public static class LoadAllSource
 {
@@ -17,10 +18,12 @@ public static class LoadAllSource
     public static void LoadAll()
     {
         var initializer = AssetDatabase.LoadAssetAtPath(initializerPath, typeof(Initializer)) as Initializer;
+        var match = "[1-9][0-9]{0,4}";
         Debug.Log(initializer);
         {
             DirectoryInfo dir = new DirectoryInfo(cardPath);
             FileInfo[] files = dir.GetFiles("*.asset");
+            
             foreach (var file in files)
             {
                 var card = AssetDatabase.LoadAssetAtPath(cardPath + "/" + file.Name, typeof(CardSource)) as CardSource;
@@ -28,6 +31,13 @@ public static class LoadAllSource
                 {
                     initializer.cSource.Add(card);
                     EditorUtility.SetDirty(card);
+                }
+                var name = card.name;
+                var result = Regex.Match(name,match).Value;
+                if(result != "")
+                {
+                    card.ID = System.Int32.Parse(result);
+                    EditorUtility.SetDirty(card);                    
                 }
             }
         }
@@ -41,6 +51,13 @@ public static class LoadAllSource
                 {
                     initializer.asSource.Add(asSource);
                     EditorUtility.SetDirty(asSource);
+                }
+                var name = asSource.name;
+                var result = Regex.Match(name,match).Value;
+                if(result != "")
+                {
+                    asSource.id = System.Int32.Parse(result);
+                    EditorUtility.SetDirty(asSource);                    
                 }
             }
         }

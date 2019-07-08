@@ -79,7 +79,7 @@ public class BattleInfoManager : MonoBehaviour
     /// <param name="count"></param>
     public void RegainMoreEnergyPointNextTurn(int count)
     {
-        moreEP = count;
+        moreEP += count;
         RefreshUI();
     }
 }

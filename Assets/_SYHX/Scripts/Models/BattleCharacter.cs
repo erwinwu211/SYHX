@@ -12,8 +12,9 @@ public partial class BattleCharacter : MonoBehaviour
     public int attack;
     public int defence;
     public int barrier;
-    public float attackRate { get; protected set; }
-    public float defenceRate { get; protected set; }
+    public float attackRate { get; set; }
+    public float receiveRate{get; set;}
+    public float defenceRate { get; set; }
     // public Canvas canvas;
     public event Action onDeath = delegate { };
     public AbnormalStatusManager asManager;
@@ -101,21 +102,28 @@ public partial class BattleCharacter : MonoBehaviour
 
     #region 伤害相关
 
-    public virtual int GiveDamage(BattleCharacter bc, int damage, DamageTrigger trigger)
+    //攻击 = 角色攻击力 * 卡牌百分比 * 我方buff属性
+    public virtual int GiveDamage(BattleCharacter bc, float damageRate, DamageTrigger trigger)
     {
-        return bc.TakeDamage(this, damage);
+        return bc.TakeDamage(this, attack * damageRate * (1 + attackRate));
     }
 
-    public virtual int TakeDamage(BattleCharacter bc, int damage)
+    //攻击 = 上述 * 敌方buff属性
+    public virtual int TakeDamage(BattleCharacter bc, float damage)
     {
-        var temp = damage;
+        damage = damage * (1 + receiveRate);
+        var temp = (int)damage;
         temp -= barrier;
-        barrier -= damage;
-        if(barrier <= 0)
+        barrier -= (int)damage;
+        if(barrier < 0)
         {
             barrier = 0;
         }
-        return this.DecreaseHp(damage);
+        else if(temp <= 0)
+        {
+            temp = 0;
+        }
+        return this.DecreaseHp(temp);
     }
     public virtual void TakeNoSourceDamage(int damage)
     {
@@ -131,14 +139,6 @@ public partial class BattleCharacter : MonoBehaviour
     {
         barrier += value;
         RefreshUI();
-    }
-    public void ChangeAttackRate(float value)
-    {
-        attackRate += value;
-    }
-    public void ChangeDefenceRate(float value)
-    {
-        defenceRate += value;
     }
     #endregion
     #endregion

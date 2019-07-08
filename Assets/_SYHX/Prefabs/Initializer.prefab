@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asSource:
   - {fileID: 11400000, guid: ae9c0176e259df840a8dce87a5462a3e, type: 2}
+  - {fileID: 11400000, guid: c233ad77b30bdbe479af6540f37f1625, type: 2}
   cSource:
   - {fileID: 11400000, guid: 901be0f4d4e11c343a867808f300260e, type: 2}
   - {fileID: 11400000, guid: 69db0e167e824894f805b20a3a5e850c, type: 2}
@@ -64,3 +65,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 989c22a63ca147348b898a4205690e86, type: 2}
   eaSource:
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
+  factors: []

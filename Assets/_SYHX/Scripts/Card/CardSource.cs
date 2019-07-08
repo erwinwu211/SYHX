@@ -23,7 +23,7 @@ namespace SYHX.Cards
         #endregion
 
         #region 获取用数据
-        public int ID { get => mID; }
+        public int ID { get => mID; set => mID = value; }
         public string Name { get => mName; }
         public string Desc { get => mDesc; }
         public int EP { get => mEP; }

@@ -7,6 +7,9 @@ public class BattleHero : BattleCharacter
 {
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI barrierText;
+    public int Force;
+    public int Align;
+    public int Constitution;
     public override void RefreshUI()
     {
         ShowHP();
@@ -29,6 +32,13 @@ public class BattleHero : BattleCharacter
     public override void Death()
     {
         base.Death();
+    }
+
+    //攻击 = 角色攻击力 * 属性修正 * 卡牌百分比 * 我方buff属性 
+    public override int GiveDamage(BattleCharacter bc, float damageRate, DamageTrigger trigger)
+    {
+        var factorRate = Initializer.Ins.factors[Force-1].Force;
+        return bc.TakeDamage(this, attack * damageRate * factorRate * (1 + attackRate));
     }
 
 }

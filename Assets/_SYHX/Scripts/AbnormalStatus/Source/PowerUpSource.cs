@@ -1,9 +1,7 @@
 ﻿
 namespace SYHX.AbnormalStatus
 {
-    public class PowerUpSource : AbnormalStatusSource<PowerUp>
-    {
-    }
+    public class PowerUpSource : AbnormalStatusSource<PowerUp>{}
     [System.Serializable]
     public class PowerUp : AbnormalStatusContent
     {
@@ -12,15 +10,15 @@ namespace SYHX.AbnormalStatus
         [CustomDesc("turn")]public string dTurn{get=>count.ToString();}
         public override void OnGenerate()
         {
-            owner.ChangeAttackRate(attackRate);
+            owner.attackRate += attackRate;
         }
         public override void OnClear()
         {
-            owner.ChangeAttackRate(-attackRate);
+            owner.attackRate -= attackRate;
         }
         public override void OnRemove()
         {
-            owner.ChangeAttackRate(-attackRate);
+            owner.attackRate -= attackRate;
         }
     }
 }

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using SYHX.AbnormalStatus;
 using SYHX.Cards;
+using Sirenix.OdinInspector;
 
 public class Initializer : SingletonMonoBehaviour<Initializer>
 {
     [SerializeField] public List<AbnormalStatusSource> asSource;
     [SerializeField] public List<CardSource> cSource;
     [SerializeField] public List<EnemyActionSource> eaSource;
+    [TableList] public ModificationFactor[] factors;
 
     protected override void UnityAwake()
     {
