@@ -39,7 +39,7 @@ namespace SYHX.Cards
         public virtual void GenerateToDeck()
         {
             var cc = GenerateCard();
-            BattleCardManager.Ins.GenerateCardTo(cc,CardPosition.Deck);
+            BattleCardManager.Ins.GenerateCardTo(cc, CardPosition.Deck);
             cc.RefreshUI();
         }
 
@@ -55,7 +55,7 @@ namespace SYHX.Cards
     public class CardSource<T> : CardSource
     where T : CardContent, new()
     {
-        [SerializeField] T origin;
+        [BoxGroup("原型")] [HideLabel] [SerializeField] T origin;
 
         private Dictionary<string, PropertyInfo> descOption;
         public override void Init() => descOption = this.InitDescOption<CardSource, T>();
@@ -69,17 +69,17 @@ namespace SYHX.Cards
     }
     public enum ConnectionType
     {
-        强袭技, 灵巧技, 神秘技, 连接技,无
+        强袭技, 灵巧技, 神秘技, 连接技, 无
     }
 
     public enum CardType
     {
-        攻击,技能,防御
+        攻击, 技能, 防御
     }
 
     public enum Rarity
     {
-        初始,初级,中级,高级
+        初始, 初级, 中级, 高级
     }
 }
 

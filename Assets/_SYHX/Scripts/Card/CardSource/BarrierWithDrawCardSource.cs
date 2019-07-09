@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("护盾")]
@@ -7,16 +8,16 @@ namespace SYHX.Cards
     [System.Serializable]
     public class BarrierWithDrawCardContent : CardContent
     {
-        [CloneField] public float defenceRate;
-        [CloneField] public int drawCount;
+        [Header("防御率")] [CloneField] public float defenceRate;
+        [Header("抽牌数量")] [CloneField] public int drawNumber;
 
         [CustomDesc("defenceRate")] public string dRateString { get => (defenceRate * 100).ToString() + "%"; }
-        [CustomDesc("drawCount  ")] public string dDraw { get => drawCount.ToString(); }
+        [CustomDesc("drawNumber")] public string dDraw { get => drawNumber.ToString(); }
 
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleCharacterManager.Ins.hero.GetBarrier(defenceRate);
-            BattleManager.sDraw(drawCount);
+            BattleManager.sDraw(drawNumber);
             yield break;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using SYHX.AbnormalStatus;
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("护盾")]
@@ -8,17 +9,17 @@ namespace SYHX.Cards
     [System.Serializable]
     public class BarrierWithASContent : CardContent
     {
-        [CloneField] public float defenceRate;
-        [CloneField] public AbnormalStatusSource source;
-        [CloneField] public int count;
+        [Header("防御率")] [CloneField] public float defenceRate;
+        [Header("异常状态")] [CloneField] public AbnormalStatusSource source;
+        [Header("回合数")] [CloneField] public int count;
         [CustomDesc("defenceRate")] public string dRateString { get => (defenceRate * 100).ToString() + "%"; }
-        [CustomDesc("turn")] public string dTurn{get => count.ToString();}
-        [CustomDesc("status")] public string dStatus {get => source.Name;}
+        [CustomDesc("count")] public string dTurn { get => count.ToString(); }
+        [CustomDesc("source")] public string dStatus { get => source.Name; }
 
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleManager.Hero.GetBarrier(defenceRate);
-            BattleManager.Hero.AddAbnormalStatus(source,count);
+            BattleManager.Hero.AddAbnormalStatus(source, count);
             yield break;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using SYHX.AbnormalStatus;
 using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("给与buff")]
@@ -8,8 +9,8 @@ namespace SYHX.Cards
     [System.Serializable]
     public class GiveBuffContent : CardContent
     {
-        [CloneField] public AbnormalStatusSource source;
-        [CloneField] public int count;
+        [Header("异常状态")] [CloneField] public AbnormalStatusSource source;
+        [Header("回合数")] [CloneField] public int count;
 
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {

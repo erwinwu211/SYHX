@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mID: 0
   mName: "\u62BD\u724C"
-  mDesc: "\u62BD\u724C{number}"
+  mDesc: "\u62BD\u724C{drawNumber}"
   mEP: 0
+  connectionType: 0
   cardType: 0
+  rarity: 0
+  upgradeList: []
+  keyWords: []
   origin:
     owner: {fileID: 11400000}
     bUI: {fileID: 0}

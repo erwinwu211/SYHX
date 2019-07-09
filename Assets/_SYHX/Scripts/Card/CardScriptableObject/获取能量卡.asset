@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mID: 0
   mName: "\u83B7\u5F97\u80FD\u91CF"
-  mDesc: "\u83B7\u5F97{GainEP}"
+  mDesc: "\u83B7\u5F97{gainEP}"
   mEP: 0
+  connectionType: 0
   cardType: 0
+  rarity: 0
+  upgradeList: []
+  keyWords: []
   origin:
     owner: {fileID: 11400000}
     bUI: {fileID: 0}
-    GainEP: 1
+    gainEP: 0

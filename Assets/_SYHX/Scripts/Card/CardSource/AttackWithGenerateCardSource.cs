@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 
 {
@@ -8,11 +9,11 @@ namespace SYHX.Cards
     [System.Serializable]
     public class AttackWithGenerateCardContent : CardContent
     {
-        [CloneField] public float damageRate;
-        [CloneField] public bool isAOE;
-        [CloneField] public CardSource generateCard;
+        [Header("伤害率")] [CloneField] public float damageRate;
+        [Header("群伤？")] [CloneField] public bool isAOE;
+        [Header("生成卡牌")] [CloneField] public CardSource cardName;
         [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
-        [CustomDesc("cardName")] public string dCard{get=> generateCard.Name;}
+        [CustomDesc("cardName")] public string dCard { get => cardName.Name; }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             if (isAOE)
@@ -26,8 +27,8 @@ namespace SYHX.Cards
             {
                 Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
             }
-            var card = generateCard.GenerateCard();
-            BattleCardManager.Ins.GenerateCardTo(card,CardPosition.Hand);
+            var card = cardName.GenerateCard();
+            BattleCardManager.Ins.GenerateCardTo(card, CardPosition.Hand);
             yield break;
         }
     }

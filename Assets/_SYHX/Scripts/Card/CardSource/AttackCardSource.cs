@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 
 {
@@ -8,8 +9,8 @@ namespace SYHX.Cards
     [System.Serializable]
     public class AttackCardContent : CardContent
     {
-        [CloneField] public float damageRate;
-        [CloneField] public bool isAOE;
+        [Header("伤害率")] [CloneField] public float damageRate;
+        [Header("群伤？")] [CloneField] public bool isAOE;
         [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {

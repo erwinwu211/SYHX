@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("护盾能量")]
@@ -7,14 +8,14 @@ namespace SYHX.Cards
     [System.Serializable]
     public class BarrierWithEPContent : CardContent
     {
-        [CloneField] public float defenceRate;
-        [CloneField] public int GainEP;
+        [Header("防御率")] [CloneField] public float defenceRate;
+        [Header("获得能量")] [CloneField] public int gainEP;
         [CustomDesc("defenceRate")] public string dRateString { get => (defenceRate * 100).ToString() + "%"; }
-        [CustomDesc("EP")] public string gainEP{get=> GainEP.ToString();}
+        [CustomDesc("gainEP")] public string dGainEP { get => gainEP.ToString(); }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleManager.Hero.GetBarrier(defenceRate);
-            BattleManager.sRegainMoreEnergyPointNextTurn(GainEP);
+            BattleManager.sRegainMoreEnergyPointNextTurn(gainEP);
             yield break;
         }
     }

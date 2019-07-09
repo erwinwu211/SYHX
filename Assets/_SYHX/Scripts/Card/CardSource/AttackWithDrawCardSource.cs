@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 
 {
@@ -8,11 +9,12 @@ namespace SYHX.Cards
     [System.Serializable]
     public class AttackWithDrawCardContent : CardContent
     {
-        [CloneField] public float damageRate;
-        [CloneField] public int drawCount;
-        [CloneField] public bool isAOE;
+        [Header("伤害率")] [CloneField] public float damageRate;
+        [Header("群伤？")] [CloneField] public bool isAOE;
+        [Header("抽牌数量")] [CloneField] public int drawNumber;
+
         [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
-        [CustomDesc("drawCount  ")] public string dDraw { get => drawCount.ToString(); }
+        [CustomDesc("drawNumber")] public string dDraw { get => drawNumber.ToString(); }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             if (isAOE)
@@ -26,7 +28,7 @@ namespace SYHX.Cards
             {
                 Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
             }
-            BattleManager.sDraw(drawCount);
+            BattleManager.sDraw(drawNumber);
             yield break;
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("抽牌")]
@@ -8,8 +8,8 @@ namespace SYHX.Cards
     [System.Serializable]
     public class DrawCardContent : CardContent
     {
-        [CloneField] public int drawNumber;
-        [CustomDesc("number")] public string dRateString { get => drawNumber.ToString(); }
+        [Header("抽牌数量")] [CloneField] public int drawNumber;
+        [CustomDesc("drawNumber")] public string dRateString { get => drawNumber.ToString(); }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             BattleCardManager.Ins.Draw(drawNumber);

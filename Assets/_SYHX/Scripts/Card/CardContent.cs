@@ -10,8 +10,9 @@ namespace SYHX.Cards
         public string name { get; private set; }
 
         public Dictionary<string, PropertyInfo> descOption;
-        public List<CardKeyWord> keyWords{get; private set;}
-        [HideInInspector]public BattleCardUI bUI;
+        public List<CardKeyWord> keyWords { get; private set; }
+        private List<string> battleKeyword = new List<string>();
+        [HideInInspector] public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
         public CardContent() { }
 
@@ -30,9 +31,9 @@ namespace SYHX.Cards
             this.descOption = descOption;
             this.keyWords = new List<CardKeyWord>(owner.keyWords);
         }
-        public ConnectionType connectionType{ get; private set; }
-        public CardType cardType{ get; private set; }
-        public Rarity rarity{ get; private set; }
+        public ConnectionType connectionType { get; private set; }
+        public CardType cardType { get; private set; }
+        public Rarity rarity { get; private set; }
 
         private int ep;
         public int EP
@@ -42,14 +43,22 @@ namespace SYHX.Cards
         }
 
         private int tempEP;
-        public int TempEP
+        public virtual int TempEP
         {
-            get => tempEP;
-            private set => tempEP = value >= 0 ? value : 0;
+            get
+            {
+                if (battleKeyword.Exists(s => s == "0")) return 0;
+                return tempEP;
+            }
+            protected set
+            {
+                tempEP = value >= 0 ? value : 0;
+                RefreshUI();
+            }
         }
         public void OnDraw() { }
 
-        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.sGetEP() >= this.EP && UseOption();
+        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.sGetEP() >= this.TempEP && UseOption();
         protected virtual bool UseOption() => true;
         /// <summary>
         /// ❌事件：当卡牌在打出后，经过选择之后的效果
@@ -66,8 +75,9 @@ namespace SYHX.Cards
         public IEnumerator UseCard(CardUseTrigger trigger)
         {
             BattleManager.sChangeEnergy(-this.EP);
+            BattleCardManager.Ins.TempUse(this);
             yield return UseEffect(trigger);
-            if(keyWords.Exists(kw => kw.Name == "移除"))
+            if (keyWords.Exists(kw => kw.Name == "移除"))
             {
                 BattleCardManager.Ins.Exhaust(this);
             }
@@ -75,13 +85,13 @@ namespace SYHX.Cards
             {
                 BattleCardManager.Ins.Used(this);
             }
-            BattleProgressEvent.Ins.OnCardUsed(this,trigger);
+            BattleProgressEvent.Ins.OnCardUsed(this, trigger);
             yield break;
         }
 
         protected abstract IEnumerator UseEffect(CardUseTrigger trigger);
-        public void OnFold() { }
-        public void OnExiled() { }
+        public void OnDiscard() { }
+        public void OnExhaust() { }
         public void OnOtherCardUse(CardSource context) { }
         private string desc;
         public string Desc => GetDesc(desc);

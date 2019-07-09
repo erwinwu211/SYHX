@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 namespace SYHX.Cards
 {
     [SourceName("能量")]
@@ -7,12 +8,12 @@ namespace SYHX.Cards
     [System.Serializable]
     public class ChangeEPCardContent : CardContent
     {
-        [CloneField] public int GainEP;
-        [CustomDesc("GainEP")] public string dRateString { get => GainEP.ToString(); }
+        [Header("获得能量")] [CloneField] public int gainEP;
+        [CustomDesc("gainEP")] public string dRateString { get => gainEP.ToString(); }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
-            BattleManager.sChangeEnergy(GainEP);
-            yield break;    
+            BattleManager.sChangeEnergy(gainEP);
+            yield break;
         }
     }
 

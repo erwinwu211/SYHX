@@ -26,4 +26,4 @@ MonoBehaviour:
     bUI: {fileID: 0}
     damageRate: 1
     isAOE: 0
-    generateCard: {fileID: 11400000, guid: fd6f427fdb118ba4b92d70823a1d7d27, type: 2}
+    cardName: {fileID: 11400000, guid: fd6f427fdb118ba4b92d70823a1d7d27, type: 2}

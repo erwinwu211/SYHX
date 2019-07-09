@@ -11,17 +11,13 @@ namespace SYHX.Cards
         [CloneField] public int count;
         [CloneField] public float damageRate;
 
-        [CustomDesc("number")] public string dNumber {get => count.ToString();}
+        [CustomDesc("number")] public string dNumber { get => count.ToString(); }
         [CustomDesc("damageRate")] public string dRateString { get => (damageRate * 100).ToString() + "%"; }
         protected override IEnumerator UseEffect(CardUseTrigger trigger)
         {
             var handList = new List<CardContent>(BattleCardManager.Ins.safeDeckPile);
-            if(handList.Contains(this))
-            {
-                handList.Remove(this);
-            }
             var outList = new List<CardContent>();
-            yield return CardSelectorManager.Ins.Register(handList,outList,count,count);
+            yield return CardSelectorManager.Ins.Register(handList, outList, count, count);
             BattleCardManager.Ins.Discard(outList);
             Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
             yield break;

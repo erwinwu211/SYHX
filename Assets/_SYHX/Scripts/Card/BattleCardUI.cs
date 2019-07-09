@@ -34,5 +34,5 @@ namespace SYHX.Cards
 }
 public enum CardPosition
 {
-    Hand, Deck, Exhaust, Discard, Used
+    Hand, Deck, Exhaust, Discard, Used, Temp
 }
