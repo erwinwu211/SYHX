@@ -23,7 +23,6 @@ MonoBehaviour:
   keyWords: []
   origin:
     owner: {fileID: 0}
-    battleKeyword: []
     bUI: {fileID: 0}
     damageRate: 1.6
     source: {fileID: 11400000, guid: c233ad77b30bdbe479af6540f37f1625, type: 2}

@@ -11,7 +11,20 @@ namespace SYHX.Cards
 
         public Dictionary<string, PropertyInfo> descOption;
         public List<CardKeyWord> keyWords { get; private set; }
-        private List<string> battleKeyword = new List<string>();
+        protected List<string> battleKeyword = new List<string>();
+        public void AddBattleAttribute(string keyword)
+        {
+            if (!battleKeyword.Contains(keyword))
+            {
+                battleKeyword.Add(keyword);
+                RefreshUI();
+            }
+        }
+        public void DeleteBattleAttribute(string keyword)
+        {
+            battleKeyword.Remove(keyword);
+            RefreshUI();
+        }
         [HideInInspector] public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
         public CardContent() { }

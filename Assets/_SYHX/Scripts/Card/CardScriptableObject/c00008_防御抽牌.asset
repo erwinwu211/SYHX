@@ -25,4 +25,4 @@ MonoBehaviour:
     owner: {fileID: 0}
     bUI: {fileID: 0}
     defenceRate: 1.2
-    drawCount: 1
+    drawNumber: 0

@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ea498a82f70474d8202a5150d91370, type: 3}
-  m_Name: "c00012_\u9632\u5FA1\u80FD\u91CF"
+  m_Script: {fileID: 11500000, guid: ed4be4d1da65e784489eb280638edce6, type: 3}
+  m_Name: "c00019_\u56DE\u624B"
   m_EditorClassIdentifier: 
-  mID: 12
-  mName: "\u9632\u5FA1\u80FD\u91CF"
-  mDesc: 
+  mID: 19
+  mName: "\u56DE\u624B\u5361\u724C"
+  mDesc: "\u56DE\u6536{count}\u5F20\u5361\u724C\uFF0C\u5E76\u4F7F\u5176\u5728\u672C\u573A\u6218\u6597\u4E2D\u6D88\u8017\u4E3A0."
   mEP: 0
   connectionType: 0
   cardType: 0
   rarity: 0
   upgradeList: []
-  keyWords: []
+  keyWords:
+  - {fileID: 11400000, guid: 41ca23f36fd58294d848f913ffde95f2, type: 2}
   origin:
     owner: {fileID: 0}
     bUI: {fileID: 0}
-    defenceRate: 1
-    gainEP: 0
+    count: 1

@@ -20,18 +20,18 @@ public class Feo : BattleHero
     }
     public ConnectionSignal connectionSignal;
     public ConnectionType currentType { get; private set; }
-    public void CalculateConnection(CardContent card,CardUseTrigger trigger)
+    public void CalculateConnection(CardContent card, CardUseTrigger trigger)
     {
-        CalculateConnection(card.connectionType,card.keyWords.Exists(kw=>kw.Name == "承接"));
+        CalculateConnection(card.connectionType, card.keyWords.Exists(kw => kw.Name == "承接"));
     }
-    public void CalculateConnection(ConnectionType type,bool isKeyWord)
+    public void CalculateConnection(ConnectionType type, bool isKeyWord)
     {
         if (type == ConnectionType.连接技)
         {
             connectionSignal.signalValue += 1;
             return;
         }
-        if(!isKeyWord || currentType == type)
+        if (!isKeyWord || currentType == type)
         {
             connectionSignal.signalValue = currentType == type ? connectionSignal.signalValue + 1 : 1;
             currentType = type;
@@ -46,7 +46,7 @@ public class Feo : BattleHero
     public void ResetConnection()
     {
         connectionSignal.Reset();
-        if(connectionSignal.signalValue == 0 ) ResetCardType();
+        if (connectionSignal.signalValue == 0) ResetCardType();
         RefreshUI();
     }
 }
@@ -55,6 +55,6 @@ public class ConnectionSignal : Signal<int>
     public int stopReset;
     public void Reset()
     {
-        if(stopReset == 0) signalValue = 0;
+        if (stopReset == 0) signalValue = 0;
     }
 }

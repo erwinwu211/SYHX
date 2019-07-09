@@ -34,6 +34,7 @@ namespace SYHX.Cards
         public Vector3 shiftPosition;
 
         public CardContent[] safeDeckPile => handPile.ToArray();
+        public CardContent[] safeDiscardPile => discardPile.ToArray();
 
         //测试用
         public List<CardSource> cards;
@@ -122,6 +123,12 @@ namespace SYHX.Cards
         public void ReturnToDeck(CardContent cc)
         {
             GoTo(cc, CardPosition.Deck);
+            RefreshUI();
+        }
+
+        public void ReturnToHand(CardContent cc)
+        {
+            GoTo(cc, CardPosition.Hand);
             RefreshUI();
         }
 
