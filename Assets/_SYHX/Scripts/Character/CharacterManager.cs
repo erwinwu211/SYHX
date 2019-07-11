@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterManager : SingletonMonoBehaviour<CharacterManager>
 {
-    public CharacterContent FukasakiKotone;
+    public CharacterContent Umirika;
 
     protected override void UnityAwake()
     {
@@ -21,6 +21,6 @@ public class CharacterManager : SingletonMonoBehaviour<CharacterManager>
     /// </summary>
     public void LoadCharacterInfo()
     {
-        FukasakiKotone = new FukasakiKotone().GenerateCharacter();
+        Umirika = new Umirika();
     }
 }

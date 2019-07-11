@@ -1,40 +1,52 @@
 ﻿using System.Collections.Generic;
 using SYHX.Cards;
 
-public class CharacterContent : SAssitant<CharacterSource>
+/// <summary>
+/// 所有角色的父类
+/// </summary>
+public abstract class CharacterContent
 {
+    public const int LvMax = 30;
     public string Name { get; protected set; }
-    public int HpMax { get; set; }
-    public int Attack { get; set; }
-    public int Defend { get; set; }
-    public int DrawCount { get; set; }
-    public int Energy { get; set; }
-    public List<CardContent> Cards { get; set; }
+    public int Lv { get; protected set; }
+    public int Exp { get; protected set; }
+    public int Exp_max { get; protected set; }
+    public int Hp_max { get; protected set; }
+    public int Attack { get; protected set; }
+    public int Defend { get; protected set; }
+    public int Draw_count { get; protected set; }
+    public int Energy_max { get; protected set; }
+    public int Force { get; protected set; }
+    public int Aglie { get; protected set; }
+    public int Constitution { get; protected set; }
+    public int Fortune { get; protected set; }
+    public List<CardContent> Deck { get; protected set; }
     public List<Talent> Talents { get; protected set; }
 
     public CharacterContent() { }
-    public override void SetOwner(CharacterSource owner)
+    
+    public void LevelUp()
     {
-        this.owner = owner;
-        this.Name = owner.Name;
-        this.HpMax = owner.HpMax;
-        this.Attack = owner.Attack;
-        this.Defend = owner.Defend;
-        this.DrawCount = owner.DrawCount;
-        this.Energy = owner.Energy;
-        Cards = new List<CardContent>();
-        Talents = new List<Talent>();
-        foreach (CardSource cs in owner.Cards)
+        if (Lv < LvMax)
         {
-            // // var cc = new CardContent();
-            // cc.SetOwner(cs);
-            // Cards.Add(cc);
-        }
-        foreach (Talent t in owner.Talents)
-        {
-            Talents.Add(t);
-            t.SetOwner(this);
-            t.DoEffect();
+            Lv++;
+            Exp -= Exp_max;
+            RefreshCharacterInfo();
         }
     }
+
+    public void IncreaseExp(int count)
+    {
+        Exp += count;
+        if (Exp >= Exp_max)
+        {
+            LevelUp();
+        }
+    }
+
+    public void RefreshCharacterInfo()
+    {
+
+    }
+
 }

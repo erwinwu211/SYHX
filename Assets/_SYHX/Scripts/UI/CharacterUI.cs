@@ -36,7 +36,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         //创建好人物信息
 
         //进行初始化设定
-        selectedCharacter = CharacterManager.Ins.FukasakiKotone;
+        selectedCharacter = CharacterManager.Ins.Umirika;
         TalentBtnTip.SetActive(false);
         RefreshSelectedCharacterInfo();
     }
@@ -49,9 +49,9 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         NameText.text = selectedCharacter.Name;
         AttackCount.text = selectedCharacter.Attack+"";
         DefendCount.text = selectedCharacter.Defend + "";
-        PowerCount.text = selectedCharacter.Energy + "";
-        DrawCount.text = selectedCharacter.DrawCount + "";
-        DeckCount.text = selectedCharacter.Cards.Count + "";
+        PowerCount.text = selectedCharacter.Energy_max + "";
+        DrawCount.text = selectedCharacter.Draw_count + "";
+        DeckCount.text = selectedCharacter.Deck.Count + "";
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         switch (i)
         {
             case 1:
-                selectedCharacter = CharacterManager.Ins.FukasakiKotone;
+                selectedCharacter = CharacterManager.Ins.Umirika;
                 return;
             case 2:
                 return;

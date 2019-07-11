@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 
 
-public class FukasakiKotone : CharacterSource
+public class Umirika : CharacterContent
 {
-    public FukasakiKotone()
+    public Umirika()
     {
-        Name = "深崎琴音";
-        HpMax = 70;
+        Name = "尤米莉卡";
+        Hp_max = 70;
         Attack = 6;
         Defend = 5;
-        DrawCount = 5;
-        Energy = 3;
-        Cards = new List<CardSource>();
+        Draw_count = 5;
+        Energy_max = 3;
+        Deck = new List<CardContent>();
         Talents = new List<Talent>();
         Talents.Add(new Talent_00001());
         Talents[0].IsEffect = true;
@@ -22,8 +22,5 @@ public class FukasakiKotone : CharacterSource
     /// TODO:这个方法里要读取存档然后返回一个content
     /// </summary>
     /// <returns></returns>
-    public override CharacterContent GenerateCharacter()
-    {
-        return base.GenerateCharacter();
-    }
+    
 }

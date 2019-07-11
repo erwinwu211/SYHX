@@ -12,6 +12,5 @@ public class Talent_00001 : Talent
 
     protected override void Effect()
     {
-        owner.HpMax += 5;
     }
 }
