@@ -196,8 +196,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnMemberBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -405,8 +405,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnCombatBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -757,8 +757,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnDateBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1113,8 +1113,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnQuitBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1539,8 +1539,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnOptionsBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2208,8 +2208,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnWarehouseBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2457,6 +2457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964290793228124692}
+  - component: {fileID: 767388067551712380}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -2489,6 +2490,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &767388067551712380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481935215083778479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40402e5b6ab0ca145a48fd4d30c93179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LvCount: {fileID: 380944803163119062}
+  ExpBar: {fileID: 2990487279596510645}
+  ExpCount: {fileID: 4465707206430903863}
+  TimeCount: {fileID: 2983027018518314620}
+  LuntCount: {fileID: 7850046170540859702}
+  CoreCount: {fileID: 8187232470151663514}
+  CharacterPainting: {fileID: 2908509767914711572}
+  DialogueBox: {fileID: 1274885229228257680}
 --- !u!1 &5202803059503751578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,8 +2849,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdventureBtnClick
+      - m_Target: {fileID: 767388067551712380}
+        m_MethodName: OnArchiveBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
