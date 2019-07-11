@@ -3,65 +3,71 @@ using System.Collections;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Sirenix.OdinInspector;
 
-
-public abstract class EnemyActionSource : ScriptableObject, Source
+namespace SYHX.EnemyAI
 {
-    public string desc;
-    protected Enemy enemy;
-    public abstract void Init();
-    public abstract EnemyActionContent GeneratedAction();
-    public void ParseEnemy(Enemy enemy) => this.enemy = enemy;
-
-}
-
-public class EnemyActionSource<T> : EnemyActionSource
-where T : EnemyActionContent, new()
-{
-    public T origin;
-    private Dictionary<string, PropertyInfo> descOption;
-
-    public override void Init() => descOption = this.InitDescOption<EnemyActionSource, T>();
-    public override EnemyActionContent GeneratedAction()
+    public abstract class EnemyActionSource : ScriptableObject, Source
     {
-        var action = this.GenerateContent<EnemyActionSource, T>(origin);
-        action.SetInformation(enemy, desc, descOption);
-        return action;
-    }
-}
+        public string desc;
+        protected Enemy enemy;
+        public abstract void Init();
+        public abstract EnemyActionContent GeneratedAction();
+        public void ParseEnemy(Enemy enemy) => this.enemy = enemy;
 
-public abstract class EnemyActionContent : Content
-{
-    protected Enemy enemy;
-    public virtual void Execute()
-    {
-        BattleManager.ManagedCoroutine(Decorator());
     }
 
-    IEnumerator Decorator()
+    public class EnemyActionSource<T> : EnemyActionSource
+    where T : EnemyActionContent, new()
     {
-        yield return execute();
-        BattleManager.canExeNextEnemy = true;
-        yield break;
-    }
-    protected abstract IEnumerator execute();
+        [BoxGroup("原型")] [HideLabel] [SerializeField] public T origin;
+        private Dictionary<string, PropertyInfo> descOption;
 
-    public void SetInformation(Enemy enemy, string desc, Dictionary<string, PropertyInfo> descOption = null)
-    {
-        this.desc = desc;
-        this.enemy = enemy;
-        this.descOption = descOption;
-    }
-    private Dictionary<string, PropertyInfo> descOption;
-    private string desc;
-    public string Desc => GetDesc(desc);
-    public virtual string GetDesc(string desc)
-    {
-        foreach (KeyValuePair<string, PropertyInfo> pairs in descOption)
+        public override void Init() => descOption = this.InitDescOption<EnemyActionSource, T>();
+        public override EnemyActionContent GeneratedAction()
         {
-            desc = desc.Replace("{" + pairs.Key + "}", (string)pairs.Value.GetValue(this));
+            var action = this.GenerateContent<EnemyActionSource, T>(origin);
+            action.SetInformation(enemy, desc, descOption);
+            return action;
         }
-        return desc;
     }
+
+    public abstract class EnemyActionContent : Content
+    {
+        protected Enemy enemy;
+        public virtual void Execute()
+        {
+            BattleManager.ManagedCoroutine(Decorator());
+        }
+
+        IEnumerator Decorator()
+        {
+            yield return execute();
+            BattleManager.canExeNextEnemy = true;
+            yield break;
+        }
+        protected abstract IEnumerator execute();
+
+        public void SetInformation(Enemy enemy, string desc, Dictionary<string, PropertyInfo> descOption = null)
+        {
+            this.desc = desc;
+            this.enemy = enemy;
+            this.descOption = descOption;
+        }
+        private Dictionary<string, PropertyInfo> descOption;
+        private string desc;
+        public string Desc => GetDesc(desc);
+        public virtual string GetDesc(string desc)
+        {
+            foreach (KeyValuePair<string, PropertyInfo> pairs in descOption)
+            {
+                desc = desc.Replace("{" + pairs.Key + "}", (string)pairs.Value.GetValue(this));
+            }
+            return desc;
+        }
+    }
+
 }
+
+
 

@@ -1,16 +1,23 @@
 ﻿using HutongGames.PlayMaker;
 
-[ActionCategory("SYHX")]
-[Tooltip("循环行动")]
-public class LoopSwitcher : FsmStateAction
+namespace SYHX.EnemyAI
 {
-    [RequiredField] public FsmInt turn;
-    [RequiredField] public FsmEvent[] events;
-    public override void OnEnter()
+
+    [ActionCategory("SYHX")]
+    [Tooltip("循环行动")]
+    public class LoopSwitcher : FsmStateAction
     {
-        var index = turn.Value % events.Length;
-        turn.Value++;
-        Fsm.Event(events[index]);
-        Finish();
+        [RequiredField] public FsmInt turn;
+        [RequiredField] public FsmEvent[] events;
+        public override void OnEnter()
+        {
+            var index = turn.Value % events.Length;
+            turn.Value++;
+            Fsm.Event(events[index]);
+            Finish();
+        }
     }
+
 }
+
+

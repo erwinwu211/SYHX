@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SYHX.AbnormalStatus;
 using SYHX.Cards;
 using Sirenix.OdinInspector;
+using SYHX.EnemyAI;
 
 public class Initializer : SingletonMonoBehaviour<Initializer>
 {

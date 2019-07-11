@@ -1,24 +1,30 @@
 ﻿using System;
 using HutongGames.PlayMaker;
 
-[ActionCategory("SYHX")]
-[ActionTarget(typeof(EnemyActionSource), "action", false)]
-[Tooltip("Action Invoker（激活敌方行动）")]
-public class InvokeAction : FsmStateAction
+namespace SYHX.EnemyAI
 {
-    public EnemyActionSource actionSource;
-    private EnemyAIHandler handler;
-    public override void Awake()
+    [ActionCategory("SYHX")]
+    [ActionTarget(typeof(EnemyActionSource), "action", false)]
+    [Tooltip("Action Invoker（激活敌方行动）")]
+    public class InvokeAction : FsmStateAction
     {
-        handler = Fsm.GameObject.GetComponent<EnemyAIHandler>();
-    }
-    public override void OnEnter()
-    {
-        if (actionSource != null)
+        public EnemyActionSource actionSource;
+        private EnemyAIHandler handler;
+        public override void Awake()
         {
-            actionSource.ParseEnemy(handler.enemy);
-            handler.enemy.SetAction(actionSource.GeneratedAction());
-            Finish();
+            handler = Fsm.GameObject.GetComponent<EnemyAIHandler>();
+        }
+        public override void OnEnter()
+        {
+            if (actionSource != null)
+            {
+                actionSource.ParseEnemy(handler.enemy);
+                handler.enemy.SetAction(actionSource.GeneratedAction());
+                Finish();
+            }
         }
     }
+
 }
+
+
