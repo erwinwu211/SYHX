@@ -17,20 +17,34 @@ public class ButtonEffect : MonoBehaviour,
     {
     }
 
+    /// <summary>
+    /// 鼠标移入时，显示并展开背景
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         TextPic.GetComponent<Image>().color = HighLight;
         BgPic.SetActive(true);
         BgPic.GetComponent<Image>().fillAmount = 0;
-        StartCoroutine(FillBg());
+        StopCoroutine("UnFillBg");
+        StartCoroutine("FillBg");
     }
 
+    /// <summary>
+    /// 鼠标移出时，收起背景然后隐藏
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         TextPic.GetComponent<Image>().color = Normal;
-        BgPic.SetActive(false);
+        StopCoroutine("FillBg");
+        StartCoroutine("UnFillBg");
     }
 
+    /// <summary>
+    /// 填充背景
+    /// </summary>
+    /// <returns></returns>
     IEnumerator FillBg()
     {
         Image image = BgPic.GetComponent<Image>();
@@ -39,5 +53,20 @@ public class ButtonEffect : MonoBehaviour,
             image.fillAmount += FillSpeed;
             yield return new WaitForSeconds(0.02f);
         }
+    }
+
+    /// <summary>
+    /// 反填充背景
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator UnFillBg()
+    {
+        Image image = BgPic.GetComponent<Image>();
+        for(;image.fillAmount>0;)
+        {
+            image.fillAmount -= FillSpeed;
+            yield return new WaitForSeconds(0.02f);
+        }
+        BgPic.SetActive(false);
     }
 }
