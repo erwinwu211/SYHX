@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using SYHX.EnemyAI;
+using DG.Tweening;
 
 
 
@@ -18,6 +19,12 @@ public class Enemy : BattleCharacter
     private ColorBlock defaultBlock;
     private EnemyAIHandler aiHandler;
     [ShowInInspector] private EnemyActionContent currentAction;
+
+    public Outline outline;
+
+    public Color endCorlor;
+    public Color startColor;
+    private Sequence seq;
 
     public override void RefreshUI()
     {
@@ -33,6 +40,11 @@ public class Enemy : BattleCharacter
         this.defence = enemySource.defence;
         this.isAlive = true;
         defaultBlock = enemy.colors;
+        seq = DOTween.Sequence();
+        seq.Append(outline.DOColor(endCorlor, 1f));
+        seq.Append(outline.DOColor(startColor, 1f));
+        seq.SetLoops(-1);
+        seq.Pause();
     }
     public void ShowHp()
     {
@@ -47,13 +59,13 @@ public class Enemy : BattleCharacter
     }
     public virtual void OnSelected()
     {
-        var colors = enemy.colors;
-        colors.normalColor = colors.highlightedColor = colors.pressedColor = new Color(1f, 0f, 0f, 1f);
-        enemy.colors = colors;
+        outline.enabled = true;
+        seq.Restart();
     }
     public virtual void LeaveSelected()
     {
-        enemy.colors = defaultBlock;
+        outline.enabled = false;
+        seq.Pause();
     }
 
     public void SetAIHandler(EnemyAIHandler handler)

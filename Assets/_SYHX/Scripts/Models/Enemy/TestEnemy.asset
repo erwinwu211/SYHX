@@ -16,5 +16,5 @@ MonoBehaviour:
   currentHp: 100
   attack: 10
   defence: 10
-  enemyObject: {fileID: 1475219631818181527, guid: edac0937436bfd74fab0d4e43b13e65e,
+  enemyObject: {fileID: 1475219631818181527, guid: 116461aad554e9f468bc285ac3bffca8,
     type: 3}

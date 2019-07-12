@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: adcf64ea851004d4bb8f74b4664fc2c1, type: 2}
   - {fileID: 11400000, guid: 10fee1919ba0a044f99e9fafc97ffd94, type: 2}
   eaSource:
+  - {fileID: 11400000, guid: 9946ca9cd46992746bfd6ae54335777e, type: 2}
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
   factors:
   - Force: 0.8
