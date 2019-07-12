@@ -13,6 +13,7 @@ using DG.Tweening;
 public class Enemy : BattleCharacter
 {
     // [SerializeField]
+    public override bool isEnemy { get => true; }
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI actionText;
     public Button enemy;
@@ -25,6 +26,8 @@ public class Enemy : BattleCharacter
     public Color endCorlor;
     public Color startColor;
     private Sequence seq;
+
+    public override void ChildStart() => StartAI();
 
     public override void RefreshUI()
     {

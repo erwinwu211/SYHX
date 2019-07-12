@@ -20,7 +20,7 @@ namespace SYHX.AbnormalStatus
 
         public abstract void Init();
 
-        public abstract AbnormalStatusContent Generate(BattleCharacter owner);
+        public abstract AbnormalStatusContent Generate(BattleCharacter owner, params object[] args);
     }
 
 
@@ -30,10 +30,10 @@ namespace SYHX.AbnormalStatus
         [SerializeField] public T origin;
         private Dictionary<string, PropertyInfo> descOption;
         public override void Init() => descOption = this.InitDescOption<AbnormalStatusSource, T>();
-        public override AbnormalStatusContent Generate(BattleCharacter owner)
+        public override AbnormalStatusContent Generate(BattleCharacter owner, params object[] args)
         {
             var abnormalStatus = this.GenerateContent<AbnormalStatusSource, T>(origin);
-            abnormalStatus.Init(this, owner, descOption);
+            abnormalStatus.Init(this, owner, descOption, args);
             return abnormalStatus;
         }
     }

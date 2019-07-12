@@ -5,6 +5,7 @@ using TMPro;
 
 public class BattleHero : BattleCharacter
 {
+    public override bool isEnemy { get => false; }
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI barrierText;
     public int Force;
@@ -37,8 +38,8 @@ public class BattleHero : BattleCharacter
     //攻击 = 角色攻击力 * 属性修正 * 卡牌百分比 * 我方buff属性 
     public override int GiveDamage(BattleCharacter bc, float damageRate, DamageTrigger trigger)
     {
-        var factorRate = Initializer.Ins.factors[Force-1].Force;
-        return bc.TakeDamage(this, attack * damageRate * factorRate * (1 + attackRate));
+        var factorRate = Initializer.Ins.factors[Force - 1].Force;
+        return bc.TakeDamage(this, Attack * damageRate * factorRate * (1 + attackRate));
     }
 
 }

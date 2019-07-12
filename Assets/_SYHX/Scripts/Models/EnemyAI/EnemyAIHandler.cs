@@ -13,7 +13,6 @@ public class EnemyAIHandler : MonoBehaviour
         enemy = this.GetComponent<Enemy>();
         enemy.SetAIHandler(this);
         fsm = this.GetComponent<PlayMakerFSM>();
-        DoStart();
     }
 
     public void DoNext()

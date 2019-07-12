@@ -2,6 +2,7 @@
 using System;
 using SYHX.AbnormalStatus;
 using TMPro;
+using Sirenix.OdinInspector;
 
 
 public partial class BattleCharacter : MonoBehaviour
@@ -13,8 +14,11 @@ public partial class BattleCharacter : MonoBehaviour
     public int defence;
     public int barrier;
     public float attackRate { get; set; }
-    public float receiveRate{get; set;}
+    public int optionAttack { get; set; }
+    [ShowInInspector] public int Attack => attack + optionAttack;
+    public float receiveRate { get; set; }
     public float defenceRate { get; set; }
+    public virtual bool isEnemy { get; }
     // public Canvas canvas;
     public event Action onDeath = delegate { };
     public AbnormalStatusManager asManager;
@@ -48,16 +52,16 @@ public partial class BattleCharacter : MonoBehaviour
         onDeath();
         isAlive = false;
         var enemy = this as Enemy;
-        if(enemy != null)
+        if (enemy != null)
         {
             BattleCharacterManager.RemoveEnemy(enemy);
         }
         var hero = this as BattleHero;
-        if(hero != null)
+        if (hero != null)
         {
             BattleCharacterManager.RemoveHero();
         }
-        Destroy(this.gameObject);    
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -78,7 +82,7 @@ public partial class BattleCharacter : MonoBehaviour
     /// <param name="count"></param>
     public virtual int DecreaseHp(int count)
     {
-        if(count <= 0) return 0;
+        if (count <= 0) return 0;
         var temp = currentHp;
         currentHp -= count;
         RefreshUI();
@@ -105,7 +109,7 @@ public partial class BattleCharacter : MonoBehaviour
     //攻击 = 角色攻击力 * 卡牌百分比 * 我方buff属性
     public virtual int GiveDamage(BattleCharacter bc, float damageRate, DamageTrigger trigger)
     {
-        return bc.TakeDamage(this, attack * damageRate * (1 + attackRate));
+        return bc.TakeDamage(this, Attack * damageRate * (1 + attackRate));
     }
 
     //攻击 = 上述 * 敌方buff属性
@@ -115,11 +119,11 @@ public partial class BattleCharacter : MonoBehaviour
         var temp = (int)damage;
         temp -= barrier;
         barrier -= (int)damage;
-        if(barrier < 0)
+        if (barrier < 0)
         {
             barrier = 0;
         }
-        else if(temp <= 0)
+        else if (temp <= 0)
         {
             temp = 0;
         }
@@ -142,5 +146,11 @@ public partial class BattleCharacter : MonoBehaviour
     }
     #endregion
     #endregion
+
+    public event Action onAddAStatus = delegate { };
+    public void OnAddAStatus()
+    {
+        onAddAStatus();
+    }
 }
 

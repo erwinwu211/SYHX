@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83951e52acc952741a39840adca225d9, type: 3}
+  m_Name: "\u6D41\u8840\u653B\u51FB"
+  m_EditorClassIdentifier: 
+  desc: "\u9020\u6210\u4F24\u5BB3{damageRate}\uFF0C\u82E5\u6210\u529F\uFF0C\u9020\u6210\u6D41\u8840{count}\u56DE\u5408\u3002"
+  origin:
+    damageRate: 1
+    count: 2
+    asSource: {fileID: 11400000, guid: 4676aa47275332741a88c825322e9fbe, type: 2}

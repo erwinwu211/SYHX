@@ -1,14 +1,14 @@
 ﻿
 namespace SYHX.AbnormalStatus
 {
-    public class VulnerableSource : AbnormalStatusSource<Vulnerable>{}
+    public class VulnerableSource : AbnormalStatusSource<Vulnerable> { }
     [System.Serializable]
     public class Vulnerable : AbnormalStatusContent
     {
         [CloneField] public float receiveRate;
-        [CustomDesc("receiveRate")]public string dReceiveRate { get => (receiveRate*100).ToString() + "%";}
-        [CustomDesc("turn")]public string dTurn{get=>count.ToString();}
-        public override void OnGenerate()
+        [CustomDesc("receiveRate")] public string dReceiveRate { get => (receiveRate * 100).ToString() + "%"; }
+        [CustomDesc("turn")] public string dTurn { get => count.ToString(); }
+        public override void OnGenerate(params object[] args)
         {
             owner.receiveRate += receiveRate;
         }

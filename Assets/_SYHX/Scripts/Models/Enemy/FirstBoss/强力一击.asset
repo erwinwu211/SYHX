@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee8744b627ce1944919cecc0c622ab4, type: 3}
-  m_Name: TestGroup
+  m_Script: {fileID: 11500000, guid: 9820c2eccac2b5949b4975ccefc22b8d, type: 3}
+  m_Name: "\u5F3A\u529B\u4E00\u51FB"
   m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 11400000, guid: 37d6a54b68e4e8c4ea20ac1e7c529a8b, type: 2}
+  desc: "\u4F24\u5BB3\u7387{damageRate}"
+  origin:
+    damageRate: 2

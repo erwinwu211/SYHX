@@ -8,37 +8,39 @@ namespace SYHX.AbnormalStatus
 
     public class AbnormalStatusManager : Assitant<BattleCharacter>
     {
-        public AbnormalStatusManager(BattleCharacter owner) : base(owner) 
+        public AbnormalStatusManager(BattleCharacter owner) : base(owner)
         {
-            BattleProgressEvent.Ins.onPlayerTurnStart += DecreaseByTurn; 
             owner.onDeath += Release;
         }
         public void Release()
         {
-            BattleProgressEvent.Ins.onPlayerTurnStart -= DecreaseByTurn;
+            foreach (var asC in asList)
+            {
+                asC.Release();
+            }
         }
         private List<AbnormalStatusContent> asList = new List<AbnormalStatusContent>();
 
 
 
-        public void Add(AbnormalStatusSource source,int count)
+        public AbnormalStatusContent Add(AbnormalStatusSource source, int count, params object[] args)
         {
-            if(source.canRepeat)
+            if (source.canRepeat)
             {
-                Creat(source);
+                return Creat(source, count, args);
             }
             else
             {
-                Increase(source,count);
+                return Increase(source, count);
             }
         }
-        public void Increase(AbnormalStatusSource source, int count)
+        public AbnormalStatusContent Increase(AbnormalStatusSource source, int count)
         {
-            if (source == null) return;
-            var abnormalStatus = GetOrCreate(source);
-            abnormalStatus.Increase(count);
+            if (source == null) return null;
+            var abnormalStatus = GetOrCreate(source, count);
+            return abnormalStatus;
         }
-        public void Increase(AbnormalStatusContent content,int count)
+        public void Increase(AbnormalStatusContent content, int count)
         {
             content.Increase(count);
         }
@@ -48,18 +50,20 @@ namespace SYHX.AbnormalStatus
             var id = source.id;
             return asList.FirstOrDefault(ac => ac.id == source.id);
         }
-        public AbnormalStatusContent Creat(AbnormalStatusSource source)
+        public AbnormalStatusContent Creat(AbnormalStatusSource source, int count, params object[] args)
         {
-            var content = source.Generate(owner);
+            var content = source.Generate(owner, args);
+            content.Increase(count);
             asList.Add(content);
+            owner.OnAddAStatus();
             return content;
         }
-        public AbnormalStatusContent GetOrCreate(AbnormalStatusSource source)
+        public AbnormalStatusContent GetOrCreate(AbnormalStatusSource source, int count)
         {
             var result = Get(source);
             if (result == null)
             {
-                result = Creat(source);
+                result = Creat(source, count);
             }
             return result;
         }
@@ -70,14 +74,6 @@ namespace SYHX.AbnormalStatus
             return asList.Where(ac => ac.id == source.id).ToList();
         }
 
-        public void Clear(AbnormalStatusSource source)
-        {
-
-        }
-        public void Remove(AbnormalStatusSource source)
-        {
-
-        }
         public void Clear(AbnormalStatusContent content)
         {
             content.Clear();
@@ -107,7 +103,7 @@ namespace SYHX.AbnormalStatus
         public string GetText()
         {
             string text = "";
-            foreach(var content in asList)
+            foreach (var content in asList)
             {
                 text += content.Desc + "\n";
             }
@@ -119,10 +115,11 @@ namespace SYHX.AbnormalStatus
 
 public partial class BattleCharacter
 {
-    public void AddAbnormalStatus(AbnormalStatusSource source,int count = 0)
+    public AbnormalStatusContent AddAbnormalStatus(AbnormalStatusSource source, int count = 0, params object[] args)
     {
-        asManager.Add(source,count);
+        var content = asManager.Add(source, count, args);
         RefreshUI();
+        return content;
     }
     public void RemoveAbnormalStatus(AbnormalStatusContent content)
     {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using System;
 
 namespace SYHX.AbnormalStatus
 {
-    public abstract class AbnormalStatusContent : Content
+    public abstract partial class AbnormalStatusContent : Content
     {
         #region meta数据
         public int id { get; private set; }
@@ -22,7 +23,7 @@ namespace SYHX.AbnormalStatus
         public AbnormalStatusSource source { get; protected set; }
         protected BattleCharacter owner;
 
-        public void Init(AbnormalStatusSource source, BattleCharacter owner, Dictionary<string, PropertyInfo> descOption)
+        public void Init(AbnormalStatusSource source, BattleCharacter owner, Dictionary<string, PropertyInfo> descOption, params object[] args)
         {
             this.source = source;
             id = source.id;
@@ -33,16 +34,12 @@ namespace SYHX.AbnormalStatus
             this.owner = owner;
             this.descOption = descOption;
             this.desc = source.desc;
+            Generate(args);
         }
 
-
-        public bool isActive { get; protected set; }
+        public virtual void ReceiveParameters(params object[] args) { }
         public virtual void Increase(int count)
         {
-            if (!this.isActive)
-            {
-                Generate();
-            }
             this.count += count;
             if (count > 0)
             {
@@ -56,30 +53,33 @@ namespace SYHX.AbnormalStatus
         public virtual void Decrease(int count)
         {
             this.count -= count;
-            if (this.isActive && this.count <= 0)
+            if (this.count <= 0)
             {
                 count = 0;
                 this.OnDecrease();
                 owner.ClearAbnormalStatus(this);
             }
-            else if (this.isActive)
+            else
             {
                 this.OnDecrease();
             }
         }
 
         //生成时
-        public void Generate()
+        public void Generate(params object[] args)
         {
             this.count = 0;
-            this.isActive = true;
-            this.OnGenerate();
+            if (isTurnBased)
+            {
+                AddEndAction(TurnDecrease);
+            }
+            this.OnGenerate(args);
         }
         //净化
         public void Remove()
         {
             this.count = 0;
-            this.isActive = false;
+            Release();
             this.OnRemove();
         }
 
@@ -87,15 +87,31 @@ namespace SYHX.AbnormalStatus
         public void Clear()
         {
             this.count = 0;
-            this.isActive = false;
+            Release();
             this.OnClear();
         }
+
+        public virtual void Release()
+        {
+            if (isTurnBased)
+            {
+                RemoveEndAction(TurnDecrease);
+            }
+        }
+        public void TurnDecrease()
+        {
+            this.Decrease(1);
+        }
+
+        #region 重写事件
 
         public virtual void OnDecrease() { }
         public virtual void OnIncrease() { }
         public virtual void OnRemove() => OnClear();
         public virtual void OnClear() { }
-        public virtual void OnGenerate() { }
+        public virtual void OnGenerate(params object[] args) { }
+
+        #endregion
 
         public virtual string GetDesc(string desc)
         {
@@ -106,6 +122,59 @@ namespace SYHX.AbnormalStatus
             return desc;
         }
 
+    }
+
+
+    //action controller
+    public abstract partial class AbnormalStatusContent
+    {
+        public void AddEndAction(Action action)
+        {
+            if (owner.isEnemy)
+            {
+                BattleProgressEvent.Ins.onEnemyTurnEnd += action;
+            }
+            else
+            {
+                BattleProgressEvent.Ins.onPlayerTurnEnd += action;
+            }
+        }
+
+        public void RemoveEndAction(Action action)
+        {
+            if (owner.isEnemy)
+            {
+                BattleProgressEvent.Ins.onEnemyTurnEnd -= action;
+            }
+            else
+            {
+                BattleProgressEvent.Ins.onPlayerTurnEnd -= action;
+            }
+        }
+
+        public void AddStartAction(Action action)
+        {
+            if (owner.isEnemy)
+            {
+                BattleProgressEvent.Ins.onEnemyTurnStart += action;
+            }
+            else
+            {
+                BattleProgressEvent.Ins.onPlayerTurnStart += action;
+            }
+        }
+
+        public void RemoveStartAction(Action action)
+        {
+            if (owner.isEnemy)
+            {
+                BattleProgressEvent.Ins.onEnemyTurnStart -= action;
+            }
+            else
+            {
+                BattleProgressEvent.Ins.onPlayerTurnStart -= action;
+            }
+        }
     }
 }
 

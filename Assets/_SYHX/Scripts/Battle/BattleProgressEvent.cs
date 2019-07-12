@@ -13,6 +13,7 @@ public class BattleProgressEvent : Singleton<BattleProgressEvent>
     {
         onPlayerTurnEnd();
     }
+
     public event Action<CardContent, CardUseTrigger> onCardUsed = delegate { };
     public void OnCardUsed(CardContent cc, CardUseTrigger trigger)
     {
