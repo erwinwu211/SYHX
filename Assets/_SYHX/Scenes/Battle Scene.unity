@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1757,6 +1757,8 @@ MonoBehaviour:
   cardGo: {fileID: 5444214861292780424, guid: 98a9e6aa1b6c2324bad041cc5359e65b, type: 3}
   zeroPosition: {x: 75, y: 0, z: 0}
   shiftPosition: {x: 110, y: 0, z: 0}
+  duration: 0.4
+  nextstep: 0.3
   cards:
   - {fileID: 11400000, guid: 87db404662c98f746af7ea0d809fe8e1, type: 2}
   - {fileID: 11400000, guid: abb10f85fc57f5a49bb650b58d21f068, type: 2}

@@ -8,6 +8,7 @@ namespace SYHX.Cards
 {
     public class BattleCardManager : SingletonMonoBehaviour<BattleCardManager>
     {
+        #region 卡牌区域
         //卡牌存储区域
         //牌库
         private List<CardContent> deckPile = new List<CardContent>();
@@ -28,11 +29,14 @@ namespace SYHX.Cards
 
         //临时使用牌区
         private List<CardContent> tempPile = new List<CardContent>();
-
+        #endregion
 
         public BattleCardUI cardGo;
         public Vector3 zeroPosition;
         public Vector3 shiftPosition;
+
+        public float duration = 1.0f;
+        public float nextstep = 0.3f;
 
         public CardContent[] safeDeckPile => handPile.ToArray();
         public CardContent[] safeDiscardPile => discardPile.ToArray();
@@ -49,13 +53,20 @@ namespace SYHX.Cards
                 card.GenerateToDeck();
             }
         }
+
+
         /// <summary>
         /// 抽牌方法
         /// </summary>
         /// <param name="count">抽牌的张数</param>
-        public List<CardContent> Draw(int count)
+        [System.Obsolete]
+        public void Draw(int count)
         {
-            var drawList = new List<CardContent>();
+            StartCoroutine(Draw(null, count));
+        }
+
+        public IEnumerator Draw(List<CardContent> outlist, int count)
+        {
             var leftCount = count;
             while (leftCount > 0)
             {
@@ -63,7 +74,8 @@ namespace SYHX.Cards
                 {
                     if (discardPile.Count > 0)
                     {
-                        Shuffle();
+                        yield return IRefreshUI();
+                        yield return Shuffle();
                         continue;
                     }
                     else break;
@@ -71,17 +83,81 @@ namespace SYHX.Cards
                 else
                 {
                     CardContent card = deckPile[0];
-                    GoTo(card, CardPosition.Hand);
+                    yield return IGoTo(card, CardPosition.Hand);
                     leftCount--;
                     card.OnDraw();
-                    RefreshUI();
-                    drawList.Add(card);
+                    if (outlist != null)
+                    {
+                        outlist.Add(card);
+                    }
                     if (leftCount == 0) break;
                 }
             }
-            return drawList;
+            yield return IRefreshUI();
+            yield break;
+
         }
 
+        /// <summary>
+        /// 洗牌方法
+        /// </summary>
+        public IEnumerator Shuffle()
+        {
+            List<CardContent> temp = new List<CardContent>();
+            //先将弃牌堆打乱
+            foreach (CardContent card in discardPile)
+            {
+                temp.Insert(Random.Range(0, temp.Count), card);
+            }
+            //将所有弃牌放入牌堆中
+            foreach (CardContent card in temp)
+            {
+                yield return IGoTo(card, CardPosition.Deck);
+            }
+            yield break;
+        }
+
+        public IEnumerator IRefreshUI()
+        {
+            var index = 0;
+            var count = handPile.Count;
+            var zero = -count * zeroPosition;
+            foreach (var cc in handPile)
+            {
+                index++;
+                cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
+                yield return new WaitForSeconds(nextstep);
+            }
+            yield break;
+        }
+
+        public void RefreshUI()
+        {
+            var index = 0;
+            var count = handPile.Count;
+            var zero = -count * zeroPosition;
+            foreach (var cc in handPile)
+            {
+                index++;
+                cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
+            }
+        }
+
+        public Vector3 GetPosition(CardContent cc)
+        {
+            if (!handPile.Contains(cc))
+            {
+                return Vector3.zero;
+            }
+            var count = handPile.Count;
+            var zero = -count * zeroPosition;
+            var index = handPile.IndexOf(cc) + 1;
+            return index * shiftPosition + zero;
+        }
+
+
+
+        #region 卡牌使用移动
         public void Discard(CardContent cc)
         {
             GoTo(cc, CardPosition.Discard);
@@ -137,33 +213,50 @@ namespace SYHX.Cards
         {
             GoTo(cc, CardPosition.Temp);
         }
-        public void RefreshUI()
-        {
-            var index = 0;
-            var count = handPile.Count;
-            var zero = -count * zeroPosition;
-            foreach (var cc in handPile)
-            {
-                index++;
-                cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, 1f);
-                // cc.bUI.transform.localPosition = index * shiftPosition + zero;
-            }
-        }
-
-        public Vector3 GetPosition(CardContent cc)
-        {
-            if (!handPile.Contains(cc))
-            {
-                return Vector3.zero;
-            }
-            var count = handPile.Count;
-            var zero = -count * zeroPosition;
-            var index = handPile.IndexOf(cc) + 1;
-            return index * shiftPosition + zero;
-        }
-
+        #endregion
 
         #region 卡牌去向
+        private IEnumerator IGoTo(CardContent cc, CardPosition position)
+        {
+            GetCurrentList(cc).Remove(cc);
+            cc.bUI.position = position;
+            switch (position)
+            {
+                case CardPosition.Deck:
+                    deckPile.Add(cc);
+                    cc.bUI.transform.SetParent(deckPos.transform);
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
+                    yield return new WaitForSeconds(nextstep);
+                    break;
+                case CardPosition.Discard:
+                    discardPile.Add(cc);
+                    cc.bUI.transform.SetParent(discardPos.transform);
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
+                    yield return new WaitForSeconds(nextstep);
+                    break;
+                case CardPosition.Exhaust:
+                    exhaustPile.Add(cc);
+                    cc.bUI.transform.SetParent(exhaustPos.transform);
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
+                    yield return new WaitForSeconds(nextstep);
+                    break;
+                case CardPosition.Hand:
+                    handPile.Add(cc);
+                    cc.bUI.transform.SetParent(handPos.transform, true);
+                    break;
+                case CardPosition.Used:
+                    usedPile.Add(cc);
+                    cc.bUI.transform.SetParent(usedPos.transform);
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
+                    yield return new WaitForSeconds(nextstep);
+                    break;
+                case CardPosition.Temp:
+                    tempPile.Add(cc);
+                    break;
+            }
+            yield break;
+        }
+
         private void GoTo(CardContent cc, CardPosition position)
         {
             GetCurrentList(cc).Remove(cc);
@@ -173,31 +266,26 @@ namespace SYHX.Cards
                 case CardPosition.Deck:
                     deckPile.Add(cc);
                     cc.bUI.transform.SetParent(deckPos.transform);
-                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
-                    // cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
                     break;
                 case CardPosition.Discard:
                     discardPile.Add(cc);
                     cc.bUI.transform.SetParent(discardPos.transform);
-                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
-                    // cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
                     break;
                 case CardPosition.Exhaust:
                     exhaustPile.Add(cc);
                     cc.bUI.transform.SetParent(exhaustPos.transform);
-                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
-                    // cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
                     break;
                 case CardPosition.Hand:
                     handPile.Add(cc);
                     cc.bUI.transform.SetParent(handPos.transform, false);
-                    // cc.bUI.transform.DOLocalMove(GetPosition(cc), 0.3f);
                     break;
                 case CardPosition.Used:
                     usedPile.Add(cc);
                     cc.bUI.transform.SetParent(usedPos.transform);
-                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
-                    // cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, duration);
                     break;
                 case CardPosition.Temp:
                     tempPile.Add(cc);
@@ -228,28 +316,7 @@ namespace SYHX.Cards
         }
         #endregion
 
-
-
-
-
-        /// <summary>
-        /// 洗牌方法
-        /// </summary>
-        public void Shuffle()
-        {
-            List<CardContent> temp = new List<CardContent>();
-            //先将弃牌堆打乱
-            foreach (CardContent card in discardPile)
-            {
-                temp.Insert(Random.Range(0, temp.Count), card);
-            }
-            //将所有弃牌放入牌堆中
-            foreach (CardContent card in temp)
-            {
-                GoTo(card, CardPosition.Deck);
-            }
-        }
-
+        #region 生成卡牌
         private void GenerateCardUI(CardContent cc)
         {
             var go = GameObject.Instantiate(cardGo, deckPos.transform.position, deckPos.transform.rotation, deckPos.transform);
@@ -263,8 +330,7 @@ namespace SYHX.Cards
             GoTo(cc, position);
             cc.RefreshUI();
         }
-
-        public void AddToDeck(CardContent cc) => deckPile.Add(cc);
+        #endregion
     }
 
 }
