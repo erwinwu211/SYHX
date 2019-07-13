@@ -142,7 +142,7 @@ public partial class BattleManager
 
 
 
-    //顺序携程，可能不用
+    //回合处理时使用
     public static void ManagedCoroutineWithLock(IEnumerator enumarator, CoroutineType type)
     {
         if (coroutineLock.ContainsKey(type))

@@ -10,6 +10,7 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<AbnormalStatusSource> asSource;
     [SerializeField] public List<CardSource> cSource;
     [SerializeField] public List<EnemyActionSource> eaSource;
+    [SerializeField] public DamageMono damageSource;
     [TableList] public ModificationFactor[] factors;
 
     protected override void UnityAwake()

@@ -1118,6 +1118,7 @@ RectTransform:
   - {fileID: 1088855367}
   - {fileID: 223098750}
   - {fileID: 473818573}
+  - {fileID: 1016028003}
   m_Father: {fileID: 1399497700}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1898,6 +1899,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938940306}
   m_CullTransparentMesh: 0
+--- !u!1 &1016028002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016028003}
+  - component: {fileID: 1016028005}
+  m_Layer: 5
+  m_Name: damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1016028003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016028002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 718611867}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -192.7081, y: 123.6149}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1016028005
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016028002}
+  m_CullTransparentMesh: 0
 --- !u!1 &1047806426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2719,7 @@ MonoBehaviour:
   attack: 10
   defence: 10
   barrier: 0
+  damageTrans: {fileID: 1016028003}
   statusText: {fileID: 1088855368}
   hpText: {fileID: 585795747}
   barrierText: {fileID: 773835601}
@@ -5039,5 +5085,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: damageSource
+      value: 
+      objectReference: {fileID: 1548390756451542601, guid: 041215ec226edcf49adcc90d8a28ff88,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2414215cd64c68c4b9e8e6519e509718, type: 3}

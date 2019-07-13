@@ -11,7 +11,11 @@ public static class Damage
     }
     public static int CalculateAndApply(BattleCharacter giver, BattleCharacter receiver, float rate, DamageTrigger trigger)
     {
-        return giver.GiveDamage(receiver, rate, trigger);
+        var trans = receiver.damageTrans;
+        var damage = giver.GiveDamage(receiver, rate, trigger);
+        var damageSource = GameObject.Instantiate(Initializer.Ins.damageSource, trans);
+        damageSource.SetText(damage.ToString());
+        return damage;
     }
 }
 

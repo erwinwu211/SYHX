@@ -23,6 +23,8 @@ public partial class BattleCharacter : MonoBehaviour
     public event Action onDeath = delegate { };
     public AbnormalStatusManager asManager;
 
+    [SerializeField] public Transform damageTrans;
+
     public TextMeshProUGUI statusText;
     void Start()
     {
