@@ -78,27 +78,26 @@ public class PlayerStartState : TurnState
         BattleProgressEvent.Ins.OnPlayerTurnStart();
         BattleManager.sEnergyPointRegain();
         BattleManager.sTurnStartDraw();
-        owner.owner.fsmManager.TryTransition(owner.playerTurnState);
+        BattleManager.ManagedCoroutineWithLock(Check(), CoroutineType.playerTurnStart);
 
     }
 
     public override void Update()
     {
-        //当发牌动画播放完成，打开EndFlag
-        Check();
-
         if (EndFlag)
         {
-            Exit();
+            EndFlag = false;
+            owner.owner.fsmManager.TryTransition(owner.playerTurnState);
         }
     }
 
     public override void Exit() { }
     public override string FsmName() => "PlayerStart";
 
-    private void Check()
+    private IEnumerator Check()
     {
         EndFlag = true;
+        yield break;
     }
 
 }
@@ -226,7 +225,7 @@ public class EnemyStartState : TurnState
         }
     }
 
-    public override void Exit() =>owner.owner.fsmManager.TryTransition(owner.enemyEndState);
+    public override void Exit() => owner.owner.fsmManager.TryTransition(owner.enemyEndState);
 
     public override string FsmName() => "EnemyStart";
 }

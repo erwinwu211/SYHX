@@ -115,8 +115,13 @@ public partial class BattleManager
 
     public static void sAddTurn() => Ins.biManager.AddTurn();
     public static int sGetEP() => Ins.biManager.currentEP;
-    public static void sTurnStartDraw() => sDraw(Ins.biManager.DrawCountPerTurn);
+    public static void sTurnStartDraw() => ManagedCoroutineWithLock(sIDraw(null, Ins.biManager.DrawCountPerTurn), CoroutineType.playerTurnStart);
     public static void sDraw(int count) => BattleCardManager.Ins.Draw(count);
+    public static IEnumerator sIDraw(List<CardContent> outlist, int count)
+    {
+        yield return BattleCardManager.Ins.Draw(outlist, count);
+        yield break;
+    }
     public static void sShuffle() => BattleCardManager.Ins.Shuffle();
     public static void sEnergyPointRegain() => Ins.biManager.EnergyPointRegain();
     public static void sChangeEnergy(int ep) => Ins.biManager.ChangeEnergy(ep);
@@ -133,7 +138,7 @@ public partial class BattleManager
 public partial class BattleManager
 {
     public static void ManagedCoroutine(IEnumerator enumarator) => Ins.StartCoroutine(enumarator);
-    public static Dictionary<CoroutineType, List<IEnumerator>> coroutineLock;
+    public static Dictionary<CoroutineType, List<IEnumerator>> coroutineLock = new Dictionary<CoroutineType, List<IEnumerator>>();
 
 
 
@@ -146,6 +151,9 @@ public partial class BattleManager
         }
         else
         {
+            var list = new List<IEnumerator>();
+            list.Add(enumarator);
+            coroutineLock.Add(type, list);
             Ins.StartCoroutine(Ins.LockedCoroutine(type));
         }
     }
@@ -167,5 +175,5 @@ public partial class BattleManager
 
 public enum CoroutineType
 {
-    enemyOnGoing, canExeNextEnemy, finishEnemyAction,
+    enemyOnGoing, canExeNextEnemy, finishEnemyAction, playerTurnStart
 }

@@ -59,6 +59,7 @@ namespace SYHX.Cards
         /// 抽牌方法
         /// </summary>
         /// <param name="count">抽牌的张数</param>
+        ///为了互换性还留存着，直接使用协程
         [System.Obsolete]
         public void Draw(int count)
         {
@@ -142,19 +143,6 @@ namespace SYHX.Cards
                 cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
             }
         }
-
-        public Vector3 GetPosition(CardContent cc)
-        {
-            if (!handPile.Contains(cc))
-            {
-                return Vector3.zero;
-            }
-            var count = handPile.Count;
-            var zero = -count * zeroPosition;
-            var index = handPile.IndexOf(cc) + 1;
-            return index * shiftPosition + zero;
-        }
-
 
 
         #region 卡牌使用移动
@@ -256,7 +244,7 @@ namespace SYHX.Cards
             }
             yield break;
         }
-
+        //等决定动画后再逐步废除
         private void GoTo(CardContent cc, CardPosition position)
         {
             GetCurrentList(cc).Remove(cc);
@@ -280,7 +268,7 @@ namespace SYHX.Cards
                     break;
                 case CardPosition.Hand:
                     handPile.Add(cc);
-                    cc.bUI.transform.SetParent(handPos.transform, false);
+                    cc.bUI.transform.SetParent(handPos.transform, true);
                     break;
                 case CardPosition.Used:
                     usedPile.Add(cc);
