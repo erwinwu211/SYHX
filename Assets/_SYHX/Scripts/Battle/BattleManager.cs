@@ -146,7 +146,7 @@ public partial class BattleManager
         }
         else
         {
-            Ins.LockedCoroutine(type);
+            Ins.StartCoroutine(Ins.LockedCoroutine(type));
         }
     }
     private IEnumerator LockedCoroutine(CoroutineType type)
@@ -167,5 +167,5 @@ public partial class BattleManager
 
 public enum CoroutineType
 {
-    enemyOnGoing, canExeNextEnemy, finishEnemyAction
+    enemyOnGoing, canExeNextEnemy, finishEnemyAction,
 }

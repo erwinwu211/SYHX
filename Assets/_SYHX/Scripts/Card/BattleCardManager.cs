@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 namespace SYHX.Cards
 {
@@ -144,8 +145,21 @@ namespace SYHX.Cards
             foreach (var cc in handPile)
             {
                 index++;
-                cc.bUI.transform.localPosition = index * shiftPosition + zero;
+                cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, 1f);
+                // cc.bUI.transform.localPosition = index * shiftPosition + zero;
             }
+        }
+
+        public Vector3 GetPosition(CardContent cc)
+        {
+            if (!handPile.Contains(cc))
+            {
+                return Vector3.zero;
+            }
+            var count = handPile.Count;
+            var zero = -count * zeroPosition;
+            var index = handPile.IndexOf(cc) + 1;
+            return index * shiftPosition + zero;
         }
 
 
@@ -159,26 +173,31 @@ namespace SYHX.Cards
                 case CardPosition.Deck:
                     deckPile.Add(cc);
                     cc.bUI.transform.SetParent(deckPos.transform);
-                    cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
+                    // cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Discard:
                     discardPile.Add(cc);
                     cc.bUI.transform.SetParent(discardPos.transform);
-                    cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
+                    // cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Exhaust:
                     exhaustPile.Add(cc);
                     cc.bUI.transform.SetParent(exhaustPos.transform);
-                    cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
+                    // cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Hand:
                     handPile.Add(cc);
                     cc.bUI.transform.SetParent(handPos.transform, false);
+                    // cc.bUI.transform.DOLocalMove(GetPosition(cc), 0.3f);
                     break;
                 case CardPosition.Used:
                     usedPile.Add(cc);
                     cc.bUI.transform.SetParent(usedPos.transform);
-                    cc.bUI.transform.localPosition = Vector3.zero;
+                    cc.bUI.transform.DOLocalMove(Vector3.zero, 1f);
+                    // cc.bUI.transform.localPosition = Vector3.zero;
                     break;
                 case CardPosition.Temp:
                     tempPile.Add(cc);
