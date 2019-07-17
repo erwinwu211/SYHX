@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI : MonoBehaviour
+public class MainUI : SingletonMonoBehaviour<MainUI>
 {
     public GameObject LvCount;
     public GameObject ExpBar;
@@ -13,56 +13,136 @@ public class MainUI : MonoBehaviour
     public GameObject CoreCount;
     public GameObject CharacterPainting;
     public GameObject DialogueBox;
+    private float timer;
 
+    /// <summary>
+    /// 出击按钮事件
+    /// </summary>
     public void OnCombatBtnClick()
     {
         SceneStatusManager.Ins.SetSceneStatus(new ChooseStatus(SceneStatusManager.Ins));
     }
 
+    /// <summary>
+    /// 干员按钮事件
+    /// </summary>
     public void OnMemberBtnClick()
     {
         SceneStatusManager.Ins.SetSceneStatus(new CharacterStatus(SceneStatusManager.Ins));
     }
 
+    /// <summary>
+    /// 约会按钮事件
+    /// </summary>
     public void OnDateBtnClick()
     {
 
     }
 
+    /// <summary>
+    /// 仓库按钮事件
+    /// </summary>
     public void OnWarehouseBtnClick()
     {
 
     }
 
+    /// <summary>
+    /// 设置按钮事件
+    /// </summary>
     public void OnOptionsBtnClick()
     {
 
     }
 
+    /// <summary>
+    /// 退出按钮事件
+    /// </summary>
     public void OnQuitBtnClick()
     {
 
     }
 
+    /// <summary>
+    /// 图鉴按钮事件
+    /// </summary>
     public void OnArchiveBtnClick()
     {
 
     }
 
-
-    public void Update()
+    /// <summary>
+    /// 立绘被点击时的事件
+    /// </summary>
+    public void OnCharacterPaintingClick()
     {
-        RefreshTime();
+
     }
 
     /// <summary>
     /// 刷新当前系统时间
     /// </summary>
-    private void RefreshTime()
+    public void RefreshTime()
     {
         TimeCount.GetComponent<Text>().text = GetSystemTime();
     }
 
+    /// <summary>
+    /// 刷新玩家的伦特币数量
+    /// </summary>
+    /// <param name="count"></param>
+    public void RefreshLuntCount(int count)
+    {
+        LuntCount.GetComponent<Text>().text = count + "";
+    }
+
+    /// <summary>
+    /// 刷新玩家的核心数量
+    /// </summary>
+    /// <param name="count"></param>
+    public void RefreshCoreCount(int count)
+    {
+        CoreCount.GetComponent<Text>().text = count + "";
+    }
+
+    /// <summary>
+    /// 刷新玩家的等级信息
+    /// </summary>
+    /// <param name="lv"></param>
+    /// <param name="currentExp"></param>
+    public void RefreshLvInfo(int lv,int currentExp)
+    {
+        string LvText = ""+lv;
+        if (lv < 10)
+        {
+            LvText = "0" + lv;
+        }
+        LvCount.GetComponent<Text>().text = LvText;
+        int expMax = Initializer.Ins.lvInfos[lv].Exp;
+        ExpBar.GetComponent<Slider>().value = currentExp / expMax;
+        ExpCount.GetComponent<Text>().text = "EXP "+currentExp + " / " + expMax;
+    }
+
+    /// <summary>
+    /// 显示对话框
+    /// </summary>
+    /// <param name="text">对话框内容</param>
+    /// <param name="closeTime">多少时间后对话框消失</param>
+    public void ShowDialogueBox(string text,float closeTime)
+    {
+        DialogueBox.SetActive(true);
+        DialogueBox.transform.Find("Dialogue").GetComponent<Text>().text = text;
+        StartCoroutine(EnhanceDialogueBox(closeTime));
+    }
+
+    /// <summary>
+    /// 隐藏对话框
+    /// </summary>
+    IEnumerator EnhanceDialogueBox(float closeTime)
+    {
+        yield return new WaitForSeconds(closeTime);
+        DialogueBox.SetActive(false);
+    }
 
     /// <summary>
     /// 处理获取到的时间的格式
@@ -97,5 +177,9 @@ public class MainUI : MonoBehaviour
         }
         time = year + "." + month + "." + day + " " + hour + ":" + minute + AMorPM;
         return time;
+    }
+
+    protected override void UnityAwake()
+    {
     }
 }

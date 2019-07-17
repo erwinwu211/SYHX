@@ -76,6 +76,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9946ca9cd46992746bfd6ae54335777e, type: 2}
   - {fileID: 11400000, guid: 64afa4e35f68dc44e99b0a7774297692, type: 2}
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
+  damageSource: {fileID: 0}
   factors:
   - Force: 0.8
     Aglie: 0.8
@@ -104,3 +105,44 @@ MonoBehaviour:
   - Force: 1.4
     Aglie: 1.4
     Constitution: 1.4
+  lvInfos:
+  - Lv: 1
+    Exp: 100
+  - Lv: 2
+    Exp: 300
+  - Lv: 3
+    Exp: 700
+  - Lv: 4
+    Exp: 1200
+  - Lv: 5
+    Exp: 2000
+  - Lv: 6
+    Exp: 3000
+  - Lv: 7
+    Exp: 4200
+  - Lv: 8
+    Exp: 5500
+  - Lv: 9
+    Exp: 6000
+  - Lv: 10
+    Exp: 6500
+  - Lv: 11
+    Exp: 7000
+  - Lv: 12
+    Exp: 7200
+  - Lv: 13
+    Exp: 7500
+  - Lv: 14
+    Exp: 8000
+  - Lv: 15
+    Exp: 8500
+  - Lv: 16
+    Exp: 9000
+  - Lv: 17
+    Exp: 9500
+  - Lv: 18
+    Exp: 10000
+  - Lv: 19
+    Exp: 10000
+  - Lv: 20
+    Exp: 10000

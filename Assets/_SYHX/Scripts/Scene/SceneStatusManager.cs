@@ -13,8 +13,19 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     private AsyncOperation mAO;
     private bool mHasStartDone = false;
 
+    private void Start()
+    {
+        SetSceneStatus(new MainStatus(this));
+    }
+
+    private void Update()
+    {
+        StatusUpdate();
+    }
+
     public void SetSceneStatus(SceneStatus next, bool needLoad = true)
     {
+
         //当前状态不为空时，则执行当前状态的end方法
         if (current != null)
         {
@@ -25,6 +36,7 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
         //根据新状态加载场景,若不需要加载，则直接进行start操作
         if (needLoad)
         {
+
             mAO = SceneManager.LoadSceneAsync(current.SceneName());
             mHasStartDone = false;
         }
@@ -53,15 +65,5 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
         {
             current.Update();
         }
-    }
-
-    public void OnAdventureBtnClick()
-    {
-        SetSceneStatus(new ChooseStatus(this));
-    }
-
-    public void OnCharacterBtnClick()
-    {
-        SetSceneStatus(new CharacterStatus(this));
     }
 }

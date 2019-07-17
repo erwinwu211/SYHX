@@ -30,7 +30,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         //创建好人物信息
 
         //进行初始化设定
-        selectedCharacter = CharacterManager.Ins.Umirika;
+        selectedCharacter = PlayerRecord.Ins.Umirika.character;
         TalentBtnTip.SetActive(false);
         RefreshSelectedCharacterInfo();
     }
@@ -56,7 +56,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         switch (i)
         {
             case 1:
-                selectedCharacter = CharacterManager.Ins.Umirika;
+                selectedCharacter = PlayerRecord.Ins.Umirika.character;
                 return;
             case 2:
                 return;

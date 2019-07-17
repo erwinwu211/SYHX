@@ -22,6 +22,8 @@ public abstract class CharacterContent
     public int Fortune { get; protected set; }
     public List<CardContent> Deck { get; protected set; }
     public List<Talent> Talents { get; protected set; }
+    public string[] TouchText { get; protected set; }
+    public string Welcome { get; protected set; }
 
     public CharacterContent() { }
     

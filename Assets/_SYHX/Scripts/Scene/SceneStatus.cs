@@ -7,7 +7,7 @@ public abstract class SceneStatus : Assitant<SceneStatusManager>
     public SceneStatus(SceneStatusManager owner) : base(owner) { }
 
     public virtual void Enter() { }
-    public virtual void Update() { owner.StatusUpdate(); }
+    public virtual void Update() { }
     public virtual void Exit() { }
     public abstract string SceneName();
     public bool IsCurrent()
@@ -22,6 +22,22 @@ public class MainStatus : SceneStatus
     public MainStatus(SceneStatusManager owner) : base(owner) { }
 
     public override string SceneName() => "Main";
+    private CharacterContent cc;
+
+    public override void Enter()
+    {
+        cc = PlayerRecord.Ins.Umirika.character;
+        MainUI.Ins.RefreshCoreCount(PlayerRecord.Ins.coreCount);
+        MainUI.Ins.RefreshLuntCount(PlayerRecord.Ins.luntCount);
+        MainUI.Ins.RefreshLvInfo(PlayerRecord.Ins.playerLv,PlayerRecord.Ins.currentExp);
+        MainUI.Ins.RefreshTime();
+        MainUI.Ins.ShowDialogueBox(cc.Welcome,5);
+    }
+
+    public override void Update()
+    {
+        MainUI.Ins.RefreshTime();
+    }
 }
 
 public class ChooseStatus : SceneStatus

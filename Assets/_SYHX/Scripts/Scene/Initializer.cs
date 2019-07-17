@@ -12,6 +12,7 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<EnemyActionSource> eaSource;
     [SerializeField] public DamageMono damageSource;
     [TableList] public ModificationFactor[] factors;
+    [TableList] public LvInfo[] lvInfos;
 
     protected override void UnityAwake()
     {
