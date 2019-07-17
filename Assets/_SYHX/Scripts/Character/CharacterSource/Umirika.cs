@@ -16,6 +16,11 @@ public class Umirika : CharacterContent
         Talents = new List<Talent>();
         Talents.Add(new Talent_00001());
         Talents[0].IsEffect = true;
+        TouchText = new string[]
+        {
+            "别摸我啦","再摸生气咯"
+        };
+        Welcome = "欢迎回来";
     }
 
     /// <summary>
