@@ -39,7 +39,7 @@ public class MapUI : MonoBehaviour
 
     public void OnReturnBtnClick()
     {
-        SceneStateManager.Ins.SetSceneStatus(new MainState(SceneStateManager.Ins));
+        SceneStatusManager.Ins.SetSceneStatus(new MainStatus(SceneStatusManager.Ins));
     }
 
     public void OnDungeonIconClick(DungeonSource ds)

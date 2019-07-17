@@ -16,12 +16,12 @@ public class MainUI : MonoBehaviour
 
     public void OnCombatBtnClick()
     {
-        SceneStateManager.Ins.SetSceneStatus(new ChooseState(SceneStateManager.Ins));
+        SceneStatusManager.Ins.SetSceneStatus(new ChooseStatus(SceneStatusManager.Ins));
     }
 
     public void OnMemberBtnClick()
     {
-        SceneStateManager.Ins.SetSceneStatus(new CharacterState(SceneStateManager.Ins));
+        SceneStatusManager.Ins.SetSceneStatus(new CharacterStatus(SceneStatusManager.Ins));
     }
 
     public void OnDateBtnClick()

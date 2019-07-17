@@ -26,12 +26,6 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         //读取界面
         TalentBtnTip = GameObject.Find("TalentBtn/Tip");
         Info = GameObject.Find("Info").transform;
-        NameText = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
-        AttackCount = Info.Find("Attack/Count").GetComponent<TextMeshProUGUI>();
-        DefendCount = Info.Find("Defend/Count").GetComponent<TextMeshProUGUI>();
-        PowerCount = Info.Find("Power/Count").GetComponent<TextMeshProUGUI>();
-        DrawCount = Info.Find("DrawCount/Count").GetComponent<TextMeshProUGUI>();
-        DeckCount = Info.Find("DeckCount/Count").GetComponent<TextMeshProUGUI>();
 
         //创建好人物信息
 
@@ -46,12 +40,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     /// </summary>
     private void RefreshSelectedCharacterInfo()
     {
-        NameText.text = selectedCharacter.Name;
-        AttackCount.text = selectedCharacter.Attack+"";
-        DefendCount.text = selectedCharacter.Defend + "";
-        PowerCount.text = selectedCharacter.Energy_max + "";
-        DrawCount.text = selectedCharacter.Draw_count + "";
-        DeckCount.text = selectedCharacter.Deck.Count + "";
+        
     }
 
     /// <summary>
@@ -59,7 +48,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     /// </summary>
     public void OnReturnBtnClick()
     {
-        SceneStateManager.Ins.SetSceneStatus(new MainState(SceneStateManager.Ins));
+        SceneStatusManager.Ins.SetSceneStatus(new MainStatus(SceneStatusManager.Ins));
     }
 
     public void OnToggleChanged(int i)

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneStateManager : SingletonMonoBehaviour<SceneStateManager>
+public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
 {
     protected override void UnityAwake()
     {
     }
 
-    public SceneState current;
+    public SceneStatus current;
     private AsyncOperation mAO;
     private bool mHasStartDone = false;
 
-    public void SetSceneStatus(SceneState next, bool needLoad = true)
+    public void SetSceneStatus(SceneStatus next, bool needLoad = true)
     {
         //当前状态不为空时，则执行当前状态的end方法
         if (current != null)
@@ -35,7 +35,7 @@ public class SceneStateManager : SingletonMonoBehaviour<SceneStateManager>
         }
     }
 
-    public void StateUpdate()
+    public void StatusUpdate()
     {
         //当进行了异步加载，但还未加载完成时
         if (mAO != null && mAO.isDone == false)
@@ -57,11 +57,11 @@ public class SceneStateManager : SingletonMonoBehaviour<SceneStateManager>
 
     public void OnAdventureBtnClick()
     {
-        SetSceneStatus(new ChooseState(this));
+        SetSceneStatus(new ChooseStatus(this));
     }
 
     public void OnCharacterBtnClick()
     {
-        SetSceneStatus(new CharacterState(this));
+        SetSceneStatus(new CharacterStatus(this));
     }
 }
