@@ -14,11 +14,12 @@ public enum BattleResult
 
 public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
-    #region 外部调用
+
     [SerializeField] private BattleHero hero;
     [SerializeField] public CardSelectorManager cardSelectorManager;
     [SerializeField] public BattleInfoManager biManager;
 
+    #region 外部调用
     public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
     public static List<Enemy> enemyList => BattleCharacterManager.Ins.enemyList;
     public static BattleCharacter Hero => BattleCharacterManager.Ins.hero;
@@ -119,10 +120,10 @@ public partial class BattleManager
     public static void sDraw(int count) => BattleCardManager.Ins.Draw(count);
     public static IEnumerator sIDraw(List<CardContent> outlist, int count)
     {
-        yield return BattleCardManager.Ins.Draw(outlist, count);
+        yield return BattleCardManager.Ins.IDraw(outlist, count);
         yield break;
     }
-    public static void sShuffle() => BattleCardManager.Ins.Shuffle();
+    public static void sShuffle() => BattleCardManager.Ins.IShuffle();
     public static void sEnergyPointRegain() => Ins.biManager.EnergyPointRegain();
     public static void sChangeEnergy(int ep) => Ins.biManager.ChangeEnergy(ep);
     public static void sRegainMoreEnergyPointNextTurn(int count) => Ins.biManager.RegainMoreEnergyPointNextTurn(count);

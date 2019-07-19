@@ -54,19 +54,20 @@ namespace SYHX.Cards
             }
         }
 
+        #region 卡牌基础（抽卡，洗牌）
 
         /// <summary>
         /// 抽牌方法
         /// </summary>
         /// <param name="count">抽牌的张数</param>
-        ///为了互换性还留存着，直接使用协程
+        /// 为了互换性还留存着，最好直接使用协程
         [System.Obsolete]
         public void Draw(int count)
         {
-            StartCoroutine(Draw(null, count));
+            StartCoroutine(IDraw(null, count));
         }
 
-        public IEnumerator Draw(List<CardContent> outlist, int count)
+        public IEnumerator IDraw(List<CardContent> outlist, int count)
         {
             var leftCount = count;
             while (leftCount > 0)
@@ -76,7 +77,7 @@ namespace SYHX.Cards
                     if (discardPile.Count > 0)
                     {
                         yield return IRefreshUI();
-                        yield return Shuffle();
+                        yield return IShuffle();
                         continue;
                     }
                     else break;
@@ -96,13 +97,12 @@ namespace SYHX.Cards
             }
             yield return IRefreshUI();
             yield break;
-
         }
 
         /// <summary>
         /// 洗牌方法
         /// </summary>
-        public IEnumerator Shuffle()
+        public IEnumerator IShuffle()
         {
             List<CardContent> temp = new List<CardContent>();
             //先将弃牌堆打乱
@@ -143,9 +143,10 @@ namespace SYHX.Cards
                 cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
             }
         }
+        #endregion
 
 
-        #region 卡牌使用移动
+        #region 卡牌移动相关（使用，消耗，弃牌）
         public void Discard(CardContent cc)
         {
             GoTo(cc, CardPosition.Discard);
