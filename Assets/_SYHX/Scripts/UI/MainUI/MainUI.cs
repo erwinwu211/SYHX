@@ -76,7 +76,9 @@ public class MainUI : SingletonMonoBehaviour<MainUI>
     /// </summary>
     public void OnCharacterPaintingClick()
     {
-
+        MainStatus ms = SceneStatusManager.Ins.current as MainStatus;
+        int i = Random.Range(0, ms.cc.Words.Touch.Length);
+        ShowDialogueBox(ms.cc.Words.Touch[i], 5);
     }
 
     /// <summary>
@@ -118,8 +120,8 @@ public class MainUI : SingletonMonoBehaviour<MainUI>
             LvText = "0" + lv;
         }
         LvCount.GetComponent<Text>().text = LvText;
-        int expMax = Initializer.Ins.lvInfos[lv].Exp;
-        ExpBar.GetComponent<Slider>().value = currentExp / expMax;
+        int expMax = Initializer.Ins.lvInfos[lv - 1].Exp;
+        ExpBar.GetComponent<Slider>().value = (float)currentExp / expMax;
         ExpCount.GetComponent<Text>().text = "EXP "+currentExp + " / " + expMax;
     }
 
@@ -132,7 +134,8 @@ public class MainUI : SingletonMonoBehaviour<MainUI>
     {
         DialogueBox.SetActive(true);
         DialogueBox.transform.Find("Dialogue").GetComponent<Text>().text = text;
-        StartCoroutine(EnhanceDialogueBox(closeTime));
+        StopCoroutine("EnhanceDialogueBox");
+        StartCoroutine("EnhanceDialogueBox",5);
     }
 
     /// <summary>

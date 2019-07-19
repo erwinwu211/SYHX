@@ -9,12 +9,13 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     public int currentExp { get; private set; }
     public int luntCount { get; private set; }
     public int coreCount { get; private set; }
-    public CharacterInfo Umirika { get; private set; }
+    public GameObject CharacterManager;
+    public CharacterContent Umirika { get; private set; }
 
 
     protected override void UnityAwake()
     {
-
+        Umirika = CharacterManager.GetComponent<Umirika>();
         //搜索并获得存档
         if (FindRecord()!=null)
         {
@@ -28,12 +29,7 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
             currentExp = 0;
             luntCount = 0;
             coreCount = 0;
-            Umirika = new CharacterInfo()
-            {
-                character = new Umirika(),
-                isLock = false,
-                characterLv = 1,
-            };
+            
             
 
             //创建新存档
@@ -59,12 +55,6 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     }
 }
 
-public struct CharacterInfo
-{
-    public CharacterContent character;
-    public bool isLock;
-    public int characterLv;
-}
 
 public struct DungeonInfo
 {

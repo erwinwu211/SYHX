@@ -12,15 +12,24 @@ public class Umirika : CharacterContent
         Defend = 5;
         Draw_count = 5;
         Energy_max = 3;
-        Deck = new List<CardContent>();
+        STR = 3;
+        AGI = 3;
+        INT = 3;
+        FOR = 3;
         Talents = new List<Talent>();
         Talents.Add(new Talent_00001());
         Talents[0].IsEffect = true;
-        TouchText = new string[]
+        Words = new CharacterWords()
         {
-            "别摸我啦","再摸生气咯"
+            Welcome = "欢迎回来",
+            Touch = new string[]
+            {
+                "摸摸头1",
+                "摸摸头2",
+                "摸摸头3",
+            },
+            Home = "终于能休息啦",
         };
-        Welcome = "欢迎回来";
     }
 
     /// <summary>

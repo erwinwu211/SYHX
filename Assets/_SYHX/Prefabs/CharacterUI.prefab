@@ -9140,11 +9140,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433c7576fcfa6d147a21d713091c7261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TalentPanel: {fileID: 6549466241690336965, guid: 6a80c494ba933614683d8ed43782b63b,
-    type: 3}
-  EquipmentPanel: {fileID: 1114929742348361901, guid: 6fc54e52ebcac4a4380cf659b530a56d,
-    type: 3}
-  Mask: {fileID: 9166601487010963056}
+  StrSlider: {fileID: 1963443535040485073}
+  AgiSlider: {fileID: 945015361858864708}
+  IntSlider: {fileID: 2854818936271363921}
+  ForSlider: {fileID: 3811132311929175378}
+  ATK: {fileID: 9045298036384466508}
+  DEF: {fileID: 6651540726380521410}
+  HP: {fileID: 1002629464255340292}
+  EP: {fileID: 701194687525709835}
+  DRAW: {fileID: 2141552102591150604}
+  SkillList: {fileID: 5908360272391060653}
+  SkillGO: {fileID: 534266316755945542}
+  Lv: {fileID: 7438019356352157507}
+  ExpSlider: {fileID: 6158246531338121282}
+  ExpCount: {fileID: 4813556209850611603}
 --- !u!1 &6158246531338121282
 GameObject:
   m_ObjectHideFlags: 0

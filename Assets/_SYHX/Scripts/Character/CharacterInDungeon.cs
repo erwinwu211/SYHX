@@ -43,10 +43,10 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Defend = cc.Defend;
         this.Energy_max = cc.Energy_max;
         this.Draw_count = cc.Draw_count;
-        this.Force = cc.Force;
-        this.Aglie = cc.Aglie;
-        this.Constitution = cc.Constitution;
-        this.Fortune = cc.Fortune;
+        this.Force = cc.STR;
+        this.Aglie = cc.AGI;
+        this.Constitution = cc.INT;
+        this.Fortune = cc.FOR;
         this.Deck = cc.Deck;
     }
 
