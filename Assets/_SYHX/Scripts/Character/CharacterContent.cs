@@ -26,6 +26,7 @@ public class CharacterContent:MonoBehaviour
     [SerializeField] public List<Talent> Talents;
     public CharacterWords Words;
     [TableList] public LvInfo[] lvInfos;
+    [TableList] public CharacterSkill[] skills;
 
     public CharacterContent() { }
     

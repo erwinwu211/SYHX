@@ -6,6 +6,7 @@ using TMPro;
 
 public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
 {
+    public GameObject Info;
     public GameObject StrSlider;
     public GameObject AgiSlider;
     public GameObject IntSlider;
@@ -20,6 +21,8 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     public GameObject Lv;
     public GameObject ExpSlider;
     public GameObject ExpCount;
+    public GameObject SkillPanel;
+    public float FillSpeed = 0.18f;
 
     public CharacterContent selectedCharacter { get; private set; }
     private int mode = 1; //当前此界面的模式：1-人物信息 2-天赋 3-介绍
@@ -86,6 +89,21 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 HP.transform.Find("Count").GetComponent<Text>().text = cc.Hp_max + "";
                 EP.transform.Find("Count").GetComponent<Text>().text = cc.Energy_max + "";
                 DRAW.transform.Find("Count").GetComponent<Text>().text = cc.Draw_count + "";
+
+                foreach (Transform tf in SkillList.transform)
+                {
+                    Destroy(tf.gameObject);
+                }
+                foreach (CharacterSkill skill in cc.skills)
+                {
+                    GameObject go =Instantiate(SkillGO, SkillList.transform);
+                    go.SetActive(true);
+                    go.transform.Find("Name").GetComponent<Text>().text = skill.name;
+                    go.GetComponent<Button>().onClick.AddListener(delegate
+                    {
+                        ShowSkillInfoPanel(skill);
+                    });
+                }
                 return;
 
             //更新人物天赋信息
@@ -97,6 +115,39 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
             case 3:
 
                 return;
+        }
+    }
+
+    public void ShowSkillInfoPanel(CharacterSkill skill)
+    {
+        Info.SetActive(false);
+        SkillPanel.SetActive(true);
+        Transform parent = SkillPanel.transform.Find("parent");
+        parent.Find("skill/Name").GetComponent<Text>().text = skill.name;
+        parent.Find("Desc").GetComponent<Text>().text = skill.desc;
+        StartCoroutine("FillPanel");
+    }
+
+    IEnumerator FillPanel()
+    {
+        Image image = SkillPanel.GetComponent<Image>();
+        image.fillAmount = 0.2f;
+        for(;image.fillAmount<1;)
+        {
+            image.fillAmount += FillSpeed;
+            yield return new WaitForSeconds(0.02f);
+        }
+        SkillPanel.transform.Find("parent").gameObject.SetActive(true);
+    }
+
+    IEnumerator UnFillPanel()
+    {
+        SkillPanel.transform.Find("parent").gameObject.SetActive(false);
+        Image image = SkillPanel.GetComponent<Image>();
+        for (; image.fillAmount > 0.2f;)
+        {
+            image.fillAmount -= FillSpeed;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 

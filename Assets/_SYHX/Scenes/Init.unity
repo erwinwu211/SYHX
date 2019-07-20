@@ -467,7 +467,6 @@ GameObject:
   - component: {fileID: 1674505073}
   - component: {fileID: 1674505076}
   - component: {fileID: 1674505074}
-  - component: {fileID: 1674505077}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -528,18 +527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   AttrMax: 10
---- !u!114 &1674505077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674505072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50e6caf20a02764e9530d8f0e033813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1727939547
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,8 +624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLock: 0
   Name: "\u5C24\u7C73\u8389\u5361"
-  Lv: 2
-  Exp: 30
+  Lv: 1
+  Exp: 0
   Hp_max: 70
   Attack: 6
   Defend: 5
@@ -709,6 +696,9 @@ MonoBehaviour:
     Exp: 20000
   - Lv: 30
     Exp: 20000
+  skills:
+  - name: "\u8FDE\u51FB"
+    desc: "\u6BCF\u6253\u51FA\u4E00\u5F20\u4E0E\u4E0A\u4E00\u5F20\u989C\u8272\u76F8\u540C\u7684\u5361\u724C\u65F6\uFF0C\u83B7\u5F971\u70B9\u8FDE\u51FB\u70B9\uFF0C\u6BCF\u70B9\u8FDE\u51FB\u70B9\u63D0\u9AD825%\u9020\u6210\u7684\u4F24\u5BB3\u3002"
 --- !u!4 &1805971136
 Transform:
   m_ObjectHideFlags: 0
