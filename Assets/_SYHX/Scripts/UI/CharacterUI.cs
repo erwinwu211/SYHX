@@ -125,7 +125,14 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         Transform parent = SkillPanel.transform.Find("parent");
         parent.Find("skill/Name").GetComponent<Text>().text = skill.name;
         parent.Find("Desc").GetComponent<Text>().text = skill.desc;
+        StopCoroutine("UnFillPanel");
         StartCoroutine("FillPanel");
+    }
+
+    public void EnhanceSkillInfoPanel()
+    {
+        StopCoroutine("FillPanel");
+        StartCoroutine("UnFillPanel");
     }
 
     IEnumerator FillPanel()
@@ -149,6 +156,8 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
             image.fillAmount -= FillSpeed;
             yield return new WaitForSeconds(0.02f);
         }
+        SkillPanel.SetActive(false);
+        Info.SetActive(true);
     }
 
     public void OnTalentBtnClick()
