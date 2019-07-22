@@ -179,27 +179,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 59073439, guid: 2414215cd64c68c4b9e8e6519e509718, type: 3}
+      propertyPath: CharacterManager
+      value: 
+      objectReference: {fileID: 1805971134}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2414215cd64c68c4b9e8e6519e509718, type: 3}
---- !u!1 &59073438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8033236345748359144, guid: 2414215cd64c68c4b9e8e6519e509718,
-    type: 3}
-  m_PrefabInstance: {fileID: 59073437}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &59073439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59073438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e7499956e57af4d9491bff66d5b1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterManager: {fileID: 1805971134}
 --- !u!1 &937176262
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +682,8 @@ MonoBehaviour:
   - Lv: 30
     Exp: 20000
   skills:
-  - name: "\u8FDE\u51FB"
+  - icon: {fileID: 0}
+    name: "\u8FDE\u51FB"
     desc: "\u6BCF\u6253\u51FA\u4E00\u5F20\u4E0E\u4E0A\u4E00\u5F20\u989C\u8272\u76F8\u540C\u7684\u5361\u724C\u65F6\uFF0C\u83B7\u5F971\u70B9\u8FDE\u51FB\u70B9\uFF0C\u6BCF\u70B9\u8FDE\u51FB\u70B9\u63D0\u9AD825%\u9020\u6210\u7684\u4F24\u5BB3\u3002"
 --- !u!4 &1805971136
 Transform:

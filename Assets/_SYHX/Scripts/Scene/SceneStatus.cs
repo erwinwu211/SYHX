@@ -47,7 +47,12 @@ public class ChooseStatus : SceneStatus
 
     public override string SceneName() => "Dungeon Choose";
 
-    
+    public override void Enter()
+    {
+        MapUI.Ins.LoadChaptersInfo(Initializer.Ins.chapters);
+    }
+
+
 }
 
 public class DungeonStatus : SceneStatus

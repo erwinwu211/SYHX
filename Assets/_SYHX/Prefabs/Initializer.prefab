@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8033236345748359147}
   - component: {fileID: 8033236345748359146}
+  - component: {fileID: 59073439}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -77,6 +78,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 64afa4e35f68dc44e99b0a7774297692, type: 2}
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
   damageSource: {fileID: 0}
+  chapters:
+  - {fileID: 1194898276540949139, guid: abf1caa73e3db344d899e021d289abe2, type: 3}
   factors:
   - Force: 0.8
     Aglie: 0.8
@@ -146,3 +149,16 @@ MonoBehaviour:
     Exp: 10000
   - Lv: 20
     Exp: 10000
+--- !u!114 &59073439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033236345748359144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7499956e57af4d9491bff66d5b1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterManager: {fileID: 0}

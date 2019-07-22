@@ -11,8 +11,10 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<CardSource> cSource;
     [SerializeField] public List<EnemyActionSource> eaSource;
     [SerializeField] public DamageMono damageSource;
+    [SerializeField] public List<Chapter> chapters;
     [TableList] public ModificationFactor[] factors;
     [TableList] public LvInfo[] lvInfos;
+   
 
     protected override void UnityAwake()
     {
