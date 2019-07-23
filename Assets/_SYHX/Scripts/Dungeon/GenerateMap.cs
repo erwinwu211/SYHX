@@ -41,7 +41,7 @@ public class GenerateMap : MonoBehaviour {
         loadMap();
     }
 
-    void loadMap()
+    public void loadMap()
     {
         mapArray = generateRandomMapArray();
         GenerateRoom(mapArray);

@@ -11,9 +11,10 @@ public class BattleRoomScript : MonoBehaviour
     public static int currentRoomNum;
     private int thisRoomNum;
     private int thisRoomType;
-
+    private static bool enableInput = true;
+    public RoomEvent roomEvent;
     void Start()
-    {   
+    {
         thisRoomNum = System.Convert.ToInt32(string.Join("", this.name.ToCharArray().Where(char.IsDigit)));
         player = GameObject.Find("player");
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -21,15 +22,14 @@ public class BattleRoomScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+    {   
+        if (Input.GetMouseButtonDown(0) && enableInput)
         { // if left button pressed...
             var mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
 
             if (judgePos(mousePos) && judgeNearby())
             {
                 Move(this.transform.position);
-                MoveOnEvent();
             }
         }
     }
@@ -37,11 +37,12 @@ public class BattleRoomScript : MonoBehaviour
     {
         thisRoomType = type;
     }
-    void MoveOnEvent()
+
+    public void MoveOnEvent()
     {
-        print(currentRoomNum);
-        //write sth like
-        // Event(thisRoomType);
+        print(this.name +" Event happened!");
+        roomEvent = this.GetComponentInParent<RoomEvent>();
+        roomEvent.Event(thisRoomType);
         //TODO by SONGLEI
     }
 
@@ -68,10 +69,46 @@ public class BattleRoomScript : MonoBehaviour
         return result;
     }
 
+    public static void Enable()
+    {
+        enableInput = true;
+    }
+
+    public static void Disable()
+    {
+        enableInput = false;
+    }
+
 
     void Move(Vector3 pos)
     {   //temp move, add animation later
-        player.transform.position = new Vector3 (pos.x, player.transform.position.y, pos.z);
+        var curPos = player.transform.position;
+        
+        if (pos.x < curPos.x) //left
+        {
+            player.transform.rotation = Quaternion.Euler(new Vector3(0,-90f,0));
+            Disable();
+            PlayerMove.Run(pos, curPos, this.gameObject);
+        }
+        if (pos.x > curPos.x) //right
+        {
+            player.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
+            Disable();
+            PlayerMove.Run(pos, curPos, this.gameObject);
+        }
+        if (pos.z > curPos.z) //up
+        {
+            player.transform.rotation = Quaternion.Euler(new Vector3(0, 0f, 0));
+            Disable();
+            PlayerMove.Run(pos, curPos, this.gameObject);
+        }
+        if (pos.z < curPos.z) //down
+        {
+            player.transform.rotation = Quaternion.Euler(new Vector3(0, -180f, 0));
+            Disable();
+            PlayerMove.Run(pos, curPos, this.gameObject);
+        }
+        //player.transform.position = new Vector3 (pos.x, player.transform.position.y, pos.z);
         currentRoomNum = thisRoomNum;
     }
 }
