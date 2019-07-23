@@ -23,7 +23,7 @@ public class GenerateMap : MonoBehaviour {
     private int mapHeight = mapSize;
     private int[] mapArray;
 
-    private float minDistance = 3f; //minimal distance of start to end
+    private float minDistance = 4f; //minimal distance of start to end
     private int roomWeight = 100;
     private int totalWeight = 250;
     public int roomType = 5; //number of room type
@@ -49,13 +49,13 @@ public class GenerateMap : MonoBehaviour {
     }
 
     void makeDictionary()
-    {
+    {   //add the room here
         roomDictionary.Add(0, initRoom);
         roomDictionary.Add(1, endRoom);
         roomDictionary.Add(2, treasureRoom);
         roomDictionary.Add(3, eventRoom);
-
         roomDictionary.Add(4, battleRoom);
+        //roomDictionary.Add(5, ???Room);
     }
 
     int[] generateRandomMapArray()
@@ -63,12 +63,11 @@ public class GenerateMap : MonoBehaviour {
         var mapArray = new int[mapWidth * mapHeight];
         var roomSequence = generateList(mapWidth * mapHeight);
         startPoint = roomSequence[0] - 1;
-        //print(startPoint);
         mapArray[startPoint] = 0; //set initRoom
         endPoint = roomSequence[1] - 1;
         mapArray[endPoint] = 1; //set endRoom
-
-        //print(endPoint);
+        
+        //set rest room
         for (int i = 2; i < mapWidth * mapHeight; i++)
         {
             int randomResult = rnd.Next(2,roomType);
@@ -88,14 +87,15 @@ public class GenerateMap : MonoBehaviour {
         //Shuffle<int>(numberList);
         while (checkStartEndDistance(numberList[0], numberList[1]) == false)
         {
-            while (n > 1)
+            int i = n;
+            while (i > 1)
             {
-                n--;
-                int k = rnd.Next(n + 1);
+                i--;
+                int k = rnd.Next(i + 1);
                 int value = numberList[k];
-                numberList[k] = numberList[n];
-                numberList[n] = value;
-            }
+                numberList[k] = numberList[i];
+                numberList[i] = value;
+            }   
         }
 
         return numberList;
@@ -105,6 +105,7 @@ public class GenerateMap : MonoBehaviour {
     {
         Vector3 startPos = new Vector3((s % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(s/ mapHeight) * 1.5f + 0.5f);
         Vector3 endPos = new Vector3((e % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(e / mapHeight) * 1.5f + 0.5f);
+        print(Vector3.Distance(startPos, endPos));
         if (Vector3.Distance(startPos, endPos) > minDistance) 
         {
             return true;
@@ -129,8 +130,8 @@ public class GenerateMap : MonoBehaviour {
     }
 
     void GenerateDoor()
-    {   //generate Vertical door
-        for (int i = 0; i <= mapSize*mapSize-1-mapSize; i++)
+    {   
+        for (int i = 0; i <= mapSize*mapSize-1-mapSize; i++) //generate Vertical door
         {
             
             var door = Instantiate(Door, new Vector3((i % mapSize) * 1.5f + 0.5f, 0, Mathf.Floor(i / mapSize) * 1.5f + 1.25f), Quaternion.identity);
@@ -138,8 +139,7 @@ public class GenerateMap : MonoBehaviour {
             door.transform.parent = this.transform;
             
         }
-        //generate Horizontal door
-        for (int i = 0; i <= mapSize * mapSize - 1 - mapSize; i++)
+        for (int i = 0; i <= mapSize * mapSize - 1 - mapSize; i++)        //generate Horizontal door
         {
             var door = Instantiate(Door, new Vector3((i % (mapSize - 1)) * 1.5f + 1.25f, 0, Mathf.Floor(i / (mapSize - 1)) * 1.5f + 0.5f), Quaternion.identity);
             door.name = "DoorH " + i;

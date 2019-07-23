@@ -38,7 +38,9 @@ public class BattleRoomScript : MonoBehaviour
         thisRoomType = type;
     }
     void MoveOnEvent()
-    {   //write sth like
+    {
+        print(currentRoomNum);
+        //write sth like
         // Event(thisRoomType);
         //TODO by SONGLEI
     }
