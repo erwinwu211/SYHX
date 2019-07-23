@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   welcomeScreenVersion: '1.9.0 '
   playmakerVersion: 
-  showWelcomeScreen: 1
+  showWelcomeScreen: 0
   showUpgradeGuide: 0
-  lastAutoUpdateSignature: 2018.3.14f1__C:/Users/q2298/Documents/Github/SYHX/Assets__0.0.0.0
+  lastAutoUpdateSignature: 2018.3.14f1__C:/Users/WT/Documents/Unity/SYHX/Assets__0.0.0.0
   useLegacyNetworking: 0

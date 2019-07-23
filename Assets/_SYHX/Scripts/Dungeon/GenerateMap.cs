@@ -4,96 +4,147 @@ using System.Linq;
 using UnityEngine;
 
 public class GenerateMap : MonoBehaviour {
-    public GameObject BattleRoom;
-    public GameObject InitRoom;
-    public GameObject TreasureRoom;
+    // RoomObject
+    public GameObject battleRoom;
+    public GameObject initRoom;
+    public GameObject treasureRoom;
+    public GameObject eventRoom;
+    public GameObject endRoom;
+    public static Dictionary<int,GameObject> roomDictionary = new Dictionary<int, GameObject>();
+    //DoorObject
     public GameObject Door;
-    System.Random r = new System.Random(1000);
 
 
+    private static System.Random rnd = new System.Random();
+    public GameObject player;
     public static int mapSize = 7;
 
-    public int mapWidth=7;
-    public int mapHeight = 7;
+    private int mapWidth= mapSize;
+    private int mapHeight = mapSize;
     private int[] mapArray;
 
+    private float minDistance = 3f; //minimal distance of start to end
     private int roomWeight = 100;
     private int totalWeight = 250;
+    public int roomType = 5; //number of room type
+
+    public static int startPoint;
+    public static int endPoint;
+
     //public int[] vertDoor = new int[MapSize * (MapSize - 1)];
     //public int[] horiDoor = new int[(MapSize-1) * MapSize ];
     // Use this for initialization
+
+
     void Start () {
-        mapArray = new int[mapWidth * mapHeight];
-        for (int i =0; i< mapWidth * mapHeight; i++)
-        {
-             
-            var randomResult = r.Next(totalWeight);
-            mapArray[i] = checkWeight(randomResult, roomWeight);
-        }
+        makeDictionary();
+        loadMap();
+    }
+
+    void loadMap()
+    {
+        mapArray = generateRandomMapArray();
         GenerateRoom(mapArray);
-        //GenerateDoor(vertDoor, horiDoor);
+        GenerateDoor();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    int checkWeight(int r, int w)
+    void makeDictionary()
     {
-        return r / w;
+        roomDictionary.Add(0, initRoom);
+        roomDictionary.Add(1, endRoom);
+        roomDictionary.Add(2, treasureRoom);
+        roomDictionary.Add(3, eventRoom);
+
+        roomDictionary.Add(4, battleRoom);
     }
-    void GenerateRandomMap()
+
+    int[] generateRandomMapArray()
     {
+        var mapArray = new int[mapWidth * mapHeight];
+        var roomSequence = generateList(mapWidth * mapHeight);
+        startPoint = roomSequence[0] - 1;
+        //print(startPoint);
+        mapArray[startPoint] = 0; //set initRoom
+        endPoint = roomSequence[1] - 1;
+        mapArray[endPoint] = 1; //set endRoom
 
-    }
-    //void GenerateDoor(int[] vertArray, int[] horiArray )
-    //{
-    //    foreach (var item in vertArray.Select((v, i) => new { v, i }))
-    //    {
-    //        if (item.v == 1) // Judge door
-    //        {
-    //            var door = Instantiate(Door, new Vector3((item.i % MapSize) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / MapSize) * 1.5f + 1.25f), Quaternion.identity);
-    //            door.name = "DoorV " + item.i;
-    //            door.transform.parent = this.transform;
-    //        }
-    //    }
-
-    //    foreach (var item in horiArray.Select((v, i) => new { v, i }))
-    //    {
-    //        if (item.v == 1) // Judge door
-    //        {
-    //            var door = Instantiate(Door, new Vector3((item.i % (MapSize-1)) * 1.5f + 1.25f, 0, Mathf.Floor(item.i / (MapSize-1)) * 1.5f + 0.5f), Quaternion.identity);
-    //            door.name = "DoorH " + item.i;
-    //            door.transform.Rotate(new Vector3(0, 90f, 0));
-    //            door.transform.parent = this.transform;
-    //        }
-    //    }
-    //}
-
-
-    void GenerateRoom (int[] maparray)
-    {
-        foreach (var item in maparray.Select((v, i) => new { v, i }))
+        //print(endPoint);
+        for (int i = 2; i < mapWidth * mapHeight; i++)
         {
-            if (item.v == 2) // TreasureRoom Room
+            int randomResult = rnd.Next(2,roomType);
+            mapArray[roomSequence[i]-1] = checkWeight(randomResult,1);
+        }
+        return mapArray;
+    }
+
+    int checkWeight(int result, int weight)
+    {   //TODO
+        return result / weight;
+    }
+
+    List<int> generateList(int n)
+    {
+        var numberList = Enumerable.Range(1, n).ToList();
+        //Shuffle<int>(numberList);
+        while (checkStartEndDistance(numberList[0], numberList[1]) == false)
+        {
+            while (n > 1)
             {
-                var room = Instantiate(TreasureRoom, new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
-                room.name = "Room " + item.i;
-                room.transform.parent = this.transform;
+                n--;
+                int k = rnd.Next(n + 1);
+                int value = numberList[k];
+                numberList[k] = numberList[n];
+                numberList[n] = value;
             }
-            else if (item.v == 1) // Battle Room
+        }
+
+        return numberList;
+    }
+
+    bool checkStartEndDistance(int s, int e)  //Script to check distance between start and end point.
+    {
+        Vector3 startPos = new Vector3((s % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(s/ mapHeight) * 1.5f + 0.5f);
+        Vector3 endPos = new Vector3((e % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(e / mapHeight) * 1.5f + 0.5f);
+        if (Vector3.Distance(startPos, endPos) > minDistance) 
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void GenerateRoom (int[] mapArray) //Generate Room according to the map array
+    {
+        foreach (var item in mapArray.Select((v, i) => new { v, i }))
+        {
+            var room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
+            room.name = "Room " + item.i;
+            room.GetComponent<BattleRoomScript>().changeType(item.v);
+            room.transform.parent = this.transform;
+            if (item.i == startPoint) //initialize player position to start room
             {
-                var room = Instantiate(BattleRoom, new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
-                room.name = "Room " + item.i;
-                room.transform.parent = this.transform;
+                player.transform.position = room.transform.position;
+                BattleRoomScript.currentRoomNum = startPoint;
             }
-            else if (item.v == 0) //initial Room
-            {
-                var room = Instantiate(InitRoom, new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
-                room.name = "Room " + item.i;
-                room.transform.parent = this.transform;
-            }
+        }
+    }
+
+    void GenerateDoor()
+    {   //generate Vertical door
+        for (int i = 0; i <= mapSize*mapSize-1-mapSize; i++)
+        {
+            
+            var door = Instantiate(Door, new Vector3((i % mapSize) * 1.5f + 0.5f, 0, Mathf.Floor(i / mapSize) * 1.5f + 1.25f), Quaternion.identity);
+            door.name = "DoorV " + i;
+            door.transform.parent = this.transform;
+            
+        }
+        //generate Horizontal door
+        for (int i = 0; i <= mapSize * mapSize - 1 - mapSize; i++)
+        {
+            var door = Instantiate(Door, new Vector3((i % (mapSize - 1)) * 1.5f + 1.25f, 0, Mathf.Floor(i / (mapSize - 1)) * 1.5f + 0.5f), Quaternion.identity);
+            door.name = "DoorH " + i;
+            door.transform.Rotate(new Vector3(0, 90f, 0));
+            door.transform.parent = this.transform;
         }
     }
 }
