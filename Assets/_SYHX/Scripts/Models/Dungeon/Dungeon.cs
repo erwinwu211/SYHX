@@ -9,7 +9,9 @@ public class Dungeon : MonoBehaviour
     public string DungeonName_EN;
     public Chapter Chapter;
     public Vector3 Pos;
-    public List<Room> DungeonRooms;
+    public List<GameObject> DungeonRooms;
+    public GameObject StartRoom;
+    public GameObject EndRoom;
     public DungeonProceed DungeonProceed;
 }
 

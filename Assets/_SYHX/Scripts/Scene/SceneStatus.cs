@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class SceneStatus : Assitant<SceneStatusManager>
 {
@@ -47,17 +48,33 @@ public class ChooseStatus : SceneStatus
 
     public override string SceneName() => "Dungeon Choose";
 
+    public Dungeon Dungeon { get; set; }
+    public CharacterContent cc = PlayerRecord.Ins.Umirika;
+
     public override void Enter()
     {
         MapUI.Ins.LoadChaptersInfo(Initializer.Ins.chapters);
     }
 
+    public void GoToDungeonStatus()
+    {
+        ES3.DeleteKey("dungeonObject");
+        DungeonStatus ds = new DungeonStatus(SceneStatusManager.Ins);
 
+        ds.Dungeon = this.Dungeon;
+        ds.cc = this.cc;
+        SceneStatusManager.Ins.SetSceneStatus(ds);
+
+
+    }
 }
 
 public class DungeonStatus : SceneStatus
 {
     public DungeonStatus(SceneStatusManager owner) : base(owner) { }
+
+    public Dungeon Dungeon { get; set; }
+    public CharacterContent cc { get; set; }
 
     public override string SceneName() => "Dungeon";
 }
@@ -65,8 +82,12 @@ public class DungeonStatus : SceneStatus
 public class BattleStatus : SceneStatus
 {
     public BattleStatus(SceneStatusManager owner) : base(owner) { }
-
     public override string SceneName() => "Battle Scene";
+    public override void Enter()
+    {
+        SceneManager.LoadSceneAsync("Dungeon");
+        //ES3.Load<GameObject>("dungeonObject");
+    }
 }
 
 public class CharacterStatus : SceneStatus

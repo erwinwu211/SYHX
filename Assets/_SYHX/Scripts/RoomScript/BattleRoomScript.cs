@@ -14,7 +14,7 @@ public class BattleRoomScript : MonoBehaviour
     private static bool enableInput = true;
     public RoomEvent roomEvent;
     void Start()
-    {
+    {   
         thisRoomNum = System.Convert.ToInt32(string.Join("", this.name.ToCharArray().Where(char.IsDigit)));
         player = GameObject.Find("player");
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();

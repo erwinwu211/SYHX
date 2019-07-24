@@ -72,6 +72,10 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     /// <param name="chapter">所选章节</param>
     private void RefreshDungeonGO(Chapter chapter)
     {
+        foreach (Transform tf in DungeonParent.transform)
+        {
+            Destroy(tf.gameObject);
+        }
         foreach (Dungeon dungeon in chapter.Dungeons)
         {
             GameObject go = Instantiate(DungeonGO,DungeonParent.transform);
@@ -83,6 +87,8 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
             go.GetComponent<Button>().onClick.AddListener(delegate()
             {
                 ShowDungeonInfo(dungeon);
+                ChooseStatus status = SceneStatusManager.Ins.current as ChooseStatus;
+                status.Dungeon = dungeon;
             });
         }
     }
@@ -119,6 +125,12 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public void OnReturnBtnClick()
     {
         SceneStatusManager.Ins.SetSceneStatus(new MainStatus(SceneStatusManager.Ins));
+    }
+
+    public void OnStartBtnClick()
+    {
+        ChooseStatus status = SceneStatusManager.Ins.current as ChooseStatus;
+        status.GoToDungeonStatus();
     }
 
     protected override void UnityAwake()

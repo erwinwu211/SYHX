@@ -4,12 +4,13 @@ using System.Linq;
 using UnityEngine;
 
 public class GenerateMap : MonoBehaviour {
+    
     // RoomObject
-    public GameObject battleRoom;
-    public GameObject initRoom;
-    public GameObject treasureRoom;
-    public GameObject eventRoom;
-    public GameObject endRoom;
+    //public GameObject battleRoom;
+    //public GameObject initRoom;
+    //public GameObject treasureRoom;
+    //public GameObject eventRoom;
+    //public GameObject endRoom;
     public static Dictionary<int,GameObject> roomDictionary = new Dictionary<int, GameObject>();
     //DoorObject
     public GameObject Door;
@@ -30,15 +31,40 @@ public class GenerateMap : MonoBehaviour {
 
     public static int startPoint;
     public static int endPoint;
-
+    
+    public static Dungeon mDungeon;
+    public static CharacterContent mCharacter;
     //public int[] vertDoor = new int[MapSize * (MapSize - 1)];
     //public int[] horiDoor = new int[(MapSize-1) * MapSize ];
     // Use this for initialization
 
+    public void LoadDungeonData(Dungeon dungeon,CharacterContent cc)
+    {
+        mDungeon = dungeon;
+        mCharacter = cc;
+    }
 
     void Start () {
-        makeDictionary();
-        loadMap();
+        if (!ES3.KeyExists("dungeonObject"))
+        {
+            DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
+            LoadDungeonData(ds.Dungeon, ds.cc);
+            makeDictionary();
+            loadMap();
+        }
+        else
+        {
+            ES3.Load<GameObject>("dungeonObject");
+        }
+            
+    }
+
+    public void clearMap()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void loadMap()
@@ -50,11 +76,17 @@ public class GenerateMap : MonoBehaviour {
 
     void makeDictionary()
     {   //add the room here
-        roomDictionary.Add(0, initRoom);
-        roomDictionary.Add(1, endRoom);
-        roomDictionary.Add(2, treasureRoom);
-        roomDictionary.Add(3, eventRoom);
-        roomDictionary.Add(4, battleRoom);
+        roomDictionary.Add(0, mDungeon.StartRoom);
+        roomDictionary.Add(1, mDungeon.EndRoom);
+        for (int i = 2;i<mDungeon.DungeonRooms.Count+2;i++)
+        {
+            roomDictionary.Add(i , mDungeon.DungeonRooms[i-2]);
+        }
+        print(mDungeon.DungeonRooms.Count);
+        roomType = mDungeon.DungeonRooms.Count+2;
+        //roomDictionary.Add(2, treasureRoom);
+        //roomDictionary.Add(3, eventRoom);
+        //roomDictionary.Add(4, battleRoom);
         //roomDictionary.Add(5, ???Room);
     }
 
@@ -70,7 +102,7 @@ public class GenerateMap : MonoBehaviour {
         //set rest room
         for (int i = 2; i < mapWidth * mapHeight; i++)
         {
-            int randomResult = rnd.Next(2,roomType);
+            int randomResult = rnd.Next(2,roomType); // Room type range
             mapArray[roomSequence[i]-1] = checkWeight(randomResult,1);
         }
         return mapArray;
