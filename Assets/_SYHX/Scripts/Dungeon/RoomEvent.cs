@@ -37,8 +37,7 @@ public class RoomEvent : MonoBehaviour
     {
         print("battle");
         //save current scene TODO
-        ES3.Save<GameObject>("dungeonObject", dungeonObject);
-        SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins));
+        SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins),true,true);
     }
 
     static void endRoom()

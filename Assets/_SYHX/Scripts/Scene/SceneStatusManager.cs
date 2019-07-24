@@ -23,7 +23,8 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
         StatusUpdate();
     }
 
-    public void SetSceneStatus(SceneStatus next, bool needLoad = true)
+
+    public void SetSceneStatus(SceneStatus next, bool needLoad = true, bool needSave = false)
     {
 
         //当前状态不为空时，则执行当前状态的end方法
@@ -36,8 +37,14 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
         //根据新状态加载场景,若不需要加载，则直接进行start操作
         if (needLoad)
         {
-
-            mAO = SceneManager.LoadSceneAsync(current.SceneName());
+            if (needSave)
+            {
+                mAO = SceneManager.LoadSceneAsync(current.SceneName(), LoadSceneMode.Additive);
+            }
+            else
+            {
+                mAO = SceneManager.LoadSceneAsync(current.SceneName());
+            }
             mHasStartDone = false;
         }
         else

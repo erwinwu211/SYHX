@@ -85,8 +85,11 @@ public class BattleStatus : SceneStatus
     public override string SceneName() => "Battle Scene";
     public override void Enter()
     {
-        SceneManager.LoadSceneAsync("Dungeon");
-        //ES3.Load<GameObject>("dungeonObject");
+    }
+
+    public void CloseScene()
+    {
+        SceneManager.UnloadSceneAsync(SceneName());
     }
 }
 

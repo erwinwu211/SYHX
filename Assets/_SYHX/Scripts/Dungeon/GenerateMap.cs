@@ -34,6 +34,7 @@ public class GenerateMap : MonoBehaviour {
     
     public static Dungeon mDungeon;
     public static CharacterContent mCharacter;
+    public bool Loaded=false;
     //public int[] vertDoor = new int[MapSize * (MapSize - 1)];
     //public int[] horiDoor = new int[(MapSize-1) * MapSize ];
     // Use this for initialization
@@ -44,19 +45,12 @@ public class GenerateMap : MonoBehaviour {
         mCharacter = cc;
     }
 
-    void Start () {
-        if (!ES3.KeyExists("dungeonObject"))
-        {
-            DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
-            LoadDungeonData(ds.Dungeon, ds.cc);
-            makeDictionary();
-            loadMap();
-        }
-        else
-        {
-            ES3.Load<GameObject>("dungeonObject");
-        }
-            
+    void Start ()
+    {
+        DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
+        LoadDungeonData(ds.Dungeon, ds.cc);
+        makeDictionary();
+        loadMap();  
     }
 
     public void clearMap()
@@ -149,7 +143,7 @@ public class GenerateMap : MonoBehaviour {
     {
         foreach (var item in mapArray.Select((v, i) => new { v, i }))
         {
-            var room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
+            GameObject room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
             room.name = "Room " + item.i;
             room.GetComponent<BattleRoomScript>().changeType(item.v);
             room.transform.parent = this.transform;

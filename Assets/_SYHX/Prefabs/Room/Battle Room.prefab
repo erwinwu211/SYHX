@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2091698542811248574}
   - component: {fileID: 2141048361078292258}
   - component: {fileID: 2938595894785224047}
+  - component: {fileID: 114551723697916694}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Battle Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,3 +110,33 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  roomEvent: {fileID: 0}
+--- !u!114 &114551723697916694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154737266286901232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 969128541966812067
+  localRefs:
+    _Keys:
+    - {fileID: 2133035910504985162}
+    - {fileID: 114551723697916694}
+    - {fileID: 6, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+    - {fileID: 11500000, guid: 17e7def29e711a94cb5173de46bcf081, type: 3}
+    - {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+    - {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 2141048361078292258}
+    - {fileID: 2938595894785224047}
+    - {fileID: 2158110264510810474}
+    - {fileID: 2091698542811248574}
+    - {fileID: 2154737266286901232}
+    - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+    _Values: c8b6b6e591bc664dd28555fca2c6184016ef08cb91785a608822fa64f65f716279a4e9933bdb083e8b686cc5bc8df71fb643b6e0decaa340f0e8a3913efda831084789b95053830e07b9bed6f36b5b15e6e5524d576e7b5000a882247f9a7c7340c432fbe94e9062
