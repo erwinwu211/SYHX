@@ -14,6 +14,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public GameObject ChapterParent;
     public Color Normal;
     public Color ChapterSelected;
+    private Toggle SelectedChapterToggle;
 
     /// <summary>
     /// 加载并刷新左侧章节列表的信息
@@ -27,17 +28,48 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
             GameObject go = GameObject.Instantiate(ChapterGO, ChapterParent.transform);
             go.SetActive(true);
             RefreshChapterGO(cp, go);
+            go.GetComponent<Toggle>().isOn = false;
             go.GetComponent<Toggle>().onValueChanged.AddListener((bool value) => OnChapterToggleChanged(cp,go,value));
+            if (cp.IsDefault) go.GetComponent<Toggle>().isOn = true;
         }
     }
 
+
+    /// <summary>
+    /// 当选中项改变时
+    /// </summary>
+    /// <param name="chapter"></param>
+    /// <param name="go"></param>
+    /// <param name="value"></param>
     public void OnChapterToggleChanged(Chapter chapter,GameObject go, bool value)
     {
-        if (value)
+        //获取各个节点
+        Text name = go.transform.Find("Name").GetComponent<Text>();
+        Text name_en = go.transform.Find("English").GetComponent<Text>();
+        Transform bg = go.transform.Find("Bg");
+        Transform triggle = go.transform.Find("Triggle");
+        Toggle toggle = go.GetComponent<Toggle>();
+        //当被选中时
+        if (value == true)
         {
+            if (toggle == SelectedChapterToggle) return;
+            SelectedChapterToggle = toggle;
+            name.color = ChapterSelected;
+            name_en.color = ChapterSelected;
+            bg.gameObject.SetActive(true);
+            triggle.gameObject.SetActive(true);
             RefreshDungeonGO(chapter);
         }
+        //当取消选中时
+        else
+        {
+            name.color = Normal;
+            name_en.color = Normal;
+            bg.gameObject.SetActive(false);
+            triggle.gameObject.SetActive(false);
+        }
     }
+
 
     /// <summary>
     /// 刷新单个章节选项的信息
@@ -56,14 +88,6 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
         name_en.text = chapter.ChapterEnglishName;
         bg.gameObject.SetActive(false);
         triggle.gameObject.SetActive(false);
-        if (chapter.IsDefault)
-        {
-            name.color = ChapterSelected;
-            name_en.color = ChapterSelected;
-            bg.gameObject.SetActive(true);
-            triggle.gameObject.SetActive(true);
-            OnChapterToggleChanged(chapter, go, true);
-        }
     }
 
     /// <summary>
@@ -87,8 +111,6 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
             go.GetComponent<Button>().onClick.AddListener(delegate()
             {
                 ShowDungeonInfo(dungeon);
-                ChooseStatus status = SceneStatusManager.Ins.current as ChooseStatus;
-                status.Dungeon = dungeon;
             });
         }
     }
@@ -108,6 +130,8 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
         chapter_image.sprite = dungeon.Chapter.Sprite;
         name.text = dungeon.DungeonName;
         name_en.text = dungeon.DungeonName_EN;
+        ChooseStatus cs = SceneStatusManager.Ins.current as ChooseStatus;
+        cs.ChangeSelectedDungeon(dungeon);
     }
 
     /// <summary>

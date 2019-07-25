@@ -12,6 +12,7 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     public SceneStatus current;
     private AsyncOperation mAO;
     private bool mHasStartDone = false;
+    public SceneStatus Record = null;
 
     private void Start()
     {
@@ -33,13 +34,22 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
             current.Exit();
         }
         //更新当前状态
+        SceneStatus temp = current;
         current = next;
+        //判断是否有已保存的场景
+        if (Record == next)
+        {
+            Record = null;
+            return;
+        }
         //根据新状态加载场景,若不需要加载，则直接进行start操作
         if (needLoad)
         {
+            //是否需要对当前场景进行保存
             if (needSave)
             {
                 mAO = SceneManager.LoadSceneAsync(current.SceneName(), LoadSceneMode.Additive);
+                Record = temp;
             }
             else
             {

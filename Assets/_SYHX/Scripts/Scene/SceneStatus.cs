@@ -56,6 +56,11 @@ public class ChooseStatus : SceneStatus
         MapUI.Ins.LoadChaptersInfo(Initializer.Ins.chapters);
     }
 
+    public void ChangeSelectedDungeon(Dungeon dungeon)
+    {
+        Dungeon = dungeon;
+    }
+
     public void GoToDungeonStatus()
     {
         ES3.DeleteKey("dungeonObject");
@@ -77,6 +82,10 @@ public class DungeonStatus : SceneStatus
     public CharacterContent cc { get; set; }
 
     public override string SceneName() => "Dungeon";
+
+    public override void Enter()
+    {
+    }
 }
 
 public class BattleStatus : SceneStatus
@@ -85,9 +94,10 @@ public class BattleStatus : SceneStatus
     public override string SceneName() => "Battle Scene";
     public override void Enter()
     {
+        SceneStatusManager.Ins.SetSceneStatus(SceneStatusManager.Ins.Record);
     }
 
-    public void CloseScene()
+    public override void Exit()
     {
         SceneManager.UnloadSceneAsync(SceneName());
     }
