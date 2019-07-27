@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class GenerateMap : MonoBehaviour {
     
-    // RoomObject
-    //public GameObject battleRoom;
-    //public GameObject initRoom;
-    //public GameObject treasureRoom;
-    //public GameObject eventRoom;
-    //public GameObject endRoom;
     public static Dictionary<int,GameObject> roomDictionary = new Dictionary<int, GameObject>();
     //DoorObject
     public GameObject Door;
@@ -65,7 +59,7 @@ public class GenerateMap : MonoBehaviour {
     {
         mapArray = generateRandomMapArray();
         GenerateRoom(mapArray);
-        GenerateDoor();
+        //GenerateDoor();
     }
 
     void makeDictionary()

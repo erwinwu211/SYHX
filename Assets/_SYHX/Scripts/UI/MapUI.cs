@@ -122,7 +122,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public void ShowDungeonInfo(Dungeon dungeon)
     {
         Mask.SetActive(true);
-        DungeonInfoGO.transform.localPosition = Vector3.zero;
+        DungeonInfoGO.SetActive(true);
         Image chapter_image = DungeonInfoGO.transform.Find("Info/Chapter").GetComponent<Image>();
         Text name = DungeonInfoGO.transform.Find("Info/Name").GetComponent<Text>();
         Text name_en = DungeonInfoGO.transform.Find("Info/Name_EN").GetComponent<Text>();
@@ -140,7 +140,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public void EnhanceDungeonInfo()
     {
         Mask.SetActive(false);
-        DungeonInfoGO.transform.position = new Vector3(-1553.4f, -64);
+        DungeonInfoGO.SetActive(false);
     }
 
     /// <summary>
