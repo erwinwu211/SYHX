@@ -14,7 +14,9 @@ public class Enemy : BattleCharacter
 {
     // [SerializeField]
     public override bool isEnemy { get => true; }
-    public TextMeshProUGUI hpText;
+    public Text hpText;
+    public Text barrierText;
+    public Slider hpSlider;
     public TextMeshProUGUI actionText;
     public Button enemy;
     private ColorBlock defaultBlock;
@@ -52,6 +54,11 @@ public class Enemy : BattleCharacter
     public void ShowHp()
     {
         hpText.text = $"{this.currentHp}/{this.maxHp}";
+        hpSlider.value = (float)currentHp / maxHp;
+    }
+    public void ShowBarrier()
+    {
+        barrierText.text = $"{this.barrier}";
     }
     public void ShowAction()
     {

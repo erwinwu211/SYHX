@@ -13,6 +13,8 @@ public class Dungeon : MonoBehaviour
     public GameObject StartRoom;
     public GameObject EndRoom;
     public DungeonProceed DungeonProceed;
+    public int mapWidth;
+    public int mapHeight;
 }
 
 public enum DungeonProceed

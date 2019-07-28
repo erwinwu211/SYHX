@@ -7,21 +7,20 @@ public class GenerateMap : MonoBehaviour {
     
     public static Dictionary<int,GameObject> roomDictionary = new Dictionary<int, GameObject>();
     //DoorObject
-    public GameObject Door;
 
 
     private static System.Random rnd = new System.Random();
     public GameObject player;
-    public static int mapSize = 7;
 
-    private int mapWidth= mapSize;
-    private int mapHeight = mapSize;
+    private int mapWidth;
+    private int mapHeight;
     private int[] mapArray;
 
-    private float minDistance = 4f; //minimal distance of start to end
+    public float minDistance = 4f; //minimal distance of start to end
+    public float roomSpacing = 1.2f;
     private int roomWeight = 100;
     private int totalWeight = 250;
-    public int roomType = 5; //number of room type
+    private int count_of_roomType; //number of room type
 
     public static int startPoint;
     public static int endPoint;
@@ -37,6 +36,9 @@ public class GenerateMap : MonoBehaviour {
     {
         mDungeon = dungeon;
         mCharacter = cc;
+        mapWidth = dungeon.mapWidth;
+        mapHeight = dungeon.mapHeight;
+        count_of_roomType = mDungeon.DungeonRooms.Count + 2;
     }
 
     void Start ()
@@ -44,7 +46,7 @@ public class GenerateMap : MonoBehaviour {
         DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
         LoadDungeonData(ds.Dungeon, ds.cc);
         makeDictionary();
-        loadMap();  
+        loadMap(); 
     }
 
     public void clearMap()
@@ -59,9 +61,11 @@ public class GenerateMap : MonoBehaviour {
     {
         mapArray = generateRandomMapArray();
         GenerateRoom(mapArray);
-        //GenerateDoor();
     }
 
+    /// <summary>
+    /// 将房间类型注册进字典
+    /// </summary>
     void makeDictionary()
     {   //add the room here
         roomDictionary.Add(0, mDungeon.StartRoom);
@@ -71,11 +75,6 @@ public class GenerateMap : MonoBehaviour {
             roomDictionary.Add(i , mDungeon.DungeonRooms[i-2]);
         }
         print(mDungeon.DungeonRooms.Count);
-        roomType = mDungeon.DungeonRooms.Count+2;
-        //roomDictionary.Add(2, treasureRoom);
-        //roomDictionary.Add(3, eventRoom);
-        //roomDictionary.Add(4, battleRoom);
-        //roomDictionary.Add(5, ???Room);
     }
 
     int[] generateRandomMapArray()
@@ -90,7 +89,7 @@ public class GenerateMap : MonoBehaviour {
         //set rest room
         for (int i = 2; i < mapWidth * mapHeight; i++)
         {
-            int randomResult = rnd.Next(2,roomType); // Room type range
+            int randomResult = rnd.Next(2,count_of_roomType); // Room type range
             mapArray[roomSequence[i]-1] = checkWeight(randomResult,1);
         }
         return mapArray;
@@ -123,8 +122,8 @@ public class GenerateMap : MonoBehaviour {
 
     bool checkStartEndDistance(int s, int e)  //Script to check distance between start and end point.
     {
-        Vector3 startPos = new Vector3((s % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(s/ mapHeight) * 1.5f + 0.5f);
-        Vector3 endPos = new Vector3((e % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(e / mapHeight) * 1.5f + 0.5f);
+        Vector3 startPos = new Vector3((s % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(s/ mapHeight) * roomSpacing + 0.5f);
+        Vector3 endPos = new Vector3((e % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(e / mapHeight) * roomSpacing + 0.5f);
         print(Vector3.Distance(startPos, endPos));
         if (Vector3.Distance(startPos, endPos) > minDistance) 
         {
@@ -137,7 +136,7 @@ public class GenerateMap : MonoBehaviour {
     {
         foreach (var item in mapArray.Select((v, i) => new { v, i }))
         {
-            GameObject room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * 1.5f + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * 1.5f + 0.5f), Quaternion.identity);
+            GameObject room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * roomSpacing + 0.5f), Quaternion.identity);
             room.name = "Room " + item.i;
             room.GetComponent<BattleRoomScript>().changeType(item.v);
             room.transform.parent = this.transform;
@@ -149,22 +148,22 @@ public class GenerateMap : MonoBehaviour {
         }
     }
 
-    void GenerateDoor()
-    {   
-        for (int i = 0; i <= mapSize*mapSize-1-mapSize; i++) //generate Vertical door
-        {
+    //void GenerateDoor()
+    //{   
+    //    for (int i = 0; i <= mapSize*mapSize-1-mapSize; i++) //generate Vertical door
+    //    {
             
-            var door = Instantiate(Door, new Vector3((i % mapSize) * 1.5f + 0.5f, 0, Mathf.Floor(i / mapSize) * 1.5f + 1.25f), Quaternion.identity);
-            door.name = "DoorV " + i;
-            door.transform.parent = this.transform;
+    //        var door = Instantiate(Door, new Vector3((i % mapSize) * 1.5f + 0.5f, 0, Mathf.Floor(i / mapSize) * 1.5f + 1.25f), Quaternion.identity);
+    //        door.name = "DoorV " + i;
+    //        door.transform.parent = this.transform;
             
-        }
-        for (int i = 0; i <= mapSize * mapSize - 1 - mapSize; i++)        //generate Horizontal door
-        {
-            var door = Instantiate(Door, new Vector3((i % (mapSize - 1)) * 1.5f + 1.25f, 0, Mathf.Floor(i / (mapSize - 1)) * 1.5f + 0.5f), Quaternion.identity);
-            door.name = "DoorH " + i;
-            door.transform.Rotate(new Vector3(0, 90f, 0));
-            door.transform.parent = this.transform;
-        }
-    }
+    //    }
+    //    for (int i = 0; i <= mapSize * mapSize - 1 - mapSize; i++)        //generate Horizontal door
+    //    {
+    //        var door = Instantiate(Door, new Vector3((i % (mapSize - 1)) * 1.5f + 1.25f, 0, Mathf.Floor(i / (mapSize - 1)) * 1.5f + 0.5f), Quaternion.identity);
+    //        door.name = "DoorH " + i;
+    //        door.transform.Rotate(new Vector3(0, 90f, 0));
+    //        door.transform.parent = this.transform;
+    //    }
+    //}
 }

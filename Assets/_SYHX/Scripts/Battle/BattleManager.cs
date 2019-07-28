@@ -30,8 +30,9 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 
 
     #region  UI
-    public Button result;
-    public TextMeshProUGUI resultUI;
+    public GameObject resultPanel;
+    public Button leaveBtn;
+    //public TextMeshProUGUI resultUI;
     //可能弃用
     public int currentEP;
     public int maxEP;
@@ -39,7 +40,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     protected override void UnityAwake()
     {
         CardSelectorManager.SetIns(cardSelectorManager);
-        result.gameObject.SetActive(false);
+        resultPanel.gameObject.SetActive(false);
         BattleCharacterManager.Ins.SetHero(hero);
         this.signals = new SignalController();
     }
@@ -100,13 +101,13 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
     private void Win()
     {
-        resultUI.text = "you win";
-        result.gameObject.SetActive(true);
+        //resultUI.text = "you win";
+        resultPanel.gameObject.SetActive(true);
     }
     private void Lose()
     {
-        resultUI.text = "you lose";
-        result.gameObject.SetActive(true);
+        //resultUI.text = "you lose";
+        resultPanel.gameObject.SetActive(true);
     }
 }
 

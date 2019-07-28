@@ -59,3 +59,5 @@ MonoBehaviour:
     type: 3}
   EndRoom: {fileID: 8194619328419393182, guid: 885b5dfcb7bc3c34e8688befab57c697, type: 3}
   DungeonProceed: 0
+  mapWidth: 5
+  mapHeight: 5

@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class BattleInfoManager : MonoBehaviour
 {
-    public Text currentEPUI;
-    public Text maxEPUI;
+    //public Text currentEPUI;
+    //public Text maxEPUI;
 
-    public Text moreEPUI;
+    public Text EP_UI;
+
+    //public Text moreEPUI;
     public Text roundText;
     //可能弃用
     public void Initial(int currentEP, int maxEP)
@@ -29,21 +31,22 @@ public class BattleInfoManager : MonoBehaviour
 
     public void RefreshUI()
     {
-        currentEPUI.text = $"{currentEP.ToString()}";
-        maxEPUI.text = $"{maxEP.ToString()}";
-        roundText.text = $"第{TurnCount}回合";
-        if (moreEP > 0)
-        {
-            moreEPUI.text = $"+{moreEP}";
-        }
-        else if (moreEP < 0)
-        {
-            moreEPUI.text = $"{moreEP}";
-        }
-        else
-        {
-            moreEPUI.text = "";
-        }
+        //currentEPUI.text = $"{currentEP.ToString()}";
+        //maxEPUI.text = $"{maxEP.ToString()}";
+        //roundText.text = $"第{TurnCount}回合";
+        //if (moreEP > 0)
+        //{
+        //    moreEPUI.text = $"+{moreEP}";
+        //}
+        //else if (moreEP < 0)
+        //{
+        //    moreEPUI.text = $"{moreEP}";
+        //}
+        //else
+        //{
+        //    moreEPUI.text = "";
+        //}
+        EP_UI.text = currentEP + "/" + maxEP;
     }
 
     public void AddTurn()

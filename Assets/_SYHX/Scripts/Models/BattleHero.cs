@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BattleHero : BattleCharacter
 {
     public override bool isEnemy { get => false; }
-    public TextMeshProUGUI hpText;
-    public TextMeshProUGUI barrierText;
+    public Text hpText;
+    public Text barrierText;
+    public Slider hpSlider;
     public int Force;
     public int Align;
     public int Constitution;
@@ -20,10 +22,11 @@ public class BattleHero : BattleCharacter
     public void ShowHP()
     {
         hpText.text = $"{this.currentHp}/{this.maxHp}";
+        hpSlider.value = (float)currentHp / maxHp;
     }
     public void ShowBarrier()
     {
-        barrierText.text = $"护盾：{this.barrier}";
+        barrierText.text = $"{this.barrier}";
     }
     public override void ChildStart()
     {
