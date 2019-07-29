@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687466686918360139}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7739798519911028079}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &487214335245747948
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 8743937388231856021}
   - component: {fileID: 8784561482360063753}
   - component: {fileID: 5519299202024101188}
+  - component: {fileID: 8619427708873527554}
   - component: {fileID: 7334525597077091133}
   m_Layer: 0
   m_Name: Rest Room
@@ -473,7 +474,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 8619427708873527554}
+--- !u!114 &8619427708873527554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770947349053034459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01bae6bb87b23c4eae34ab1883a4d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 3898018627310616454}
+  Back: {fileID: 1046153087247247484}
 --- !u!114 &7334525597077091133
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,12 +49,12 @@ MonoBehaviour:
   Chapter: {fileID: 1194898276540949139, guid: abf1caa73e3db344d899e021d289abe2, type: 3}
   Pos: {x: -32, y: 272, z: 0}
   DungeonRooms:
-  - {fileID: 2361085604536963916, guid: 99247c1994a36234d9e3b93c0a709349, type: 3}
   - {fileID: 138771129940806376, guid: d7e4e4ccb770d3c40b176c324c818763, type: 3}
   - {fileID: 2154737266286901232, guid: a19cd1a9826b90945a3720a5134a24e5, type: 3}
   - {fileID: 6089769102641756737, guid: 62bb44a1140a5484ab4f687d81783541, type: 3}
   - {fileID: 6259549404260051860, guid: 16b9d43ad574e364e8f9f6a7b081d60d, type: 3}
   - {fileID: 4077337493249359755, guid: 5b90e9c355ddd77449ebeff13699a2a1, type: 3}
+  - {fileID: 8770947349053034459, guid: 6e02fc95c588de442a822de806dc1033, type: 3}
   StartRoom: {fileID: 8194619328419393182, guid: e5d081c7650c6ad42903e515a3938c1d,
     type: 3}
   EndRoom: {fileID: 8194619328419393182, guid: 885b5dfcb7bc3c34e8688befab57c697, type: 3}

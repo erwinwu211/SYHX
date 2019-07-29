@@ -159,6 +159,7 @@ public class GenerateMap : MonoBehaviour {
             roomScript.LeftRoom = GetRoomByAxis(roomScript.thisRoomRaw - 1, roomScript.thisRoomColumn);
             roomScript.UpRoom = GetRoomByAxis(roomScript.thisRoomRaw, roomScript.thisRoomColumn + 1);
             roomScript.DownRoom = GetRoomByAxis(roomScript.thisRoomRaw, roomScript.thisRoomColumn - 1);
+            roomScript.hasLoaded = true;
         }
     }
 

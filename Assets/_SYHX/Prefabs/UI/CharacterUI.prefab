@@ -4681,7 +4681,7 @@ MonoBehaviour:
   BgPic: {fileID: 3304308964426973566}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &2571646433123823783
 GameObject:
   m_ObjectHideFlags: 0
@@ -8702,7 +8702,7 @@ MonoBehaviour:
   BgPic: {fileID: 7283444210686116530}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &5697447220530469723
 GameObject:
   m_ObjectHideFlags: 0

@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 6089769102641756741}
   - component: {fileID: 6089769102641756738}
   - component: {fileID: 6089769102641756739}
+  - component: {fileID: 7945356869180365909}
   m_Layer: 0
   m_Name: Battle Room Elite
   m_TagString: Untagged
@@ -379,7 +380,28 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 7945356869180365909}
+--- !u!114 &7945356869180365909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089769102641756737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e4805975e1279418128074e0fa504f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 6898922735264866645}
+  Back: {fileID: 2834305570673927547}
+  EnemyGroup: []
 --- !u!1 &6898922735264866645
 GameObject:
   m_ObjectHideFlags: 0

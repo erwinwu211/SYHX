@@ -49,7 +49,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     /// <summary>
     /// 进入下一层地图
     /// </summary>
-    public void NextFloor()
+    public void GotoNextFloor()
     {
         Generator.clearMap();
         Generator.loadMap();

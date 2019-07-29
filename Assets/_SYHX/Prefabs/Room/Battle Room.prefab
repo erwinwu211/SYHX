@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2091698542811248574}
   - component: {fileID: 2141048361078292258}
   - component: {fileID: 2938595894785224047}
+  - component: {fileID: 1324761291980821618}
   - component: {fileID: 114551723697916694}
   m_Layer: 0
   m_Name: Battle Room
@@ -103,7 +104,28 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 1324761291980821618}
+--- !u!114 &1324761291980821618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154737266286901232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e4805975e1279418128074e0fa504f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 3240931535960052362}
+  Back: {fileID: 3957155746762326280}
+  EnemyGroup: []
 --- !u!114 &114551723697916694
 MonoBehaviour:
   m_ObjectHideFlags: 0

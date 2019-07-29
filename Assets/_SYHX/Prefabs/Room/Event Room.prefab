@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 75748676333947558}
   - component: {fileID: 125152594424283706}
   - component: {fileID: 3804931312351449207}
+  - component: {fileID: 3645133735349561772}
   m_Layer: 0
   m_Name: Event Room
   m_TagString: Untagged
@@ -102,7 +103,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 3645133735349561772}
+--- !u!114 &3645133735349561772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138771129940806376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d28543eac1e6154391c4e5d0b59b5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 7490979578856517469}
+  Back: {fileID: 2797370219458352749}
 --- !u!1 &2797370219458352749
 GameObject:
   m_ObjectHideFlags: 0

@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 6259549404260051856}
   - component: {fileID: 6259549404260051863}
   - component: {fileID: 6259549404260051862}
+  - component: {fileID: 2832428400723402221}
   m_Layer: 0
   m_Name: Battle Room Boss
   m_TagString: Untagged
@@ -380,7 +381,28 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 2832428400723402221}
+--- !u!114 &2832428400723402221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259549404260051860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e4805975e1279418128074e0fa504f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 3603511150493574030}
+  Back: {fileID: 3605694267863172689}
+  EnemyGroup: []
 --- !u!1 &8182681462274038462
 GameObject:
   m_ObjectHideFlags: 0

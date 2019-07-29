@@ -8,15 +8,19 @@ public class BattleRoomScript : MonoBehaviour
     private Camera camera;
     public GameObject player;
     public LayerMask layerMask;
+
     public static int currentRoomNum;
     private int thisRoomNum;
     private int thisRoomType;
     public int thisRoomRaw;
     public int thisRoomColumn;
+
     public GameObject RightRoom;
     public GameObject LeftRoom;
     public GameObject UpRoom;
     public GameObject DownRoom;
+    public bool hasLoaded = false;
+
     private static bool enableInput = true;
     public RoomEvent roomEvent;
     void Start()
@@ -46,10 +50,25 @@ public class BattleRoomScript : MonoBehaviour
 
     public void MoveOnEvent()
     {
-        print(this.name +" Event happened!");
-        roomEvent = this.GetComponentInParent<RoomEvent>();
-        roomEvent.Event(thisRoomType);
-        //TODO by SONGLEI
+        print(this.name + " Event happened!");
+        DetectNearby();
+        roomEvent.EnterEvent();
+    }
+
+    /// <summary>
+    /// 探测该格子周围的房间
+    /// </summary>
+    public void DetectNearby()
+    {
+        if (LeftRoom) LeftRoom.GetComponent<BattleRoomScript>().roomEvent.OnDetected();
+        if (RightRoom) RightRoom.GetComponent<BattleRoomScript>().roomEvent.OnDetected();
+        if (UpRoom) UpRoom.GetComponent<BattleRoomScript>().roomEvent.OnDetected();
+        if (DownRoom) DownRoom.GetComponent<BattleRoomScript>().roomEvent.OnDetected();
+    }
+
+    public void DetectRoomByAxis(int raw,int column)
+    {
+
     }
 
     bool judgeNearby()
@@ -88,6 +107,8 @@ public class BattleRoomScript : MonoBehaviour
 
     void Move(Vector3 pos)
     {   //temp move, add animation later
+        roomEvent.LeaveEvent();
+
         var curPos = player.transform.position;
         
         if (pos.x < curPos.x) //left

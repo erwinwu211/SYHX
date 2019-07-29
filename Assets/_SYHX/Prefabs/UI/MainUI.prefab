@@ -226,7 +226,7 @@ MonoBehaviour:
   BgPic: {fileID: 7078551516220203256}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &380944803163119062
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   BgPic: {fileID: 704869429789468382}
   Normal: {r: 0.9490197, g: 0.9490197, b: 0.9490197, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &684668407893081864
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ MonoBehaviour:
   BgPic: {fileID: 5467592466178197476}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &1096336643081239392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   BgPic: {fileID: 5806510967576573828}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &1986318934380517877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   BgPic: {fileID: 2235043410747256497}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &2907014836874018082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   BgPic: {fileID: 5332728607115403860}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &4324423227733096940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,7 +3041,7 @@ MonoBehaviour:
   BgPic: {fileID: 8338579172126816160}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 0.18
+  FillSpeed: 9
 --- !u!1 &5717908690956712976
 GameObject:
   m_ObjectHideFlags: 0

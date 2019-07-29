@@ -11,7 +11,7 @@ public class ButtonEffect : MonoBehaviour,
     public GameObject BgPic;
     public Color Normal;
     public Color HighLight;
-    public float FillSpeed = 9f;
+    private float FillSpeed = 9f;
 
     public void OnPointerClick(PointerEventData eventData)
     {

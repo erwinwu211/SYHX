@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 4077337493249359759}
   - component: {fileID: 4077337493249359752}
   - component: {fileID: 4077337493249359753}
+  - component: {fileID: 2415819024250036835}
   m_Layer: 0
   m_Name: Craft Room
   m_TagString: Untagged
@@ -379,7 +380,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  roomEvent: {fileID: 0}
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  roomEvent: {fileID: 2415819024250036835}
+--- !u!114 &2415819024250036835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077337493249359755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba1b8fb045f86e46b932ec6e78619e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Front: {fileID: 2886983516967642807}
+  Back: {fileID: 4496847137751609924}
 --- !u!1 &4496847137751609924
 GameObject:
   m_ObjectHideFlags: 0
