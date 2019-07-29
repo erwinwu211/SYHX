@@ -10,6 +10,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public CharacterInDungeon dungeonCharacter { get; private set; }
     public DungeonUI DungeonUI;
     public GenerateMap Generator;
+    private int Floor = 1;
 
 
     public void LoadData(Dungeon dungeon, CharacterContent cc)
@@ -25,16 +26,34 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     private void Start()
     {
+        //从场景中获取人物与地图信息
         DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
         LoadData(ds.Dungeon, ds.cc);
+        //读取地图信息
         Generator.LoadDungeonData(mDungeon, mCharacter);
         Generator.makeDictionary();
         Generator.loadMap();
+        //读取人物信息
         InitDungeonCharacter(mCharacter);
-        DungeonUI.RefreshUI(this);
+        //刷新UI界面
+        DungeonUI.RefreshUI();
     }
+
+    
 
     protected override void UnityAwake()
     {
+    }
+
+
+    /// <summary>
+    /// 进入下一层地图
+    /// </summary>
+    public void NextFloor()
+    {
+        Generator.clearMap();
+        Generator.loadMap();
+        Floor++;
+        DungeonUI.RefreshUI();
     }
 }

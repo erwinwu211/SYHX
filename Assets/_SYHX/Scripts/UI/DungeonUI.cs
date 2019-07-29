@@ -16,7 +16,8 @@ public class DungeonUI : MonoBehaviour
         
     }
 
-    public void RefreshUI(DungeonManager dm)
+    public void RefreshUI()
     {
+        Debug.Log("dungeon ui has refreshed");
     }
 }
