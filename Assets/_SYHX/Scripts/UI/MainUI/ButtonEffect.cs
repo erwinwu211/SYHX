@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ButtonEffect : MonoBehaviour,
-    IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
+    IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public GameObject TextPic;
     public GameObject BgPic;
     public Color Normal;
     public Color HighLight;
-    public float FillSpeed = 0.18f;
+    public float FillSpeed = 9f;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -48,10 +48,10 @@ public class ButtonEffect : MonoBehaviour,
     IEnumerator FillBg()
     {
         Image image = BgPic.GetComponent<Image>();
-        for(; image.fillAmount<1;)
+        for (; image.fillAmount < 1;)
         {
-            image.fillAmount += FillSpeed;
-            yield return new WaitForSeconds(0.02f);
+            image.fillAmount += FillSpeed * Time.deltaTime;
+            yield return null;
         }
     }
 
@@ -62,10 +62,10 @@ public class ButtonEffect : MonoBehaviour,
     IEnumerator UnFillBg()
     {
         Image image = BgPic.GetComponent<Image>();
-        for(;image.fillAmount>0;)
+        for (; image.fillAmount > 0;)
         {
-            image.fillAmount -= FillSpeed;
-            yield return new WaitForSeconds(0.02f);
+            image.fillAmount -= FillSpeed * Time.deltaTime;
+            yield return null;
         }
         BgPic.SetActive(false);
     }
