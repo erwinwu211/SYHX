@@ -11,6 +11,12 @@ public class BattleRoomScript : MonoBehaviour
     public static int currentRoomNum;
     private int thisRoomNum;
     private int thisRoomType;
+    public int thisRoomRaw;
+    public int thisRoomColumn;
+    public GameObject RightRoom;
+    public GameObject LeftRoom;
+    public GameObject UpRoom;
+    public GameObject DownRoom;
     private static bool enableInput = true;
     public RoomEvent roomEvent;
     void Start()

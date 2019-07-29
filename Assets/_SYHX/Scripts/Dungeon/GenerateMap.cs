@@ -24,6 +24,7 @@ public class GenerateMap : MonoBehaviour {
 
     public static int startPoint;
     public static int endPoint;
+    public List<GameObject> roomList;
     
     public static Dungeon mDungeon;
     public static CharacterContent mCharacter;
@@ -134,9 +135,13 @@ public class GenerateMap : MonoBehaviour {
 
     void GenerateRoom (int[] mapArray) //Generate Room according to the map array
     {
+        roomList = new List<GameObject>();
         foreach (var item in mapArray.Select((v, i) => new { v, i }))
         {
             GameObject room = Instantiate(roomDictionary[item.v], new Vector3((item.i % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(item.i / mapHeight) * roomSpacing + 0.5f), Quaternion.identity);
+            BattleRoomScript roomScript = room.GetComponent<BattleRoomScript>();
+            roomScript.thisRoomRaw = item.i % mapWidth;
+            roomScript.thisRoomColumn = item.i / mapHeight;
             room.name = "Room " + item.i;
             room.GetComponent<BattleRoomScript>().changeType(item.v);
             room.transform.parent = this.transform;
@@ -145,7 +150,36 @@ public class GenerateMap : MonoBehaviour {
                 player.transform.position = room.transform.position;
                 BattleRoomScript.currentRoomNum = startPoint;
             }
+            roomList.Add(room);
         }
+        foreach (GameObject room in roomList)
+        {
+            BattleRoomScript roomScript = room.GetComponent<BattleRoomScript>();
+            roomScript.RightRoom = GetRoomByAxis(roomScript.thisRoomRaw + 1, roomScript.thisRoomColumn);
+            roomScript.LeftRoom = GetRoomByAxis(roomScript.thisRoomRaw - 1, roomScript.thisRoomColumn);
+            roomScript.UpRoom = GetRoomByAxis(roomScript.thisRoomRaw, roomScript.thisRoomColumn + 1);
+            roomScript.DownRoom = GetRoomByAxis(roomScript.thisRoomRaw, roomScript.thisRoomColumn - 1);
+        }
+    }
+
+    /// <summary>
+    /// 通过坐标获得房间
+    /// </summary>
+    /// <param name="raw"></param>
+    /// <param name="column"></param>
+    /// <returns></returns>
+    public GameObject GetRoomByAxis(int raw,int column)
+    {
+        if (raw < 0 || raw >= mapWidth)
+        {
+            return null;
+        }
+        if (column < 0 || column >= mapHeight)
+        {
+            return null;
+        }
+        GameObject room = roomList[column * mapHeight + raw];
+        return room;
     }
 
     //void GenerateDoor()
