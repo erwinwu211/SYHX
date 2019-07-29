@@ -41,13 +41,13 @@ public class GenerateMap : MonoBehaviour {
         count_of_roomType = mDungeon.DungeonRooms.Count + 2;
     }
 
-    void Start ()
-    {
-        DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
-        LoadDungeonData(ds.Dungeon, ds.cc);
-        makeDictionary();
-        loadMap(); 
-    }
+    //void Start ()
+    //{
+    //    DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
+    //    LoadDungeonData(ds.Dungeon, ds.cc);
+    //    makeDictionary();
+    //    loadMap(); 
+    //}
 
     public void clearMap()
     {
@@ -66,7 +66,7 @@ public class GenerateMap : MonoBehaviour {
     /// <summary>
     /// 将房间类型注册进字典
     /// </summary>
-    void makeDictionary()
+    public void makeDictionary()
     {   //add the room here
         roomDictionary.Add(0, mDungeon.StartRoom);
         roomDictionary.Add(1, mDungeon.EndRoom);

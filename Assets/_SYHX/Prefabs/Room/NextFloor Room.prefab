@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6435055314760854777}
   - component: {fileID: 2784120411612700186}
   - component: {fileID: 4911316916537721966}
-  - component: {fileID: 7094291087410399346}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -94,23 +93,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7094291087410399346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2237032955476948560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7def29e711a94cb5173de46bcf081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  roomEvent: {fileID: 0}
 --- !u!1 &2773110429408549867
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +105,6 @@ GameObject:
   - component: {fileID: 2788705530138522457}
   - component: {fileID: 2458857531695278270}
   - component: {fileID: 8949923659856754882}
-  - component: {fileID: 4507665099835213489}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -204,23 +185,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4507665099835213489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773110429408549867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7def29e711a94cb5173de46bcf081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  roomEvent: {fileID: 0}
 --- !u!1 &6085264115422838910
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +197,6 @@ GameObject:
   - component: {fileID: 2312384352891387677}
   - component: {fileID: 2705500289672050875}
   - component: {fileID: 4682102505916223417}
-  - component: {fileID: 6925269869921990489}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -315,23 +278,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6925269869921990489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085264115422838910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7def29e711a94cb5173de46bcf081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  roomEvent: {fileID: 0}
 --- !u!1 &7397006639376587385
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +290,6 @@ GameObject:
   - component: {fileID: 7167371189786307738}
   - component: {fileID: 8428174994069924358}
   - component: {fileID: 7856209818191469618}
-  - component: {fileID: 7326299489115911736}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -425,23 +370,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7326299489115911736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7397006639376587385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7def29e711a94cb5173de46bcf081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  roomEvent: {fileID: 0}
 --- !u!1 &8194619328419393182
 GameObject:
   m_ObjectHideFlags: 0
