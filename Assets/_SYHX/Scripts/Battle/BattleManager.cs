@@ -19,6 +19,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     [SerializeField] public CardSelectorManager cardSelectorManager;
     [SerializeField] public BattleInfoManager biManager;
     [SerializeField] public GameObject heroParent;
+    public static PassedBattleInformation information;
 
     #region 外部调用
     public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
@@ -67,7 +68,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        BattleCharacterManager.Ins.GenerateEnemyGroup(id);
+        BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup);
     }
 
     /// <summary>
@@ -112,11 +113,13 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     {
         //resultUI.text = "you win";
         resultPanel.gameObject.SetActive(true);
+        DungeonManager.Ins.DealWithBattleResult(new PassedResultInformation { currentHp = hero.currentHp, win = true });
     }
     private void Lose()
     {
         //resultUI.text = "you lose";
         resultPanel.gameObject.SetActive(true);
+        DungeonManager.Ins.DealWithBattleResult(new PassedResultInformation { currentHp = 0, win = false });
     }
 }
 
@@ -187,4 +190,15 @@ public partial class BattleManager
 public enum CoroutineType
 {
     enemyOnGoing, canExeNextEnemy, finishEnemyAction, playerTurnStart
+}
+
+public struct PassedBattleInformation
+{
+    public EnemyGroup enemyGroup;
+}
+
+public struct PassedResultInformation
+{
+    public int currentHp;
+    public bool win;
 }

@@ -15,6 +15,7 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<BattleHero> heroData;
     [SerializeField] public CharacterName umirika;
     [SerializeField] public BattleHero defaultHero;
+    [SerializeField] public List<EnemyGroup> enemyGroup;
     [TableList] public ModificationFactor[] factors;
     [TableList] public LvInfo[] lvInfos;
 

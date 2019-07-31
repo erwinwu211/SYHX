@@ -89,6 +89,8 @@ MonoBehaviour:
     JapaneseName: '...'
   defaultHero: {fileID: 8757133114207219568, guid: 21caae2ff14aac240ad24a8aa9e71c78,
     type: 3}
+  enemyGroup:
+  - {fileID: 11400000, guid: fd5d6be8294d0e14db54346020d93df2, type: 2}
   factors:
   - Force: 0.8
     Aglie: 0.8

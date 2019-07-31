@@ -57,4 +57,11 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         Floor++;
         DungeonUI.RefreshUI();
     }
+
+
+    //TODO
+    public void DealWithBattleResult(PassedResultInformation information)
+    {
+
+    }
 }

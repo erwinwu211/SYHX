@@ -22,6 +22,12 @@ public class BattleCharacterManager : Singleton<BattleCharacterManager>
         SelectEnemy(enemyList[0]);
     }
 
+    public void GenerateEnemyGroup(EnemyGroup group)
+    {
+        enemyList = group.CreateEnemyGroup();
+        SelectEnemy(enemyList[0]);
+    }
+
     public void SelectEnemy(Enemy enemy)
     {
         if (selectedEnemy != null) selectedEnemy.LeaveSelected();

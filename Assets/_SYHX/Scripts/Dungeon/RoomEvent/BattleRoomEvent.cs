@@ -8,6 +8,7 @@ public class BattleRoomEvent : RoomEvent
 
     public override void EnterEvent()
     {
+        BattleManager.information = new PassedBattleInformation { enemyGroup = EnemyGroup[0] };
         SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
     }
 }

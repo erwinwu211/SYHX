@@ -110,6 +110,7 @@ MonoBehaviour:
   LeftRoom: {fileID: 0}
   UpRoom: {fileID: 0}
   DownRoom: {fileID: 0}
+  hasLoaded: 0
   roomEvent: {fileID: 1324761291980821618}
 --- !u!114 &1324761291980821618
 MonoBehaviour:
@@ -125,7 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 3240931535960052362}
   Back: {fileID: 3957155746762326280}
-  EnemyGroup: []
+  EnemyGroup:
+  - {fileID: 11400000, guid: dee12529fedce3d4facbccb7ddc922f2, type: 2}
+  - {fileID: 11400000, guid: fd5d6be8294d0e14db54346020d93df2, type: 2}
 --- !u!114 &114551723697916694
 MonoBehaviour:
   m_ObjectHideFlags: 0
