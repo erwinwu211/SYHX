@@ -94,7 +94,7 @@ public class BattleStatus : SceneStatus
     public override string SceneName() => "Battle Scene";
     public override void Enter()
     {
-        SceneStatusManager.Ins.SetSceneStatus(SceneStatusManager.Ins.Record);
+        // SceneStatusManager.Ins.SetSceneStatus(SceneStatusManager.Ins.Record);
     }
 
     public override void Exit()

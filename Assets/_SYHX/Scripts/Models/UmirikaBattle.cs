@@ -1,8 +1,9 @@
 ﻿using SYHX.Cards;
 using UnityEngine.UI;
 
-public class Feo : BattleHero
+public class UmirikaBattle : BattleHero
 {
+    public override string Name { get => Initializer.Ins.umirika.Name; }
     public override void ChildStart()
     {
         connectionSignal = BattleManager.Ins.signals.CreateSignal<ConnectionSignal>("connection");

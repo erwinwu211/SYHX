@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Umirika : CharacterContent
 {
+    public override string Name { get => Initializer.Ins.umirika.Name; }
     public Umirika()
     {
-        Name = "尤米莉卡";
         Hp_max = 70;
         Attack = 6;
         Defend = 5;
@@ -36,5 +36,5 @@ public class Umirika : CharacterContent
     /// TODO:这个方法里要读取存档然后返回一个content
     /// </summary>
     /// <returns></returns>
-    
+
 }

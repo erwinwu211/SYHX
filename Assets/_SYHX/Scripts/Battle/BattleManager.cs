@@ -15,9 +15,10 @@ public enum BattleResult
 public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
 
-    [SerializeField] private BattleHero hero;
+    private BattleHero hero;
     [SerializeField] public CardSelectorManager cardSelectorManager;
     [SerializeField] public BattleInfoManager biManager;
+    [SerializeField] public GameObject heroParent;
 
     #region 外部调用
     public static Enemy selectedEnemy => BattleCharacterManager.Ins.selectedEnemy;
@@ -33,20 +34,28 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     public GameObject resultPanel;
     public Button leaveBtn;
     //public TextMeshProUGUI resultUI;
-    //可能弃用
-    public int currentEP;
-    public int maxEP;
     #endregion
     protected override void UnityAwake()
     {
         CardSelectorManager.SetIns(cardSelectorManager);
         resultPanel.gameObject.SetActive(false);
+        BattleHero tempHero;
+        if (CharacterInDungeon.Ins == null)
+        {
+            tempHero = Initializer.Ins.defaultHero;
+        }
+        else
+        {
+            tempHero = Initializer.Ins.GetHero(CharacterInDungeon.Ins.character);
+        }
+        hero = tempHero.gameObject.CreateWithoutChange(heroParent).GetComponent<BattleHero>();
+        hero.Init();
         BattleCharacterManager.Ins.SetHero(hero);
         this.signals = new SignalController();
     }
     void Start()
     {
-        biManager.Initial(currentEP, maxEP);
+        biManager.Initial(hero.maxEp, hero.maxEp);
         BattleStart(0, null);
     }
 

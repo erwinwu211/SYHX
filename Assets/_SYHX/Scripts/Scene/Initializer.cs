@@ -12,9 +12,12 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<EnemyActionSource> eaSource;
     [SerializeField] public DamageMono damageSource;
     [SerializeField] public List<Chapter> chapters;
+    [SerializeField] public List<BattleHero> heroData;
+    [SerializeField] public CharacterName umirika;
+    [SerializeField] public BattleHero defaultHero;
     [TableList] public ModificationFactor[] factors;
     [TableList] public LvInfo[] lvInfos;
-   
+
 
     protected override void UnityAwake()
     {
@@ -32,4 +35,25 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
             action.Init();
         }
     }
+
+    public BattleHero GetHero(CharacterContent cc)
+    {
+        foreach (var h in heroData)
+        {
+            if (h.Name == cc.Name)
+            {
+                return h;
+            }
+        }
+        return defaultHero;
+    }
+
+    [System.Serializable]
+    public class CharacterName
+    {
+        public string Name;
+        public string ChineseName;
+        public string JapaneseName;
+    }
 }
+

@@ -15,6 +15,7 @@ public class BattleCharacterManager : Singleton<BattleCharacterManager>
         this.hero = hero;
     }
 
+
     public void GenerateEnemyGroup(int id)
     {
         enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();

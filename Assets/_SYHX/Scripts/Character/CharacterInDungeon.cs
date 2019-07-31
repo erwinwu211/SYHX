@@ -4,7 +4,7 @@ using SYHX.Cards;
 
 public enum BasicAttribute
 {
-    Force,Aglie,Constitution,Fortune
+    Force, Aglie, Constitution, Fortune
 }
 
 /// <summary>
@@ -14,14 +14,14 @@ public enum BasicAttribute
 public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 {
     public CharacterContent character;
-    public int Hp_max { get; private set; }
-    public int Hp_currect { get; private set; }
+    public int maxHp { get; private set; }
+    public int currentHp { get; private set; }
     public int Attack { get; private set; }
     public int Defend { get; private set; }
-    public int Energy_max { get; private set; }
+    public int maxEp { get; private set; }
     public int Draw_count { get; private set; }
     public int Force { get; private set; }
-    public int Aglie { get; private set; }
+    public int Agile { get; private set; }
     public int Constitution { get; private set; }
     public int Fortune { get; private set; }
     public int AttrMax = 10;
@@ -30,24 +30,28 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public void Start()
     {
         //这里先暂时用一下预设好的人物
-        Umirika umirika = new Umirika();
-        Init(umirika);
+        // Umirika umirika = new Umirika();
+        // Init(umirika);
     }
 
     public void Init(CharacterContent cc)
     {
         character = cc;
-        this.Hp_max = cc.Hp_max;
-        this.Hp_currect = cc.Hp_max;
+        this.maxHp = cc.Hp_max;
+        this.currentHp = cc.Hp_max;
         this.Attack = cc.Attack;
         this.Defend = cc.Defend;
-        this.Energy_max = cc.Energy_max;
+        this.maxEp = cc.Energy_max;
         this.Draw_count = cc.Draw_count;
         this.Force = cc.STR;
-        this.Aglie = cc.AGI;
+        this.Agile = cc.AGI;
         this.Constitution = cc.INT;
         this.Fortune = cc.FOR;
-        this.Deck = cc.Deck;
+        this.Deck = new List<CardContent>();
+        foreach (var cs in cc.Deck)
+        {
+            this.Deck.Add(cs.GenerateCard());
+        }
     }
 
 
@@ -58,7 +62,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public void IncreaseHpMax(int count)
     {
         if (count < 0) return;
-        Hp_max += count;
+        maxHp += count;
     }
 
     /// <summary>
@@ -68,12 +72,12 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public void DecreaseHpMax(int count)
     {
         if (count < 0) return;
-        Hp_max -= count;
-        if (Hp_max < Hp_currect)
+        maxHp -= count;
+        if (maxHp < currentHp)
         {
-            Hp_currect = Hp_max;
+            currentHp = maxHp;
         }
-        if (Hp_max <= 0)
+        if (maxHp <= 0)
         {
             //TODO:SendEvent("DungeonEnd");
         }
@@ -86,8 +90,8 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public void IncreaseHpCurrect(int count)
     {
         if (count < 0) return;
-        Hp_currect += count;
-        if (Hp_currect > Hp_max) Hp_currect = Hp_max;
+        currentHp += count;
+        if (currentHp > maxHp) currentHp = maxHp;
     }
 
     /// <summary>
@@ -97,8 +101,8 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public void DecreaseHpCurrect(int count)
     {
         if (count < 0) return;
-        Hp_currect -= count;
-        if (Hp_currect <= 0)
+        currentHp -= count;
+        if (currentHp <= 0)
         {
             //TODO:SendEvent("DungeonEnd");
         }
@@ -149,7 +153,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     /// </summary>
     /// <param name="attr"></param>
     /// <param name="count"></param>
-    public void IncreaseBasicAttribute(BasicAttribute attr,int count)
+    public void IncreaseBasicAttribute(BasicAttribute attr, int count)
     {
         switch (attr)
         {
@@ -161,10 +165,10 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
                 }
                 break;
             case BasicAttribute.Aglie:
-                Aglie += count;
-                if (Aglie > AttrMax)
+                Agile += count;
+                if (Agile > AttrMax)
                 {
-                    Aglie = AttrMax;
+                    Agile = AttrMax;
                 }
                 break;
             case BasicAttribute.Constitution:
@@ -201,10 +205,10 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
                 }
                 break;
             case BasicAttribute.Aglie:
-                Aglie -= count;
-                if (Aglie < 1)
+                Agile -= count;
+                if (Agile < 1)
                 {
-                    Aglie = 1;
+                    Agile = 1;
                 }
                 break;
             case BasicAttribute.Constitution:
@@ -251,7 +255,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     /// </summary>
     /// <param name="origin"></param>
     /// <param name="now"></param>
-    public void ChangeCard(CardContent origin,CardContent now)
+    public void ChangeCard(CardContent origin, CardContent now)
     {
         Deck.Remove(origin);
         Deck.Add(now);

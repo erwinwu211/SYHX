@@ -7,7 +7,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     public Dungeon mDungeon { get; private set; }
     public CharacterContent mCharacter { get; private set; }
-    public CharacterInDungeon dungeonCharacter { get; private set; }
+    public CharacterInDungeon dungeonCharacter => CharacterInDungeon.Ins;
     public DungeonUI DungeonUI;
     public GenerateMap Generator;
     private int Floor = 1;
@@ -17,9 +17,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         mDungeon = dungeon;
         mCharacter = cc;
+        dungeonCharacter.Init(cc);
     }
 
-    private  CharacterInDungeon InitDungeonCharacter(CharacterContent character)
+    private CharacterInDungeon InitDungeonCharacter(CharacterContent character)
     {
         return dungeonCharacter;
     }
@@ -39,7 +40,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         DungeonUI.RefreshUI();
     }
 
-    
+
 
     protected override void UnityAwake()
     {

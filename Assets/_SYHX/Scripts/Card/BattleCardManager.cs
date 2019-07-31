@@ -47,10 +47,19 @@ namespace SYHX.Cards
         //
         void Start()
         {
-
-            foreach (var card in cards)
+            if (CharacterInDungeon.Ins == null)
             {
-                card.GenerateToDeck();
+                foreach (var card in cards)
+                {
+                    card.GenerateToDeck();
+                }
+            }
+            else
+            {
+                foreach (var cc in CharacterInDungeon.Ins.Deck)
+                {
+                    GenerateCardTo(cc, CardPosition.Deck);
+                }
             }
         }
 

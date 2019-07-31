@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class BattleHero : BattleCharacter
 {
+    public virtual string Name { get; }
     public override bool isEnemy { get => false; }
+    public int maxEp { get; private set; }
     public Text hpText;
     public Text barrierText;
     public Slider hpSlider;
     public int Force;
-    public int Align;
+    public int Agile;
     public int Constitution;
+    public int Fortune;
     public override void RefreshUI()
     {
         ShowHP();
@@ -44,5 +47,21 @@ public class BattleHero : BattleCharacter
         var factorRate = Initializer.Ins.factors[Force - 1].Force;
         return bc.TakeDamage(this, Attack * damageRate * factorRate * (1 + attackRate));
     }
+
+    public void Init()
+    {
+        if (initFromDungeon)
+        {
+            maxHp = CharacterInDungeon.Ins.maxHp;
+            currentHp = CharacterInDungeon.Ins.currentHp;
+            Force = CharacterInDungeon.Ins.Force;
+            Agile = CharacterInDungeon.Ins.Agile;
+            Constitution = CharacterInDungeon.Ins.Constitution;
+            Fortune = CharacterInDungeon.Ins.Fortune;
+            maxEp = CharacterInDungeon.Ins.maxEp;
+        }
+    }
+
+    private bool initFromDungeon => CharacterInDungeon.Ins == null ? false : true;
 
 }

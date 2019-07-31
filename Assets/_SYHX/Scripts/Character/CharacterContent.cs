@@ -6,11 +6,11 @@ using Sirenix.OdinInspector;
 /// <summary>
 /// 所有角色的父类
 /// </summary>
-public class CharacterContent:MonoBehaviour
+public class CharacterContent : MonoBehaviour
 {
     public const int LvMax = 30;
     public bool isLock;
-    public string Name;
+    public virtual string Name { get; }
     public int Lv;
     public int Exp;
     public int Hp_max;
@@ -22,14 +22,14 @@ public class CharacterContent:MonoBehaviour
     public int AGI;
     public int INT;
     public int FOR;
-    [SerializeField] public List<CardContent> Deck;
+    [SerializeField] public List<CardSource> Deck;
     [SerializeField] public List<Talent> Talents;
     public CharacterWords Words;
     [TableList] public LvInfo[] lvInfos;
     [TableList] public CharacterSkill[] skills;
 
     public CharacterContent() { }
-    
+
     public void LevelUp()
     {
         if (Lv < LvMax)
@@ -43,7 +43,7 @@ public class CharacterContent:MonoBehaviour
     public void IncreaseExp(int count)
     {
         Exp += count;
-        if (Exp >= lvInfos[Lv-1].Exp)
+        if (Exp >= lvInfos[Lv - 1].Exp)
         {
             LevelUp();
         }

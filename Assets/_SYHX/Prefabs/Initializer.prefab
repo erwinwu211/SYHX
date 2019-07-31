@@ -77,9 +77,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9946ca9cd46992746bfd6ae54335777e, type: 2}
   - {fileID: 11400000, guid: 64afa4e35f68dc44e99b0a7774297692, type: 2}
   - {fileID: 11400000, guid: 1c32c54bd7855bb4ba58fa06c153222a, type: 2}
-  damageSource: {fileID: 0}
+  damageSource: {fileID: 1548390756451542601, guid: 041215ec226edcf49adcc90d8a28ff88,
+    type: 3}
   chapters:
   - {fileID: 1194898276540949139, guid: abf1caa73e3db344d899e021d289abe2, type: 3}
+  heroData:
+  - {fileID: 8757133114207219568, guid: 21caae2ff14aac240ad24a8aa9e71c78, type: 3}
+  umirika:
+    Name: umirika
+    ChineseName: '...'
+    JapaneseName: '...'
+  defaultHero: {fileID: 8757133114207219568, guid: 21caae2ff14aac240ad24a8aa9e71c78,
+    type: 3}
   factors:
   - Force: 0.8
     Aglie: 0.8
