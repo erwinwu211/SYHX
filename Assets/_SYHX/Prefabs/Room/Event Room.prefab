@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3645133735349561772}
   m_Layer: 0
   m_Name: Event Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   LeftRoom: {fileID: 0}
   UpRoom: {fileID: 0}
   DownRoom: {fileID: 0}
+  hasLoaded: 0
   roomEvent: {fileID: 3645133735349561772}
 --- !u!114 &3645133735349561772
 MonoBehaviour:
@@ -212,7 +213,7 @@ MeshCollider:
   m_GameObject: {fileID: 2797370219458352749}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -304,7 +305,7 @@ MeshCollider:
   m_GameObject: {fileID: 4892703893303909776}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -397,7 +398,7 @@ MeshCollider:
   m_GameObject: {fileID: 7490979578856517469}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -489,7 +490,7 @@ MeshCollider:
   m_GameObject: {fileID: 8315203886499829466}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14

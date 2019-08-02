@@ -12,6 +12,7 @@ public class FogOfWar : MonoBehaviour
     private Mesh maskMesh;
     private Vector3[] m_vertices;
     private Color[] m_colors;
+    private Vector3 offset = new Vector3(-3.17f, 5, -3.14f);
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class FogOfWar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, 5f, player.transform.position.z);
+        this.transform.position = player.position + offset;
         Ray r = new Ray(transform.position, player.position - transform.position);
         RaycastHit hit;
         if (Physics.Raycast(r, out hit, 1000, fogLayer, QueryTriggerInteraction.Collide))

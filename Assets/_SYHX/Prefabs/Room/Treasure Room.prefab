@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2361085604536963921}
   - component: {fileID: 2361085604536963922}
   m_Layer: 0
-  m_Name: Room 2
-  m_TagString: Untagged
+  m_Name: Treasure Room
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomRaw: 0
+  thisRoomColumn: 0
+  RightRoom: {fileID: 0}
+  LeftRoom: {fileID: 0}
+  UpRoom: {fileID: 0}
+  DownRoom: {fileID: 0}
+  hasLoaded: 0
+  roomEvent: {fileID: 0}
 --- !u!54 &2361085604536963922
 Rigidbody:
   m_ObjectHideFlags: 0

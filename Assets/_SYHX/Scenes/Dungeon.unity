@@ -4102,6 +4102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DungeonUI: {fileID: 541068463176369207}
   Generator: {fileID: 898150645}
+  player: {fileID: 2014863287}
+  currentRoomNum: 0
+  Floor: 1
 --- !u!1 &1213142353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 976056869789166108, guid: 9613a17ac3f3c844f91b1730ae862aa1,

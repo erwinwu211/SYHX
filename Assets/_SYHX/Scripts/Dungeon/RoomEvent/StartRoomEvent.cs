@@ -16,6 +16,7 @@ public class StartRoomEvent : RoomEvent
     {
         if (RoomScript.hasLoaded && flag)
         {
+            Debug.Log("房间信息已加载完成，开始探测周围房间");
             RoomScript.DetectNearby();
             flag = false;
         }

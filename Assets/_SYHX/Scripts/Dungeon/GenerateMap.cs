@@ -42,14 +42,6 @@ public class GenerateMap : MonoBehaviour {
         count_of_roomType = mDungeon.DungeonRooms.Count + 2;
     }
 
-    //void Start ()
-    //{
-    //    DungeonStatus ds = SceneStatusManager.Ins.current as DungeonStatus;
-    //    LoadDungeonData(ds.Dungeon, ds.cc);
-    //    makeDictionary();
-    //    loadMap(); 
-    //}
-
     public void clearMap()
     {
         foreach (Transform child in transform)
@@ -148,7 +140,7 @@ public class GenerateMap : MonoBehaviour {
             if (item.i == startPoint) //initialize player position to start room
             {
                 player.transform.position = room.transform.position;
-                BattleRoomScript.currentRoomNum = startPoint;
+                DungeonManager.Ins.currentRoomNum = startPoint;
             }
             roomList.Add(room);
         }
