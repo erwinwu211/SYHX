@@ -19,6 +19,8 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [TableList] public ModificationFactor[] factors;
     [TableList] public LvInfo[] lvInfos;
 
+    public Language CurrentLanguage;
+
 
     protected override void UnityAwake()
     {
@@ -47,6 +49,11 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
             }
         }
         return defaultHero;
+    }
+
+    public enum Language
+    {
+        Chinese, Japanese
     }
 
     [System.Serializable]
