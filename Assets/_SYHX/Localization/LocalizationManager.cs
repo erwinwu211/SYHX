@@ -26,7 +26,7 @@ public class LocalizationManager : SingletonMonoBehaviour<LocalizationManager>, 
     {
         if (LocalizableData.ContainsKey(groupName))
         {
-            return LocalizableData[groupName].GetData(id);
+            return LocalizableData[groupName].GetData(id, currentLanguage);
         }
         return "";
     }
@@ -41,6 +41,15 @@ public class LocalizationManager : SingletonMonoBehaviour<LocalizationManager>, 
         return names.ToArray();
     }
 
+    public string[] GetIds(string groupName)
+    {
+        if (groupName != null && LocalizableData.ContainsKey(groupName))
+        {
+            return LocalizableData[groupName].GetIds();
+        }
+        return new string[] { "null" };
+    }
+
     public void OnAfterDeserialize()
     {
         LocalizableData = new Dictionary<string, LocalizableData>();
@@ -52,6 +61,11 @@ public class LocalizationManager : SingletonMonoBehaviour<LocalizationManager>, 
 
     public void OnBeforeSerialize()
     {
+        LocalizableData = new Dictionary<string, LocalizableData>();
+        foreach (var data in localizableData)
+        {
+            LocalizableData.Add(data.groupName, data.data);
+        }
     }
 }
 public enum Language
