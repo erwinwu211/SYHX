@@ -8,6 +8,7 @@ public class BattleRoomEvent : RoomEvent
 
     public override void EnterEvent()
     {
+        base.EnterEvent();
         int index = Random.Range(0, EnemyGroup.Count - 1);
         DungeonManager.Ins.BattleHappen(EnemyGroup[index]);
     }

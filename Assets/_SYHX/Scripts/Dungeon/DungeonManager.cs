@@ -11,8 +11,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public DungeonUI DungeonUI;
     public GenerateMap Generator;
     public GameObject player;
+    public int dataChipCount = 0;
     public int currentRoomNum;
     public int Floor = 1;
+    public int ChangeColorCost = 100;
+    public int ChangeColorCount = 0;
+    public const int CostIncrease = 30;
     private static bool enableInput = true;
 
 
@@ -28,6 +32,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         return dungeonCharacter;
     }
 
+    /// <summary>
+    /// 初始化
+    /// </summary>
     private void Start()
     {
         //从场景中获取人物与地图信息
@@ -43,6 +50,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         DungeonUI.RefreshUI();
     }
 
+    /// <summary>
+    /// 每帧进行鼠标点击判断
+    /// </summary>
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && enableInput)
@@ -68,6 +78,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         }
     }
 
+    /// <summary>
+    /// 检查两个房间是否相邻
+    /// </summary>
+    /// <param name="roomA"></param>
+    /// <param name="roomB"></param>
+    /// <returns></returns>
     bool judgeNerabyRoom(GameObject roomA, GameObject roomB)
     {
         bool flag = false;
@@ -146,7 +162,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         DungeonUI.RefreshUI();
     }
 
-
+    /// <summary>
+    /// 将战斗结果返回
+    /// </summary>
+    /// <param name="information"></param>
     //TODO
     public void DealWithBattleResult(PassedResultInformation information)
     {
@@ -177,4 +196,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             return null;
         }
     }
+
+
 }

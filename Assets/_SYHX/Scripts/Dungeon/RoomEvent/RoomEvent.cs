@@ -38,9 +38,22 @@ public class RoomEvent : MonoBehaviour
     //    }
     //}
 
-    public virtual void EnterEvent() { }
+    public virtual void EnterEvent()
+    {
+        DungeonManager.Ins.Disable();
+    }
 
-    public virtual void LeaveEvent() { print("leave"); }
+    /// <summary>
+    /// 在事件结束后，恢复地宫界面的鼠标接收
+    /// </summary>
+    public virtual void Finished()
+    {
+        DungeonManager.Ins.Enable();
+    }
+
+    public virtual void LeaveEvent()
+    {
+    }
 
     public virtual void OnDetected()
     {

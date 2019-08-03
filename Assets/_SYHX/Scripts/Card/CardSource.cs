@@ -15,6 +15,7 @@ namespace SYHX.Cards
         [SerializeField] protected string mName;
         [Multiline] [SerializeField] protected string mDesc;
         [SerializeField] protected int mEP;
+        [SerializeField] public int upgradeCost;
         [SerializeField] public ConnectionType connectionType;
         [SerializeField] public CardType cardType;
         [SerializeField] public Rarity rarity;

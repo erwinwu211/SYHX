@@ -233,7 +233,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     /// 移除一张卡牌
     /// </summary>
     /// <param name="card"></param>
-    public void RemoveJobCard(CardContent card)
+    public void RemoveCard(CardContent card)
     {
         if (Deck.Contains(card))
         {

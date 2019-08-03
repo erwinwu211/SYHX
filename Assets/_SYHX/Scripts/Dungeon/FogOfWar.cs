@@ -8,11 +8,12 @@ public class FogOfWar : MonoBehaviour
     public Transform player;
     public LayerMask fogLayer;
     public float maskRadius = 5f;
+    public Vector3 offset = new Vector3(-6f, 5, -2f);
+
 
     private Mesh maskMesh;
     private Vector3[] m_vertices;
     private Color[] m_colors;
-    private Vector3 offset = new Vector3(-3.17f, 5, -3.14f);
 
     // Start is called before the first frame update
     void Start()

@@ -104,6 +104,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
