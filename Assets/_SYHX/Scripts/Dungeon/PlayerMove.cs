@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
                 run = false;
                 time = 0f;
                 animator.SetBool("Run", false);
-                BattleRoomScript.Enable();
+                DungeonManager.Ins.Enable();
                 room.GetComponent<BattleRoomScript>().MoveOnEvent();
             }
         }
@@ -45,6 +45,7 @@ public class PlayerMove : MonoBehaviour
         curPos = cPos;
         tarPos = Pos;
         room = r;
+        Debug.Log("room is " + room.name);
     }
 
 

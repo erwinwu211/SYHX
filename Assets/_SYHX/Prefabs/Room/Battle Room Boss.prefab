@@ -88,7 +88,7 @@ MeshCollider:
   m_GameObject: {fileID: 3603511150493574030}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -181,7 +181,7 @@ MeshCollider:
   m_GameObject: {fileID: 3605694267863172689}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -273,7 +273,7 @@ MeshCollider:
   m_GameObject: {fileID: 5673429717536303023}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 2832428400723402221}
   m_Layer: 0
   m_Name: Battle Room Boss
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,6 +387,7 @@ MonoBehaviour:
   LeftRoom: {fileID: 0}
   UpRoom: {fileID: 0}
   DownRoom: {fileID: 0}
+  hasLoaded: 0
   roomEvent: {fileID: 2832428400723402221}
 --- !u!114 &2832428400723402221
 MonoBehaviour:
@@ -402,7 +403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 3603511150493574030}
   Back: {fileID: 3605694267863172689}
-  EnemyGroup: []
+  EnemyGroup:
+  - {fileID: 11400000, guid: fd5d6be8294d0e14db54346020d93df2, type: 2}
 --- !u!1 &8182681462274038462
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +492,7 @@ MeshCollider:
   m_GameObject: {fileID: 8182681462274038462}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14

@@ -69,4 +69,14 @@ public class ButtonEffect : MonoBehaviour,
         }
         BgPic.SetActive(false);
     }
+
+    /// <summary>
+    ///  重置填充背景
+    /// </summary>
+    public void ResetFillBg()
+    {
+        Image image = BgPic.GetComponent<Image>();
+        image.fillAmount = 0;
+        TextPic.GetComponent<Image>().color = Normal;
+    }
 }

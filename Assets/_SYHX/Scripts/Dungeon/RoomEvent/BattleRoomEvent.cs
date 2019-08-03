@@ -8,7 +8,8 @@ public class BattleRoomEvent : RoomEvent
 
     public override void EnterEvent()
     {
-        BattleManager.information = new PassedBattleInformation { enemyGroup = EnemyGroup[0] };
-        SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
+        base.EnterEvent();
+        int index = Random.Range(0, EnemyGroup.Count - 1);
+        DungeonManager.Ins.BattleHappen(EnemyGroup[index]);
     }
 }

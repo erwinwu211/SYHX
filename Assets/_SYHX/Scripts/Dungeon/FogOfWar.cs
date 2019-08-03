@@ -8,6 +8,8 @@ public class FogOfWar : MonoBehaviour
     public Transform player;
     public LayerMask fogLayer;
     public float maskRadius = 5f;
+    public Vector3 offset = new Vector3(-6f, 5, -2f);
+
 
     private Mesh maskMesh;
     private Vector3[] m_vertices;
@@ -22,7 +24,7 @@ public class FogOfWar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, 5f, player.transform.position.z);
+        this.transform.position = player.position + offset;
         Ray r = new Ray(transform.position, player.position - transform.position);
         RaycastHit hit;
         if (Physics.Raycast(r, out hit, 1000, fogLayer, QueryTriggerInteraction.Collide))

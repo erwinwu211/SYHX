@@ -87,7 +87,7 @@ MeshCollider:
   m_GameObject: {fileID: 2186156319160872747}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -179,7 +179,7 @@ MeshCollider:
   m_GameObject: {fileID: 2480609969185039340}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -272,7 +272,7 @@ MeshCollider:
   m_GameObject: {fileID: 2886983516967642807}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 2415819024250036835}
   m_Layer: 0
   m_Name: Craft Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,6 +386,7 @@ MonoBehaviour:
   LeftRoom: {fileID: 0}
   UpRoom: {fileID: 0}
   DownRoom: {fileID: 0}
+  hasLoaded: 0
   roomEvent: {fileID: 2415819024250036835}
 --- !u!114 &2415819024250036835
 MonoBehaviour:
@@ -489,7 +490,7 @@ MeshCollider:
   m_GameObject: {fileID: 4496847137751609924}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14

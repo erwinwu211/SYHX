@@ -10,8 +10,8 @@ public class BattleRoomScript : MonoBehaviour
     public LayerMask layerMask;
 
     public static int currentRoomNum;
-    private int thisRoomNum;
-    private int thisRoomType;
+    public int thisRoomNum;
+    public int thisRoomType;
     public int thisRoomRaw;
     public int thisRoomColumn;
 
@@ -30,18 +30,13 @@ public class BattleRoomScript : MonoBehaviour
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 检测鼠标是否点击到了挂有本脚本的物体
+    /// 并判断该房间是否与主角在的房间相邻
+    /// 如果是，则进行移动
+    /// </summary>
     void Update()
-    {   
-        if (Input.GetMouseButtonDown(0) && enableInput)
-        { // if left button pressed...
-            var mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
-
-            if (judgePos(mousePos) && judgeNearby())
-            {
-                Move(this.transform.position);
-            }
-        }
+    {
     }
     public void changeType(int type)
     {
@@ -94,48 +89,16 @@ public class BattleRoomScript : MonoBehaviour
         return result;
     }
 
-    public static void Enable()
+    bool judgeNerabyRoom(GameObject roomA,GameObject roomB)
     {
-        enableInput = true;
+        bool flag = false;
+        BattleRoomScript scriptA = roomA.GetComponent<BattleRoomScript>();
+        if (scriptA.LeftRoom == roomB) flag = true;
+        if (scriptA.RightRoom == roomB) flag = true;
+        if (scriptA.UpRoom == roomB) flag = true;
+        if (scriptA.DownRoom == roomB) flag = true;
+        Debug.Log("flag is" + flag);
+        return flag;
     }
 
-    public static void Disable()
-    {
-        enableInput = false;
-    }
-
-
-    void Move(Vector3 pos)
-    {   //temp move, add animation later
-        roomEvent.LeaveEvent();
-
-        var curPos = player.transform.position;
-        
-        if (pos.x < curPos.x) //left
-        {
-            player.transform.rotation = Quaternion.Euler(new Vector3(0,-90f,0));
-            Disable();
-            PlayerMove.Run(pos, curPos, this.gameObject);
-        }
-        if (pos.x > curPos.x) //right
-        {
-            player.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
-            Disable();
-            PlayerMove.Run(pos, curPos, this.gameObject);
-        }
-        if (pos.z > curPos.z) //up
-        {
-            player.transform.rotation = Quaternion.Euler(new Vector3(0, 0f, 0));
-            Disable();
-            PlayerMove.Run(pos, curPos, this.gameObject);
-        }
-        if (pos.z < curPos.z) //down
-        {
-            player.transform.rotation = Quaternion.Euler(new Vector3(0, -180f, 0));
-            Disable();
-            PlayerMove.Run(pos, curPos, this.gameObject);
-        }
-        //player.transform.position = new Vector3 (pos.x, player.transform.position.y, pos.z);
-        currentRoomNum = thisRoomNum;
-    }
 }
