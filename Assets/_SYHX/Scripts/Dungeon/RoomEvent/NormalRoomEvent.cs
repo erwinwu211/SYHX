@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NextFloorEvent : RoomEvent
+public class NormalRoomEvent : RoomEvent
 {
     public override void EnterEvent()
     {
         base.EnterEvent();
-        DungeonManager.Ins.GotoNextFloor();
         Finished();
     }
-
-
 }

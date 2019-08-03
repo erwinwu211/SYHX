@@ -40,10 +40,11 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
 
 
     /// <summary>
-    /// 离开工坊
+    /// 离开工坊，结束本次工坊事件
     /// </summary>
     public void LeaveCraft()
     {
+        craftMode = CraftMode.Default;
         mUI.EnhanceCraftUI();
         roomEvent.Finished();
     }
@@ -74,7 +75,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     /// </summary>
     public void UpgradeCard()
     {
-        if (canUseFlag)
+        if (canUseFlag && selectedCard != null && targetCard != null)
         {
             CharacterInDungeon.Ins.ChangeCard(selectedCard, targetCard);
             canUseFlag = false;
@@ -107,7 +108,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
 
     public void ExhaustCard()
     {
-        if (canUseFlag)
+        if (canUseFlag && selectedCard != null)
         {
             CharacterInDungeon.Ins.RemoveCard(selectedCard);
         }
@@ -117,15 +118,6 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
         }
     }
 
-    
-
-    public void CraftFinished()
-    {
-        craftMode = CraftMode.Default;
-        canUseFlag = true;
-        selectedCard = null;
-        targetCard = null;
-    }
 }
 
 public enum CraftMode

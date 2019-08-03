@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CraftRoomEvent : RoomEvent
 {
-
     public override void EnterEvent()
     {
         base.EnterEvent();

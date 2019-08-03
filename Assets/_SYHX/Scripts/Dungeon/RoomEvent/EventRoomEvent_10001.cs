@@ -6,5 +6,7 @@ public class EventRoomEvent_10001 : RoomEvent
 {
     public override void EnterEvent()
     {
+        base.EnterEvent();
+        Finished();
     }
 }

@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 6259549404260051860, guid: 16b9d43ad574e364e8f9f6a7b081d60d, type: 3}
   - {fileID: 4077337493249359755, guid: 5b90e9c355ddd77449ebeff13699a2a1, type: 3}
   - {fileID: 8770947349053034459, guid: 6e02fc95c588de442a822de806dc1033, type: 3}
+  - {fileID: 831488649233441590, guid: 92be89fe1be9bf3408a5cd52d4535b71, type: 3}
   StartRoom: {fileID: 8194619328419393182, guid: e5d081c7650c6ad42903e515a3938c1d,
     type: 3}
   EndRoom: {fileID: 8194619328419393182, guid: 885b5dfcb7bc3c34e8688befab57c697, type: 3}

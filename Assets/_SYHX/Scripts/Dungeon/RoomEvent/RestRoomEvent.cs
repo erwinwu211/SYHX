@@ -6,5 +6,7 @@ public class RestRoomEvent : RoomEvent
 {
     public override void EnterEvent()
     {
+        base.EnterEvent();
+        Finished();
     }
 }

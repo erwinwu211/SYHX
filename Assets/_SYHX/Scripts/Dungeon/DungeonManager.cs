@@ -12,6 +12,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public GenerateMap Generator;
     public GameObject player;
     public int dataChipCount = 0;
+    public int score = 0;
     public int currentRoomNum;
     public int Floor = 1;
     public int ChangeColorCost = 100;

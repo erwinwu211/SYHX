@@ -6,16 +6,20 @@ using SYHX.Cards;
 
 public class DungeonUI : MonoBehaviour
 {
-    public GameObject CraftUI;
-    public GameObject SettingUI;
-    public GameObject CardChooseGroup;
-    public GameObject CardPrefab;
-    public GameObject UpgradePanel;
+    public Text HpCount;
+    public Text FloorCount;
+    public Text DataChipCount;
+    public Text ScoreCount;
+    public Text NextRewardScoreCount;
+
+    public Image Avatar;
+
+    public Slider HpSlider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        RefreshUI();
     }
 
     // Update is called once per frame
@@ -26,7 +30,11 @@ public class DungeonUI : MonoBehaviour
 
     public void RefreshUI()
     {
-        Debug.Log("dungeon ui has refreshed");
+        HpCount.text = CharacterInDungeon.Ins.currentHp + " / " + CharacterInDungeon.Ins.maxHp;
+        HpSlider.value = (float)CharacterInDungeon.Ins.currentHp / CharacterInDungeon.Ins.maxEp;
+        FloorCount.text = "Area " + DungeonManager.Ins.Floor;
+        DataChipCount.text = DungeonManager.Ins.dataChipCount + "";
+        ScoreCount.text = DungeonManager.Ins.score + "";
     }
 
     
