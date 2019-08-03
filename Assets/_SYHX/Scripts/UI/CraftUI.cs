@@ -32,15 +32,18 @@ public class CraftUI : MonoBehaviour
     /// <param name="mode">模式</param>
     public void ShowCraftUI(List<CardContent> cardContents,CraftMode mode)
     {
+        //设置各界面的显示关系
         DungeonUI.SetActive(false);
         gameObject.SetActive(true);
         UpgradePanel.SetActive(false);
         CloseBtn.GetComponent<ButtonEffect>().ResetFillBg();
         DataChipCount.text = DungeonManager.Ins.dataChipCount+"";
+        //清空列表上的内容
         foreach (Transform tf in CardChooseGroup.transform)
         {
             Destroy(tf.gameObject);
         }
+        //根据模式为卡牌挂载不同的事件
         foreach (CardContent cc in cardContents)
         {
             GameObject go = Instantiate(CardPrefab, CardChooseGroup.transform);

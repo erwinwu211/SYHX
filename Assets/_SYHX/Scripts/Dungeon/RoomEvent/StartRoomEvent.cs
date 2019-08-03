@@ -5,6 +5,8 @@ using UnityEngine;
 public class StartRoomEvent : RoomEvent
 {
     public BattleRoomScript RoomScript;
+
+    //用来标记是否已经完成探测的flag
     private bool flag = true;
 
     private void Start()
@@ -22,7 +24,8 @@ public class StartRoomEvent : RoomEvent
         }
     }
 
-    public override void EnterEvent()
+    public override void EventHappen()
     {
+        Finished();
     }
 }

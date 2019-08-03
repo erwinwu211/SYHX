@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NextFloorEvent : RoomEvent
 {
-    public override void EnterEvent()
+    public override void EventHappen()
     {
-        base.EnterEvent();
+        base.EventHappen();
         DungeonManager.Ins.GotoNextFloor();
         Finished();
     }

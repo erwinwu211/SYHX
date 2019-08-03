@@ -21,7 +21,7 @@ public class RoomEvent : MonoBehaviour
 
     
     /// <summary>
-    /// 进入房间时触发的事件
+    /// 进入房间时触发的事件，返回是否已超过事件发生次数
     /// </summary>
     public virtual void EnterEvent()
     {
@@ -33,7 +33,10 @@ public class RoomEvent : MonoBehaviour
             return;
         }
         happenedCount += 1;
+        EventHappen();
     }
+
+    public virtual void EventHappen() {}
 
     /// <summary>
     /// 在事件结束后，恢复地宫界面的鼠标接收

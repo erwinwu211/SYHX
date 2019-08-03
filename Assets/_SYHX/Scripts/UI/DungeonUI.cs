@@ -35,6 +35,7 @@ public class DungeonUI : MonoBehaviour
         FloorCount.text = "Area " + DungeonManager.Ins.Floor;
         DataChipCount.text = DungeonManager.Ins.dataChipCount + "";
         ScoreCount.text = DungeonManager.Ins.score + "";
+        NextRewardScoreCount.text = "距下级奖励："+"";
     }
 
     
