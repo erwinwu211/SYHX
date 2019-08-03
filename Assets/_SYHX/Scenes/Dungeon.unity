@@ -4124,6 +4124,7 @@ MonoBehaviour:
   Generator: {fileID: 898150645}
   player: {fileID: 2014863287}
   dataChipCount: 0
+  score: 0
   currentRoomNum: 0
   Floor: 1
   ChangeColorCost: 100
@@ -5785,11 +5786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2820349902759245301, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3444566801508251852, guid: f0b998a1f502e9d478428c4dfa786f79,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5895,32 +5891,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3158262675920464673, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: CraftUI
-      value: 
-      objectReference: {fileID: 755945576}
-    - target: {fileID: 3158262675920464673, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: SettingUI
-      value: 
-      objectReference: {fileID: 1578097326}
-    - target: {fileID: 3158262675920464673, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: CardChooseGroup
-      value: 
-      objectReference: {fileID: 911374365}
-    - target: {fileID: 3158262675920464673, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: CardPrefab
-      value: 
-      objectReference: {fileID: 2335121909858388039, guid: 8c1aee94f52a5f74ab7b1be27374e91c,
-        type: 3}
-    - target: {fileID: 3158262675920464673, guid: f0b998a1f502e9d478428c4dfa786f79,
-        type: 3}
-      propertyPath: UpgradePanel
-      value: 
-      objectReference: {fileID: 3919514853680874581}
     - target: {fileID: 8071350179858977843, guid: f0b998a1f502e9d478428c4dfa786f79,
         type: 3}
       propertyPath: m_AnchorMax.x

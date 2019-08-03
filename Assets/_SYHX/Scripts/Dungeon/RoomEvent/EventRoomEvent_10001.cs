@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EventRoomEvent_10001 : RoomEvent
 {
-    public override void EnterEvent()
+    public override void EventHappen()
     {
+        base.EventHappen();
+        Finished();
     }
 }

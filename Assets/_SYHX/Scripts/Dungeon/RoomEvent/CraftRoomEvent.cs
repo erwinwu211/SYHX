@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CraftRoomEvent : RoomEvent
 {
-
-    public override void EnterEvent()
+    public override void EventHappen()
     {
-        base.EnterEvent();
+        base.EventHappen();
         CraftManager.Ins.ReceiveEvent(this);
     }
 }
