@@ -19,11 +19,11 @@ public class LocalizableData : ScriptableObject
     {
         Data data;
         if (!quickDatas.TryGetValue(id, out data)) return "";
-        switch (Initializer.Ins.CurrentLanguage)
+        switch (LocalizationManager.Ins.currentLanguage)
         {
-            case Initializer.Language.Chinese:
+            case Language.Chinese:
                 return data.Chinese;
-            case Initializer.Language.Japanese:
+            case Language.Japanese:
                 return data.Japanese;
         }
         return "";

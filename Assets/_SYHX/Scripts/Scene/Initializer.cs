@@ -51,10 +51,7 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
         return defaultHero;
     }
 
-    public enum Language
-    {
-        Chinese, Japanese
-    }
+
 
     [System.Serializable]
     public class CharacterName
