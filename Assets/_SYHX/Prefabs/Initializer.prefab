@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8033236345748359147}
   - component: {fileID: 8033236345748359146}
   - component: {fileID: 59073439}
+  - component: {fileID: 3397530229872600536}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -174,3 +175,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterManager: {fileID: 0}
+--- !u!114 &3397530229872600536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033236345748359144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ac1f7827df36a4eb2a1b57db5da483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLanguage: 0
+  localizableData:
+  - groupName: Character
+    data: {fileID: 11400000, guid: 6ef9bee9192b2fb419b457df14f17d45, type: 2}
+  - groupName: CardName
+    data: {fileID: 11400000, guid: e5912481836da84418f70a8655ecb555, type: 2}

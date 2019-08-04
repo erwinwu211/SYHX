@@ -3,32 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LocalizableText : LocalizableObject
+[RequireComponent(typeof(LocalizableObject))]
+public class LocalizableText : MonoBehaviour
 {
     [SerializeField] public Text text;
-
-    [SerializeField] public string groupName;
-    [SerializeField] public string id;
-    // Start is called before the first frame update
+    [SerializeField] public LocalizableObject Object;
     void Start()
     {
-        LocalizationManager.Ins.Objects.Add(this);
-        // text.text = x
+        Object.RegistRefesh(RefreshUI);
+        text.text = Object.GetData();
     }
 
-    // Update is called once per frame
-    void Update()
+    void RefreshUI()
     {
-
+        text.text = Object.GetData();
     }
 
-    void OnDestroy()
-    {
-        LocalizationManager.Ins.Objects.Remove(this);
-    }
-
-    public override void RefreshUI(Language currentLanguage)
-    {
-
-    }
 }
+

@@ -14,6 +14,12 @@ namespace SYHX.Cards
         [SerializeField] protected int mID;
         [SerializeField] protected string mName;
         [Multiline] [SerializeField] protected string mDesc;
+#if UNITY_EDITOR
+
+        [ShowInInspector] protected string mname => LocalizationManager.EditorGetData("CardName", mID.ToString());
+        protected string mdesc => LocalizationManager.EditorGetData("CardDesc", mID.ToString());
+#endif
+
         [SerializeField] protected int mEP;
         [SerializeField] public int upgradeCost;
         [SerializeField] public ConnectionType connectionType;

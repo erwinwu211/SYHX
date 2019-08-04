@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class LocalizationManager : SingletonMonoBehaviour<LocalizationManager>, ISerializationCallbackReceiver
 {
@@ -67,6 +70,28 @@ public class LocalizationManager : SingletonMonoBehaviour<LocalizationManager>, 
             LocalizableData.Add(data.groupName, data.data);
         }
     }
+
+    public void ChangeLanguage(Language language)
+    {
+        this.currentLanguage = language;
+        foreach (var data in objects)
+        {
+            data.RefreshUI();
+        }
+    }
+
+#if UNITY_EDITOR
+    static string sourcePath = "Assets/_SYHX/Prefabs/Initializer.prefab";
+    static LocalizationManager manager;
+    public static string EditorGetData(string groupName, string id)
+    {
+        if (manager == null)
+        {
+            manager = (LocalizationManager)AssetDatabase.LoadAssetAtPath(sourcePath, typeof(LocalizationManager));
+        }
+        return manager.GetData(groupName, id);
+    }
+#endif
 }
 public enum Language
 {

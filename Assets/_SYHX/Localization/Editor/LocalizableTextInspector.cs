@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEditor;
 
 
-[CustomEditor(typeof(LocalizableText))]
-public class LocalizableTextInspector : Editor
+[CustomEditor(typeof(LocalizableObject))]
+public class LocalizableObjectInspector : Editor
 {
     static string sourcePath = "Assets/_SYHX/Prefabs/Initializer.prefab";
-    SerializedProperty textProperty;
     SerializedProperty groupName;
     SerializedProperty id;
     LocalizationManager manager;
@@ -19,11 +18,13 @@ public class LocalizableTextInspector : Editor
 
     void OnEnable()
     {
-        textProperty = serializedObject.FindProperty("text");
         groupName = serializedObject.FindProperty("groupName");
         id = serializedObject.FindProperty("id");
+
         serializedObject.Update();
+
         manager = (LocalizationManager)AssetDatabase.LoadAssetAtPath(sourcePath, typeof(LocalizationManager));
+
         groupNames = manager.GetGroupNames();
         if (groupName.stringValue == null || groupName.stringValue == "")
         {
@@ -31,11 +32,13 @@ public class LocalizableTextInspector : Editor
         }
         groupNameIndex = FindIndex(groupNames, groupName.stringValue);
         ids = manager.GetIds(groupName.stringValue);
+
         if (id.stringValue == null || id.stringValue == "")
         {
             id.stringValue = ids[0];
         }
         idIndex = FindIndex(ids, id.stringValue);
+
         serializedObject.ApplyModifiedProperties();
 
     }
@@ -45,7 +48,7 @@ public class LocalizableTextInspector : Editor
 
         {
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.PropertyField(textProperty);
+
             var prevIndex = groupNameIndex;
             groupNameIndex = EditorGUILayout.Popup(groupNameIndex, groupNames);
             if (groupNameIndex != prevIndex)
@@ -55,6 +58,7 @@ public class LocalizableTextInspector : Editor
                 idIndex = 0;
 
             }
+
             prevIndex = idIndex;
             idIndex = EditorGUILayout.Popup(idIndex, ids);
             if (idIndex != prevIndex)
@@ -63,6 +67,7 @@ public class LocalizableTextInspector : Editor
                 if (serializedObject.hasModifiedProperties) Debug.Log("right");
             }
             EditorGUILayout.LabelField(manager.GetData(groupNames[groupNameIndex], ids[idIndex]));
+
             EditorGUILayout.EndVertical();
 
             if (GUI.changed)
