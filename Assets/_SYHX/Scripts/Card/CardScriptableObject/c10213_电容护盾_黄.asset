@@ -25,4 +25,4 @@ MonoBehaviour:
   origin:
     owner: {fileID: 0}
     bUI: {fileID: 0}
-    defenceRate: 150
+    defenceRate: 1.5

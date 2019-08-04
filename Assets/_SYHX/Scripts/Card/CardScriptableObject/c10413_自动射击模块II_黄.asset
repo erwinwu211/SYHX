@@ -25,6 +25,6 @@ MonoBehaviour:
   origin:
     owner: {fileID: 0}
     bUI: {fileID: 0}
-    damageRate: 150
+    damageRate: 1.5
     targetType: 0
     attackFrequency: 0

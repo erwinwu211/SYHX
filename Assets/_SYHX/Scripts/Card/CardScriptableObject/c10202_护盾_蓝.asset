@@ -27,4 +27,4 @@ MonoBehaviour:
   origin:
     owner: {fileID: 0}
     bUI: {fileID: 0}
-    defenceRate: 100
+    defenceRate: 1

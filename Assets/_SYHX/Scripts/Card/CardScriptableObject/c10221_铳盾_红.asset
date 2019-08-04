@@ -25,5 +25,5 @@ MonoBehaviour:
   origin:
     owner: {fileID: 0}
     bUI: {fileID: 0}
-    defenceRate: 100
+    defenceRate: 1
     cardName: {fileID: 11400000, guid: 601b4580ace111b428716d2e74a49322, type: 2}
