@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: cf6b2afbc17f26f42b53187216e963a5
+labels:
+- BarrierCardSource
+- Data
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

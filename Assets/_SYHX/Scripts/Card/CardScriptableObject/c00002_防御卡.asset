@@ -16,6 +16,7 @@ MonoBehaviour:
   mName: "\u62A4\u7F69"
   mDesc: "\u9632\u5FA1\u7387{defenceRate}"
   mEP: 1
+  upgradeCost: 0
   connectionType: 0
   cardType: 2
   rarity: 0

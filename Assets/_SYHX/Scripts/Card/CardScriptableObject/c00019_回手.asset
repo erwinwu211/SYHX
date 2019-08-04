@@ -16,6 +16,7 @@ MonoBehaviour:
   mName: "\u56DE\u624B\u5361\u724C"
   mDesc: "\u56DE\u6536{count}\u5F20\u5361\u724C\uFF0C\u5E76\u4F7F\u5176\u5728\u672C\u573A\u6218\u6597\u4E2D\u6D88\u8017\u4E3A0."
   mEP: 0
+  upgradeCost: 0
   connectionType: 0
   cardType: 0
   rarity: 0

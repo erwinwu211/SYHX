@@ -16,6 +16,7 @@ MonoBehaviour:
   mName: "\u653B\u51FB"
   mDesc: "\u4F24\u5BB3\u7387{damageRate}"
   mEP: 1
+  upgradeCost: 0
   connectionType: 0
   cardType: 0
   rarity: 1
@@ -25,4 +26,5 @@ MonoBehaviour:
     owner: {fileID: 11400000}
     bUI: {fileID: 0}
     damageRate: 0.8
-    isAOE: 0
+    targetType: 0
+    attackFrequency: 1

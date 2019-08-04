@@ -16,6 +16,7 @@ MonoBehaviour:
   mName: "\u653B\u51FB\u9632\u5FA1"
   mDesc: "\u5BF9\u76EE\u6807\u9020\u6210{damageRate}\u4F24\u5BB3\u3002\r\n\u5E76\u83B7\u5F97\u76EE\u6807\u53D7\u5230\u4F24\u5BB3\u7B49\u91CF\u7684\u62A4\u76FE\u503C\u3002"
   mEP: 1
+  upgradeCost: 0
   connectionType: 0
   cardType: 0
   rarity: 1

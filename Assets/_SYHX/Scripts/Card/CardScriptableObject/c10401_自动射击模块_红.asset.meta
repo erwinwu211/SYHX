@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 6dc8234b1014cca4b8500f7e8f06b2f7
+labels:
+- AttackCardSource
+- Data
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

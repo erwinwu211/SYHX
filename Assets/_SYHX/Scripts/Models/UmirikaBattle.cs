@@ -27,7 +27,7 @@ public class UmirikaBattle : BattleHero
     }
     public void CalculateConnection(ConnectionType type, bool isKeyWord)
     {
-        if (type == ConnectionType.连接技)
+        if (type == ConnectionType.无色)
         {
             connectionSignal.signalValue += 1;
             return;
@@ -41,7 +41,7 @@ public class UmirikaBattle : BattleHero
     }
     public void ResetCardType()
     {
-        currentType = ConnectionType.无;
+        currentType = ConnectionType.黑;
     }
 
     public void ResetConnection()
