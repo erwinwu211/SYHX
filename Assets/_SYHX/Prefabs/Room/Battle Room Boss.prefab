@@ -381,6 +381,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
@@ -403,8 +405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 3603511150493574030}
   Back: {fileID: 3605694267863172689}
+  happenedCount: 0
+  maxHappenCount: 1
   EnemyGroup:
-  - {fileID: 11400000, guid: fd5d6be8294d0e14db54346020d93df2, type: 2}
+  - {fileID: 11400000, guid: 2f57ba6f13bfb3241ae2bd90a441a2c6, type: 2}
 --- !u!1 &8182681462274038462
 GameObject:
   m_ObjectHideFlags: 0
