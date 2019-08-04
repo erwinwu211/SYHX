@@ -61,6 +61,7 @@ namespace SYHX.Cards
                     GenerateCardTo(cc, CardPosition.Deck);
                 }
             }
+            ShuffleDeckOnInit();
         }
 
         #region 卡牌基础（抽卡，洗牌）
@@ -125,6 +126,20 @@ namespace SYHX.Cards
                 yield return IGoTo(card, CardPosition.Deck);
             }
             yield break;
+        }
+
+        public void ShuffleDeckOnInit()
+        {
+            List<CardContent> temp = new List<CardContent>();
+            foreach (CardContent card in deckPile)
+            {
+                temp.Insert(Random.Range(0, temp.Count), card);
+            }
+            deckPile.Clear();
+            foreach (CardContent card in temp)
+            {
+                deckPile.Insert(Random.Range(0,deckPile.Count),card);
+            }
         }
 
         public IEnumerator IRefreshUI()
