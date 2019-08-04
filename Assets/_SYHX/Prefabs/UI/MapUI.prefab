@@ -147,7 +147,6 @@ MonoBehaviour:
   BgPic: {fileID: 9053930622569447981}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
 --- !u!1 &1248500498355818
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224638758596944350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -682,6 +681,8 @@ MonoBehaviour:
   Mask: {fileID: 927369467130424106}
   ChapterGO: {fileID: 3979739841810969032}
   ChapterParent: {fileID: 5832899480391521071}
+  DeckInformationUI: {fileID: 2216106562376988290, guid: 394c38a344feb5c4c897492416ae224a,
+    type: 3}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   ChapterSelected: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
 --- !u!1 &65890460641324092
@@ -803,7 +804,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5583156422154947722}
-        m_MethodName: EnhanceDungeonInfo
+        m_MethodName: OnDeckBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -831,7 +832,6 @@ MonoBehaviour:
   BgPic: {fileID: 3402395920638743069}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
 --- !u!1 &227004405929153501
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,9 +983,9 @@ RectTransform:
   m_Father: {fileID: 4443646826566014815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 132.93336, y: -62.75}
   m_SizeDelta: {x: 133.3, y: 133.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7073134824372279473
@@ -2140,7 +2140,6 @@ MonoBehaviour:
   BgPic: {fileID: 4511416144045143651}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 0.78431374}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 0.18
 --- !u!1 &3979739841810969032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,9 +2259,9 @@ RectTransform:
   m_Father: {fileID: 4443646826566014815}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 398.80008, y: -62.75}
   m_SizeDelta: {x: 133.3, y: 133.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5273983110552641836
@@ -2344,9 +2343,9 @@ RectTransform:
   m_Father: {fileID: 4443646826566014815}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 664.6669, y: -62.75}
   m_SizeDelta: {x: 133.3, y: 133.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5697386028608985696
@@ -2769,7 +2768,6 @@ MonoBehaviour:
   BgPic: {fileID: 8423472092870613238}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 0.18
 --- !u!1 &5150476147022225569
 GameObject:
   m_ObjectHideFlags: 0

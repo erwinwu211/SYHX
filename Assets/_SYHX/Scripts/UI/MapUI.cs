@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SYHX.Cards;
 
 public class MapUI : SingletonMonoBehaviour<MapUI>
 {
@@ -12,6 +13,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public GameObject Mask;
     public GameObject ChapterGO;
     public GameObject ChapterParent;
+    public GameObject DeckInformationUI;
     public Color Normal;
     public Color ChapterSelected;
     private Toggle SelectedChapterToggle;
@@ -32,6 +34,19 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
             go.GetComponent<Toggle>().onValueChanged.AddListener((bool value) => OnChapterToggleChanged(cp,go,value));
             if (cp.IsDefault) go.GetComponent<Toggle>().isOn = true;
         }
+    }
+
+    public void OnDeckBtnClick()
+    {
+        GameObject go = Instantiate(DeckInformationUI,transform.parent);
+        ChooseStatus mStatus =  SceneStatusManager.Ins.current as ChooseStatus;
+        List<CardContent> ccList = new List<CardContent>();
+        foreach (CardSource cs in mStatus.cc.Deck)
+        {
+            CardContent cc = cs.GenerateCard();
+            ccList.Add(cc);
+        }
+        go.GetComponent<DeckInformationUI>().LoadDeckInfomation(ccList);
     }
 
 

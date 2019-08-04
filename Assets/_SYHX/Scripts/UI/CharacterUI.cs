@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SYHX.Cards;
 
 public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
 {
@@ -22,10 +23,18 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     public GameObject ExpSlider;
     public GameObject ExpCount;
     public GameObject SkillPanel;
+    public GameObject DeckInformationUI;
     public float FillSpeed = 0.18f;
 
     public CharacterContent selectedCharacter { get; private set; }
     private int mode = 1; //当前此界面的模式：1-人物信息 2-天赋 3-介绍
+
+    public void Start()
+    {
+        //TODO
+        //要动态读取人物列表并动态挂载按钮事件
+        OnToggleChanged(1);
+    }
 
     /// <summary>
     /// 按返回按钮回到主界面
@@ -64,13 +73,13 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     /// <param name="cc"></param>
     public void RefreshCharacterInfo(CharacterContent cc)
     {
-        switch(mode)
+        switch (mode)
         {
             //更新人物属性信息
             case 1:
                 Lv.GetComponent<Text>().text = cc.Lv + "";
-                ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv-1].Exp;
-                ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv-1].Exp;
+                ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].Exp;
+                ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].Exp;
 
                 StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.STR / 10;
                 StrSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.STR + "";
@@ -96,7 +105,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 }
                 foreach (CharacterSkill skill in cc.skills)
                 {
-                    GameObject go =Instantiate(SkillGO, SkillList.transform);
+                    GameObject go = Instantiate(SkillGO, SkillList.transform);
                     go.SetActive(true);
                     go.transform.Find("Name").GetComponent<Text>().text = skill.name;
                     go.GetComponent<Button>().onClick.AddListener(delegate
@@ -110,13 +119,14 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
             case 2:
 
                 return;
-            
+
             //更新人物介绍信息
             case 3:
 
                 return;
         }
     }
+
 
     public void ShowSkillInfoPanel(CharacterSkill skill)
     {
@@ -135,11 +145,24 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         StartCoroutine("UnFillPanel");
     }
 
+    public void OnDeckBtnClick()
+    {
+        GameObject go = Instantiate(DeckInformationUI,transform.parent);
+        List<CardContent> ccList = new List<CardContent>();
+        Debug.Log(selectedCharacter);
+        foreach (CardSource cs in selectedCharacter.Deck)
+        {
+            CardContent cc = cs.GenerateCard();
+            ccList.Add(cc);
+        }
+        go.GetComponent<DeckInformationUI>().LoadDeckInfomation(ccList);
+    }
+
     IEnumerator FillPanel()
     {
         Image image = SkillPanel.GetComponent<Image>();
         image.fillAmount = 0.2f;
-        for(;image.fillAmount<1;)
+        for (; image.fillAmount < 1;)
         {
             image.fillAmount += FillSpeed;
             yield return new WaitForSeconds(0.02f);
@@ -162,12 +185,12 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
 
     public void OnTalentBtnClick()
     {
-        
+
     }
 
     public void OnEquipmentBtnClick()
     {
-        
+
     }
 
     protected override void UnityAwake()

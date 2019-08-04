@@ -6,6 +6,7 @@ using SYHX.Cards;
 
 public class DungeonUI : MonoBehaviour
 {
+    public GameObject DeckInformationUI;
     public Text HpCount;
     public Text FloorCount;
     public Text DataChipCount;
@@ -38,5 +39,9 @@ public class DungeonUI : MonoBehaviour
         NextRewardScoreCount.text = "距下级奖励："+"";
     }
 
-    
+    public void OnDeckBtnClick()
+    {
+        GameObject go = Instantiate(DeckInformationUI,transform.parent);
+        go.GetComponent<DeckInformationUI>().LoadDeckInfomation(CharacterInDungeon.Ins.Deck,true);
+    }
 }

@@ -4681,7 +4681,6 @@ MonoBehaviour:
   BgPic: {fileID: 3304308964426973566}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &2571646433123823783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,7 +5227,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1639761835748382765}
   toggleTransition: 1
-  graphic: {fileID: 6530654420019961274}
+  graphic: {fileID: 0}
   m_Group: {fileID: 519622567968100332}
   onValueChanged:
     m_PersistentCalls:
@@ -8674,7 +8673,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6485871709740636120}
-        m_MethodName: OnReturnBtnClick
+        m_MethodName: OnDeckBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8702,7 +8701,6 @@ MonoBehaviour:
   BgPic: {fileID: 7283444210686116530}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &5697447220530469723
 GameObject:
   m_ObjectHideFlags: 0
@@ -9624,6 +9622,8 @@ MonoBehaviour:
   ExpSlider: {fileID: 6158246531338121282}
   ExpCount: {fileID: 4813556209850611603}
   SkillPanel: {fileID: 4506532766349971906}
+  DeckInformationUI: {fileID: 2216106562376988290, guid: 394c38a344feb5c4c897492416ae224a,
+    type: 3}
   FillSpeed: 0.18
 --- !u!1 &6158246531338121282
 GameObject:
@@ -11916,14 +11916,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7524357567170349383}
   - component: {fileID: 3459531601110084664}
-  - component: {fileID: 6530654420019961274}
+  - component: {fileID: 5588449451982087776}
   m_Layer: 5
   m_Name: Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7524357567170349383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11951,7 +11951,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7797358646431972282}
   m_CullTransparentMesh: 0
---- !u!114 &6530654420019961274
+--- !u!114 &5588449451982087776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
