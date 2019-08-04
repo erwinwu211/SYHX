@@ -68,7 +68,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup);
+        BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup,information.difficultLevel);
     }
 
     /// <summary>
@@ -195,6 +195,7 @@ public enum CoroutineType
 public struct PassedBattleInformation
 {
     public EnemyGroup enemyGroup;
+    public float difficultLevel;
 }
 
 public struct PassedResultInformation

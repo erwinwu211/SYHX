@@ -17,9 +17,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int Floor = 1;
     public int ChangeColorCost = 100;
     public int ChangeColorCount = 0;
+    public float difficultLevel = 1;
     public const int CostIncrease = 30;
     private static bool enableInput = true;
-
 
     public void LoadData(Dungeon dungeon, CharacterContent cc)
     {
@@ -113,7 +113,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     }
 
     void Move(GameObject room)
-    {   
+    {
         //触发离开事件
         GetRoomByNumber(currentRoomNum).GetComponent<BattleRoomScript>().roomEvent.LeaveEvent();
 
@@ -147,10 +147,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         DungeonManager.Ins.currentRoomNum = room.GetComponent<BattleRoomScript>().thisRoomNum;
     }
 
-    protected override void UnityAwake()
-    {
-    }
-
+    protected override void UnityAwake() { }
 
     /// <summary>
     /// 进入下一层地图
@@ -175,7 +172,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     public void BattleHappen(EnemyGroup eg)
     {
-        BattleManager.information = new PassedBattleInformation { enemyGroup = eg };
+        BattleManager.information = new PassedBattleInformation { enemyGroup = eg, difficultLevel = this.difficultLevel };
         SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
     }
 
@@ -197,6 +194,5 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             return null;
         }
     }
-
 
 }

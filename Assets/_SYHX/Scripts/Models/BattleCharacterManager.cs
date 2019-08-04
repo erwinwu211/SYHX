@@ -16,15 +16,15 @@ public class BattleCharacterManager : Singleton<BattleCharacterManager>
     }
 
 
-    public void GenerateEnemyGroup(int id)
+    public void GenerateEnemyGroup(int id,float difficultLevel)
     {
-        enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup();
+        enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup(difficultLevel);
         SelectEnemy(enemyList[0]);
     }
 
-    public void GenerateEnemyGroup(EnemyGroup group)
+    public void GenerateEnemyGroup(EnemyGroup group,float difficultLevel)
     {
-        enemyList = group.CreateEnemyGroup();
+        enemyList = group.CreateEnemyGroup(difficultLevel);
         SelectEnemy(enemyList[0]);
     }
 
