@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 {
@@ -20,6 +22,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public float difficultLevel = 1;
     public const int CostIncrease = 30;
     private static bool enableInput = true;
+    EventSystem eventSystem;
+    public GraphicRaycaster RaycastInCanvas;
 
     public void LoadData(Dungeon dungeon, CharacterContent cc)
     {
@@ -58,6 +62,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         if (Input.GetMouseButtonDown(0) && enableInput)
         {
+            //检测是否点到了UI上面
+            if (CheckGuiRaycastObjects()) return;
             //创建一条从摄像机到触摸位置的射线
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 定义射线
             RaycastHit rayHit;
@@ -194,5 +200,22 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             return null;
         }
     }
+
+
+    bool CheckGuiRaycastObjects()//测试UI射线
+
+    {
+
+        PointerEventData eventData = new PointerEventData(eventSystem);
+
+        eventData.pressPosition = Input.mousePosition;
+        eventData.position = Input.mousePosition;
+
+        List<RaycastResult> list = new List<RaycastResult>();
+        RaycastInCanvas.Raycast(eventData, list);
+        return list.Count > 0;
+
+    }
+
 
 }

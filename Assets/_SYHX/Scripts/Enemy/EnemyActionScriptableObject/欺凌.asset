@@ -16,6 +16,7 @@ MonoBehaviour:
   mName: 
   mDesc: 
   mEP: 0
+  upgradeCost: 0
   connectionType: 0
   cardType: 0
   rarity: 0

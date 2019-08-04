@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc4eba2eeb18b346ad922d4fc4ee0b8, type: 3}
   m_Name: "e10101_\u91CE\u517D"
   m_EditorClassIdentifier: 
-  maxHp: 0
-  currentHp: 0
-  attack: 0
-  defence: 0
-  enemyObject: {fileID: 0}
+  maxHp: 18
+  currentHp: 18
+  attack: 6
+  defence: 5
+  enemyObject: {fileID: 5807190603346718724, guid: bb0982bb317215b40b27b887bf417465,
+    type: 3}

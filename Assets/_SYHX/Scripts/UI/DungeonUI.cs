@@ -41,6 +41,7 @@ public class DungeonUI : MonoBehaviour
 
     public void OnDeckBtnClick()
     {
+        DungeonManager.Ins.Disable();
         GameObject go = Instantiate(DeckInformationUI,transform.parent);
         go.GetComponent<DeckInformationUI>().LoadDeckInfomation(CharacterInDungeon.Ins.Deck,true);
     }

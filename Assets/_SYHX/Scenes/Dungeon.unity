@@ -4129,6 +4129,8 @@ MonoBehaviour:
   Floor: 1
   ChangeColorCost: 100
   ChangeColorCount: 0
+  difficultLevel: 1
+  RaycastInCanvas: {fileID: 746887047}
 --- !u!114 &1204015756
 MonoBehaviour:
   m_ObjectHideFlags: 0
