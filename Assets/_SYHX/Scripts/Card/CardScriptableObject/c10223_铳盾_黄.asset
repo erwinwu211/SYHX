@@ -16,7 +16,7 @@ MonoBehaviour:
   mName: "\u94F3\u76FE"
   mDesc: "\u83B7\u5F97{defenceRate}\u62A4\u76FE\u3002\u5C06\u4E00\u5F20\u300C\u624B\u94F3\u300D\u52A0\u5165\u624B\u724C\u3002"
   mEP: 1
-  upgradeCost: 30
+  upgradeCost: 20
   connectionType: 2
   cardType: 2
   rarity: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   mName: "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757II"
   mDesc: "\u5BF9\u76EE\u6807\u9020\u6210{damageRate}\u4F24\u5BB3{frequency}\u6B21"
   mEP: 1
-  upgradeCost: 50
+  upgradeCost: 45
   connectionType: 2
   cardType: 0
   rarity: 0
