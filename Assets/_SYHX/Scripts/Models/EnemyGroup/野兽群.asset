@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bee8744b627ce1944919cecc0c622ab4, type: 3}
-  m_Name: EnemyGroup
+  m_Name: "\u91CE\u517D\u7FA4"
   m_EditorClassIdentifier: 
   enemyList: []
