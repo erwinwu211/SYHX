@@ -37,7 +37,7 @@ public class CraftUI : MonoBehaviour
         gameObject.SetActive(true);
         UpgradePanel.SetActive(false);
         CloseBtn.GetComponent<ButtonEffect>().ResetFillBg();
-        DataChipCount.text = DungeonManager.Ins.dataChipCount+"";
+        DataChipCount.text = DungeonManager.Ins.dataChip.count+"";
         //清空列表上的内容
         foreach (Transform tf in CardChooseGroup.transform)
         {

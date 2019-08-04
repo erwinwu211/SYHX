@@ -1527,6 +1527,7 @@ MonoBehaviour:
   AGI: 3
   INT: 3
   FOR: 3
+  InitDataChip: 10
   Deck:
   - {fileID: 11400000, guid: 9e04e7ea19145af438b98adca66a546d, type: 2}
   - {fileID: 11400000, guid: 9e04e7ea19145af438b98adca66a546d, type: 2}

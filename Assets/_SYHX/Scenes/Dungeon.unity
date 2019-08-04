@@ -4130,6 +4130,7 @@ MonoBehaviour:
   ChangeColorCost: 100
   ChangeColorCount: 0
   difficultLevel: 1
+  dataChip: {fileID: 11400000, guid: 4e71de3a1e27d4c4e881239813619f5b, type: 2}
   RaycastInCanvas: {fileID: 746887047}
 --- !u!114 &1204015756
 MonoBehaviour:

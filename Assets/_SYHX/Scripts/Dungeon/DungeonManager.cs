@@ -13,7 +13,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public DungeonUI DungeonUI;
     public GenerateMap Generator;
     public GameObject player;
-    public int dataChipCount = 0;
     public int score = 0;
     public int currentRoomNum;
     public int Floor = 1;
@@ -21,6 +20,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int ChangeColorCount = 0;
     public float difficultLevel = 1;
     public const int CostIncrease = 30;
+    public ItemSource dataChip;
     private static bool enableInput = true;
     EventSystem eventSystem;
     public GraphicRaycaster RaycastInCanvas;
@@ -29,6 +29,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         mDungeon = dungeon;
         mCharacter = cc;
+        score = 0;
+        Floor = 1;
+        difficultLevel = 1;
+        dataChip.count = cc.InitDataChip;
         dungeonCharacter.Init(cc);
     }
 
@@ -201,10 +205,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         }
     }
 
+    /// <summary>
+    /// 检测鼠标是否点到了UI上
+    /// </summary>
+    /// <returns></returns>
+    bool CheckGuiRaycastObjects()
 
-    bool CheckGuiRaycastObjects()//测试UI射线
-
-    {
+    {
 
         PointerEventData eventData = new PointerEventData(eventSystem);
 
@@ -215,6 +222,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         RaycastInCanvas.Raycast(eventData, list);
         return list.Count > 0;
 
+    }
+
+    public void IncreaseDataChip(int count) {this.dataChip.count += count;}
+    public void DecreaseDataChip(int count) {
+        this.dataChip.count -= count; 
+        if (dataChip.count<0) dataChip.count = 0;
     }
 
 
