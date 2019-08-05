@@ -32,7 +32,8 @@ public class DungeonUI : MonoBehaviour
     public void RefreshUI()
     {
         HpCount.text = CharacterInDungeon.Ins.currentHp + " / " + CharacterInDungeon.Ins.maxHp;
-        HpSlider.value = (float)CharacterInDungeon.Ins.currentHp / CharacterInDungeon.Ins.maxEp;
+        HpSlider.maxValue = CharacterInDungeon.Ins.maxHp;
+        HpSlider.value = CharacterInDungeon.Ins.currentHp;
         FloorCount.text = "Area " + DungeonManager.Ins.Floor;
         DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
         ScoreCount.text = DungeonManager.Ins.score + "";

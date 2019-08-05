@@ -38,8 +38,6 @@ public class DeckInformationUI : MonoBehaviour {
             GameObject go = Instantiate (CardPrefab, CardChooseGroup.transform);
             go.GetComponent<CraftableCardUI> ().SetCard (cc);
             go.GetComponent<Button> ().onClick.AddListener (delegate () {
-                //TODO
-                //这里应该会放大显示它的升级信息
                 ShowCardDetail (cc);
             });
         }
@@ -60,6 +58,7 @@ public class DeckInformationUI : MonoBehaviour {
 
         //刷新界面
         GameObject go = Instantiate (CardPrefab, CardDetailPos);
+        go.GetComponent<CraftableCardUI>().SetCard(cc);
 
         //绑定Prev按钮事件
         if (cardContents.IndexOf (cc) == 0) {

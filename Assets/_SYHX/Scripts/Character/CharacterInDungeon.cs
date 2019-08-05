@@ -14,8 +14,8 @@ public enum BasicAttribute
 public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 {
     public CharacterContent character;
-    public int maxHp { get; private set; }
-    public int currentHp { get; private set; }
+    public int maxHp { get; set; }
+    public int currentHp { get; set; }
     public int Attack { get; private set; }
     public int Defend { get; private set; }
     public int maxEp { get; private set; }

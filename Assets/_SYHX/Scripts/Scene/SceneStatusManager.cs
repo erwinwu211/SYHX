@@ -24,7 +24,12 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
         StatusUpdate();
     }
 
-
+    /// <summary>
+    /// 切换场景的方式
+    /// </summary>
+    /// <param name="next"></param>
+    /// <param name="needLoad">是否需要异步加载</param>
+    /// <param name="needSave">是否需要在切换后仍然保留当前场景</param>
     public void SetSceneStatus(SceneStatus next, bool needLoad = true, bool needSave = false)
     {
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using SYHX.Cards;
+using DG.Tweening;
 
 public enum BattleResult
 {
@@ -28,11 +29,13 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     public TurnManager turnManager => TurnManager.Ins;
     public static bool canExeNextEnemy = true;
     public static bool finishEnemyAction = false;
+    private PassedResultInformation resultInformation;
     #endregion
 
 
     #region  UI
     public GameObject resultPanel;
+    public GameObject rewardPanel;
     public Button leaveBtn;
     //public TextMeshProUGUI resultUI;
     #endregion
@@ -69,6 +72,8 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     {
         //读取战斗数据
         BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup,information.difficultLevel);
+        //创建新的战斗结果数据
+        resultInformation = new PassedResultInformation();
     }
 
     /// <summary>
@@ -111,9 +116,25 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     }
     private void Win()
     {
-        //resultUI.text = "you win";
+        //写入部分结果传递
+        resultInformation.currentHp = hero.currentHp;
+        resultInformation.win = true;
+
+        //进行UI的重置;
         resultPanel.gameObject.SetActive(true);
-        DungeonManager.Ins.DealWithBattleResult(new PassedResultInformation { currentHp = hero.currentHp, win = true });
+        Transform resultInfoTF = resultPanel.transform.Find("ResultInfo");
+        resultInfoTF.gameObject.SetActive(true);
+        foreach (Transform tf in resultInfoTF) tf.gameObject.SetActive(false);
+        resultInfoTF.localPosition = new Vector3(0,100,0);
+        Transform winTF = resultInfoTF.Find("Win");
+        winTF.gameObject.SetActive(true);
+        rewardPanel.SetActive(false);
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(resultInfoTF.DOLocalMove(Vector3.zero,0.3f));
+        seq.SetLoops(1);
+        StartCoroutine(ShowRewardPanel());
+        // seq.Pause();
     }
     private void Lose()
     {
@@ -121,6 +142,22 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         resultPanel.gameObject.SetActive(true);
         DungeonManager.Ins.DealWithBattleResult(new PassedResultInformation { currentHp = 0, win = false });
     }
+
+    IEnumerator ShowRewardPanel()
+    {
+        Transform resultInfoTF = resultPanel.transform.Find("ResultInfo");
+        yield return new WaitForSeconds(0.3f);
+        resultInfoTF.gameObject.SetActive(false);
+        rewardPanel.SetActive(true);
+        yield return null;
+    }
+
+    public void OnLeaveBtnClick()
+    {
+        DungeonManager.Ins.DealWithBattleResult(resultInformation);
+        SceneStatusManager.Ins.SetSceneStatus(SceneStatusManager.Ins.Record);
+    }
+
 }
 
 

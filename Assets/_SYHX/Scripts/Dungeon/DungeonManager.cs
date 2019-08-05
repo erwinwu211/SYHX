@@ -177,7 +177,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     //TODO
     public void DealWithBattleResult(PassedResultInformation information)
     {
-
+        CharacterInDungeon.Ins.currentHp = information.currentHp;
+        DungeonUI.RefreshUI();
+        Enable();
     }
 
     public void BattleHappen(EnemyGroup eg)
