@@ -18,12 +18,7 @@ public enum ItemType
 {
     Resource,
     DungeonResource,
-    Equip,
     DungeonItem,
-}
-
-public class ItemAndCount
-{
-    public ItemSource item;
-    public int count;
+    DungeonCardGroup,
+    Equip,
 }

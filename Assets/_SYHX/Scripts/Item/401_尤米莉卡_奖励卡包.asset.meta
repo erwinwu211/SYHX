@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 122b1194ef9cfae42ac3b9497b86c492
+guid: 3730704ce9a457241a3558114038e071
 labels:
 - Data
-- DungeonResourceSource
+- DungeonCardRewardSource
 - ScriptableObject
 NativeFormatImporter:
   externalObjects: {}

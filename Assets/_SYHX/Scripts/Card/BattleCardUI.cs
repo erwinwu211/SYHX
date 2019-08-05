@@ -4,27 +4,10 @@ using TMPro;
 
 namespace SYHX.Cards
 {
-    public class BattleCardUI : MonoBehaviour
+    public class BattleCardUI : ProtoCardUI
     {
-        public CardContent cc;
         public CardPosition position;
-        [SerializeField] public Text nameField;
-        [SerializeField] public Text descField;
-        [SerializeField] public Text EPField;
-        [SerializeField] public Text typeField;
-        public void SetCard(CardContent cc)
-        {
-            this.cc = cc;
-            this.name = cc.name;
-        }
-
-        public void RefreshUI()
-        {
-            this.nameField.text = cc.name;
-            this.descField.text = cc.Desc;
-            this.EPField.text = cc.TempEP.ToString();
-            this.typeField.text = cc.cardType.ToString();
-        }
+        
         public void OnPointClick()
         {
             if (position == CardPosition.Hand)

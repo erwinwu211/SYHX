@@ -149,7 +149,6 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     {
         GameObject go = Instantiate(DeckInformationUI,transform.parent);
         List<CardContent> ccList = new List<CardContent>();
-        Debug.Log(selectedCharacter);
         foreach (CardSource cs in selectedCharacter.Deck)
         {
             CardContent cc = cs.GenerateCard();

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EnemyGroup : ScriptableObject
 {
     [SerializeField] public List<EnemySource> enemyList;
+    [SerializeField] public List<RewardProto> rewardList;
 
     private float difficultLevel;
     public EnemyGroup(int id, float difficultLevel)
