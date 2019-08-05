@@ -3184,9 +3184,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 755945577}
   - {fileID: 1578097327}
   - {fileID: 259988924499679194}
+  - {fileID: 755945577}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3291,11 +3291,11 @@ CanvasRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 5237211053055666161}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &755945580
+--- !u!114 &755945580 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 755945580, guid: be107231798ec7f47aa4cea87ab417e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5237211053055666161}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755945576}
   m_Enabled: 1
@@ -3303,13 +3303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebfaf0660e3e574a8c4930853713c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardChooseGroup: {fileID: 911374365}
-  CardPrefab: {fileID: 2335121909858388039, guid: 8c1aee94f52a5f74ab7b1be27374e91c,
-    type: 3}
-  UpgradePanel: {fileID: 3919514853680874581}
-  DungeonUI: {fileID: 3194782548657336087}
-  CloseBtn: {fileID: 1908958167}
-  DataChipCount: {fileID: 1524076906314344331}
 --- !u!1 &773541561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3561365377214783893, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
@@ -4123,7 +4116,6 @@ MonoBehaviour:
   DungeonUI: {fileID: 541068463176369207}
   Generator: {fileID: 898150645}
   player: {fileID: 2014863287}
-  dataChipCount: 0
   score: 0
   currentRoomNum: 0
   Floor: 1
@@ -5479,7 +5471,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3194782548657336086}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3194782548657336087}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c990c5729b2fba4d9d903744d84a2c9, type: 3}
@@ -5827,7 +5819,7 @@ PrefabInstance:
     - target: {fileID: 3444566801508251852, guid: f0b998a1f502e9d478428c4dfa786f79,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3444566801508251852, guid: f0b998a1f502e9d478428c4dfa786f79,
         type: 3}
@@ -5906,12 +5898,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b998a1f502e9d478428c4dfa786f79, type: 3}
---- !u!1 &3194782548657336087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2820349902759245301, guid: f0b998a1f502e9d478428c4dfa786f79,
-    type: 3}
-  m_PrefabInstance: {fileID: 3194782548657336086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3561365377987931948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6007,7 +5993,7 @@ PrefabInstance:
     - target: {fileID: 3561365378558309763, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3561365378558309763, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
         type: 3}
@@ -6198,16 +6184,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5237211051447481013, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeCard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5237211051447481013, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1204015756}
     - target: {fileID: 5237211052301563800, guid: be107231798ec7f47aa4cea87ab417e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6246,7 +6222,7 @@ PrefabInstance:
     - target: {fileID: 5237211052301563800, guid: be107231798ec7f47aa4cea87ab417e2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5237211052301563800, guid: be107231798ec7f47aa4cea87ab417e2,
         type: 3}
@@ -6312,31 +6288,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962222954179575677, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1204015756}
-    - target: {fileID: 8962222954179575677, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToCardList
-      objectReference: {fileID: 0}
-    - target: {fileID: 3919514853680874581, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5237211051709793323, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1204015756}
-    - target: {fileID: 5237211051709793323, guid: be107231798ec7f47aa4cea87ab417e2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LeaveCraft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be107231798ec7f47aa4cea87ab417e2, type: 3}

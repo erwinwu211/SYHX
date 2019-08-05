@@ -9,9 +9,14 @@ public class CraftUI : MonoBehaviour
     public GameObject CardChooseGroup;
     public GameObject CardPrefab;
     public GameObject UpgradePanel;
-    public GameObject DungeonUI;
     public GameObject CloseBtn;
+    public GameObject PriceLabel;
+    public Transform UpgradeCardPos;
+    public Transform UpgradeChooseListPos;
     public Text DataChipCount;
+    public Color Unenough;
+    public Color Enough;
+    public ButtonEffect ReturnBtn;
 
     /// <summary>
     /// 根据模式显示工坊界面
@@ -33,7 +38,6 @@ public class CraftUI : MonoBehaviour
     public void ShowCraftUI(List<CardContent> cardContents,CraftMode mode)
     {
         //设置各界面的显示关系
-        DungeonUI.SetActive(false);
         gameObject.SetActive(true);
         UpgradePanel.SetActive(false);
         CloseBtn.GetComponent<ButtonEffect>().ResetFillBg();
@@ -59,30 +63,61 @@ public class CraftUI : MonoBehaviour
     public void EnhanceCraftUI()
     {
         gameObject.SetActive(false);
-        DungeonUI.SetActive(true);
     }
 
     public void ShowUpgradeList(CardContent cc)
     {
+        //进行重置
         UpgradePanel.SetActive(true);
-        Transform selectedCardTF = UpgradePanel.transform.Find("SelectedCard");
-        Transform chooseListTF = UpgradePanel.transform.Find("ChooseList");
-        Text costText = UpgradePanel.transform.Find("Arrow/Cost/Text").GetComponent<Text>();
-        foreach (Transform tf in selectedCardTF) Destroy(tf.gameObject);
-        foreach (Transform tf in chooseListTF) Destroy(tf.gameObject);
+        foreach (Transform tf in UpgradeCardPos) Destroy(tf.gameObject);
+        foreach (Transform tf in UpgradeChooseListPos) Destroy(tf.gameObject);
+        ReturnBtn.ResetFillBg();
+        //显示选中卡牌信息
+        {
+            GameObject go = Instantiate(CardPrefab,UpgradeCardPos);
+            go.GetComponent<CraftableCardUI>().SetCard(cc);
+        }
+        //显示升级分支信息
         foreach (CardSource cs in cc.owner.upgradeList)
         {
             CardContent cardcontent = cs.GenerateCard();
-            GameObject go = Instantiate(CardPrefab, chooseListTF);
-            CraftableCardUI CUI = CardPrefab.GetComponent<CraftableCardUI>();
-            CUI.SetCard(cardcontent);
+            GameObject go = Instantiate(CardPrefab, UpgradeChooseListPos);
+            go.GetComponent<CraftableCardUI>().SetCard(cardcontent);
+            GameObject price = Instantiate(PriceLabel,go.transform);
+            //判断是否有足够的金钱来显示不同的字体颜色
+            string colorString;
+            if (DungeonManager.Ins.dataChip.count > cs.upgradeCost)
+            {
+                colorString = ColorUtility.ToHtmlStringRGB(Enough);
+            }
+            else
+            {
+                colorString = ColorUtility.ToHtmlStringRGB(Unenough);
+            }
+            price.GetComponentInChildren<Text>().text = "数据碎片 <color=#"+colorString+">"+cs.upgradeCost+"</color>";
             go.GetComponent<Button>().onClick.AddListener(delegate ()
             {
-                CraftManager.Ins.SetTargetCard(cardcontent);
+                CraftManager.Ins.SetTargetCard(cs);
             });
         }
     }
 
+    public void OnConfirmBtnClick()
+    {
+        CraftManager.Ins.UpgradeCard();
+        CraftManager.Ins.LeaveCraft();
+    }
+
+    public void OnLeaveBtnClick()
+    {
+        CraftManager.Ins.LeaveCraft();
+    }
+
+    public void OnReturnListBtnClick()
+    {
+        CraftManager.Ins.ClearChoose();
+        EnhanceUpgradePanel();
+    }
 
     public void EnhanceUpgradePanel()
     {

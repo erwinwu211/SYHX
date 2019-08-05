@@ -9,7 +9,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
 
     public CraftUI mUI;
     public CardContent selectedCard = null;
-    public CardContent targetCard = null;
+    public CardSource targetCard = null;
     public CraftMode craftMode;
     public bool canUseFlag = true;
     private CraftRoomEvent roomEvent;
@@ -35,6 +35,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     public void OpenCraft(CraftMode mode)
     {
         craftMode = mode;
+        ClearChoose();
         mUI.ShowCraftUI(CharacterInDungeon.Ins.Deck, mode);
     }
 
@@ -46,6 +47,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     {
         craftMode = CraftMode.Default;
         mUI.EnhanceCraftUI();
+        ClearChoose();
         roomEvent.Finished();
     }
 
@@ -64,9 +66,9 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     /// 将一张牌选为目标牌
     /// </summary>
     /// <param name="cc"></param>
-    public void SetTargetCard(CardContent cc)
+    public void SetTargetCard(CardSource cs)
     {
-        targetCard = cc;
+        targetCard = cs;
     }
 
 
@@ -77,7 +79,9 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     {
         if (canUseFlag && selectedCard != null && targetCard != null)
         {
-            CharacterInDungeon.Ins.ChangeCard(selectedCard, targetCard);
+            CardContent cc = targetCard.GenerateCard();
+            CharacterInDungeon.Ins.ChangeCard(selectedCard, cc);
+            DungeonManager.Ins.DecreaseDataChip(targetCard.upgradeCost);
             canUseFlag = false;
             LeaveCraft();
         }
@@ -96,15 +100,6 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
         targetCard = null;
     }
 
-
-    /// <summary>
-    /// 从选目标牌处回退到选选中牌处
-    /// </summary>
-    public void ReturnToCardList()
-    {
-        ClearChoose();
-        mUI.EnhanceUpgradePanel();
-    }
 
     public void ExhaustCard()
     {

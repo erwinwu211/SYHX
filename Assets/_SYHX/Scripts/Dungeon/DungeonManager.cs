@@ -224,10 +224,14 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     }
 
-    public void IncreaseDataChip(int count) {this.dataChip.count += count;}
+    public void IncreaseDataChip(int count) {
+        this.dataChip.count += count;
+        DungeonUI.RefreshUI();
+    }
     public void DecreaseDataChip(int count) {
         this.dataChip.count -= count; 
         if (dataChip.count<0) dataChip.count = 0;
+        DungeonUI.RefreshUI();
     }
 
 
