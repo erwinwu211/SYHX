@@ -130,6 +130,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         winTF.gameObject.SetActive(true);
         rewardPanel.SetActive(false);
 
+        //控制动画
         Sequence seq = DOTween.Sequence();
         seq.Append(resultInfoTF.DOLocalMove(Vector3.zero,0.3f));
         seq.SetLoops(1);

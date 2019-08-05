@@ -226,15 +226,35 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     }
 
-    public void IncreaseDataChip(int count) {
+    public void IncreaseDataChip(int count)
+    {
         this.dataChip.count += count;
         DungeonUI.RefreshUI();
     }
-    public void DecreaseDataChip(int count) {
-        this.dataChip.count -= count; 
-        if (dataChip.count<0) dataChip.count = 0;
+    public void DecreaseDataChip(int count)
+    {
+        this.dataChip.count -= count;
+        if (dataChip.count < 0) dataChip.count = 0;
         DungeonUI.RefreshUI();
+    }
+    /// <summary>
+    /// 离开地宫，跳转到地宫结算界面
+    /// </summary>
+    public void LeaveDungeon()
+    {
+        //传递结算信息
+        DungeonResultInformation dungeonResult = new DungeonResultInformation();
+        DungeonResultStatus status = new DungeonResultStatus(SceneStatusManager.Ins);
+        status.information = dungeonResult;
+
+        //结算
+        SceneStatusManager.Ins.SetSceneStatus(status);
     }
 
 
+}
+
+public struct DungeonResultInformation
+{
+    //TODO：写要传递的信息内容
 }

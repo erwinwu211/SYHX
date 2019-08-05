@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_SYHX/Scenes/Battle Scene.unity
     guid: b3428019b821f2348abdd877ecd0b906
+  - enabled: 1
+    path: Assets/_SYHX/Scenes/Dungeon Result.unity
+    guid: f44abf89b01dc0f4ab60c1e86e9b9f1a
   m_configObjects: {}

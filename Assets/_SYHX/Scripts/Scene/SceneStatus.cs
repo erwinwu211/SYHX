@@ -115,3 +115,12 @@ public class CharacterStatus : SceneStatus
         CharacterUI.Ins.RefreshCharacterInfo(cc);
     }
 }
+
+public class DungeonResultStatus : SceneStatus
+{
+    public DungeonResultStatus(SceneStatusManager owner) : base(owner) {}
+    
+    public DungeonResultInformation information;
+    public override string SceneName() => "Dungeon Result";
+
+}
