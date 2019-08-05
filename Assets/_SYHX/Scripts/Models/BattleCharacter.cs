@@ -76,6 +76,7 @@ public partial class BattleCharacter : MonoBehaviour
         {
             currentHp = maxHp;
         }
+        RefreshUI();
     }
 
     /// <summary>
@@ -129,6 +130,7 @@ public partial class BattleCharacter : MonoBehaviour
         {
             temp = 0;
         }
+        RefreshUI();
         return this.DecreaseHp(temp);
     }
     public virtual void TakeNoSourceDamage(int damage)
