@@ -253,7 +253,6 @@ MonoBehaviour:
   barrier: 0
   damageTrans: {fileID: 8757133114251502152}
   statusText: {fileID: 8757133115927602275}
-  Name: Umirika
   hpText: {fileID: 8757133114781042579}
   barrierText: {fileID: 8757133114058008536}
   hpSlider: {fileID: 8757133114599655195}
@@ -1008,17 +1007,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8757133115027492438}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -20.33271}
-  m_LocalScale: {x: 0.10691684, y: 0.10691672, z: 0.10691684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8757133114207219571}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -960, y: -533.4888}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 1281.8, y: 310}
+  m_SizeDelta: {x: 181.7, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8757133115027492523
 CanvasRenderer:
@@ -1041,7 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1050,12 +1049,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
