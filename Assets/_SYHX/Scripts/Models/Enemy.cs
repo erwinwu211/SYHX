@@ -24,6 +24,7 @@ public class Enemy : BattleCharacter
     [ShowInInspector] private EnemyActionContent currentAction;
 
     public Outline outline;
+    public GameObject targetMark;
 
     public Color endCorlor;
     public Color startColor;
@@ -45,11 +46,12 @@ public class Enemy : BattleCharacter
         this.defence = enemySource.defence;
         this.isAlive = true;
         defaultBlock = enemy.colors;
-        seq = DOTween.Sequence();
-        seq.Append(outline.DOColor(endCorlor, 1f));
-        seq.Append(outline.DOColor(startColor, 1f));
-        seq.SetLoops(-1);
-        seq.Pause();
+        targetMark.SetActive(false);
+        // seq = DOTween.Sequence();
+        // seq.Append(outline.DOColor(endCorlor, 1f));
+        // seq.Append(outline.DOColor(startColor, 1f));
+        // seq.SetLoops(-1);
+        // seq.Pause();
     }
     public void ShowHp()
     {
@@ -69,13 +71,15 @@ public class Enemy : BattleCharacter
     }
     public virtual void OnSelected()
     {
-        outline.enabled = true;
-        seq.Restart();
+        // outline.enabled = true;
+        // seq.Restart();
+        targetMark.SetActive(true);
     }
     public virtual void LeaveSelected()
     {
-        outline.enabled = false;
-        seq.Pause();
+        // outline.enabled = false;
+        // seq.Pause();
+        targetMark.SetActive(false);
     }
 
     public void SetAIHandler(EnemyAIHandler handler)
