@@ -15,6 +15,8 @@ public class DeckInformationUI : MonoBehaviour {
 
     private List<CardContent> cardContents;
 
+    private bool IsInDungeon;
+
     /// <summary>
     /// 根据当前所在场景，设置不同的显示
     /// </summary>
@@ -25,6 +27,7 @@ public class DeckInformationUI : MonoBehaviour {
         this.cardContents = cardContents;
         gameObject.SetActive (true);
         DataChipCount.gameObject.SetActive (false);
+        IsInDungeon = InDungeon;
         if (InDungeon) {
             DataChipCount.gameObject.SetActive (true);
             DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
@@ -84,6 +87,7 @@ public class DeckInformationUI : MonoBehaviour {
     }
 
     public void CloseUI () {
+        if (IsInDungeon) DungeonManager.Ins.Enable();
         Destroy (this.gameObject);
     }
 
