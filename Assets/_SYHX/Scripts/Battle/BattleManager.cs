@@ -239,6 +239,6 @@ public struct PassedResultInformation
 {
     public int currentHp;
     public bool win;
-    public List<DungeonResourceReward> resourceReward;
+    public List<ResourceReward> resourceReward;
     public List<CardSource> cardSourceRward;
 }

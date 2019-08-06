@@ -183,7 +183,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         {
             CharacterInDungeon.Ins.currentHp = information.currentHp;
             //处理资源奖励信息
-            foreach (DungeonResourceReward reward in information.resourceReward)
+            foreach (ResourceReward reward in information.resourceReward)
             {
                 switch (reward.item.id)
                 {
