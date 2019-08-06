@@ -10,6 +10,8 @@ namespace SYHX.Cards
         public Sprite redFrame;
         public Sprite blueFrame;
         public Sprite yellowFrame;
+        public bool canSelect;
+        public bool IsSelect;
 
         public CardContent cc;
         [SerializeField] public Image CardFrame;
@@ -19,10 +21,12 @@ namespace SYHX.Cards
         [SerializeField] public Text EPField;
         [SerializeField] public Text typeField;
         [SerializeField] public Text connectionTypeField;
-        public void SetCard(CardContent cc)
+        [SerializeField] public Image ChosenShadow;
+        public void SetCard(CardContent cc,bool canSelect = false)
         {
             this.cc = cc;
             this.name = cc.name;
+            this.canSelect = canSelect;
             RefreshUI();
         }
 
@@ -47,6 +51,18 @@ namespace SYHX.Cards
                     this.connectionTypeField.text = "支援";
                     break;
             }
+        }
+
+        public void ShowSelected()
+        {
+            IsSelect = true;
+            ChosenShadow.gameObject.SetActive(true);
+        }
+
+        public void EnhanceSelected()
+        {
+            IsSelect = false;
+            ChosenShadow.gameObject.SetActive(false);
         }
     }
 }

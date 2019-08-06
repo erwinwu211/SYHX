@@ -20,6 +20,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     [SerializeField] public CardSelectorManager cardSelectorManager;
     [SerializeField] public BattleInfoManager biManager;
     [SerializeField] public GameObject heroParent;
+    [SerializeField] public BattleResultPanelUI battleResultPanelUI;
     public static PassedBattleInformation information;
 
     #region 外部调用
@@ -36,7 +37,6 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     #region  UI
     public GameObject resultPanel;
     public GameObject rewardPanel;
-    public Button leaveBtn;
     //public TextMeshProUGUI resultUI;
     #endregion
     protected override void UnityAwake()
@@ -74,6 +74,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup, information.difficultLevel);
         //创建新的战斗结果数据
         resultInformation = new PassedResultInformation();
+        resultInformation.cardSourceRward = new List<CardSource>();
     }
 
     /// <summary>
@@ -108,44 +109,46 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         //写入部分结果传递
         resultInformation.currentHp = hero.currentHp;
         resultInformation.win = true;
-
-        //进行UI的重置;
-        resultPanel.gameObject.SetActive(true);
-        Transform resultInfoTF = resultPanel.transform.Find("ResultInfo");
-        resultInfoTF.gameObject.SetActive(true);
-        foreach (Transform tf in resultInfoTF) tf.gameObject.SetActive(false);
-        resultInfoTF.localPosition = new Vector3(0, 100, 0);
-        Transform winTF = resultInfoTF.Find("Win");
-        winTF.gameObject.SetActive(true);
-        rewardPanel.SetActive(false);
-
-        //控制动画
-        Sequence seq = DOTween.Sequence();
-        seq.Append(resultInfoTF.DOLocalMove(Vector3.zero, 0.3f));
-        seq.SetLoops(1);
-        StartCoroutine(ShowRewardPanel());
-        // seq.Pause();
+        resultInformation.resourceReward = information.enemyGroup.rewardList.dungeonResourceReward;
+        battleResultPanelUI.ShowWinPanel(information.enemyGroup.rewardList);
     }
     private void Lose()
     {
-        //resultUI.text = "you lose";
-        resultPanel.gameObject.SetActive(true);
-        DungeonManager.Ins.DealWithBattleResult(new PassedResultInformation { currentHp = 0, win = false });
+        resultInformation.currentHp = 0;
+        resultInformation.win = false;
+        battleResultPanelUI.ShowLosePanel();
     }
 
-    IEnumerator ShowRewardPanel()
-    {
-        Transform resultInfoTF = resultPanel.transform.Find("ResultInfo");
-        yield return new WaitForSeconds(0.3f);
-        resultInfoTF.gameObject.SetActive(false);
-        rewardPanel.SetActive(true);
-        yield return null;
-    }
 
-    public void OnLeaveBtnClick()
+    /// <summary>
+    /// 返回地宫界面并将信息传给DungeonManager
+    /// </summary>
+    public void ReturnToDungeon()
     {
         DungeonManager.Ins.DealWithBattleResult(resultInformation);
         SceneStatusManager.Ins.SetSceneStatus(SceneStatusManager.Ins.Record);
+    }
+
+    /// <summary>
+    /// 奖励界面获取下一个奖励
+    /// </summary>
+    public void NextReward()
+    {
+        DungeonCardRewardSource dcrs = information.enemyGroup.rewardList.dungeonCardRewardGroup;
+        //如果敌人群的奖励列表中有卡牌奖励的话
+        if (dcrs)
+        {
+            battleResultPanelUI.ShowCardChoosePanel(dcrs.GetCardSourceInPool(3));
+        }
+        else
+        {
+            ReturnToDungeon();
+        }
+    }
+
+    public void SetRewardCardSource(CardSource cs)
+    {
+        if (cs) resultInformation.cardSourceRward.Add(cs);
     }
 
 }
@@ -229,4 +232,6 @@ public struct PassedResultInformation
 {
     public int currentHp;
     public bool win;
+    public List<DungeonResourceReward> resourceReward;
+    public List<CardSource> cardSourceRward;
 }

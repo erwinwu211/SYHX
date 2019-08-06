@@ -6,7 +6,6 @@ namespace SYHX.Cards
 {
     public class SelectableCardUI : ProtoCardUI
     {
-        public Image ChosenShadow;
         public bool selected {get ; private set;} = false;
         
         public void OnPointClick()

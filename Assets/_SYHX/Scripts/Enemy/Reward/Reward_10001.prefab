@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2610349531512536306}
   - component: {fileID: 8907954343653566625}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Reward_10001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonResourceReward:
   - item: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
-    count: 0
-  dungeonCardRewardGroup:
-  - {fileID: 11400000, guid: 3730704ce9a457241a3558114038e071, type: 2}
+    count: 100
+  dungeonCardRewardGroup: {fileID: 11400000, guid: 3730704ce9a457241a3558114038e071,
+    type: 2}

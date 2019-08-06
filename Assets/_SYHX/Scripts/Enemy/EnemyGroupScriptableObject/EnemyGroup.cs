@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyGroup : ScriptableObject
 {
     [SerializeField] public List<EnemySource> enemyList;
-    [SerializeField] public List<RewardProto> rewardList;
+    [SerializeField] public RewardProto rewardList;
 
     private float difficultLevel;
     public EnemyGroup(int id, float difficultLevel)

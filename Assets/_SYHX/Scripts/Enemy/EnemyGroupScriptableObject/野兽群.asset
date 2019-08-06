@@ -16,5 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed205df8d611cb241a6afe896b10021f, type: 2}
   - {fileID: 11400000, guid: ed205df8d611cb241a6afe896b10021f, type: 2}
   - {fileID: 11400000, guid: ed205df8d611cb241a6afe896b10021f, type: 2}
-  rewardList:
-  - {fileID: 8907954343653566625, guid: 27a6e0bb275683f4ea438994d2962ca6, type: 3}
+  rewardList: {fileID: 8907954343653566625, guid: 27a6e0bb275683f4ea438994d2962ca6,
+    type: 3}

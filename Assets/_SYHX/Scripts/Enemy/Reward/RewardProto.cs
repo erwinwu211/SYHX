@@ -7,7 +7,7 @@ using System;
 public class RewardProto : MonoBehaviour
 {
     public List<DungeonResourceReward> dungeonResourceReward;
-    public List<DungeonCardRewardSource> dungeonCardRewardGroup;
+    public DungeonCardRewardSource dungeonCardRewardGroup;
 }
 
 [Serializable]
