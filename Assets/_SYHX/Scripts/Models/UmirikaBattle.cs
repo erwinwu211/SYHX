@@ -14,15 +14,15 @@ public class UmirikaBattle : BattleHero
     }
     public Text typeField;
     public Text numberField;
-    
+
     public override void RefreshUI()
     {
         base.RefreshUI();
         //Debug.Log(transform.Find("Combo/Combo Count"));
         //this.typeField = this.gameObject.transform.Find("type").GetComponent<Text>();
         //this.typeField = this.gameObject.transform.Find("Combo Count").GetComponent<Text>();
-        //typeField.text = currentType.ToString();
-        //numberField.text = connectionSignal.signalValue.ToString();
+        typeField.text = currentType.ToString();
+        numberField.text = connectionSignal.signalValue.ToString();
     }
     public ConnectionSignal connectionSignal;
     public ConnectionType currentType { get; private set; }

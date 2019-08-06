@@ -1,8 +1,10 @@
 ﻿using System;
 using SYHX.Cards;
 
-public class BattleProgressEvent : Singleton<BattleProgressEvent>
+public class BattleProgressEvent : SingletonMonoBehaviour<BattleProgressEvent>
 {
+
+    protected override void UnityAwake() { }
     public event Action onPlayerTurnStart = delegate { };
     public void OnPlayerTurnStart()
     {

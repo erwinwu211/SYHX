@@ -285,7 +285,6 @@ public class ResultState : TurnState
 
     public void OnConfirmBtnClicked()
     {
-        context.BattleEnd();
     }
     public override string FsmName() => "Result";
 

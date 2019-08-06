@@ -71,21 +71,10 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
     public void BattleStart(int id, GameManager context)
     {
         //读取战斗数据
-        BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup,information.difficultLevel);
+        BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup, information.difficultLevel);
         //创建新的战斗结果数据
         resultInformation = new PassedResultInformation();
     }
-
-    /// <summary>
-    /// 战斗结束，做BattleManager的收尾工作
-    /// </summary>
-    public void BattleEnd()
-    {
-        // mBattleStatus = null;
-        BattleCharacterManager.Ins.Destroy();
-        BattleProgressEvent.Ins.Destroy();
-    }
-
 
     /// <summary>
     /// 检测战斗是否结束
@@ -125,14 +114,14 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         Transform resultInfoTF = resultPanel.transform.Find("ResultInfo");
         resultInfoTF.gameObject.SetActive(true);
         foreach (Transform tf in resultInfoTF) tf.gameObject.SetActive(false);
-        resultInfoTF.localPosition = new Vector3(0,100,0);
+        resultInfoTF.localPosition = new Vector3(0, 100, 0);
         Transform winTF = resultInfoTF.Find("Win");
         winTF.gameObject.SetActive(true);
         rewardPanel.SetActive(false);
 
         //控制动画
         Sequence seq = DOTween.Sequence();
-        seq.Append(resultInfoTF.DOLocalMove(Vector3.zero,0.3f));
+        seq.Append(resultInfoTF.DOLocalMove(Vector3.zero, 0.3f));
         seq.SetLoops(1);
         StartCoroutine(ShowRewardPanel());
         // seq.Pause();

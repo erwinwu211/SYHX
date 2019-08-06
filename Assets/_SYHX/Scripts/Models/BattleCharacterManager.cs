@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BattleCharacterManager : Singleton<BattleCharacterManager>
+public class BattleCharacterManager : SingletonMonoBehaviour<BattleCharacterManager>
 {
+
+    protected override void UnityAwake() { }
     public BattleHero hero { get; private set; }
     public List<Enemy> enemyList { get; private set; }
     public Enemy selectedEnemy { get; private set; }
@@ -16,13 +18,13 @@ public class BattleCharacterManager : Singleton<BattleCharacterManager>
     }
 
 
-    public void GenerateEnemyGroup(int id,float difficultLevel)
+    public void GenerateEnemyGroup(int id, float difficultLevel)
     {
         enemyList = EnemyGroupManager.Ins.enemyGroup[id].CreateEnemyGroup(difficultLevel);
         SelectEnemy(enemyList[0]);
     }
 
-    public void GenerateEnemyGroup(EnemyGroup group,float difficultLevel)
+    public void GenerateEnemyGroup(EnemyGroup group, float difficultLevel)
     {
         enemyList = group.CreateEnemyGroup(difficultLevel);
         SelectEnemy(enemyList[0]);
