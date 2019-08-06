@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using SYHX.Cards;
 
 public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 {
@@ -177,9 +178,32 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     //TODO
     public void DealWithBattleResult(PassedResultInformation information)
     {
-        CharacterInDungeon.Ins.currentHp = information.currentHp;
-        DungeonUI.RefreshUI();
         Enable();
+        if (information.win)
+        {
+            CharacterInDungeon.Ins.currentHp = information.currentHp;
+            //处理资源奖励信息
+            foreach (DungeonResourceReward reward in information.resourceReward)
+            {
+                switch (reward.item.id)
+                {
+                    case 201:
+                        DungeonManager.Ins.dataChip.count += reward.count;
+                        break;
+                }
+            }
+            //处理卡牌信息
+            foreach (CardSource cs in information.cardSourceRward)
+            {
+                CardContent cc = cs.GenerateCard();
+                CharacterInDungeon.Ins.JoinCard(cc);
+            }
+            DungeonUI.RefreshUI();
+        }
+        else
+        {
+            LeaveDungeon();
+        }
     }
 
     public void BattleHappen(EnemyGroup eg)

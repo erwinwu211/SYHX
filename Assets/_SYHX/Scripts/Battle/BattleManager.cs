@@ -146,6 +146,10 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         }
     }
 
+    /// <summary>
+    /// 设置玩家所选的要加入构筑中的奖励卡牌
+    /// </summary>
+    /// <param name="cs"></param>
     public void SetRewardCardSource(CardSource cs)
     {
         if (cs) resultInformation.cardSourceRward.Add(cs);
@@ -228,6 +232,9 @@ public struct PassedBattleInformation
     public float difficultLevel;
 }
 
+/// <summary>
+/// 传递战斗结果的结构体。包含是否胜利，当前血量，奖励资源与奖励卡牌
+/// </summary>
 public struct PassedResultInformation
 {
     public int currentHp;

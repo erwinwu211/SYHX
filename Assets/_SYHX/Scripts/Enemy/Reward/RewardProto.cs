@@ -10,6 +10,9 @@ public class RewardProto : MonoBehaviour
     public DungeonCardRewardSource dungeonCardRewardGroup;
 }
 
+/// <summary>
+/// 包含了item和count两个属性
+/// </summary>
 [Serializable]
 public class DungeonResourceReward
 {
