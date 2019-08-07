@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace SYHX.Cards
 {
-    public class ProtoCardUI : MonoBehaviour
+    public class ProtoCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public Sprite redFrame;
         public Sprite blueFrame;
         public Sprite yellowFrame;
         public bool canSelect;
         public bool IsSelect;
+        public bool canZoom;
+        public float scaleSpeed = 1.4f;
 
         public CardContent cc;
         [SerializeField] public Image CardFrame;
@@ -22,11 +25,19 @@ namespace SYHX.Cards
         [SerializeField] public Text typeField;
         [SerializeField] public Text connectionTypeField;
         [SerializeField] public Image ChosenShadow;
-        public void SetCard(CardContent cc,bool canSelect = false)
+
+        /// <summary>
+        /// 设置卡牌信息
+        /// </summary>
+        /// <param name="cc">卡牌</param>
+        /// <param name="canSelect">是否能显示选择框</param>
+        /// <param name="canScale">是否鼠标移入有放大</param>
+        public void SetCard(CardContent cc, bool canSelect = false, bool canScale = true)
         {
             this.cc = cc;
             this.name = cc.name;
             this.canSelect = canSelect;
+            this.canZoom = canScale;
             RefreshUI();
         }
 
@@ -63,6 +74,46 @@ namespace SYHX.Cards
         {
             IsSelect = false;
             ChosenShadow.gameObject.SetActive(false);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (canZoom)
+            {
+                StopCoroutine("ScaleDown");
+                StartCoroutine("ScaleUp");
+            }
+        }
+
+        /// <summary>
+        /// 鼠标移出时，收起背景然后隐藏
+        /// </summary>
+        /// <param name="eventData"></param>
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (canZoom)
+            {
+                StopCoroutine("ScaleUp");
+                StartCoroutine("ScaleDown");
+            }
+        }
+
+        IEnumerator ScaleUp()
+        {
+            for (; this.gameObject.transform.localScale.x < 1.25f;)
+            {
+                this.gameObject.transform.localScale += new Vector3(scaleSpeed*Time.deltaTime,scaleSpeed*Time.deltaTime,0);
+                yield return null;
+            }
+        }
+
+        IEnumerator ScaleDown()
+        {
+            for (; this.gameObject.transform.localScale.x > 1;)
+            {
+                this.gameObject.transform.localScale -= new Vector3(scaleSpeed*Time.deltaTime,scaleSpeed*Time.deltaTime,0);
+                yield return null;
+            }
         }
     }
 }

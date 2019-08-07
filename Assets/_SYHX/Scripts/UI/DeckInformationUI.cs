@@ -61,7 +61,7 @@ public class DeckInformationUI : MonoBehaviour {
 
         //刷新界面
         GameObject go = Instantiate (CardPrefab, CardDetailPos);
-        go.GetComponent<CraftableCardUI>().SetCard(cc);
+        go.GetComponent<CraftableCardUI>().SetCard(cc,false,false);
 
         //绑定Prev按钮事件
         if (cardContents.IndexOf (cc) == 0) {

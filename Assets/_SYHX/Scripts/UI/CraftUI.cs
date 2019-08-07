@@ -75,14 +75,14 @@ public class CraftUI : MonoBehaviour
         //显示选中卡牌信息
         {
             GameObject go = Instantiate(CardPrefab,UpgradeCardPos);
-            go.GetComponent<CraftableCardUI>().SetCard(cc);
+            go.GetComponent<CraftableCardUI>().SetCard(cc,false,false);
         }
         //显示升级分支信息
         foreach (CardSource cs in cc.owner.upgradeList)
         {
             CardContent cardcontent = cs.GenerateCard();
             GameObject go = Instantiate(CardPrefab, UpgradeChooseListPos);
-            go.GetComponent<CraftableCardUI>().SetCard(cardcontent);
+            go.GetComponent<CraftableCardUI>().SetCard(cardcontent,true,false);
             GameObject price = Instantiate(PriceLabel,go.transform);
             //判断是否有足够的金钱来显示不同的字体颜色
             string colorString;
