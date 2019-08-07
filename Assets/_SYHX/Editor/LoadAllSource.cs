@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Text;
 using SYHX.Cards;
 using SYHX.AbnormalStatus;
 using System.Text.RegularExpressions;
@@ -23,7 +24,7 @@ public static class LoadAllSource
         {
             DirectoryInfo dir = new DirectoryInfo(cardPath);
             FileInfo[] files = dir.GetFiles("*.asset");
-            
+
             foreach (var file in files)
             {
                 var card = AssetDatabase.LoadAssetAtPath(cardPath + "/" + file.Name, typeof(CardSource)) as CardSource;
@@ -33,11 +34,11 @@ public static class LoadAllSource
                     EditorUtility.SetDirty(card);
                 }
                 var name = card.name;
-                var result = Regex.Match(name,match).Value;
-                if(result != "")
+                var result = Regex.Match(name, match).Value;
+                if (result != "")
                 {
                     card.ID = System.Int32.Parse(result);
-                    EditorUtility.SetDirty(card);                    
+                    EditorUtility.SetDirty(card);
                 }
             }
         }
@@ -53,15 +54,41 @@ public static class LoadAllSource
                     EditorUtility.SetDirty(asSource);
                 }
                 var name = asSource.name;
-                var result = Regex.Match(name,match).Value;
-                if(result != "")
+                var result = Regex.Match(name, match).Value;
+                if (result != "")
                 {
                     asSource.id = System.Int32.Parse(result);
-                    EditorUtility.SetDirty(asSource);                    
+                    EditorUtility.SetDirty(asSource);
                 }
             }
         }
         EditorUtility.SetDirty(initializer);
         AssetDatabase.SaveAssets();
     }
+
+
+    [MenuItem("自作/读取/读取全部source进csv")]
+    public static void LoadAllToCSV()
+    {
+        StreamWriter sw = new StreamWriter(cardPath + "/card.csv", false, Encoding.UTF8);
+        sw.WriteLine("ID,名称,类型1,类型2,升级花费,升级选项列表,source,option");
+        var match = "[1-9][0-9]{0,4}";
+        {
+            DirectoryInfo dir = new DirectoryInfo(cardPath);
+            FileInfo[] files = dir.GetFiles("*.asset");
+
+            foreach (var file in files)
+            {
+                var card = AssetDatabase.LoadAssetAtPath(cardPath + "/" + file.Name, typeof(CardSource)) as CardSource;
+                var name = card.name;
+                var result = Regex.Match(name, match).Value;
+                if (result != "")
+                {
+                    sw.WriteLine(card.GetCSVString());
+                }
+            }
+        }
+        sw.Close();
+    }
+
 }

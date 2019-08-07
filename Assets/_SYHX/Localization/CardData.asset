@@ -21,7 +21,127 @@ MonoBehaviour:
     "\u5347\u7EA7\u9009\u9879\u5217\u8868": 0100000001000000
     source: AttackCardSource
     option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
-  - ID: 21
+  - ID: 2
+    "\u540D\u79F0": "\u62A4\u7F69"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 3
+    "\u540D\u79F0": "\u627F\u63A5\u653B\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":0,"attackFrequency":1}'
+  - ID: 4
+    "\u540D\u79F0": "\u653B\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":0,"attackFrequency":1}'
+  - ID: 5
+    "\u540D\u79F0": "\u65E0\u9632\u5FA1\u9632\u5FA1"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: WithoutBarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 6
+    "\u540D\u79F0": "\u5251\u67C4\u6253\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithDrawCardSource
+    option: '{"damageRate":1.2000000476837159,"isAOE":false,"drawNumber":1}'
+  - ID: 7
+    "\u540D\u79F0": "\u653B\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 8
+    "\u540D\u79F0": "\u9632\u5FA1\u62BD\u724C"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithDrawCardSource
+    option: '{"defenceRate":1.2000000476837159,"drawNumber":0}'
+  - ID: 9
+    "\u540D\u79F0": "\u627F\u63A5\u9632\u5FA1"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 10
+    "\u540D\u79F0": "\u65E0\u4E2D\u751F\u653B\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithGenerateCardSource
+    option: '{"damageRate":1.0,"isAOE":false,"cardName":{"instanceID":9086}}'
+  - ID: 11
+    "\u540D\u79F0": "\u653B\u51FB\u9632\u5FA1"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithBarrierSource
+    option: '{"damageRate":1.0,"isAOE":false}'
+  - ID: 12
+    "\u540D\u79F0": "\u9632\u5FA1\u80FD\u91CF"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithEPSource
+    option: '{"defenceRate":1.0,"gainEP":0}'
+  - ID: 13
+    "\u540D\u79F0": "\u653B\u51FB\u72B6\u6001"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithBuffSource
+    option: '{"damageRate":1.600000023841858,"source":{"instanceID":7344},"count":2}'
+  - ID: 18
+    "\u540D\u79F0": "\u9632\u5FA1\u7EF4\u6301"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithASSource
+    option: '{"defenceRate":1.2000000476837159,"source":{"instanceID":6628},"count":2}'
+  - ID: 19
+    "\u540D\u79F0": "\u56DE\u624B\u5361\u724C"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: ReturnToHandSource
+    option: '{"count":1}'
+  - ID: 20
+    "\u540D\u79F0": "\u52A8\u6001\u53D8\u80FD\u91CF"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackDynamicEPSource
+    option: '{"damageRate":400.0,"isAOE":false}'
+  - ID: 0
     "\u540D\u79F0": "\u6D4B\u5361\u724C"
     "\u7C7B\u578B1": 0000000001000000
     "\u7C7B\u578B2": 0
@@ -29,3 +149,315 @@ MonoBehaviour:
     "\u5347\u7EA7\u9009\u9879\u5217\u8868": 0100000001000000
     source: AttackCardSource
     option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 10101
+    "\u540D\u79F0": "\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 7f27000089270000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 10102
+    "\u540D\u79F0": "\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 802700008a270000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 10103
+    "\u540D\u79F0": "\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 812700008b270000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 10111
+    "\u540D\u79F0": "\u7CBE\u51C6\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":1}'
+  - ID: 10112
+    "\u540D\u79F0": "\u7CBE\u51C6\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":1}'
+  - ID: 10113
+    "\u540D\u79F0": "\u7CBE\u51C6\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":1}'
+  - ID: 10121
+    "\u540D\u79F0": "\u8FC5\u6377\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":0,"attackFrequency":1}'
+  - ID: 10122
+    "\u540D\u79F0": "\u8FC5\u6377\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":0,"attackFrequency":1}'
+  - ID: 10123
+    "\u540D\u79F0": "\u8FC5\u6377\u5C04\u51FB"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":0,"attackFrequency":1}'
+  - ID: 10201
+    "\u540D\u79F0": "\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": e3270000ed270000
+    source: BarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 10202
+    "\u540D\u79F0": "\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": e4270000ee270000
+    source: BarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 10203
+    "\u540D\u79F0": "\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": e5270000ef270000
+    source: BarrierCardSource
+    option: '{"defenceRate":1.0}'
+  - ID: 10211
+    "\u540D\u79F0": "\u7535\u5BB9\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierCardSource
+    option: '{"defenceRate":1.5}'
+  - ID: 10212
+    "\u540D\u79F0": "\u7535\u5BB9\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierCardSource
+    option: '{"defenceRate":1.5}'
+  - ID: 10213
+    "\u540D\u79F0": "\u7535\u5BB9\u62A4\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierCardSource
+    option: '{"defenceRate":1.5}'
+  - ID: 10221
+    "\u540D\u79F0": "\u94F3\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithGenerateCardSource
+    option: '{"defenceRate":1.0,"cardName":{"instanceID":5964}}'
+  - ID: 10222
+    "\u540D\u79F0": "\u94F3\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithGenerateCardSource
+    option: '{"defenceRate":1.0,"cardName":{"instanceID":7120}}'
+  - ID: 10223
+    "\u540D\u79F0": "\u94F3\u76FE"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 2
+    "\u5347\u7EA7\u82B1\u8D39": 20
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: BarrierWithGenerateCardSource
+    option: '{"defenceRate":1.0,"cardName":{"instanceID":6118}}'
+  - ID: 10231
+    "\u540D\u79F0": "\u624B\u94F3"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.6000000238418579,"targetType":0,"attackFrequency":1}'
+  - ID: 10232
+    "\u540D\u79F0": "\u624B\u94F3"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.6000000238418579,"targetType":0,"attackFrequency":1}'
+  - ID: 10233
+    "\u540D\u79F0": "\u624B\u94F3"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.6000000238418579,"targetType":0,"attackFrequency":1}'
+  - ID: 10301
+    "\u540D\u79F0": "\u7834\u788E\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 4728000051280000
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10302
+    "\u540D\u79F0": "\u7834\u788E\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 4828000052280000
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10303
+    "\u540D\u79F0": "\u7834\u788E\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 4928000053280000
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10311
+    "\u540D\u79F0": "\u5F69\u8679\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10312
+    "\u540D\u79F0": "\u5F69\u8679\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10313
+    "\u540D\u79F0": "\u5F69\u8679\u5B50\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":1,"attackFrequency":2}'
+  - ID: 10321
+    "\u540D\u79F0": "\u5B50\u6BCD\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":2,"attackFrequency":2}'
+  - ID: 10322
+    "\u540D\u79F0": "\u5B50\u6BCD\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":2,"attackFrequency":2}'
+  - ID: 10323
+    "\u540D\u79F0": "\u5B50\u6BCD\u5F39"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 30
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":0.800000011920929,"targetType":2,"attackFrequency":2}'
+  - ID: 10401
+    "\u540D\u79F0": "\u81EA\u52A8\u5C04\u51FB\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": ab280000b5280000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":2}'
+  - ID: 10402
+    "\u540D\u79F0": "\u81EA\u52A8\u5C04\u51FB\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": ac280000b6280000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":2}'
+  - ID: 10403
+    "\u540D\u79F0": "\u81EA\u52A8\u5C04\u51FB\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": ad280000b7280000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":2}'
+  - ID: 10411
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757II"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 45
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":0}'
+  - ID: 10412
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757II"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 45
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":0}'
+  - ID: 10413
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757II"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 45
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackCardSource
+    option: '{"damageRate":1.5,"targetType":0,"attackFrequency":0}'
+  - ID: 10421
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 35
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithAllEPSource
+    option: '{"damageRate":1.2000000476837159,"targetType":0,"attackFrequency":0}'
+  - ID: 10422
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 35
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithAllEPSource
+    option: '{"damageRate":1.2000000476837159,"targetType":0,"attackFrequency":0}'
+  - ID: 10423
+    "\u540D\u79F0": "\u81EA\u52A8\u8FDE\u5C04\u6A21\u5757"
+    "\u7C7B\u578B1": 
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 35
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 
+    source: AttackWithAllEPSource
+    option: '{"damageRate":1.2000000476837159,"targetType":0,"attackFrequency":0}'

@@ -17,12 +17,10 @@ MonoBehaviour:
   mDesc: "\u9632\u5FA1\u7387{defenceRate}"
   mEP: 1
   upgradeCost: 0
-  connectionType: 0
   cardType: 2
+  connectionTypes: 
   rarity: 0
   upgradeList: []
   keyWords: []
   origin:
-    owner: {fileID: 11400000}
-    bUI: {fileID: 0}
     defenceRate: 1

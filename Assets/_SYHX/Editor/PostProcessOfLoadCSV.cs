@@ -143,9 +143,13 @@ public class PostProcessOfLoadCSV : AssetPostprocessor
     static void ApplyUpgradeList(CardData.Data data, CardSource source)
     {
         var tempList = new List<CardSource>();
-        foreach (var index in data.升级选项列表)
+        if (data.升级选项列表 != null)
         {
-            tempList.Add(cardDictionary[index]);
+            foreach (var index in data.升级选项列表)
+            {
+                tempList.Add(cardDictionary[index]);
+            }
+
         }
         source.ApplyUpgradeList(tempList);
         EditorUtility.SetDirty(source);

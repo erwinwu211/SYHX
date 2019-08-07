@@ -17,14 +17,12 @@ MonoBehaviour:
   mDesc: "\u83B7\u5F97{defenceRate}\u9632\u5FA1\u3002\u5E76\u83B7\u5F97{status}{turn}\u56DE\u5408\u3002"
   mEP: 0
   upgradeCost: 0
-  connectionType: 0
   cardType: 2
+  connectionTypes: 
   rarity: 2
   upgradeList: []
   keyWords: []
   origin:
-    owner: {fileID: 0}
-    bUI: {fileID: 0}
     defenceRate: 1.2
     source: {fileID: 11400000, guid: 1919121453c9ca541a01f5624c2e3211, type: 2}
     count: 2

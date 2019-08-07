@@ -25,8 +25,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37a1a0250122cc84aa54ffbf1d6b3f70, type: 2}
   keyWords: []
   origin:
-    owner: {fileID: 0}
-    bUI: {fileID: 0}
     damageRate: 1
     targetType: 0
     attackFrequency: 1

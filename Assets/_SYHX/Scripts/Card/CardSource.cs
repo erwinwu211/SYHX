@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Reflection;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using System.Text;
+
 
 namespace SYHX.Cards
 {
@@ -64,8 +66,9 @@ namespace SYHX.Cards
 
         public void ApplyData(CardData.Data data)
         {
+            this.ID = data.ID;
             this.mName = data.名称;
-            this.connectionTypes = new List<ConnectionType>(data.类型1);
+            if (data.类型1 != null) this.connectionTypes = new List<ConnectionType>(data.类型1);
             this.cardType = data.类型2;
             this.upgradeCost = data.升级花费;
             this.FromJSON(data.option);
@@ -73,6 +76,43 @@ namespace SYHX.Cards
         public void ApplyUpgradeList(List<CardSource> sources)
         {
             this.upgradeList = sources;
+        }
+
+        public string GetCSVString()
+        {
+            string connectioString = "";
+            bool first = true;
+            foreach (var type in connectionTypes)
+            {
+                if (!first) connectioString += ",";
+                connectioString += type.ToString();
+                first = false;
+            }
+            string upgradeString = "";
+            first = true;
+            foreach (var type in upgradeList)
+            {
+                if (!first) upgradeString += ",";
+                upgradeString += type.ID.ToString();
+                first = false;
+            }
+            string jsonData = ToJSON();
+            StringBuilder token = new StringBuilder();
+
+            foreach (var data in jsonData)
+            {
+                if (data == '\"') token.Append(data);
+                token.Append(data);
+            }
+            jsonData = token.ToString();
+            return this.ID.ToString() + ","
+            + this.mName + ","
+            + "\"\"\"" + connectioString + "\"\"\"" + ","
+            + cardType.ToString() + ","
+            + upgradeCost.ToString() + ","
+            + "\"\"\"" + upgradeString + "\"\"\"" + ","
+            + this.GetType().Name + ","
+            + "\"\"\"" + jsonData + "\"\"\"";
         }
     }
 

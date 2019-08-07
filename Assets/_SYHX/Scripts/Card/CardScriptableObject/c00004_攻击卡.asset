@@ -17,14 +17,12 @@ MonoBehaviour:
   mDesc: "\u4F24\u5BB3\u7387{damageRate}"
   mEP: 1
   upgradeCost: 0
-  connectionType: 0
   cardType: 0
+  connectionTypes: 
   rarity: 1
   upgradeList: []
   keyWords: []
   origin:
-    owner: {fileID: 11400000}
-    bUI: {fileID: 0}
     damageRate: 0.8
     targetType: 0
     attackFrequency: 1
