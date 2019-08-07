@@ -239,6 +239,6 @@ public struct PassedResultInformation
 {
     public int currentHp;
     public bool win;
-    public List<ResourceReward> resourceReward;
+    public List<ItemSourceAndCount> resourceReward;
     public List<CardSource> cardSourceRward;
 }

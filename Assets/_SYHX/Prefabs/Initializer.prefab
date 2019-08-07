@@ -162,45 +162,45 @@ MonoBehaviour:
     Constitution: 1.4
   lvInfos:
   - Lv: 1
-    Exp: 100
+    RequireCount: 100
   - Lv: 2
-    Exp: 300
+    RequireCount: 120
   - Lv: 3
-    Exp: 700
+    RequireCount: 150
   - Lv: 4
-    Exp: 1200
+    RequireCount: 200
   - Lv: 5
-    Exp: 2000
+    RequireCount: 300
   - Lv: 6
-    Exp: 3000
+    RequireCount: 500
   - Lv: 7
-    Exp: 4200
+    RequireCount: 600
   - Lv: 8
-    Exp: 5500
+    RequireCount: 700
   - Lv: 9
-    Exp: 6000
+    RequireCount: 800
   - Lv: 10
-    Exp: 6500
+    RequireCount: 1000
   - Lv: 11
-    Exp: 7000
+    RequireCount: 1100
   - Lv: 12
-    Exp: 7200
+    RequireCount: 1200
   - Lv: 13
-    Exp: 7500
+    RequireCount: 1300
   - Lv: 14
-    Exp: 8000
+    RequireCount: 1400
   - Lv: 15
-    Exp: 8500
+    RequireCount: 1500
   - Lv: 16
-    Exp: 9000
+    RequireCount: 1600
   - Lv: 17
-    Exp: 9500
+    RequireCount: 1700
   - Lv: 18
-    Exp: 10000
+    RequireCount: 2000
   - Lv: 19
-    Exp: 10000
+    RequireCount: 2500
   - Lv: 20
-    Exp: 10000
+    RequireCount: 3000
   CurrentLanguage: 0
 --- !u!114 &59073439
 MonoBehaviour:
@@ -215,7 +215,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterManager: {fileID: 0}
-  guildDungeon: {fileID: 0}
+  guildDungeon: {fileID: 5103690015570452016, guid: a9cd538ff7d5b4d4bbe525bdfc5d39fd,
+    type: 3}
+  itemList:
+  - {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+  - {fileID: 11400000, guid: 4bb0385e45e4b7440aac18d8c6552a87, type: 2}
+  - {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
 --- !u!114 &3397530229872600536
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using System;
 
 public class RewardProto : MonoBehaviour
 {
-    public List<ResourceReward> dungeonResourceReward;
+    public List<ItemSourceAndCount> dungeonResourceReward;
     public DungeonCardRewardSource dungeonCardRewardGroup;
 }
 
@@ -14,8 +14,8 @@ public class RewardProto : MonoBehaviour
 /// 包含了item和count两个属性
 /// </summary>
 [Serializable]
-public class ResourceReward
+public class ItemSourceAndCount
 {
-    public DungeonResourceSource item;
+    public ItemSource item;
     public int count;
 }

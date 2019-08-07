@@ -21,7 +21,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int ChangeColorCount = 0;
     public float difficultLevel = 1;
     public const int CostIncrease = 30;
-    public ItemSource dataChip;
+    public ItemSource dataFrag;
+    public ItemSource chipCore;
     private static bool enableInput = true;
     EventSystem eventSystem;
     public GraphicRaycaster RaycastInCanvas;
@@ -33,7 +34,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         score = 0;
         Floor = 1;
         difficultLevel = 1;
-        dataChip.count = cc.InitDataChip;
+        dataFrag.count = cc.InitDataChip;
         dungeonCharacter.Init(cc);
     }
 
@@ -184,12 +185,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         {
             CharacterInDungeon.Ins.currentHp = information.currentHp;
             //处理资源奖励信息
-            foreach (ResourceReward reward in information.resourceReward)
+            foreach (ItemSourceAndCount reward in information.resourceReward)
             {
                 switch (reward.item.id)
                 {
                     case 201:
-                        DungeonManager.Ins.dataChip.count += reward.count;
+                        DungeonManager.Ins.dataFrag.count += reward.count;
                         break;
                 }
             }
@@ -253,13 +254,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     public void IncreaseDataChip(int count)
     {
-        this.dataChip.count += count;
+        this.dataFrag.count += count;
         DungeonUI.RefreshUI();
     }
     public void DecreaseDataChip(int count)
     {
-        this.dataChip.count -= count;
-        if (dataChip.count < 0) dataChip.count = 0;
+        this.dataFrag.count -= count;
+        if (dataFrag.count < 0) dataFrag.count = 0;
         DungeonUI.RefreshUI();
     }
     /// <summary>
@@ -279,7 +280,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         SceneStatusManager.Ins.SetSceneStatus(status);
     }
 
-
+    public void RefreshUI()
+    {
+        DungeonUI.RefreshUI();
+    }
 }
 
 public struct DungeonResultInformation

@@ -24,4 +24,4 @@ MonoBehaviour:
   keyWords: []
   origin:
     defenceRate: 1
-    cardName: {fileID: 0}
+    cardName: {fileID: 11400000, guid: ac26e1711179b554fa1d180cd8541b45, type: 2}

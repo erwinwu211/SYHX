@@ -120,7 +120,7 @@ public class MainUI : SingletonMonoBehaviour<MainUI>
             LvText = "0" + lv;
         }
         LvCount.GetComponent<Text>().text = LvText;
-        int expMax = Initializer.Ins.lvInfos[lv - 1].Exp;
+        int expMax = Initializer.Ins.lvInfos[lv - 1].RequireCount;
         ExpBar.GetComponent<Slider>().value = (float)currentExp / expMax;
         ExpCount.GetComponent<Text>().text = "EXP "+currentExp + " / " + expMax;
     }

@@ -41,7 +41,7 @@ public class CraftUI : MonoBehaviour
         gameObject.SetActive(true);
         UpgradePanel.SetActive(false);
         CloseBtn.GetComponent<ButtonEffect>().ResetFillBg();
-        DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
+        DataChipCount.text = DungeonManager.Ins.dataFrag.count + "";
         //清空列表上的内容
         foreach (Transform tf in CardChooseGroup.transform)
         {
@@ -86,7 +86,7 @@ public class CraftUI : MonoBehaviour
             GameObject price = Instantiate(PriceLabel, go.transform);
             //判断是否有足够的金钱来显示不同的字体颜色
             string colorString;
-            if (DungeonManager.Ins.dataChip.count > cs.upgradeCost)
+            if (DungeonManager.Ins.dataFrag.count > cs.upgradeCost)
             {
                 colorString = ColorUtility.ToHtmlStringRGB(Enough);
             }

@@ -4124,7 +4124,8 @@ MonoBehaviour:
   ChangeColorCost: 100
   ChangeColorCount: 0
   difficultLevel: 1
-  dataChip: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
+  dataFrag: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
+  chipCore: {fileID: 11400000, guid: e9d63edeeef07e5499596b96f8e5bac2, type: 2}
   RaycastInCanvas: {fileID: 746887047}
 --- !u!114 &1204015756
 MonoBehaviour:

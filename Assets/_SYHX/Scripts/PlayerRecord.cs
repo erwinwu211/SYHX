@@ -8,11 +8,13 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     public string playerName { get; private set; }
     public int playerLv { get; private set; }
     public int currentExp { get; private set; }
-    public int luntCount { get; private set; }
-    public int coreCount { get; private set; }
+    public int luntCount { get => itemDict[101]; }
+    public int coreCount { get => itemDict[102]; }
     public GameObject CharacterManager;
     public CharacterContent Umirika { get; private set; }
     public Dungeon guildDungeon;
+    public Dictionary<int, int> itemDict;//第一个int是id，第二个int是数量
+    public List<ItemSource> itemList;
 
 
     protected override void UnityAwake()
@@ -27,15 +29,25 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
         else
         {
             //初始化数据
-            playerLv = 1;
-            currentExp = 0;
-            luntCount = 0;
-            coreCount = 0;
-
-
+            InitNewRecord();
 
             //创建新存档
             OverwriteRecord();
+        }
+    }
+
+    /// <summary>
+    /// 建立新存档
+    /// </summary>
+    public void InitNewRecord()
+    {
+        playerLv = 1;
+        currentExp = 0;
+        Umirika.currentGrade = Umirika.gradeList[0];
+        itemDict = new Dictionary<int, int>();
+        foreach (ItemSource item in itemList)
+        {
+            itemDict.Add(item.id, 0);
         }
     }
 

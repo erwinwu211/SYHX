@@ -4,5 +4,16 @@
 public class LvInfo
 {
     public int Lv;
-    public int Exp;
+    public int RequireCount;
 }
+
+[Serializable]
+public class DungeonLvInfo:LvInfo
+{
+    public int HpReward;
+    public int AttackReward;
+    public int DefendReward;
+    public int EPReward;
+    public int DrawCount;
+}
+

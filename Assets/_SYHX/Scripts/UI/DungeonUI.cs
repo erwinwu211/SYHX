@@ -35,7 +35,7 @@ public class DungeonUI : MonoBehaviour
         HpSlider.maxValue = CharacterInDungeon.Ins.maxHp;
         HpSlider.value = CharacterInDungeon.Ins.currentHp;
         FloorCount.text = "Area " + DungeonManager.Ins.Floor;
-        DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
+        DataChipCount.text = DungeonManager.Ins.dataFrag.count + "";
         ScoreCount.text = DungeonManager.Ins.score + "";
         NextRewardScoreCount.text = "距下级奖励："+"";
     }

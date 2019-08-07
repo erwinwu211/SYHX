@@ -8,10 +8,10 @@ using Sirenix.OdinInspector;
 /// </summary>
 public class CharacterContent : MonoBehaviour
 {
-    public const int LvMax = 30;
     public bool isLock;
     public virtual string Name { get; }
-    public int Lv;
+    public Grade currentGrade;//角色当前的阶级
+    public List<Grade> gradeList;
     public int Exp;
     public int Hp_max;
     public int Attack;
@@ -26,28 +26,40 @@ public class CharacterContent : MonoBehaviour
     [SerializeField] public List<CardSource> Deck;
     [SerializeField] public List<Talent> Talents;
     public CharacterWords Words;
-    [TableList] public LvInfo[] lvInfos;
     [TableList] public CharacterSkill[] skills;
+    [TableList] public DungeonLvInfo[] lvInfos;
 
     public CharacterContent() { }
 
-    public void LevelUp()
+    /// <summary>
+    /// 升阶
+    /// </summary>
+    public void Upgrade()
     {
-        if (Lv < LvMax)
+        if (CheckUpgradable() == false) return;
+        if (currentGrade.nextGrade)
         {
-            Exp -= lvInfos[Lv - 1].Exp;
-            Lv++;
-            RefreshCharacterInfo();
+            foreach (ItemSourceAndCount require in currentGrade.UpgradeRequireList)
+            {
+                PlayerRecord.Ins.itemDict[require.item.id] -= require.count;
+            }
+            currentGrade = currentGrade.nextGrade;
         }
     }
 
-    public void IncreaseExp(int count)
+    /// <summary>
+    /// 检测是否满足升阶条件
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckUpgradable()
     {
-        Exp += count;
-        if (Exp >= lvInfos[Lv - 1].Exp)
+        foreach (ItemSourceAndCount require in currentGrade.UpgradeRequireList)
         {
-            LevelUp();
+            if (PlayerRecord.Ins.itemDict.ContainsKey(require.item.id) == false) return false;
+            int count = PlayerRecord.Ins.itemDict[require.item.id];
+            if (count < require.count) return false;
         }
+        return true;
     }
 
     public void RefreshCharacterInfo()
@@ -63,3 +75,4 @@ public struct CharacterWords
     public string[] Touch;
     public string Home;
 }
+

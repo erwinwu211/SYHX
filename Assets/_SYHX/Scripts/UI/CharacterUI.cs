@@ -77,9 +77,9 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         {
             //更新人物属性信息
             case 1:
-                Lv.GetComponent<Text>().text = cc.Lv + "";
-                ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].Exp;
-                ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].Exp;
+                Lv.GetComponent<Text>().text = cc.currentGrade + "";
+                //ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].RequireCount;
+                //ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].RequireCount;
 
                 StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.STR / 10;
                 StrSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.STR + "";

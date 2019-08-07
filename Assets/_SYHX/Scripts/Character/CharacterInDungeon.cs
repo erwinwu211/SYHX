@@ -14,6 +14,8 @@ public enum BasicAttribute
 public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 {
     public CharacterContent character;
+    public int maxLv { get; private set; }
+    public int currentLv { get; set; }
     public int maxHp { get; set; }
     public int currentHp { get; set; }
     public int Attack { get; private set; }
@@ -48,13 +50,52 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Constitution = cc.INT;
         this.Fortune = cc.FOR;
         this.Deck = new List<CardContent>();
+        this.maxLv = cc.currentGrade.LvMax;
+        this.currentLv = 1;
         foreach (var cs in cc.Deck)
         {
             this.Deck.Add(cs.GenerateCard());
         }
+        Debug.Log(LevelUp());
+        Debug.Log(LevelUp());
     }
 
+    public string LevelUp()
+    {
+        if (currentLv >= maxLv) return "已达到最高等级";
+        string result = "升到了 " + (currentLv + 1) + " 级";
+        DungeonLvInfo _info = character.lvInfos[currentLv - 1];
+        if (_info.HpReward != 0)
+        {
+            result += "最大生命值 +" + _info.HpReward + "\n";
+            this.IncreaseHpMaxWithCurrentHp(_info.HpReward);
+        }
+        if (_info.AttackReward != 0)
+        {
+            result += "攻击力 +" + _info.AttackReward + "\n";
+            this.IncreaseAttack(_info.AttackReward);
+        }
+        if (_info.DefendReward != 0)
+        {
+            result += "防御力 +" + _info.DefendReward + "\n";
+            this.IncreaseDefend(_info.DefendReward);
+        }
+        if (_info.EPReward != 0)
+        {
+            result += "防御力 +" + _info.DefendReward + "\n";
+            this.maxEp += _info.EPReward;
+        }
+        if (_info.DrawCount != 0)
+        {
+            result += "防御力 +" + _info.DefendReward + "\n";
+            this.Draw_count += _info.DrawCount;
+        }
+        this.currentLv++;
+        DungeonManager.Ins.RefreshUI();
+        return result;
+    }
 
+    #region 属性的增加减少
     /// <summary>
     /// 增加生命最大值
     /// </summary>
@@ -63,6 +104,17 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         maxHp += count;
+    }
+
+    /// <summary>
+    /// 增加生命最大值的同时增加等量当前生命值
+    /// </summary>
+    /// <param name="count"></param>
+    public void IncreaseHpMaxWithCurrentHp(int count)
+    {
+        if (count < 0) return;
+        maxHp += count;
+        currentHp += count;
     }
 
     /// <summary>
@@ -227,8 +279,9 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
                 break;
         }
     }
+    #endregion
 
-
+    #region 卡牌的操作
     /// <summary>
     /// 移除一张卡牌
     /// </summary>
@@ -260,6 +313,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         Deck.Remove(origin);
         Deck.Add(now);
     }
+    #endregion
 
     protected override void UnityAwake()
     {

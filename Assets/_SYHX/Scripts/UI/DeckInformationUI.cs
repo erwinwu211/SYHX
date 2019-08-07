@@ -30,7 +30,7 @@ public class DeckInformationUI : MonoBehaviour {
         IsInDungeon = InDungeon;
         if (InDungeon) {
             DataChipCount.gameObject.SetActive (true);
-            DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
+            DataChipCount.text = DungeonManager.Ins.dataFrag.count + "";
         }
         //清空列表上的内容
         foreach (Transform tf in CardChooseGroup.transform) {

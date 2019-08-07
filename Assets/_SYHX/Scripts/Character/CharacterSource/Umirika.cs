@@ -1,10 +1,13 @@
 ﻿using SYHX.Cards;
 using System.Collections.Generic;
-
+using Sirenix.OdinInspector;
 
 public class Umirika : CharacterContent
 {
     public override string Name { get => Initializer.Ins.umirika.Name; }
+
+    //[TableList] public DungeonLvInfo[] lvInfos;
+    
     public Umirika()
     {
         Hp_max = 70;

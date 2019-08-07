@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "201_\u6570\u636E\u788E\u7247"
   m_EditorClassIdentifier: 
   id: 201
-  name: "\u6570\u636E\u788E\u7247"
+  item_name: "\u6570\u636E\u788E\u7247"
   desc: "\u7528\u6765\u8D2D\u4E70\u5361\u724C\u3001\u5347\u7EA7\u5361\u724C\u7B49\u4F5C\u7528\u7684\u901A\u7528\u8D27\u5E01\u3002"
-  count: 0
+  count: 1100
   type: 1
   icon: {fileID: 21300000, guid: 6bfc7f75487b711429767f889b22a956, type: 3}

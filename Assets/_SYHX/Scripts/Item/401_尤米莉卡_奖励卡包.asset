@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70020c235d92ee94687e99e1ab8422b3, type: 3}
   m_Name: "401_\u5C24\u7C73\u8389\u5361_\u5956\u52B1\u5361\u5305"
   m_EditorClassIdentifier: 
-  id: 0
-  name: 
-  desc: 
+  id: 401
+  item_name: "\u5956\u52B1\u5361\u724C"
+  desc: "\u9009\u62E9\u4E00\u5F20\u52A0\u5165\u4F60\u7684\u724C\u5E93\u4E2D\u3002"
   count: 0
   type: 3
   icon: {fileID: 0}

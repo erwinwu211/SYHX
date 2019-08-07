@@ -474,6 +474,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
@@ -496,6 +498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 3898018627310616454}
   Back: {fileID: 1046153087247247484}
+  happenedCount: 0
+  maxHappenCount: 1
+  item: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
 --- !u!114 &7334525597077091133
 MonoBehaviour:
   m_ObjectHideFlags: 0

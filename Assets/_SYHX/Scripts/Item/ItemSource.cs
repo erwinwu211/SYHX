@@ -6,7 +6,7 @@ public class ItemSource : ScriptableObject
 {
     // Start is called before the first frame update
     public int id;
-    public string name;
+    public string item_name;
     public string desc;
     public int count;
     public ItemType type;
@@ -17,6 +17,7 @@ public class ItemSource : ScriptableObject
 public enum ItemType
 {
     Resource,
+    CharacterPiece,
     DungeonResource,
     DungeonItem,
     DungeonCardGroup,
