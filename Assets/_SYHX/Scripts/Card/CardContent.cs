@@ -31,12 +31,12 @@ namespace SYHX.Cards
 
 
 
-        public void SetOwnerWithDic(CardSource owner, Dictionary<string, PropertyInfo> descOption = null)
+        public void SetOwnerWithDic(CardSource owner, CardType type, Dictionary<string, PropertyInfo> descOption = null)
         {
             this.owner = owner;
             this.EP = owner.EP;
             this.tempEP = owner.EP;
-            this.cardType = owner.cardType;
+            this.cardType = type;
             this.rarity = owner.rarity;
             this.connectionType = owner.connectionType;
             this.name = owner.Name;
