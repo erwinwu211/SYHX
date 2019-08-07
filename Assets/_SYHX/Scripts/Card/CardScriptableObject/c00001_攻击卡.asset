@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: "c00001_\u653B\u51FB\u5361"
   m_EditorClassIdentifier: 
   mID: 1
-  mName: "\u653B\u51FB"
+  mName: "\u5361\u724C"
   mDesc: "\u4F24\u5BB3\u7387{damageRate}"
   mEP: 1
   upgradeCost: 0
-  connectionType: 0
   cardType: 0
+  connectionTypes: 00000000
   rarity: 0
-  upgradeList: []
+  upgradeList:
+  - {fileID: 11400000}
+  - {fileID: 11400000}
   keyWords: []
   origin:
-    owner: {fileID: 11400000}
-    bUI: {fileID: 0}
     damageRate: 1
     targetType: 0
     attackFrequency: 1

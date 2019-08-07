@@ -1,2 +1,2 @@
 ID,名称,类型1,类型2,升级花费,升级选项列表,source,option
-1,卡牌,"""红,蓝""",攻击,0,"""1,1""",AttackCardSource,data
+1,卡牌,"""红""",攻击,0,"""1,1""",AttackCardSource,

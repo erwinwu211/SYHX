@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b4ca0618d2c1049bbe138a63f6097b, type: 3}
   m_Name: CardData
   m_EditorClassIdentifier: 
-  characters:
+  Cards:
   - ID: 1
     "\u540D\u79F0": "\u5361\u724C"
-    "\u7C7B\u578B1": 0000000001000000
+    "\u7C7B\u578B1": 00000000
     "\u7C7B\u578B2": 0
     "\u5347\u7EA7\u82B1\u8D39": 0
     "\u5347\u7EA7\u9009\u9879\u5217\u8868": 0100000001000000
     source: AttackCardSource
+    option: 

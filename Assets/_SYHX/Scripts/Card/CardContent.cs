@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using System;
 
 namespace SYHX.Cards
 {
@@ -25,7 +26,7 @@ namespace SYHX.Cards
             battleKeyword.Remove(keyword);
             RefreshUI();
         }
-        [HideInInspector] public BattleCardUI bUI;
+        [NonSerialized] [HideInInspector] public BattleCardUI bUI;
         public void RefreshUI() => bUI?.RefreshUI();
         public CardContent() { }
 

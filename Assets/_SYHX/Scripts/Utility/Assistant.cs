@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Assitant<T>
 {
@@ -13,7 +14,7 @@ public class Assitant<T>
 
 public class SAssitant<T>
 {
-    [HideInInspector] public T owner;
+    [NonSerialized] [HideInInspector] public T owner;
     public SAssitant() { }
     public virtual void SetOwner(T owner)
     {

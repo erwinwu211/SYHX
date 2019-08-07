@@ -61,6 +61,19 @@ namespace SYHX.Cards
             BattleCardManager.Ins.Draw(1);
         }
         #endregion
+
+        public void ApplyData(CardData.Data data)
+        {
+            this.mName = data.名称;
+            this.connectionTypes = new List<ConnectionType>(data.类型1);
+            this.cardType = data.类型2;
+            this.upgradeCost = data.升级花费;
+            this.FromJSON(data.option);
+        }
+        public void ApplyUpgradeList(List<CardSource> sources)
+        {
+            this.upgradeList = sources;
+        }
     }
 
     public class CardSource<T> : CardSource
@@ -89,7 +102,7 @@ namespace SYHX.Cards
         }
         public override void FromJSON(string json)
         {
-            origin = JsonUtility.FromJson<T>(json);
+            JsonUtility.FromJsonOverwrite(json, origin);
         }
 
     }
