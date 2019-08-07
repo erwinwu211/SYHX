@@ -22,9 +22,9 @@ namespace SYHX.Cards
 
         [SerializeField] protected int mEP;
         [SerializeField] public int upgradeCost;
-        [SerializeField] public ConnectionType connectionType;
-        // [SerializeField] public CardType cardType;
-        [SerializeField] public List<CardType> cardTypes;
+        // [SerializeField] public ConnectionType connectionType;
+        [SerializeField] public CardType cardType;
+        [SerializeField] public List<ConnectionType> connectionTypes;
         [SerializeField] public Rarity rarity;
         [SerializeField] public List<CardSource> upgradeList;
         [SerializeField] public List<CardKeyWord> keyWords;
@@ -41,7 +41,7 @@ namespace SYHX.Cards
 
         #region 卡牌生成相关
         public abstract CardContent GenerateCard();
-        public abstract CardContent GenerateCard(CardType type);
+        public abstract CardContent GenerateCard(ConnectionType type);
 
         [Button(ButtonSizes.Large)]
         [Conditional("UNITY_EDITOR")]
@@ -70,12 +70,12 @@ namespace SYHX.Cards
         public override void Init() => descOption = this.InitDescOption<CardSource, T>();
         public override CardContent GenerateCard()
         {
-            var count = cardTypes.Count;
+            var count = connectionTypes.Count;
             var randomIndex = (new System.Random()).Next(count);
-            return GenerateCard(cardTypes[randomIndex]);
+            return GenerateCard(connectionTypes[randomIndex]);
         }
 
-        public override CardContent GenerateCard(CardType type)
+        public override CardContent GenerateCard(ConnectionType type)
         {
             var cc = this.GenerateContent<CardSource, T>(origin);
             cc.SetOwnerWithDic(this, type, this.descOption);

@@ -31,14 +31,14 @@ namespace SYHX.Cards
 
 
 
-        public void SetOwnerWithDic(CardSource owner, CardType type, Dictionary<string, PropertyInfo> descOption = null)
+        public void SetOwnerWithDic(CardSource owner, ConnectionType type, Dictionary<string, PropertyInfo> descOption = null)
         {
             this.owner = owner;
             this.EP = owner.EP;
             this.tempEP = owner.EP;
-            this.cardType = type;
+            this.cardType = owner.cardType;
             this.rarity = owner.rarity;
-            this.connectionType = owner.connectionType;
+            this.connectionType = type;
             this.name = owner.Name;
             this.desc = owner.Desc;
             this.descOption = descOption;
