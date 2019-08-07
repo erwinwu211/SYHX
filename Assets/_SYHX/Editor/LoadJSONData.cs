@@ -16,7 +16,7 @@ public class LoadJSONData : MonoBehaviour
         }
     }
 
-    [MenuItem("自作/读取/存储当前JSON")]
+    // [MenuItem("自作/读取/存储当前JSON")]
     public static void SaveJSON()
     {
         var card = Selection.activeObject as CardSource;
