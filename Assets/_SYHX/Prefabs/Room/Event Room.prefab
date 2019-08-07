@@ -103,6 +103,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
@@ -120,11 +122,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 138771129940806376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d28543eac1e6154391c4e5d0b59b5cc, type: 3}
+  m_Script: {fileID: 11500000, guid: e5ccf4bdbd518ae4f8585fa45c62920d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Front: {fileID: 7490979578856517469}
   Back: {fileID: 2797370219458352749}
+  happenedCount: 0
+  maxHappenCount: 1
+  eventGroup: {fileID: 11400000, guid: 4a8c9de6813ce1448a6b62178f647f1d, type: 2}
 --- !u!1 &2797370219458352749
 GameObject:
   m_ObjectHideFlags: 0

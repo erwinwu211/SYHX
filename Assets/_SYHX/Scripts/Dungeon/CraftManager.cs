@@ -13,6 +13,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     public CraftMode craftMode;
     public bool canUseFlag = true;
     private CraftRoomEvent roomEvent;
+    private OptionSource option;
 
     /// <summary>
     /// 接收传来的事件
@@ -21,6 +22,15 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     public void ReceiveEvent(CraftRoomEvent _event)
     {
         roomEvent = _event;
+        canUseFlag = true;
+        selectedCard = null;
+        targetCard = null;
+        OpenCraft(CraftMode.Upgrade);
+    }
+
+    public void ReceiveEvent(OptionSource option)
+    {
+        this.option = option;
         canUseFlag = true;
         selectedCard = null;
         targetCard = null;

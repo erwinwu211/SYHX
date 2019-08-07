@@ -168,6 +168,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         Generator.clearMap();
         Generator.loadMap();
         Floor++;
+        EventManager.Ins.ClearFloorList();
         DungeonUI.RefreshUI();
     }
 
@@ -266,6 +267,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     /// </summary>
     public void LeaveDungeon()
     {
+        //做一些离开前的重置行为
+        EventManager.Ins.ClearPermanentList();
+        
         //传递结算信息
         DungeonResultInformation dungeonResult = new DungeonResultInformation();
         DungeonResultStatus status = new DungeonResultStatus(SceneStatusManager.Ins);

@@ -31,15 +31,15 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
             go.SetActive(true);
             RefreshChapterGO(cp, go);
             go.GetComponent<Toggle>().isOn = false;
-            go.GetComponent<Toggle>().onValueChanged.AddListener((bool value) => OnChapterToggleChanged(cp,go,value));
+            go.GetComponent<Toggle>().onValueChanged.AddListener((bool value) => OnChapterToggleChanged(cp, go, value));
             if (cp.IsDefault) go.GetComponent<Toggle>().isOn = true;
         }
     }
 
     public void OnDeckBtnClick()
     {
-        GameObject go = Instantiate(DeckInformationUI,transform.parent);
-        ChooseStatus mStatus =  SceneStatusManager.Ins.current as ChooseStatus;
+        GameObject go = Instantiate(DeckInformationUI, transform.parent);
+        ChooseStatus mStatus = SceneStatusManager.Ins.current as ChooseStatus;
         List<CardContent> ccList = new List<CardContent>();
         foreach (CardSource cs in mStatus.cc.Deck)
         {
@@ -56,7 +56,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     /// <param name="chapter"></param>
     /// <param name="go"></param>
     /// <param name="value"></param>
-    public void OnChapterToggleChanged(Chapter chapter,GameObject go, bool value)
+    public void OnChapterToggleChanged(Chapter chapter, GameObject go, bool value)
     {
         //获取各个节点
         Text name = go.transform.Find("Name").GetComponent<Text>();
@@ -91,7 +91,7 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     /// </summary>
     /// <param name="chapter">单个章节</param>
     /// <param name="go">GameObject</param>
-    private void RefreshChapterGO(Chapter chapter,GameObject go)
+    private void RefreshChapterGO(Chapter chapter, GameObject go)
     {
         //获取各个节点
         Text name = go.transform.Find("Name").GetComponent<Text>();
@@ -117,14 +117,16 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
         }
         foreach (Dungeon dungeon in chapter.Dungeons)
         {
-            GameObject go = Instantiate(DungeonGO,DungeonParent.transform);
+            GameObject go = Instantiate(DungeonGO, DungeonParent.transform);
             go.transform.localPosition = dungeon.Pos;
             Text index = go.transform.Find("NameFrame/Index").GetComponent<Text>();
             Text name = go.transform.Find("NameFrame/Name").GetComponent<Text>();
             index.text = dungeon.DungeonIndex;
             name.text = dungeon.DungeonName;
-            go.GetComponent<Button>().onClick.AddListener(delegate()
+            go.GetComponent<Button>().onClick.AddListener(delegate ()
             {
+                ChooseStatus cs = SceneStatusManager.Ins.current as ChooseStatus;
+                cs.ChangeSelectedDungeon(dungeon);
                 ShowDungeonInfo(dungeon);
             });
         }
@@ -145,8 +147,6 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
         chapter_image.sprite = dungeon.Chapter.Sprite;
         name.text = dungeon.DungeonName;
         name_en.text = dungeon.DungeonName_EN;
-        ChooseStatus cs = SceneStatusManager.Ins.current as ChooseStatus;
-        cs.ChangeSelectedDungeon(dungeon);
     }
 
     /// <summary>

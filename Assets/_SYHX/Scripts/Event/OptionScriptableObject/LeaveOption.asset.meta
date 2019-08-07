@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: d6f12233c1ed1544a83a42c8081eb167
+labels:
+- Data
+- LeaveOption
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -333,7 +333,7 @@ namespace SYHX.Cards
         private void GenerateCardUI(CardContent cc)
         {
             var go = GameObject.Instantiate(cardGo, deckPos.transform.position, deckPos.transform.rotation, deckPos.transform);
-            go.SetCard(cc);
+            go.SetCard(cc,false,false);
             cc.bUI = go;
         }
 

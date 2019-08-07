@@ -54,7 +54,7 @@ public class BattleResultPanelUI : MonoBehaviour
             CardContent cc = cs.GenerateCard();
             GameObject go = Instantiate(cardPrefab,cardChooseList.transform);
             CraftableCardUI CUI = go.GetComponent<CraftableCardUI>();
-            CUI.SetCard(cc,true);
+            CUI.SetCard(cc,true,false);
             CUIList.Add(CUI);
             go.GetComponent<Button>().onClick.AddListener(delegate{
                 OnCardSelected(CUI,cs);

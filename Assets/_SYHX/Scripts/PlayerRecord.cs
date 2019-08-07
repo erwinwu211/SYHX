@@ -12,6 +12,7 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     public int coreCount { get; private set; }
     public GameObject CharacterManager;
     public CharacterContent Umirika { get; private set; }
+    public Dungeon guildDungeon;
 
 
     protected override void UnityAwake()
@@ -43,7 +44,11 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     /// </summary>
     public void OverwriteRecord()
     {
+        // DungeonStatus ds = new DungeonStatus(SceneStatusManager.Ins);
 
+        // ds.Dungeon = this.guildDungeon;
+        // ds.cc = this.Umirika;
+        // SceneStatusManager.Ins.SetSceneStatus(ds);
     }
 
     /// <summary>
