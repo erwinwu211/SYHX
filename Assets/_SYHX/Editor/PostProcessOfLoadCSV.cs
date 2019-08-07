@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
+using SYHX.Cards;
 
 public class PostProcessOfLoadCSV : AssetPostprocessor
 {
@@ -39,6 +40,26 @@ public class PostProcessOfLoadCSV : AssetPostprocessor
                 }
 
                 gm.datas = CSVSerializer.Deserialize<LocalizableData.Data>(data.text);
+
+                EditorUtility.SetDirty(gm);
+                AssetDatabase.SaveAssets();
+#if DEBUG_LOG || UNITY_EDITOR
+                Debug.Log("Reimported Asset: " + str);
+#endif
+            }
+
+            if (str.IndexOf("/CardData.csv") != -1)
+            {
+                TextAsset data = AssetDatabase.LoadAssetAtPath<TextAsset>(str);
+                string assetfile = str.Replace(".csv", ".asset");
+                CardData gm = AssetDatabase.LoadAssetAtPath<CardData>(assetfile);
+                if (gm == null)
+                {
+                    gm = new CardData();
+                    AssetDatabase.CreateAsset(gm, assetfile);
+                }
+
+                gm.characters = CSVSerializer.Deserialize<CardData.Data>(data.text);
 
                 EditorUtility.SetDirty(gm);
                 AssetDatabase.SaveAssets();

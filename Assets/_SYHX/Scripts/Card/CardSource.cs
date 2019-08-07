@@ -42,6 +42,8 @@ namespace SYHX.Cards
         #region 卡牌生成相关
         public abstract CardContent GenerateCard();
         public abstract CardContent GenerateCard(ConnectionType type);
+        public abstract string ToJSON();
+        public abstract void FromJSON(string json);
 
         [Button(ButtonSizes.Large)]
         [Conditional("UNITY_EDITOR")]
@@ -80,6 +82,14 @@ namespace SYHX.Cards
             var cc = this.GenerateContent<CardSource, T>(origin);
             cc.SetOwnerWithDic(this, type, this.descOption);
             return cc;
+        }
+        public override string ToJSON()
+        {
+            return JsonUtility.ToJson(origin);
+        }
+        public override void FromJSON(string json)
+        {
+            origin = JsonUtility.FromJson<T>(json);
         }
 
     }

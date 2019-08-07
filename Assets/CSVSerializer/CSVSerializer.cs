@@ -24,7 +24,7 @@ public class CSVSerializer
         return (T)CreateIdValue(typeof(T), ParseCSV(text), id_col, value_col);
     }
 
-    static public T DeserializeIdValue<T>(List<string[]> rows, int id_col=0, int value_col=1)
+    static public T DeserializeIdValue<T>(List<string[]> rows, int id_col = 0, int value_col = 1)
     {
         return (T)CreateIdValue(typeof(T), rows, id_col, value_col);
     }
@@ -54,7 +54,7 @@ public class CSVSerializer
         for (int i = 1; i < rows.Count; i++)
         {
             object rowdata = Create(rows[i], table, type);
-            array_value.SetValue(rowdata, i-1);
+            array_value.SetValue(rowdata, i - 1);
         }
         return array_value;
     }
@@ -90,6 +90,8 @@ public class CSVSerializer
             {
                 if (elementType == typeof(string))
                     array_value.SetValue(elem[i], i);
+                else if (elementType.IsEnum)
+                    array_value.SetValue(Enum.Parse(elementType, elem[i]), i);
                 else
                     array_value.SetValue(Convert.ChangeType(elem[i], elementType), i);
             }
@@ -116,7 +118,7 @@ public class CSVSerializer
             fieldinfo.SetValue(v, Convert.ChangeType(value, fieldinfo.FieldType));
     }
 
-    static object CreateIdValue(Type type, List<string[]> rows, int id_col=0, int val_col=1)
+    static object CreateIdValue(Type type, List<string[]> rows, int id_col = 0, int val_col = 1)
     {
         object v = Activator.CreateInstance(type);
 
@@ -156,7 +158,7 @@ public class CSVSerializer
         {
             if (quotes == true)
             {
-                if ((text[i] == '\\' && i + 1 < text.Length && text[i + 1] == '\"') || (text[i] == '\"' && i + 1 < text.Length && text[i + 1] == '\"'))
+                if ((text[i] == '\\' && i + 1 < text.Length && text[i + 1] == '\"'))
                 {
                     token.Append('\"');
                     i++;
@@ -166,13 +168,19 @@ public class CSVSerializer
                     token.Append('\n');
                     i++;
                 }
-                else if (text[i] == '\"')
+                else if (text[i] == '\"' && i + 2 < text.Length && text[i + 1] == '\"' && text[i + 2] == '\"')
                 {
                     line.Add(token.ToString());
                     token = new StringBuilder();
                     quotes = false;
+                    i += 2;
                     if (i + 1 < text.Length && text[i + 1] == separator)
                         i++;
+                }
+                else if (text[i] == '\"' && i + 1 < text.Length && text[i + 1] == '\"')
+                {
+                    token.Append('\"');
+                    i++;
                 }
                 else
                 {
@@ -197,9 +205,10 @@ public class CSVSerializer
                 line.Add(token.ToString());
                 token = new StringBuilder();
             }
-            else if (text[i] == '\"')
+            else if (text[i] == '\"' && text.Length > i + 2 && text[i + 1] == '\"' && text[i + 2] == '\"')
             {
                 quotes = true;
+                i += 2;
             }
             else
             {
