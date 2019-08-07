@@ -15,9 +15,17 @@ MonoBehaviour:
   Cards:
   - ID: 1
     "\u540D\u79F0": "\u5361\u724C"
-    "\u7C7B\u578B1": 00000000
+    "\u7C7B\u578B1": 0000000001000000
     "\u7C7B\u578B2": 0
     "\u5347\u7EA7\u82B1\u8D39": 0
     "\u5347\u7EA7\u9009\u9879\u5217\u8868": 0100000001000000
     source: AttackCardSource
-    option: 
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'
+  - ID: 21
+    "\u540D\u79F0": "\u6D4B\u5361\u724C"
+    "\u7C7B\u578B1": 0000000001000000
+    "\u7C7B\u578B2": 0
+    "\u5347\u7EA7\u82B1\u8D39": 0
+    "\u5347\u7EA7\u9009\u9879\u5217\u8868": 0100000001000000
+    source: AttackCardSource
+    option: '{"damageRate":1.0,"targetType":0,"attackFrequency":1}'

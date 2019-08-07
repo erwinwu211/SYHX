@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be100f03dec08784d832c0fcf30c0f82, type: 3}
-  m_Name: "c00001_\u653B\u51FB\u5361"
+  m_Name: "c00021_\u6D4B\u5361\u724C"
   m_EditorClassIdentifier: 
-  mID: 1
-  mName: "\u5361\u724C"
-  mDesc: "\u4F24\u5BB3\u7387{damageRate}"
-  mEP: 1
+  mID: 0
+  mName: "\u6D4B\u5361\u724C"
+  mDesc: 
+  mEP: 0
   upgradeCost: 0
   cardType: 0
   connectionTypes: 0000000001000000
   rarity: 0
   upgradeList:
-  - {fileID: 11400000}
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: abb10f85fc57f5a49bb650b58d21f068, type: 2}
+  - {fileID: 11400000, guid: abb10f85fc57f5a49bb650b58d21f068, type: 2}
   keyWords: []
   origin:
     damageRate: 1

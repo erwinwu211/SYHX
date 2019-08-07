@@ -93,6 +93,7 @@ public class PostProcessOfLoadCSV : AssetPostprocessor
 
     static Dictionary<int, CardSource> cardDictionary = new Dictionary<int, CardSource>();
     static bool isInited = false;
+    readonly static string[] labels = { "Data", "ScriptableObject", string.Empty };
     static CardSource CheckAndGetCard(CardData.Data data)
     {
         if (!isInited)
@@ -123,9 +124,11 @@ public class PostProcessOfLoadCSV : AssetPostprocessor
             AssetDatabase.DeleteAsset(cardPath + "/" + tempCard.name + ".asset");
             cardDictionary.Remove(data.ID);
         }
-        var path = cardPath + "/" + string.Format("{0:00000}", data.ID) + "_" + data.名称;
+        var path = cardPath + "/c" + string.Format("{0:00000}", data.ID) + "_" + data.名称 + ".asset";
+        labels[2] = data.source;
         AssetDatabase.CreateAsset(obj, path);
         CardSource sobj = AssetDatabase.LoadAssetAtPath(path, typeof(CardSource)) as CardSource;
+        AssetDatabase.SetLabels(sobj, labels);
         EditorUtility.SetDirty(sobj);
         cardDictionary.Add(data.ID, sobj);
         return sobj;
