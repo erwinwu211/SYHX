@@ -18,10 +18,10 @@ MonoBehaviour:
   mEP: 1
   upgradeCost: 20
   cardType: 2
-  connectionTypes: 
+  connectionTypes: 00000000
   rarity: 0
   upgradeList: []
   keyWords: []
   origin:
     defenceRate: 1
-    cardName: {fileID: 11400000, guid: 601b4580ace111b428716d2e74a49322, type: 2}
+    cardName: {fileID: 0}

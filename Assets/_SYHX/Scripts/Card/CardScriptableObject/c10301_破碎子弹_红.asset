@@ -18,7 +18,7 @@ MonoBehaviour:
   mEP: 1
   upgradeCost: 0
   cardType: 0
-  connectionTypes: 
+  connectionTypes: 00000000
   rarity: 0
   upgradeList:
   - {fileID: 11400000, guid: d3cc988b35a607845a88e4279aa88eb8, type: 2}

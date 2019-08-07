@@ -18,7 +18,7 @@ public class DungeonCardRewardSource : ItemSource
         List<CardSource> list = new List<CardSource>();
         for (int i = 0; i < count; i++)
         {
-            CardSource cs = CardSourcePool[Random.Range(0, CardSourcePool.Count - 1)];
+            CardSource cs = CardSourcePool[Random.Range(0, CardSourcePool.Count)];
             list.Add(cs);
         }
         return list;

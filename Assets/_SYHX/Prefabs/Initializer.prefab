@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffd598b2acbc9384bab7bf837e39266d, type: 2}
   - {fileID: 11400000, guid: ac87897f871295c4c9c43b943dff4c2a, type: 2}
   - {fileID: 11400000, guid: a9bb6967a64b91642aa6237b8d50b2b0, type: 2}
+  - {fileID: 11400000, guid: 76673c17756117f4e948226540010a3e, type: 2}
   eaSource:
   - {fileID: 11400000, guid: 26aa924403b93bc4ebfcdae1c7bd086b, type: 2}
   - {fileID: 11400000, guid: 7f80115688281534e83bc502f0801f46, type: 2}
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterManager: {fileID: 0}
+  guildDungeon: {fileID: 0}
 --- !u!114 &3397530229872600536
 MonoBehaviour:
   m_ObjectHideFlags: 0

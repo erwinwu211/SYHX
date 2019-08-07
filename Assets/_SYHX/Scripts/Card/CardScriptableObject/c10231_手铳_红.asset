@@ -18,7 +18,7 @@ MonoBehaviour:
   mEP: 0
   upgradeCost: 0
   cardType: 0
-  connectionTypes: 
+  connectionTypes: 00000000
   rarity: 0
   upgradeList: []
   keyWords: []

@@ -35,13 +35,13 @@ public class CraftUI : MonoBehaviour
     /// </summary>
     /// <param name="cardContents">卡牌列表</param>
     /// <param name="mode">模式</param>
-    public void ShowCraftUI(List<CardContent> cardContents,CraftMode mode)
+    public void ShowCraftUI(List<CardContent> cardContents, CraftMode mode)
     {
         //设置各界面的显示关系
         gameObject.SetActive(true);
         UpgradePanel.SetActive(false);
         CloseBtn.GetComponent<ButtonEffect>().ResetFillBg();
-        DataChipCount.text = DungeonManager.Ins.dataChip.count+"";
+        DataChipCount.text = DungeonManager.Ins.dataChip.count + "";
         //清空列表上的内容
         foreach (Transform tf in CardChooseGroup.transform)
         {
@@ -74,16 +74,16 @@ public class CraftUI : MonoBehaviour
         ReturnBtn.ResetFillBg();
         //显示选中卡牌信息
         {
-            GameObject go = Instantiate(CardPrefab,UpgradeCardPos);
-            go.GetComponent<CraftableCardUI>().SetCard(cc,false,false);
+            GameObject go = Instantiate(CardPrefab, UpgradeCardPos);
+            go.GetComponent<CraftableCardUI>().SetCard(cc, false, false);
         }
         //显示升级分支信息
         foreach (CardSource cs in cc.owner.upgradeList)
         {
             CardContent cardcontent = cs.GenerateCard();
             GameObject go = Instantiate(CardPrefab, UpgradeChooseListPos);
-            go.GetComponent<CraftableCardUI>().SetCard(cardcontent,true,false);
-            GameObject price = Instantiate(PriceLabel,go.transform);
+            go.GetComponent<CraftableCardUI>().SetCard(cardcontent, true, false);
+            GameObject price = Instantiate(PriceLabel, go.transform);
             //判断是否有足够的金钱来显示不同的字体颜色
             string colorString;
             if (DungeonManager.Ins.dataChip.count > cs.upgradeCost)
@@ -94,13 +94,36 @@ public class CraftUI : MonoBehaviour
             {
                 colorString = ColorUtility.ToHtmlStringRGB(Unenough);
             }
-            price.GetComponentInChildren<Text>().text = "数据碎片 <color=#"+colorString+">"+cs.upgradeCost+"</color>";
+            price.GetComponentInChildren<Text>().text = "数据碎片 <color=#" + colorString + ">" + cs.upgradeCost + "</color>";
             go.GetComponent<Button>().onClick.AddListener(delegate ()
             {
-                CraftManager.Ins.SetTargetCard(cs);
+                //CraftManager.Ins.SetTargetCard(cs);
+                OnCardSelected(go.GetComponent<CraftableCardUI>(),cs);
             });
         }
     }
+
+    public void OnCardSelected(CraftableCardUI selected, CardSource cs)
+    {
+        //已被选的话则取消选中
+        //Debug.Log("CUIList的数量是"+CUIList.Count);
+        if (selected.IsSelect)
+        {
+            selected.EnhanceSelected();
+            CraftManager.Ins.targetCard = null;
+            //Debug.Log("你取消选中了"+selected.name);
+            return;
+        }
+        //为被选的话把其它卡牌都取消选中，然后选中自己
+        foreach (Transform tf in UpgradeChooseListPos)
+        {
+            tf.GetComponent<CraftableCardUI>().EnhanceSelected();
+        }
+        selected.ShowSelected();
+        //Debug.Log("你选中了"+selected.name);
+        CraftManager.Ins.SetTargetCard(cs);
+    }
+
 
     public void OnConfirmBtnClick()
     {
