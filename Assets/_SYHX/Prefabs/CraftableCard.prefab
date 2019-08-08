@@ -71,6 +71,8 @@ MonoBehaviour:
   yellowFrame: {fileID: 21300000, guid: a4d380ce60824b746b68d4f861a25420, type: 3}
   canSelect: 0
   IsSelect: 0
+  canZoom: 0
+  scaleSpeed: 1.4
   CardFrame: {fileID: 7872970105291256070}
   BgImage: {fileID: 4138636554439087632}
   nameField: {fileID: 2926237605619015771}
@@ -155,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 10, y: 7}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 37, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8865331626034523756
 CanvasRenderer:
@@ -179,14 +181,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.71853036, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a63d4536d786a8b4a9d6665f3f37c097, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -594,7 +596,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 45, y: 26.93}
+  m_SizeDelta: {x: 41.57, y: 26.02}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &8733151820601369798
 CanvasRenderer:
@@ -632,7 +634,7 @@ MonoBehaviour:
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -673,8 +675,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
-  m_SizeDelta: {x: 30, y: 26}
+  m_AnchoredPosition: {x: -4.4, y: 6.18}
+  m_SizeDelta: {x: 37.15, y: 32.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5126938478952541984
 CanvasRenderer:
@@ -822,7 +824,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -11.200001, y: 153}
+  m_SizeDelta: {x: -6.000001, y: 153}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &9068114870105828197
 CanvasRenderer:
