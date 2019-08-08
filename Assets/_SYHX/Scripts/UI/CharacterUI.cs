@@ -24,6 +24,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     public GameObject ExpCount;
     public GameObject SkillPanel;
     public GameObject DeckInformationUI;
+    public Button UpgradeBtn;
     public float FillSpeed = 0.18f;
 
     public CharacterContent selectedCharacter { get; private set; }
@@ -77,7 +78,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
         {
             //更新人物属性信息
             case 1:
-                Lv.GetComponent<Text>().text = cc.currentGrade + "";
+                Lv.GetComponent<Text>().text = cc.currentGrade.currentGrade + "";
                 //ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].RequireCount;
                 //ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].RequireCount;
 
@@ -98,6 +99,28 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 HP.transform.Find("Count").GetComponent<Text>().text = cc.Hp_max + "";
                 EP.transform.Find("Count").GetComponent<Text>().text = cc.Energy_max + "";
                 DRAW.transform.Find("Count").GetComponent<Text>().text = cc.Draw_count + "";
+
+                if (cc.currentGrade.nextGrade != null)
+                {
+                    int currentCount = PlayerRecord.Ins.GetItemCountByID(cc.currentGrade.UpgradeRequireList[0].item.id);
+                    int maxCount = cc.currentGrade.UpgradeRequireList[0].count;
+                    if (currentCount >= maxCount) 
+                    {
+                        UpgradeBtn.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        UpgradeBtn.gameObject.SetActive(false);
+                    }
+                    ExpCount.GetComponent<Text>().text = currentCount + " / " + maxCount;
+                    ExpSlider.GetComponent<Slider>().value = (float)currentCount / maxCount;
+                }
+                else
+                {
+                    ExpCount.GetComponent<Text>().text = "MAX";
+                    ExpSlider.GetComponent<Slider>().value = 1;
+                }
+
 
                 foreach (Transform tf in SkillList.transform)
                 {
@@ -147,7 +170,7 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
 
     public void OnDeckBtnClick()
     {
-        GameObject go = Instantiate(DeckInformationUI,transform.parent);
+        GameObject go = Instantiate(DeckInformationUI, transform.parent);
         List<CardContent> ccList = new List<CardContent>();
         foreach (CardSource cs in selectedCharacter.Deck)
         {
@@ -190,6 +213,12 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
     public void OnEquipmentBtnClick()
     {
 
+    }
+
+    public void OnUpgradeBtnClick()
+    {
+        selectedCharacter.Upgrade();
+        RefreshCharacterInfo(selectedCharacter);
     }
 
     protected override void UnityAwake()

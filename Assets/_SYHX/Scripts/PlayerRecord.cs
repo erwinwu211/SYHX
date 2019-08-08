@@ -47,7 +47,7 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
         itemDict = new Dictionary<int, int>();
         foreach (ItemSource item in itemList)
         {
-            itemDict.Add(item.id, 0);
+            itemDict.Add(item.id, 21);
         }
     }
 
@@ -70,6 +70,11 @@ public class PlayerRecord : SingletonMonoBehaviour<PlayerRecord>
     public string FindRecord()
     {
         return null;
+    }
+
+    public int GetItemCountByID(int itemID)
+    {
+        return itemDict[itemID];
     }
 }
 
