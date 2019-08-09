@@ -133,74 +133,85 @@ MonoBehaviour:
   enemyGroup:
   - {fileID: 11400000, guid: fd5d6be8294d0e14db54346020d93df2, type: 2}
   factors:
-  - Force: 0.8
-    Aglie: 0.8
-    Constitution: 0.8
-  - Force: 0.85
-    Aglie: 0.85
-    Constitution: 0.85
-  - Force: 0.9
-    Aglie: 0.9
-    Constitution: 0.9
-  - Force: 0.95
-    Aglie: 0.95
-    Constitution: 0.95
   - Force: 1
     Aglie: 1
     Constitution: 1
-  - Force: 1.1
-    Aglie: 1.1
-    Constitution: 1.1
-  - Force: 1.2
-    Aglie: 1.2
-    Constitution: 1.2
-  - Force: 1.3
-    Aglie: 1.3
-    Constitution: 1.3
-  - Force: 1.4
-    Aglie: 1.4
-    Constitution: 1.4
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
+  - Force: 1
+    Aglie: 1
+    Constitution: 1
   lvInfos:
-  - Lv: 1
+  - LvName: 1
     RequireCount: 100
-  - Lv: 2
+  - LvName: 2
     RequireCount: 120
-  - Lv: 3
+  - LvName: 3
     RequireCount: 150
-  - Lv: 4
+  - LvName: 4
     RequireCount: 200
-  - Lv: 5
+  - LvName: 5
     RequireCount: 300
-  - Lv: 6
+  - LvName: 6
     RequireCount: 500
-  - Lv: 7
+  - LvName: 7
     RequireCount: 600
-  - Lv: 8
+  - LvName: 8
     RequireCount: 700
-  - Lv: 9
+  - LvName: 9
     RequireCount: 800
-  - Lv: 10
+  - LvName: 10
     RequireCount: 1000
-  - Lv: 11
+  - LvName: 11
     RequireCount: 1100
-  - Lv: 12
+  - LvName: 12
     RequireCount: 1200
-  - Lv: 13
+  - LvName: 13
     RequireCount: 1300
-  - Lv: 14
+  - LvName: 14
     RequireCount: 1400
-  - Lv: 15
+  - LvName: 15
     RequireCount: 1500
-  - Lv: 16
+  - LvName: 
     RequireCount: 1600
-  - Lv: 17
+  - LvName: 
     RequireCount: 1700
-  - Lv: 18
+  - LvName: 
     RequireCount: 2000
-  - Lv: 19
+  - LvName: 
     RequireCount: 2500
-  - Lv: 20
+  - LvName: 
     RequireCount: 3000
+  AttrLvInfos:
+  - LvName: "I\u9636"
+    RequireCount: 10
+  - LvName: "II\u9636"
+    RequireCount: 40
+  - LvName: "III\u9636"
+    RequireCount: 80
+  - LvName: "IV\u9636"
+    RequireCount: 200
+  - LvName: "V\u9636"
+    RequireCount: 9999
   CurrentLanguage: 0
 --- !u!114 &59073439
 MonoBehaviour:

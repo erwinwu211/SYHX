@@ -104,15 +104,15 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 {
                     int currentCount = PlayerRecord.Ins.GetItemCountByID(cc.currentGrade.UpgradeRequireList[0].item.id);
                     int maxCount = cc.currentGrade.UpgradeRequireList[0].count;
-                    if (currentCount >= maxCount) 
+                    if (currentCount >= maxCount)
                     {
-                        UpgradeBtn.gameObject.SetActive(true);
+                        UpgradeBtn.transform.Find("available").gameObject.SetActive(true);
                     }
                     else
                     {
-                        UpgradeBtn.gameObject.SetActive(false);
+                        UpgradeBtn.transform.Find("available").gameObject.SetActive(false);
                     }
-                    ExpCount.GetComponent<Text>().text = currentCount + " / " + maxCount;
+                    ExpCount.GetComponent<Text>().text = "<size=26>" + currentCount + "</size> / " + maxCount;
                     ExpSlider.GetComponent<Slider>().value = (float)currentCount / maxCount;
                 }
                 else
