@@ -69,6 +69,7 @@ MonoBehaviour:
   redFrame: {fileID: 21300000, guid: ea6145ffad4c4c241aa4692e29ff397f, type: 3}
   blueFrame: {fileID: 21300000, guid: e0591c2c68bb6c84b86cfa05906f19dd, type: 3}
   yellowFrame: {fileID: 21300000, guid: a4d380ce60824b746b68d4f861a25420, type: 3}
+  grayFrame: {fileID: 21300000, guid: ce39d1a4fa3e13a49854ef780ee6813f, type: 3}
   canSelect: 0
   IsSelect: 0
   canZoom: 0

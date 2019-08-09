@@ -11,6 +11,7 @@ namespace SYHX.Cards
         public Sprite redFrame;
         public Sprite blueFrame;
         public Sprite yellowFrame;
+        public Sprite grayFrame;
         public bool canSelect;
         public bool IsSelect;
         public bool canZoom;
@@ -47,8 +48,8 @@ namespace SYHX.Cards
             this.nameField.text = cc.name;
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
-            this.typeField.text = cc.cardType.ToString()+"-"+Initializer.Ins.TechlvInfos[cc.techLevel].LvName;
-            this.EpGameObject.SetActive(cc.UseOption()==false);
+            this.typeField.text = cc.cardType.ToString() + "-" + Initializer.Ins.TechlvInfos[cc.techLevel].LvName;
+            this.EpGameObject.SetActive(cc.UseOption() == false);
             switch (cc.connectionType)
             {
                 case ConnectionType.红:
@@ -62,6 +63,10 @@ namespace SYHX.Cards
                 case ConnectionType.黄:
                     this.CardFrame.sprite = yellowFrame;
                     this.connectionTypeField.text = "支援";
+                    break;
+                case ConnectionType.黑:
+                    this.CardFrame.sprite = grayFrame;
+                    this.connectionTypeField.text = "滞";
                     break;
             }
         }
@@ -104,7 +109,7 @@ namespace SYHX.Cards
         {
             for (; this.gameObject.transform.localScale.x < 1.25f;)
             {
-                this.gameObject.transform.localScale += new Vector3(scaleSpeed*Time.deltaTime,scaleSpeed*Time.deltaTime,0);
+                this.gameObject.transform.localScale += new Vector3(scaleSpeed * Time.deltaTime, scaleSpeed * Time.deltaTime, 0);
                 yield return null;
             }
         }
@@ -113,7 +118,7 @@ namespace SYHX.Cards
         {
             for (; this.gameObject.transform.localScale.x > 1;)
             {
-                this.gameObject.transform.localScale -= new Vector3(scaleSpeed*Time.deltaTime,scaleSpeed*Time.deltaTime,0);
+                this.gameObject.transform.localScale -= new Vector3(scaleSpeed * Time.deltaTime, scaleSpeed * Time.deltaTime, 0);
                 yield return null;
             }
         }
