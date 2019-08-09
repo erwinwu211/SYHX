@@ -54,10 +54,10 @@ public class BattleHero : BattleCharacter
         {
             maxHp = CharacterInDungeon.Ins.maxHp;
             currentHp = CharacterInDungeon.Ins.currentHp;
-            Force = CharacterInDungeon.Ins.Force;
-            Agile = CharacterInDungeon.Ins.Agile;
-            Constitution = CharacterInDungeon.Ins.Constitution;
-            Fortune = CharacterInDungeon.Ins.Fortune;
+            Force = CharacterInDungeon.Ins.Force.currentLv;
+            Agile = CharacterInDungeon.Ins.Agile.currentLv;
+            Constitution = CharacterInDungeon.Ins.Constitution.currentLv;
+            Fortune = CharacterInDungeon.Ins.Fortune.currentLv;
             maxEp = CharacterInDungeon.Ins.maxEp;
         }
     }

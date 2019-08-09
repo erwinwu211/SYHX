@@ -15,10 +15,10 @@ public class Umirika : CharacterContent
         Defend = 5;
         Draw_count = 5;
         Energy_max = 3;
-        STR = 3;
-        AGI = 3;
-        INT = 3;
-        FOR = 3;
+        Force = 3;
+        Agile = 3;
+        Constitution = 3;
+        Fortune = 3;
         Talents = new List<Talent>();
         Talents.Add(new Talent_00001());
         Talents[0].IsEffect = true;

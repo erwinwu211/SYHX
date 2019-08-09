@@ -18,8 +18,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int Floor = 1;
     public int score = 0;
     public float difficultLevel = 1;
-    public int TechLevel = 0;
-    //public List<LvInfo> TechLevelInfo;
     private int mRestCount = 0;
     private int mRestCostGrowth = 5;
     public float RestEfficiency = 0.25f;
@@ -294,32 +292,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         if (isIncrease) mRestCount++;
     }
 
-    /// <summary>
-    /// 升级科技等级
-    /// </summary>
-    public void TechLevelUp()
-    {
-        if (TechLevel > Initializer.Ins.TechlvInfos.Count) return;
-        chipCore.count -= Initializer.Ins.TechlvInfos[TechLevel].RequireCount;
-        TechLevel++;
-    }
-
     public void ShowRestPanel()
     {
-        bool canRest = false;
-        if (chipCore.count >= mRestCount * mRestCostGrowth) canRest = true;
-        RestPanelUI.ShowRestRoomUI(canRest, CharacterInDungeon.Ins.CheckCanLevelUp(chipCore.count), CheckCanTechLvUp());
+        RestPanelUI.ShowRestRoomUI(CharacterInDungeon.Ins.Force, CharacterInDungeon.Ins.Agile, CharacterInDungeon.Ins.Constitution);
     }
-
-    public LvUpCheck CheckCanTechLvUp()
-    {
-        Debug.Log("当前科技等级为"+TechLevel+" 升级所需芯片核心*"+Initializer.Ins.TechlvInfos[TechLevel].RequireCount);
-        if (TechLevel > Initializer.Ins.TechlvInfos.Count) return LvUpCheck.max;
-        if (chipCore.count < Initializer.Ins.TechlvInfos[TechLevel].RequireCount) return LvUpCheck.cost_unenough;
-        return LvUpCheck.yes;
-    }
-
-
 
     /// <summary>
     /// 离开地宫，跳转到地宫结算界面

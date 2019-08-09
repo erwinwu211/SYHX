@@ -82,17 +82,17 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 //ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].RequireCount;
                 //ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].RequireCount;
 
-                StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.STR / 5;
-                StrSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.STR + "";
+                StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.Force / 5;
+                StrSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.Force + "";
 
-                AgiSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.AGI / 5;
-                AgiSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.AGI + "";
+                AgiSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.Agile / 5;
+                AgiSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.Agile + "";
 
-                IntSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.INT / 5;
-                IntSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.INT + "";
+                IntSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.Constitution / 5;
+                IntSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.Constitution + "";
 
-                ForSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.FOR / 5;
-                ForSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.FOR + "";
+                ForSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.Fortune / 5;
+                ForSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.Fortune + "";
 
                 ATK.transform.Find("Count").GetComponent<Text>().text = cc.Attack + "";
                 DEF.transform.Find("Count").GetComponent<Text>().text = cc.Defend + "";

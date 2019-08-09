@@ -18,10 +18,10 @@ public class CharacterContent : MonoBehaviour
     public int Defend;
     public int Draw_count;
     public int Energy_max;
-    public int STR;
-    public int AGI;
-    public int INT;
-    public int FOR;
+    public int Force;
+    public int Agile;
+    public int Constitution;
+    public int Fortune;
     public int InitDataChip;
     public int InitChipCore;
     [SerializeField] public List<CardSource> Deck;

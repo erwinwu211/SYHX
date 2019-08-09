@@ -50,7 +50,23 @@ public class CraftUI : MonoBehaviour
         //根据模式为卡牌挂载不同的事件
         foreach (CardContent cc in cardContents)
         {
-            if (cc.techLevel > DungeonManager.Ins.TechLevel) continue;
+            int myLevel = 0;
+            switch (cc.cardType)
+            {
+                case CardType.攻击:
+                    myLevel = CharacterInDungeon.Ins.Force.currentLv;
+                    break;
+                case CardType.防御:
+                    myLevel = CharacterInDungeon.Ins.Agile.currentLv;
+                    break;
+                case CardType.技能:
+                    myLevel = CharacterInDungeon.Ins.Constitution.currentLv;
+                    break;
+                case CardType.诅咒:
+                    myLevel = CharacterInDungeon.Ins.Fortune.currentLv;
+                    break;
+            }
+            if (cc.needAttrLevel > myLevel) continue;
             GameObject go = Instantiate(CardPrefab, CardChooseGroup.transform);
             go.GetComponent<CraftableCardUI>().SetCard(cc);
             go.GetComponent<Button>().onClick.AddListener(delegate ()
@@ -99,7 +115,7 @@ public class CraftUI : MonoBehaviour
             go.GetComponent<Button>().onClick.AddListener(delegate ()
             {
                 //CraftManager.Ins.SetTargetCard(cs);
-                OnCardSelected(go.GetComponent<CraftableCardUI>(),cs);
+                OnCardSelected(go.GetComponent<CraftableCardUI>(), cs);
             });
         }
     }

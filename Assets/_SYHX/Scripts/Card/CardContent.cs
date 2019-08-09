@@ -38,7 +38,7 @@ namespace SYHX.Cards
             this.EP = owner.EP;
             this.tempEP = owner.EP;
             this.cardType = owner.cardType;
-            this.techLevel = owner.techLevel;
+            this.needAttrLevel = owner.needAttrLevel;
             this.connectionType = type;
             this.name = owner.Name;
             this.desc = owner.Desc;
@@ -47,7 +47,7 @@ namespace SYHX.Cards
         }
         public ConnectionType connectionType { get; private set; }
         public CardType cardType { get; private set; }
-        public int techLevel { get; private set; }
+        public int needAttrLevel { get; private set; }
 
         private int ep;
         public int EP

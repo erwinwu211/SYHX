@@ -27,7 +27,7 @@ namespace SYHX.Cards
         // [SerializeField] public ConnectionType connectionType;
         [SerializeField] public CardType cardType;
         [SerializeField] public List<ConnectionType> connectionTypes;
-        [SerializeField] public int techLevel;
+        [SerializeField] public int needAttrLevel;
         [SerializeField] public bool unusable;
         [SerializeField] public List<CardSource> upgradeList;
         [SerializeField] public List<CardKeyWord> keyWords;

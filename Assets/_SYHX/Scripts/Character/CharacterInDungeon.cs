@@ -2,9 +2,41 @@
 using UnityEngine;
 using SYHX.Cards;
 
-public enum BasicAttribute
+public enum BasicAttributeType
 {
     Force, Aglie, Constitution, Fortune
+}
+
+public class BasicAttribute
+{
+    public BasicAttributeType type;
+    public int currentLv;
+    public int maxLv = 5;
+    public int currentExp;
+    public int maxExp => Initializer.Ins.AttrLvInfos[currentLv].RequireCount;
+    public bool IsMaxLv() => currentLv>= maxLv;
+
+    public void GainExp(int count)
+    {
+        if (currentLv >= maxLv) return;
+        currentExp+= count;
+        if (currentExp > maxExp) LvUp();
+    }
+
+    public void LvUp()
+    {
+        if (currentLv >= maxLv) return;
+        currentExp -= maxExp;
+        currentLv++;
+    }
+
+
+    public BasicAttribute(BasicAttributeType type,int initLv)
+    {
+        this.type = type;
+        this.currentLv = initLv;
+        this.currentExp = 0;
+    }
 }
 
 /// <summary>
@@ -22,11 +54,10 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public int Defend { get; private set; }
     public int maxEp { get; private set; }
     public int Draw_count { get; private set; }
-    public int Force { get; private set; }
-    public int Agile { get; private set; }
-    public int Constitution { get; private set; }
-    public int Fortune { get; private set; }
-    public int AttrMax = 10;
+    public BasicAttribute Force { get; private set; }
+    public BasicAttribute Agile { get; private set; }
+    public BasicAttribute Constitution { get; private set; }
+    public BasicAttribute Fortune { get; private set; }
     public List<CardContent> Deck { get; private set; }
 
     public void Start()
@@ -45,10 +76,10 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Defend = cc.Defend;
         this.maxEp = cc.Energy_max;
         this.Draw_count = cc.Draw_count;
-        this.Force = cc.STR;
-        this.Agile = cc.AGI;
-        this.Constitution = cc.INT;
-        this.Fortune = cc.FOR;
+        this.Force = new BasicAttribute(BasicAttributeType.Force,cc.Force);
+        this.Agile = new BasicAttribute(BasicAttributeType.Aglie,cc.Agile);
+        this.Constitution = new BasicAttribute(BasicAttributeType.Constitution,cc.Constitution);
+        this.Fortune = new BasicAttribute(BasicAttributeType.Fortune,cc.Fortune);
         this.Deck = new List<CardContent>();
         this.maxLv = cc.currentGrade.LvMax;
         this.currentLv = 1;
@@ -208,84 +239,29 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     }
 
     /// <summary>
-    /// 增加基础属性
+    /// 获得基础属性的经验
     /// </summary>
     /// <param name="attr"></param>
     /// <param name="count"></param>
-    public void IncreaseBasicAttribute(BasicAttribute attr, int count)
+    public void IncreaseBasicAttributeExp(BasicAttributeType attr, int count)
     {
         switch (attr)
         {
-            case BasicAttribute.Force:
-                Force += count;
-                if (Force > AttrMax)
-                {
-                    Force = AttrMax;
-                }
+            case BasicAttributeType.Force:
+                this.Force.GainExp(count);
                 break;
-            case BasicAttribute.Aglie:
-                Agile += count;
-                if (Agile > AttrMax)
-                {
-                    Agile = AttrMax;
-                }
+            case BasicAttributeType.Aglie:
+                this.Agile.GainExp(count);
                 break;
-            case BasicAttribute.Constitution:
-                Constitution += count;
-                if (Constitution > AttrMax)
-                {
-                    Constitution = AttrMax;
-                }
+            case BasicAttributeType.Constitution:
+                this.Constitution.GainExp(count);
                 break;
-            case BasicAttribute.Fortune:
-                Fortune += count;
-                if (Fortune > AttrMax)
-                {
-                    Fortune = AttrMax;
-                }
+            case BasicAttributeType.Fortune:
+                this.Fortune.GainExp(count);
                 break;
         }
     }
 
-    /// <summary>
-    /// 减少基础属性
-    /// </summary>
-    /// <param name="attr"></param>
-    /// <param name="count"></param>
-    public void DecreaseBasicAttribute(BasicAttribute attr, int count)
-    {
-        switch (attr)
-        {
-            case BasicAttribute.Force:
-                Force -= count;
-                if (Force < 1)
-                {
-                    Force = 1;
-                }
-                break;
-            case BasicAttribute.Aglie:
-                Agile -= count;
-                if (Agile < 1)
-                {
-                    Agile = 1;
-                }
-                break;
-            case BasicAttribute.Constitution:
-                Constitution -= count;
-                if (Constitution < 1)
-                {
-                    Constitution = 1;
-                }
-                break;
-            case BasicAttribute.Fortune:
-                Fortune -= count;
-                if (Fortune < 1)
-                {
-                    Fortune = 1;
-                }
-                break;
-        }
-    }
     #endregion
 
     #region 卡牌的操作
