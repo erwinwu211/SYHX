@@ -14,12 +14,12 @@ public class BasicAttribute
     public int maxLv = 5;
     public int currentExp;
     public int maxExp => Initializer.Ins.AttrLvInfos[currentLv].RequireCount;
-    public bool IsMaxLv() => currentLv>= maxLv;
+    public bool IsMaxLv() => currentLv >= maxLv;
 
     public void GainExp(int count)
     {
         if (currentLv >= maxLv) return;
-        currentExp+= count;
+        currentExp += count;
         if (currentExp > maxExp) LvUp();
     }
 
@@ -31,7 +31,7 @@ public class BasicAttribute
     }
 
 
-    public BasicAttribute(BasicAttributeType type,int initLv)
+    public BasicAttribute(BasicAttributeType type, int initLv)
     {
         this.type = type;
         this.currentLv = initLv;
@@ -48,6 +48,8 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public CharacterContent character;
     public int maxLv { get; private set; }
     public int currentLv { get; set; }
+    public int maxExp => character.lvInfos[currentLv - 1].RequireCount;
+    public int currentExp;
     public int maxHp { get; set; }
     public int currentHp { get; set; }
     public int Attack { get; private set; }
@@ -59,6 +61,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public BasicAttribute Constitution { get; private set; }
     public BasicAttribute Fortune { get; private set; }
     public List<CardContent> Deck { get; private set; }
+    public GameObject LevelUpPanel;
 
     public void Start()
     {
@@ -76,62 +79,102 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Defend = cc.Defend;
         this.maxEp = cc.Energy_max;
         this.Draw_count = cc.Draw_count;
-        this.Force = new BasicAttribute(BasicAttributeType.Force,cc.Force);
-        this.Agile = new BasicAttribute(BasicAttributeType.Aglie,cc.Agile);
-        this.Constitution = new BasicAttribute(BasicAttributeType.Constitution,cc.Constitution);
-        this.Fortune = new BasicAttribute(BasicAttributeType.Fortune,cc.Fortune);
+        this.Force = new BasicAttribute(BasicAttributeType.Force, cc.Force);
+        this.Agile = new BasicAttribute(BasicAttributeType.Aglie, cc.Agile);
+        this.Constitution = new BasicAttribute(BasicAttributeType.Constitution, cc.Constitution);
+        this.Fortune = new BasicAttribute(BasicAttributeType.Fortune, cc.Fortune);
         this.Deck = new List<CardContent>();
         this.maxLv = cc.currentGrade.LvMax;
         this.currentLv = 1;
+        GainExp(cc.InitDungeonExp);
         foreach (var cs in cc.Deck)
         {
             this.Deck.Add(cs.GenerateCard());
         }
     }
 
-    public LvUpCheck CheckCanLevelUp(int i)
+    /// <summary>
+    /// 获得经验值
+    /// </summary>
+    /// <param name="count"></param>
+    public void GainExp(int count)
     {
-        Debug.Log("当前人物等级为" + currentLv + " 升级所需芯片核心*" + character.lvInfos[currentLv - 1].RequireCount);
+        currentExp+=count;
+        Debug.Log("获得了"+count+"经验");
+        switch (CheckCanLevelUp())
+        {
+            case LvUpCheck.yes:
+                DungeonLvInfo prevInfo = new DungeonLvInfo()
+                {
+                    LvName = this.currentLv+"",
+                    HpReward = this.maxHp,
+                    AttackReward = this.Attack,
+                    DefendReward = this.Defend,
+                    EPReward = this.maxEp,
+                    DrawCount = this.Draw_count,
+                };
+                LevelUp();
+                DungeonManager.Ins.RefreshUI();
+                DungeonLvInfo afterInfo = new DungeonLvInfo()
+                {
+                    LvName = this.currentLv+"",
+                    HpReward = this.maxHp,
+                    AttackReward = this.Attack,
+                    DefendReward = this.Defend,
+                    EPReward = this.maxEp,
+                    DrawCount = this.Draw_count,
+                };
+                Transform parent = GameObject.Find("Canvas").transform;
+                GameObject go = Instantiate(LevelUpPanel, parent);
+                go.transform.SetParent(parent);
+                go.GetComponent<LevelUpInfoUI>().ShowLevelUpInfoUI(prevInfo, afterInfo);
+                break;
+            case LvUpCheck.max:
+                return;
+            case LvUpCheck.cost_unenough:
+                return;
+        }
+    }
+
+    public LvUpCheck CheckCanLevelUp()
+    {
+        Debug.Log("当前人物等级为" + currentLv + " 升级所需经验*" + maxExp);
         if (currentLv >= maxLv) return LvUpCheck.max;
-        if (i < character.lvInfos[currentLv - 1].RequireCount) return LvUpCheck.cost_unenough;
+        if (currentExp < maxExp) return LvUpCheck.cost_unenough;
         return LvUpCheck.yes;
     }
 
-    public string LevelUp()
+    public void LevelUp()
     {
-        if (currentLv >= maxLv) return "已达到最高等级";
-        string result = "升到了 " + (currentLv + 1) + " 级";
+        if (currentLv >= maxLv) return;
         DungeonLvInfo _info = character.lvInfos[currentLv - 1];
         if (_info.HpReward != 0)
         {
-            result += "最大生命值 +" + _info.HpReward + "\n";
             this.IncreaseHpMaxWithCurrentHp(_info.HpReward);
         }
         if (_info.AttackReward != 0)
         {
-            result += "攻击力 +" + _info.AttackReward + "\n";
             this.IncreaseAttack(_info.AttackReward);
         }
         if (_info.DefendReward != 0)
         {
-            result += "防御力 +" + _info.DefendReward + "\n";
             this.IncreaseDefend(_info.DefendReward);
         }
         if (_info.EPReward != 0)
         {
-            result += "防御力 +" + _info.DefendReward + "\n";
             this.maxEp += _info.EPReward;
         }
         if (_info.DrawCount != 0)
         {
-            result += "防御力 +" + _info.DefendReward + "\n";
             this.Draw_count += _info.DrawCount;
         }
-        DungeonManager.Ins.chipCore.count -= _info.RequireCount;
+        currentExp -= maxExp;
         this.currentLv++;
+        Debug.Log("升级成功，现在是"+currentLv+"级， 还剩下"+currentExp+"经验值");
+        if (CheckCanLevelUp() == LvUpCheck.yes) LevelUp();
         DungeonManager.Ins.RefreshUI();
-        return result;
     }
+
 
     #region 属性的增加减少
     /// <summary>

@@ -23,7 +23,7 @@ public class CharacterContent : MonoBehaviour
     public int Constitution;
     public int Fortune;
     public int InitDataChip;
-    public int InitChipCore;
+    public int InitDungeonExp;
     [SerializeField] public List<CardSource> Deck;
     [SerializeField] public List<Talent> Talents;
     public CharacterWords Words;

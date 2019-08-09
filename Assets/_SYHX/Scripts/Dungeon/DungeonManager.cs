@@ -27,7 +27,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public RoomEvent currentEvent = null;
 
     public ItemSource dataFrag;//资源：数据碎片
-    public ItemSource chipCore;//资源：芯片核心
+    public ItemSource DungeonExp;//资源：芯片核心
 
 
     private static bool enableInput = true;
@@ -48,7 +48,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         Floor = 1;
         difficultLevel = 1;
         dataFrag.count = cc.InitDataChip;
-        chipCore.count = cc.InitChipCore;
         dungeonCharacter.Init(cc);
     }
 
@@ -233,6 +232,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
                     case 201:
                         DungeonManager.Ins.dataFrag.count += reward.count;
                         break;
+                    case 202:
+                        CharacterInDungeon.Ins.GainExp(reward.count);
+                        break;
                 }
             }
             //处理卡牌信息
@@ -288,8 +290,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         int hp = Mathf.FloorToInt(CharacterInDungeon.Ins.maxHp * DungeonManager.Ins.RestEfficiency);
         CharacterInDungeon.Ins.IncreaseHpCurrect(hp);
-        if (hasCost) chipCore.count -= mRestCount * mRestCostGrowth;
-        if (isIncrease) mRestCount++;
     }
 
     public void ShowRestPanel()

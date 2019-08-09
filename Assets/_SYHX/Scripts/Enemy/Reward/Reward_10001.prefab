@@ -46,5 +46,7 @@ MonoBehaviour:
   dungeonResourceReward:
   - item: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
     count: 100
+  - item: {fileID: 11400000, guid: e9d63edeeef07e5499596b96f8e5bac2, type: 2}
+    count: 100
   dungeonCardRewardGroup: {fileID: 11400000, guid: 3730704ce9a457241a3558114038e071,
     type: 2}

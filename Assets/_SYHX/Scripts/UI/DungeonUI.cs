@@ -10,7 +10,7 @@ public class DungeonUI : MonoBehaviour
     public Text HpCount;
     public Text FloorCount;
     public Text DataFragCount;
-    public Text ChipCoreCount;
+    public Text NextLevelCount;
     public Text ScoreCount;
     public Text NextRewardScoreCount;
 
@@ -41,7 +41,7 @@ public class DungeonUI : MonoBehaviour
         HpSlider.value = CharacterInDungeon.Ins.currentHp;
         FloorCount.text = "Area " + DungeonManager.Ins.Floor;
         DataFragCount.text = DungeonManager.Ins.dataFrag.count + "";
-        ChipCoreCount.text = DungeonManager.Ins.chipCore.count + "";
+        NextLevelCount.text = (CharacterInDungeon.Ins.maxExp - CharacterInDungeon.Ins.currentExp) + "";
         ScoreCount.text = DungeonManager.Ins.score + "";
         ForceInfo.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)CharacterInDungeon.Ins.Force.currentLv / 5;
         ForceInfo.transform.Find("Lv/Count").GetComponent<Text>().text = CharacterInDungeon.Ins.Force + "";

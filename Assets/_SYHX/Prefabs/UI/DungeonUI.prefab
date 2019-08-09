@@ -1618,7 +1618,7 @@ MonoBehaviour:
   HpCount: {fileID: 5475082879154660015}
   FloorCount: {fileID: 7848940036409431707}
   DataFragCount: {fileID: 8709373960460330007}
-  ChipCoreCount: {fileID: 5159992032129237691}
+  NextLevelCount: {fileID: 5159992032129237691}
   ScoreCount: {fileID: 1453062934455248904}
   NextRewardScoreCount: {fileID: 3972746570661874365}
   Avatar: {fileID: 8115333540021643740}
@@ -2855,7 +2855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7561104015026243660}
   m_Layer: 5
-  m_Name: ChipCore
+  m_Name: NextLevelExp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
