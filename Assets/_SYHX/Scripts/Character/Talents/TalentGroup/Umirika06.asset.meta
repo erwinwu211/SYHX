@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f7b289263140c61439530a5bd7c9d347
+labels:
+- Data
+- ScriptableObject
+- TalentGroup
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

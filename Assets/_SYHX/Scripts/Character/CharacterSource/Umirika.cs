@@ -19,9 +19,6 @@ public class Umirika : CharacterContent
         Agile = 3;
         Constitution = 3;
         Fortune = 3;
-        Talents = new List<Talent>();
-        Talents.Add(new Talent_00001());
-        Talents[0].IsEffect = true;
         Words = new CharacterWords()
         {
             Welcome = "欢迎回来",

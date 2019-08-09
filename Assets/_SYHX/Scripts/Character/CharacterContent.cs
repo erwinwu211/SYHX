@@ -2,6 +2,7 @@
 using UnityEngine;
 using SYHX.Cards;
 using Sirenix.OdinInspector;
+using System;
 
 /// <summary>
 /// 所有角色的父类
@@ -25,7 +26,7 @@ public class CharacterContent : MonoBehaviour
     public int InitDataChip;
     public int InitDungeonExp;
     [SerializeField] public List<CardSource> Deck;
-    [SerializeField] public List<Talent> Talents;
+    [SerializeField] public List<TalentGroup> TalentGroups;
     public CharacterWords Words;
     [TableList] public CharacterSkill[] skills;
     [TableList] public DungeonLvInfo[] lvInfos;

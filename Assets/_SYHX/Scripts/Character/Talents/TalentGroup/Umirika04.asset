@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b032c7d54a3f389409863c0834310c37, type: 3}
+  m_Name: Umirika04
+  m_EditorClassIdentifier: 
+  needLv: 10
+  talents:
+  - {fileID: 11400000, guid: 14f1a38374d791841832183ac61cf58d, type: 2}
+  - {fileID: 11400000, guid: e7bf8bfd8bb5344428849ffaf4c068e3, type: 2}
+  - {fileID: 11400000, guid: 29b5c271fc1599a47a90a535a0c8f220, type: 2}
+  ActiveTalent: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using SYHX.Cards;
+using System.Linq;
 
 public enum BasicAttributeType
 {
@@ -61,6 +62,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public BasicAttribute Constitution { get; private set; }
     public BasicAttribute Fortune { get; private set; }
     public List<CardContent> Deck { get; private set; }
+    public List<TalentGroup> talentGroups { get; private set; }
     public GameObject LevelUpPanel;
 
     public void Start()
@@ -86,6 +88,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Deck = new List<CardContent>();
         this.maxLv = cc.currentGrade.LvMax;
         this.currentLv = 1;
+        InitTalent();
         GainExp(cc.InitDungeonExp);
         foreach (var cs in cc.Deck)
         {
@@ -93,20 +96,21 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         }
     }
 
+    #region 人物等级相关
     /// <summary>
     /// 获得经验值
     /// </summary>
     /// <param name="count"></param>
     public void GainExp(int count)
     {
-        currentExp+=count;
-        Debug.Log("获得了"+count+"经验");
+        currentExp += count;
+        Debug.Log("获得了" + count + "经验");
         switch (CheckCanLevelUp())
         {
             case LvUpCheck.yes:
                 DungeonLvInfo prevInfo = new DungeonLvInfo()
                 {
-                    LvName = this.currentLv+"",
+                    LvName = this.currentLv + "",
                     HpReward = this.maxHp,
                     AttackReward = this.Attack,
                     DefendReward = this.Defend,
@@ -117,7 +121,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
                 DungeonManager.Ins.RefreshUI();
                 DungeonLvInfo afterInfo = new DungeonLvInfo()
                 {
-                    LvName = this.currentLv+"",
+                    LvName = this.currentLv + "",
                     HpReward = this.maxHp,
                     AttackReward = this.Attack,
                     DefendReward = this.Defend,
@@ -170,11 +174,11 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         }
         currentExp -= maxExp;
         this.currentLv++;
-        Debug.Log("升级成功，现在是"+currentLv+"级， 还剩下"+currentExp+"经验值");
+        Debug.Log("升级成功，现在是" + currentLv + "级， 还剩下" + currentExp + "经验值");
         if (CheckCanLevelUp() == LvUpCheck.yes) LevelUp();
         DungeonManager.Ins.RefreshUI();
     }
-
+    #endregion
 
     #region 属性的增加减少
     /// <summary>
@@ -338,6 +342,30 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         Deck.Remove(origin);
         Deck.Add(now);
+    }
+    #endregion
+
+    #region 天赋相关
+    /// <summary>
+    /// 重置每隔天赋组的选中状态
+    /// </summary>
+    public void InitTalent()
+    {
+        this.talentGroups = character.TalentGroups;
+        foreach (TalentGroup t in character.TalentGroups)
+        {
+            t.ActiveTalent = null;
+        }
+    }
+
+    /// <summary>
+    /// 激活一个天赋
+    /// </summary>
+    /// <param name="t"></param>
+    public void ActiveTalent(Talent t)
+    {
+        t.OnActive();
+        t.Owner.ActiveTalent = t;
     }
     #endregion
 

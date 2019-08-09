@@ -67,7 +67,7 @@ public class GenerateMap : MonoBehaviour {
         {
             roomDictionary.Add(i , mDungeon.DungeonRooms[i-2]);
         }
-        print(mDungeon.DungeonRooms.Count);
+        //print(mDungeon.DungeonRooms.Count);
     }
 
     int[] generateRandomMapArray()
@@ -117,7 +117,6 @@ public class GenerateMap : MonoBehaviour {
     {
         Vector3 startPos = new Vector3((s % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(s/ mapHeight) * roomSpacing + 0.5f);
         Vector3 endPos = new Vector3((e % mapWidth) * roomSpacing + 0.5f, 0, Mathf.Floor(e / mapHeight) * roomSpacing + 0.5f);
-        print(Vector3.Distance(startPos, endPos));
         if (Vector3.Distance(startPos, endPos) > minDistance) 
         {
             return true;

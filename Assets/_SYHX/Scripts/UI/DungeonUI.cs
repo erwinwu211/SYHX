@@ -14,6 +14,7 @@ public class DungeonUI : MonoBehaviour
     public Text ScoreCount;
     public Text NextRewardScoreCount;
 
+    #region 角色信息面板
     public Image Avatar;
 
     public Slider HpSlider;
@@ -21,6 +22,7 @@ public class DungeonUI : MonoBehaviour
     public GameObject AgileInfo;
     public GameObject ConstitutionInfo;
     public GameObject FortuneInfo;
+    #endregion
 
     // Start is called before the first frame update
     void Start()

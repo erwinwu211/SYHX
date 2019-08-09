@@ -13,6 +13,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public CharacterInDungeon dungeonCharacter => CharacterInDungeon.Ins;
     public DungeonUI DungeonUI;
     public RestPanelUI RestPanelUI;
+    public TalentPanelUI TalentPanelUI; 
     public GenerateMap Generator;
     public GameObject player;
     public int Floor = 1;
@@ -72,6 +73,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         InitDungeonCharacter(mCharacter);
         //刷新UI界面
         DungeonUI.RefreshUI();
+        Debug.Log("刷新天赋界面"+CharacterInDungeon.Ins.talentGroups.Count);
+        TalentPanelUI.Refresh(CharacterInDungeon.Ins.talentGroups);
     }
     #endregion
 
