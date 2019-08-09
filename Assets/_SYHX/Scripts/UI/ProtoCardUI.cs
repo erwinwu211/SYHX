@@ -25,6 +25,7 @@ namespace SYHX.Cards
         [SerializeField] public Text typeField;
         [SerializeField] public Text connectionTypeField;
         [SerializeField] public Image ChosenShadow;
+        [SerializeField] public GameObject EpGameObject;
 
         /// <summary>
         /// 设置卡牌信息
@@ -47,6 +48,7 @@ namespace SYHX.Cards
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
             this.typeField.text = cc.cardType.ToString()+"-"+Initializer.Ins.TechlvInfos[cc.techLevel].LvName;
+            this.EpGameObject.SetActive(cc.UseOption()==false);
             switch (cc.connectionType)
             {
                 case ConnectionType.红:

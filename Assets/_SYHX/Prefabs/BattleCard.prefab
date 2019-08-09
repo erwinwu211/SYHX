@@ -313,6 +313,7 @@ MonoBehaviour:
   typeField: {fileID: 8761138517505037068}
   connectionTypeField: {fileID: 1042185497582572337}
   ChosenShadow: {fileID: 9098662606193944167}
+  EpGameObject: {fileID: 3567181578160634002}
   position: 0
 --- !u!114 &7789625923767758334
 MonoBehaviour:
