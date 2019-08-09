@@ -82,16 +82,16 @@ public class CharacterUI : SingletonMonoBehaviour<CharacterUI>
                 //ExpCount.GetComponent<Text>().text = cc.Exp + "/" + cc.lvInfos[cc.Lv - 1].RequireCount;
                 //ExpSlider.GetComponent<Slider>().value = (float)cc.Exp / cc.lvInfos[cc.Lv - 1].RequireCount;
 
-                StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.STR / 10;
+                StrSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.STR / 5;
                 StrSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.STR + "";
 
-                AgiSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.AGI / 10;
+                AgiSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.AGI / 5;
                 AgiSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.AGI + "";
 
-                IntSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.INT / 10;
+                IntSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.INT / 5;
                 IntSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.INT + "";
 
-                ForSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = cc.FOR / 10;
+                ForSlider.transform.Find("LvSlider/Slider").GetComponent<Slider>().value = (float)cc.FOR / 5;
                 ForSlider.transform.Find("Lv/Count").GetComponent<Text>().text = cc.FOR + "";
 
                 ATK.transform.Find("Count").GetComponent<Text>().text = cc.Attack + "";
