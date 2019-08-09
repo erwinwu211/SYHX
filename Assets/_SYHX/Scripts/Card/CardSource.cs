@@ -27,7 +27,8 @@ namespace SYHX.Cards
         // [SerializeField] public ConnectionType connectionType;
         [SerializeField] public CardType cardType;
         [SerializeField] public List<ConnectionType> connectionTypes;
-        [SerializeField] public Rarity rarity;
+        [SerializeField] public int techLevel;
+        [SerializeField] public bool unusable;
         [SerializeField] public List<CardSource> upgradeList;
         [SerializeField] public List<CardKeyWord> keyWords;
         #endregion
@@ -159,15 +160,8 @@ namespace SYHX.Cards
     {
         攻击,
         技能,
-        防御
-    }
-
-    public enum Rarity
-    {
-        初始,
-        初级,
-        中级,
-        高级
+        防御,
+        诅咒
     }
 
     public enum AttackTargetType

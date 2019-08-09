@@ -19,7 +19,7 @@ MonoBehaviour:
   upgradeCost: 0
   cardType: 0
   connectionTypes: 02000000
-  rarity: 0
+  techLevel: 1
   upgradeList:
   - {fileID: 11400000, guid: 997989a10933be946be517e79ae2d898, type: 2}
   - {fileID: 11400000, guid: 37a1a0250122cc84aa54ffbf1d6b3f70, type: 2}

@@ -4122,19 +4122,8 @@ MonoBehaviour:
   player: {fileID: 2014863287}
   Floor: 1
   score: 0
-  difficultLevel: 1
+  difficultLevel: 0
   TechLevel: 1
-  TechLevelInfo:
-  - Lv: 1
-    RequireCount: 100
-  - Lv: 2
-    RequireCount: 250
-  - Lv: 3
-    RequireCount: 600
-  - Lv: 4
-    RequireCount: 1000
-  - Lv: 5
-    RequireCount: 9999
   RestEfficiency: 0.25
   currentRoomNum: 0
   currentEvent: {fileID: 0}
@@ -6233,6 +6222,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561365378206147907, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561365378206147907, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561365378206147907, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9490196
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35d4e9f031cf2e44f9c8008fb8bfcea2, type: 3}

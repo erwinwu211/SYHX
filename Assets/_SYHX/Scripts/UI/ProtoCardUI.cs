@@ -46,7 +46,7 @@ namespace SYHX.Cards
             this.nameField.text = cc.name;
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
-            this.typeField.text = cc.cardType.ToString();
+            this.typeField.text = cc.cardType.ToString()+"-"+Initializer.Ins.TechlvInfos[cc.techLevel].LvName;
             switch (cc.connectionType)
             {
                 case ConnectionType.红:

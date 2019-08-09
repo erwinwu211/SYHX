@@ -18,8 +18,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int Floor = 1;
     public int score = 0;
     public float difficultLevel = 1;
-    public int TechLevel = 1;
-    public List<LvInfo> TechLevelInfo;
+    public int TechLevel = 0;
+    //public List<LvInfo> TechLevelInfo;
     private int mRestCount = 0;
     private int mRestCostGrowth = 5;
     public float RestEfficiency = 0.25f;
@@ -299,8 +299,8 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     /// </summary>
     public void TechLevelUp()
     {
-        if (TechLevel >= TechLevelInfo.Count) return;
-        chipCore.count -= TechLevelInfo[TechLevel - 1].RequireCount;
+        if (TechLevel > Initializer.Ins.TechlvInfos.Count) return;
+        chipCore.count -= Initializer.Ins.TechlvInfos[TechLevel].RequireCount;
         TechLevel++;
     }
 
@@ -313,9 +313,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
     public LvUpCheck CheckCanTechLvUp()
     {
-        if (TechLevel >= TechLevelInfo.Count) return LvUpCheck.max;
-        if (chipCore.count < TechLevelInfo[TechLevel - 1].RequireCount) return LvUpCheck.cost_unenough;
-        Debug.Log("当前科技等级为"+TechLevel+" 升级所需芯片核心*"+TechLevelInfo[TechLevel-1].RequireCount);
+        Debug.Log("当前科技等级为"+TechLevel+" 升级所需芯片核心*"+Initializer.Ins.TechlvInfos[TechLevel].RequireCount);
+        if (TechLevel > Initializer.Ins.TechlvInfos.Count) return LvUpCheck.max;
+        if (chipCore.count < Initializer.Ins.TechlvInfos[TechLevel].RequireCount) return LvUpCheck.cost_unenough;
         return LvUpCheck.yes;
     }
 

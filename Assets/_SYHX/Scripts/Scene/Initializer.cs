@@ -18,6 +18,7 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
     [SerializeField] public List<EnemyGroup> enemyGroup;
     [TableList] public ModificationFactor[] factors;
     [TableList] public LvInfo[] lvInfos;
+    [TableList] public List<LvInfo> TechlvInfos;
 
     public Language CurrentLanguage;
 

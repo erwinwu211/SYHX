@@ -50,6 +50,7 @@ public class CraftUI : MonoBehaviour
         //根据模式为卡牌挂载不同的事件
         foreach (CardContent cc in cardContents)
         {
+            if (cc.techLevel > DungeonManager.Ins.TechLevel) continue;
             GameObject go = Instantiate(CardPrefab, CardChooseGroup.transform);
             go.GetComponent<CraftableCardUI>().SetCard(cc);
             go.GetComponent<Button>().onClick.AddListener(delegate ()

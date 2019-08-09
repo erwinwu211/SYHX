@@ -38,7 +38,7 @@ namespace SYHX.Cards
             this.EP = owner.EP;
             this.tempEP = owner.EP;
             this.cardType = owner.cardType;
-            this.rarity = owner.rarity;
+            this.techLevel = owner.techLevel;
             this.connectionType = type;
             this.name = owner.Name;
             this.desc = owner.Desc;
@@ -47,7 +47,7 @@ namespace SYHX.Cards
         }
         public ConnectionType connectionType { get; private set; }
         public CardType cardType { get; private set; }
-        public Rarity rarity { get; private set; }
+        public int techLevel { get; private set; }
 
         private int ep;
         public int EP
@@ -71,9 +71,10 @@ namespace SYHX.Cards
             }
         }
         public void OnDraw() { }
-
-        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.sGetEP() >= this.TempEP && UseOption();
-        protected virtual bool UseOption() => true;
+        
+        public bool CanUse() => TurnManager.Ins.stateManager.playerTurnState.IsCurrent() && BattleManager.sGetEP() >= this.TempEP && !UseOption();
+        
+        public virtual bool UseOption() => owner.unusable;
         /// <summary>
         /// ❌事件：当卡牌在打出后，经过选择之后的效果
         /// </summary>

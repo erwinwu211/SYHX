@@ -60,9 +60,9 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
 
     public LvUpCheck CheckCanLevelUp(int i)
     {
+        Debug.Log("当前人物等级为" + currentLv + " 升级所需芯片核心*" + character.lvInfos[currentLv - 1].RequireCount);
         if (currentLv >= maxLv) return LvUpCheck.max;
         if (i < character.lvInfos[currentLv - 1].RequireCount) return LvUpCheck.cost_unenough;
-        Debug.Log("当前科技等级为" + currentLv + " 升级所需芯片核心*" + character.lvInfos[currentLv - 1].RequireCount);
         return LvUpCheck.yes;
     }
 

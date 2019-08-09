@@ -3,7 +3,7 @@
 [Serializable]
 public class LvInfo
 {
-    public int Lv;
+    public string LvName;
     public int RequireCount;
 }
 

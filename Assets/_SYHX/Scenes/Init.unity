@@ -183,6 +183,136 @@ PrefabInstance:
       propertyPath: CharacterManager
       value: 
       objectReference: {fileID: 1805971134}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[0].LvName
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[1].LvName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[2].LvName
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[3].LvName
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[4].LvName
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[5].LvName
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[6].LvName
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[7].LvName
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[8].LvName
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[9].LvName
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[10].LvName
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[11].LvName
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[12].LvName
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[13].LvName
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: lvInfos.Array.data[14].LvName
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[0].LvName
+      value: "<color=#2B2B2B>\u03B1</color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[1].LvName
+      value: "<color=#63A322>\u03B2</color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[0].RequireCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[1].RequireCount
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[2].LvName
+      value: "<color=#1EB6EB>\u03B3</color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[2].RequireCount
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[3].LvName
+      value: "<color=#7335A1>\u03B4</color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[3].RequireCount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[4].LvName
+      value: "<color=#C55E1A>\u03B5</color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: TechlvInfos.Array.data[4].RequireCount
+      value: 9999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2414215cd64c68c4b9e8e6519e509718, type: 3}
 --- !u!1 &664872815
@@ -1754,6 +1884,7 @@ MonoBehaviour:
   INT: 3
   FOR: 3
   InitDataChip: 100
+  InitChipCore: 100
   Deck:
   - {fileID: 11400000, guid: 9e04e7ea19145af438b98adca66a546d, type: 2}
   - {fileID: 11400000, guid: 9e04e7ea19145af438b98adca66a546d, type: 2}
@@ -1772,140 +1903,140 @@ MonoBehaviour:
     name: "\u8FDE\u51FB"
     desc: "\u6BCF\u6253\u51FA\u4E00\u5F20\u4E0E\u4E0A\u4E00\u5F20\u989C\u8272\u76F8\u540C\u7684\u5361\u724C\u65F6\uFF0C\u83B7\u5F971\u70B9\u8FDE\u51FB\u70B9\uFF0C\u6BCF\u70B9\u8FDE\u51FB\u70B9\u63D0\u9AD825%\u9020\u6210\u7684\u4F24\u5BB3\u3002"
   lvInfos:
-  - Lv: 1
+  - LvName: 
     RequireCount: 50
     HpReward: 5
     AttackReward: 1
     DefendReward: 1
     EPReward: 0
     DrawCount: 0
-  - Lv: 2
+  - LvName: 
     RequireCount: 75
     HpReward: 5
     AttackReward: 0
     DefendReward: 2
     EPReward: 0
     DrawCount: 0
-  - Lv: 3
+  - LvName: 
     RequireCount: 100
     HpReward: 0
     AttackReward: 2
     DefendReward: 1
     EPReward: 0
     DrawCount: 0
-  - Lv: 4
+  - LvName: 
     RequireCount: 150
     HpReward: 20
     AttackReward: 0
     DefendReward: 0
     EPReward: 0
     DrawCount: 0
-  - Lv: 5
+  - LvName: 
     RequireCount: 50
     HpReward: 0
     AttackReward: 0
     DefendReward: 0
     EPReward: 1
     DrawCount: 0
-  - Lv: 6
+  - LvName: 
     RequireCount: 150
     HpReward: 10
     AttackReward: 2
     DefendReward: 2
     EPReward: 0
     DrawCount: 0
-  - Lv: 7
+  - LvName: 
     RequireCount: 200
     HpReward: 15
     AttackReward: 1
     DefendReward: 3
     EPReward: 0
     DrawCount: 0
-  - Lv: 8
+  - LvName: 
     RequireCount: 250
     HpReward: 20
     AttackReward: 1
     DefendReward: 2
     EPReward: 0
     DrawCount: 0
-  - Lv: 9
+  - LvName: 
     RequireCount: 300
     HpReward: 0
     AttackReward: 3
     DefendReward: 1
     EPReward: 0
     DrawCount: 0
-  - Lv: 10
+  - LvName: 
     RequireCount: 100
     HpReward: 0
     AttackReward: 2
     DefendReward: 2
     EPReward: 0
     DrawCount: 1
-  - Lv: 11
+  - LvName: 
     RequireCount: 300
     HpReward: 45
     AttackReward: 2
     DefendReward: 1
     EPReward: 0
     DrawCount: 0
-  - Lv: 12
+  - LvName: 
     RequireCount: 340
     HpReward: 10
     AttackReward: 3
     DefendReward: 3
     EPReward: 0
     DrawCount: 0
-  - Lv: 13
+  - LvName: 
     RequireCount: 400
     HpReward: 25
     AttackReward: 1
     DefendReward: 4
     EPReward: 0
     DrawCount: 0
-  - Lv: 14
+  - LvName: 
     RequireCount: 425
     HpReward: 40
     AttackReward: 3
     DefendReward: 0
     EPReward: 0
     DrawCount: 0
-  - Lv: 15
+  - LvName: 
     RequireCount: 200
     HpReward: 40
     AttackReward: 2
     DefendReward: 2
     EPReward: 1
     DrawCount: 0
-  - Lv: 16
+  - LvName: 
     RequireCount: 450
     HpReward: 50
     AttackReward: 3
     DefendReward: 2
     EPReward: 0
     DrawCount: 0
-  - Lv: 17
+  - LvName: 
     RequireCount: 500
     HpReward: 50
     AttackReward: 4
     DefendReward: 3
     EPReward: 0
     DrawCount: 0
-  - Lv: 18
+  - LvName: 
     RequireCount: 600
     HpReward: 100
     AttackReward: 4
     DefendReward: 4
     EPReward: 0
     DrawCount: 0
-  - Lv: 19
+  - LvName: 
     RequireCount: 800
     HpReward: 0
     AttackReward: 8
     DefendReward: 8
     EPReward: 0
     DrawCount: 1
-  - Lv: 20
+  - LvName: 
     RequireCount: 999
     HpReward: 0
     AttackReward: 0
