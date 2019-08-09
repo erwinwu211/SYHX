@@ -52,7 +52,20 @@ public class Initializer : SingletonMonoBehaviour<Initializer>
         return defaultHero;
     }
 
+    public void FadeIn()
+    {
+        StartCoroutine(Fade.Ins.FadeIn());
+    }
 
+    public void FadeOut()
+    {
+        StartCoroutine(Fade.Ins.FadeOut());
+    }
+
+    public void FadePingPong()
+    {
+        StartCoroutine(Fade.Ins.FadePingPong());
+    }
 
     [System.Serializable]
     public class CharacterName

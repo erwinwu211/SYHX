@@ -34,6 +34,7 @@ public class MainStatus : SceneStatus
         MainUI.Ins.RefreshLvInfo(PlayerRecord.Ins.playerLv,PlayerRecord.Ins.currentExp);
         MainUI.Ins.RefreshTime();
         MainUI.Ins.ShowDialogueBox(cc.Words.Welcome,5);
+        Initializer.Ins.FadeOut();
     }
 
     public override void Update()
