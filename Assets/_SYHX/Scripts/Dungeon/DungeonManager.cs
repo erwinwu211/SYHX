@@ -12,21 +12,36 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public CharacterContent mCharacter { get; private set; }
     public CharacterInDungeon dungeonCharacter => CharacterInDungeon.Ins;
     public DungeonUI DungeonUI;
+    public RestPanelUI RestPanelUI;
     public GenerateMap Generator;
     public GameObject player;
-    public int score = 0;
-    public int currentRoomNum;
     public int Floor = 1;
-    public int ChangeColorCost = 100;
-    public int ChangeColorCount = 0;
+    public int score = 0;
     public float difficultLevel = 1;
-    public const int CostIncrease = 30;
-    public ItemSource dataFrag;
-    public ItemSource chipCore;
+    public int TechLevel = 1;
+    public List<LvInfo> TechLevelInfo;
+    private int mRestCount = 0;
+    private int mRestCostGrowth = 5;
+    public float RestEfficiency = 0.25f;
+
+
+    public int currentRoomNum;
+    public RoomEvent currentEvent = null;
+
+    public ItemSource dataFrag;//资源：数据碎片
+    public ItemSource chipCore;//资源：芯片核心
+
+
     private static bool enableInput = true;
     EventSystem eventSystem;
     public GraphicRaycaster RaycastInCanvas;
 
+    #region 初始化操作
+    /// <summary>
+    /// 加载数据
+    /// </summary>
+    /// <param name="dungeon"></param>
+    /// <param name="cc"></param>
     public void LoadData(Dungeon dungeon, CharacterContent cc)
     {
         mDungeon = dungeon;
@@ -35,6 +50,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         Floor = 1;
         difficultLevel = 1;
         dataFrag.count = cc.InitDataChip;
+        chipCore.count = cc.InitChipCore;
         dungeonCharacter.Init(cc);
     }
 
@@ -60,7 +76,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         //刷新UI界面
         DungeonUI.RefreshUI();
     }
+    #endregion
 
+    #region 鼠标点击事件判定
     /// <summary>
     /// 每帧进行鼠标点击判断
     /// </summary>
@@ -92,6 +110,24 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     }
 
     /// <summary>
+    /// 恢复接受鼠标输入
+    /// </summary>
+    public void Enable()
+    {
+        enableInput = true;
+    }
+
+    /// <summary>
+    /// 停止接受鼠标输入
+    /// </summary>
+    public void Disable()
+    {
+        enableInput = false;
+    }
+    #endregion
+
+    #region 角色移动
+    /// <summary>
     /// 检查两个房间是否相邻
     /// </summary>
     /// <param name="roomA"></param>
@@ -108,21 +144,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         return flag;
     }
 
-    /// <summary>
-    /// 恢复接受鼠标输入
-    /// </summary>
-    public void Enable()
-    {
-        enableInput = true;
-    }
-
-    /// <summary>
-    /// 停止接受鼠标输入
-    /// </summary>
-    public void Disable()
-    {
-        enableInput = false;
-    }
 
     void Move(GameObject room)
     {
@@ -159,7 +180,24 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         DungeonManager.Ins.currentRoomNum = room.GetComponent<BattleRoomScript>().thisRoomNum;
     }
 
-    protected override void UnityAwake() { }
+    /// <summary>
+    /// 通过编号查找房间的GameObject
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    public GameObject GetRoomByNumber(int number)
+    {
+        GameObject go = GameObject.Find("Room " + number);
+        if (go)
+        {
+            return go;
+        }
+        else
+        {
+            Debug.Log("没有找到编号为" + number + "的房间");
+            return null;
+        }
+    }
 
     /// <summary>
     /// 进入下一层地图
@@ -172,6 +210,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         EventManager.Ins.ClearFloorList();
         DungeonUI.RefreshUI();
     }
+    #endregion
+
+    protected override void UnityAwake() { }
+
 
     /// <summary>
     /// 将战斗结果返回
@@ -181,6 +223,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public void DealWithBattleResult(PassedResultInformation information)
     {
         Enable();
+        currentEvent.Finished();
         if (information.win)
         {
             CharacterInDungeon.Ins.currentHp = information.currentHp;
@@ -214,24 +257,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
     }
 
-    /// <summary>
-    /// 通过编号查找房间的GameObject
-    /// </summary>
-    /// <param name="number"></param>
-    /// <returns></returns>
-    public GameObject GetRoomByNumber(int number)
-    {
-        GameObject go = GameObject.Find("Room " + number);
-        if (go)
-        {
-            return go;
-        }
-        else
-        {
-            Debug.Log("没有找到编号为" + number + "的房间");
-            return null;
-        }
-    }
+
 
     /// <summary>
     /// 检测鼠标是否点到了UI上
@@ -240,16 +266,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     bool CheckGuiRaycastObjects()
 
     {
-
         PointerEventData eventData = new PointerEventData(eventSystem);
 
         eventData.pressPosition = Input.mousePosition;
         eventData.position = Input.mousePosition;
-
         List<RaycastResult> list = new List<RaycastResult>();
         RaycastInCanvas.Raycast(eventData, list);
         return list.Count > 0;
-
     }
 
     public void IncreaseDataChip(int count)
@@ -263,6 +286,41 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         if (dataFrag.count < 0) dataFrag.count = 0;
         DungeonUI.RefreshUI();
     }
+    public void Rest(bool isIncrease = true, bool hasCost = true)
+    {
+        int hp = Mathf.FloorToInt(CharacterInDungeon.Ins.maxHp * DungeonManager.Ins.RestEfficiency);
+        CharacterInDungeon.Ins.IncreaseHpCurrect(hp);
+        if (hasCost) chipCore.count -= mRestCount * mRestCostGrowth;
+        if (isIncrease) mRestCount++;
+    }
+
+    /// <summary>
+    /// 升级科技等级
+    /// </summary>
+    public void TechLevelUp()
+    {
+        if (TechLevel >= TechLevelInfo.Count) return;
+        chipCore.count -= TechLevelInfo[TechLevel - 1].RequireCount;
+        TechLevel++;
+    }
+
+    public void ShowRestPanel()
+    {
+        bool canRest = false;
+        if (chipCore.count >= mRestCount * mRestCostGrowth) canRest = true;
+        RestPanelUI.ShowRestRoomUI(canRest, CharacterInDungeon.Ins.CheckCanLevelUp(chipCore.count), CheckCanTechLvUp());
+    }
+
+    public LvUpCheck CheckCanTechLvUp()
+    {
+        if (TechLevel >= TechLevelInfo.Count) return LvUpCheck.max;
+        if (chipCore.count < TechLevelInfo[TechLevel - 1].RequireCount) return LvUpCheck.cost_unenough;
+        Debug.Log("当前科技等级为"+TechLevel+" 升级所需芯片核心*"+TechLevelInfo[TechLevel-1].RequireCount);
+        return LvUpCheck.yes;
+    }
+
+
+
     /// <summary>
     /// 离开地宫，跳转到地宫结算界面
     /// </summary>
@@ -270,7 +328,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         //做一些离开前的重置行为
         EventManager.Ins.ClearPermanentList();
-        
+
         //传递结算信息
         DungeonResultInformation dungeonResult = new DungeonResultInformation();
         DungeonResultStatus status = new DungeonResultStatus(SceneStatusManager.Ins);
@@ -289,4 +347,11 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 public struct DungeonResultInformation
 {
     //TODO：写要传递的信息内容
+}
+
+public enum LvUpCheck
+{
+    yes,
+    cost_unenough,
+    max,
 }

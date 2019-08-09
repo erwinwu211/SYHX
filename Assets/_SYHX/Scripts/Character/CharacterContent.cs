@@ -23,6 +23,7 @@ public class CharacterContent : MonoBehaviour
     public int INT;
     public int FOR;
     public int InitDataChip;
+    public int InitChipCore;
     [SerializeField] public List<CardSource> Deck;
     [SerializeField] public List<Talent> Talents;
     public CharacterWords Words;

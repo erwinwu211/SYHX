@@ -25,6 +25,7 @@ public class RoomEvent : MonoBehaviour
     /// </summary>
     public virtual void EnterEvent()
     {
+        DungeonManager.Ins.currentEvent = this;
         DungeonManager.Ins.Disable();
         if (happenedCount >= maxHappenCount)
         {
@@ -44,6 +45,7 @@ public class RoomEvent : MonoBehaviour
     public virtual void Finished()
     {
         DungeonManager.Ins.Enable();
+        DungeonManager.Ins.currentEvent = null;
     }
 
     /// <summary>

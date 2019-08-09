@@ -56,8 +56,14 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         {
             this.Deck.Add(cs.GenerateCard());
         }
-        Debug.Log(LevelUp());
-        Debug.Log(LevelUp());
+    }
+
+    public LvUpCheck CheckCanLevelUp(int i)
+    {
+        if (currentLv >= maxLv) return LvUpCheck.max;
+        if (i < character.lvInfos[currentLv - 1].RequireCount) return LvUpCheck.cost_unenough;
+        Debug.Log("当前科技等级为" + currentLv + " 升级所需芯片核心*" + character.lvInfos[currentLv - 1].RequireCount);
+        return LvUpCheck.yes;
     }
 
     public string LevelUp()
@@ -90,6 +96,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
             result += "防御力 +" + _info.DefendReward + "\n";
             this.Draw_count += _info.DrawCount;
         }
+        DungeonManager.Ins.chipCore.count -= _info.RequireCount;
         this.currentLv++;
         DungeonManager.Ins.RefreshUI();
         return result;
@@ -319,3 +326,4 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
     }
 }
+

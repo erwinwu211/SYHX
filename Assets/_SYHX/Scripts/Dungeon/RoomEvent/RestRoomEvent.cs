@@ -8,7 +8,6 @@ public class RestRoomEvent : RoomEvent
     public override void EventHappen()
     {
         base.EventHappen();
-        Debug.Log(item.count);
-        Finished();
+        DungeonManager.Ins.ShowRestPanel();
     }
 }

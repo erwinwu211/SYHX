@@ -15,4 +15,6 @@ MonoBehaviour:
   currentGrade: 3
   nextGrade: {fileID: 11400000}
   LvMax: 18
-  UpgradeRequireList: []
+  UpgradeRequireList:
+  - item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
+    count: 200
