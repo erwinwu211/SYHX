@@ -18,6 +18,7 @@ public class Dungeon : MonoBehaviour
     public DungeonProceed DungeonProceed;
     public int mapWidth;
     public int mapHeight;
+    public int food;
 }
 
 [Serializable]

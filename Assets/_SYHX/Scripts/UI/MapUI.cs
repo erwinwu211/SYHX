@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using SYHX.Cards;
 
@@ -16,7 +17,20 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public GameObject DeckInformationUI;
     public Color Normal;
     public Color ChapterSelected;
+    public Text FoodCount;
+    public Text LuntCount;
     private Toggle SelectedChapterToggle;
+    private int foodCount = 100;
+    private int luntCostCount = 0;
+    private int maxFood = 200;
+    private int minFood = 50;
+
+    #region 长按判断
+    public float Ping;
+    private bool IsStart = false;
+    private float LastTime = 0;
+
+    #endregion
 
     /// <summary>
     /// 加载并刷新左侧章节列表的信息
@@ -169,9 +183,88 @@ public class MapUI : SingletonMonoBehaviour<MapUI>
     public void OnStartBtnClick()
     {
         ChooseStatus status = SceneStatusManager.Ins.current as ChooseStatus;
-        status.GoToDungeonStatus();
+        status.GoToDungeonStatus(this.foodCount);
     }
 
+    #region 控制携带食物
+    public void OnAddBtnLongPressStart()
+    {
+        StartCoroutine("AddFood");
+    }
+
+    public void OnAddBtnLongPressOver()
+    {
+        StopCoroutine("AddFood");
+    }
+
+    public void OnMinusBtnLongPressStart()
+    {
+        StartCoroutine("MinusFood");
+    }
+
+    public void OnMinusBtnLongPressOver()
+    {
+        StopCoroutine("MinusFood");
+    }
+
+    IEnumerator AddFood()
+    {
+        for (; foodCount < maxFood;)
+        {
+            foodCount++;
+            RefreshFoodPanel();
+            yield return null;
+        }
+    }
+
+    IEnumerator MinusFood()
+    {
+        for (; foodCount > minFood;)
+        {
+            foodCount--;
+            RefreshFoodPanel();
+            yield return null;
+        }
+    }
+
+    public void OnAddBtnClick()
+    {
+        if (foodCount < maxFood)
+        {
+            foodCount++;
+            RefreshFoodPanel();
+        }
+    }
+
+    public void OnMinusBtnClick()
+    {
+        if (foodCount > minFood)
+        {
+            foodCount--;
+            RefreshFoodPanel();
+        }
+    }
+
+    public void OnMaxBtnClick()
+    {
+        foodCount = maxFood;
+        RefreshFoodPanel();
+    }
+
+    private void RefreshFoodPanel()
+    {
+        FoodCount.text = foodCount + "";
+        if (foodCount < 100)
+        {
+            luntCostCount = (foodCount - minFood) * 25;
+        }
+        else
+        {
+            luntCostCount = (100 - minFood) * 25 + (foodCount - 100) * 50;
+        }
+        LuntCount.text = luntCostCount + "";
+    }
+    #endregion
     protected override void UnityAwake()
     {
     }

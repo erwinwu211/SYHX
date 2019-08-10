@@ -49,6 +49,7 @@ public class BattleRoomScript : MonoBehaviour
     {
         print(this.name + " Event happened!");
         DetectNearby();
+        DungeonManager.Ins.DecreaseFood(DungeonManager.Ins.Cost_Food_Per_Room);
         roomEvent.EnterEvent();
     }
 

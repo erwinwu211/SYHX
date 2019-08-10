@@ -18,6 +18,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public GameObject player;
     public int Floor = 1;
     public int score = 0;
+    public int food = 0;
     public float difficultLevel = 1;
 
 
@@ -28,6 +29,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int AgileExp_Per_Training = 10;//强化敏捷时单次获得的经验
     public int ConstitutionExp_Per_Training = 10;//强化智力时单次获得的经验
     public float Discount_For_UpgradeCard = 0;//升级卡牌时所需的花费打折
+    public int Cost_Food_Per_Room = 1;
 
     #endregion
 
@@ -55,6 +57,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         mCharacter = cc;
         score = 0;
         Floor = 1;
+        food = dungeon.food;
         difficultLevel = 1;
         dataFrag.count = cc.InitDataChip;
         //---天赋效果用属性
@@ -308,6 +311,16 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         this.dataFrag.count -= count;
         if (dataFrag.count < 0) dataFrag.count = 0;
+        DungeonUI.RefreshUI();
+    }
+    public void IncreaseFood(int count)
+    {
+        food += count;
+        DungeonUI.RefreshUI();
+    }
+    public void DecreaseFood(int count)
+    {
+        food -= count;
         DungeonUI.RefreshUI();
     }
     public void Rest(bool isIncrease = true, bool hasCost = true)

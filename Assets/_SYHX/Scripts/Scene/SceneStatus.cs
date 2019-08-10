@@ -62,11 +62,11 @@ public class ChooseStatus : SceneStatus
         Dungeon = dungeon;
     }
 
-    public void GoToDungeonStatus()
+    public void GoToDungeonStatus(int foodcount)
     {
         ES3.DeleteKey("dungeonObject");
         DungeonStatus ds = new DungeonStatus(SceneStatusManager.Ins);
-
+        this.Dungeon.food = foodcount;
         ds.Dungeon = this.Dungeon;
         ds.cc = this.cc;
         SceneStatusManager.Ins.SetSceneStatus(ds);

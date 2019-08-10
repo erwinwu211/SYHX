@@ -10,6 +10,7 @@ public class DungeonUI : MonoBehaviour
     public Text HpCount;
     public Text FloorCount;
     public Text DataFragCount;
+    public Text FoodCount;
     public Text NextLevelCount;
     public Text ScoreCount;
     public Text NextRewardScoreCount;
@@ -53,6 +54,7 @@ public class DungeonUI : MonoBehaviour
 
         FloorCount.text = "Area " + DungeonManager.Ins.Floor;
         DataFragCount.text = DungeonManager.Ins.dataFrag.count + "";
+        FoodCount.text = DungeonManager.Ins.food+"";
         NextLevelCount.text = (CharacterInDungeon.Ins.maxExp - CharacterInDungeon.Ins.currentExp) + "";
         ScoreCount.text = DungeonManager.Ins.score + "";
         ForceInfo.transform.Find("Lv/Count").GetComponent<Text>().text = CharacterInDungeon.Ins.Force.currentLv + "";

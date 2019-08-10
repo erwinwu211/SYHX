@@ -115,6 +115,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         currentExp += count;
         Debug.Log("获得了" + count + "经验");
+        DungeonManager.Ins.RefreshUI();
         switch (CheckCanLevelUp())
         {
             case LvUpCheck.yes:
