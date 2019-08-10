@@ -102,6 +102,24 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
     }
 
     /// <summary>
+    /// 无消耗升级一张牌
+    /// </summary>
+    public void UpgradeCardWithoutCost()
+    {
+        if (canUseFlag && selectedCard != null && targetCard != null)
+        {
+            CardContent cc = targetCard.GenerateCard();
+            CharacterInDungeon.Ins.ChangeCard(selectedCard, cc);
+            canUseFlag = false;
+            LeaveCraft();
+        }
+        else
+        {
+            Debug.Log("已经升级过一次无法再升了");
+        }
+    }
+
+    /// <summary>
     /// 清空选中牌与目标牌
     /// </summary>
     public void ClearChoose()

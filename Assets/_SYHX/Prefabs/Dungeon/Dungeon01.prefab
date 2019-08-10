@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &516875341753630032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6850376447918468934}
+  - component: {fileID: 5103690015570452016}
+  m_Layer: 0
+  m_Name: Dungeon01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6850376447918468934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516875341753630032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -39.060722, y: -7.9705896, z: 101.72603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5103690015570452016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516875341753630032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a21fcacf3d4e50438957f4d6e67d62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DungeonIndex: "\u7B2C\u4E00\u7AE0"
+  DungeonName: "\u65B0\u624B\u5173\u5361"
+  DungeonName_EN: ACTUAL COMBAT
+  Chapter: {fileID: 1194898276540949139, guid: abf1caa73e3db344d899e021d289abe2, type: 3}
+  Pos: {x: -32, y: 272, z: 0}
+  DungeonRooms:
+  - {fileID: 138771129940806376, guid: d7e4e4ccb770d3c40b176c324c818763, type: 3}
+  - {fileID: 2154737266286901232, guid: a19cd1a9826b90945a3720a5134a24e5, type: 3}
+  - {fileID: 6089769102641756737, guid: 62bb44a1140a5484ab4f687d81783541, type: 3}
+  - {fileID: 6259549404260051860, guid: 16b9d43ad574e364e8f9f6a7b081d60d, type: 3}
+  - {fileID: 4077337493249359755, guid: 5b90e9c355ddd77449ebeff13699a2a1, type: 3}
+  - {fileID: 8770947349053034459, guid: 6e02fc95c588de442a822de806dc1033, type: 3}
+  - {fileID: 831488649233441590, guid: 92be89fe1be9bf3408a5cd52d4535b71, type: 3}
+  RewardList:
+  - score: 500
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 1000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 2000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 3500
+    item: {fileID: 11400000, guid: 4bb0385e45e4b7440aac18d8c6552a87, type: 2}
+    itemCount: 5
+  - score: 5500
+    item: {fileID: 11400000, guid: 446883551f8af25429a528530fd9eb79, type: 2}
+    itemCount: 5
+  - score: 8000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 10500
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 14000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 100
+  - score: 17500
+    item: {fileID: 11400000, guid: 4bb0385e45e4b7440aac18d8c6552a87, type: 2}
+    itemCount: 25
+  - score: 21500
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 200
+  - score: 25000
+    item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
+    itemCount: 2
+  - score: 30000
+    item: {fileID: 11400000, guid: 446883551f8af25429a528530fd9eb79, type: 2}
+    itemCount: 25
+  - score: 35000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 400
+  - score: 40000
+    item: {fileID: 11400000, guid: f222a8059aaacd74db8f460f2d9a0acd, type: 2}
+    itemCount: 5
+  - score: 45000
+    item: {fileID: 11400000, guid: 55c848eb1ff4e51499ba003d457fd0d5, type: 2}
+    itemCount: 500
+  - score: 50000
+    item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
+    itemCount: 5
+  - score: 55000
+    item: {fileID: 11400000, guid: f222a8059aaacd74db8f460f2d9a0acd, type: 2}
+    itemCount: 25
+  - score: 60000
+    item: {fileID: 11400000, guid: 066c333dc5aeae44b89132b5570548bb, type: 2}
+    itemCount: 5
+  - score: 70000
+    item: {fileID: 11400000, guid: 4bb0385e45e4b7440aac18d8c6552a87, type: 2}
+    itemCount: 100
+  - score: 80000
+    item: {fileID: 11400000, guid: 066c333dc5aeae44b89132b5570548bb, type: 2}
+    itemCount: 10
+  - score: 90000
+    item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
+    itemCount: 5
+  - score: 100000
+    item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
+    itemCount: 5
+  StartRoom: {fileID: 8194619328419393182, guid: e5d081c7650c6ad42903e515a3938c1d,
+    type: 3}
+  EndRoom: {fileID: 8194619328419393182, guid: 885b5dfcb7bc3c34e8688befab57c697, type: 3}
+  DungeonProceed: 0
+  mapWidth: 5
+  mapHeight: 5
