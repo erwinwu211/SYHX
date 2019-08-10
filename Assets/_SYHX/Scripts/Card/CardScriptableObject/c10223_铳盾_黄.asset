@@ -19,7 +19,8 @@ MonoBehaviour:
   upgradeCost: 20
   cardType: 2
   connectionTypes: 02000000
-  techLevel: 1
+  needAttrLevel: 2
+  unusable: 0
   upgradeList: []
   keyWords: []
   origin:

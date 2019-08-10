@@ -48,7 +48,7 @@ namespace SYHX.Cards
             this.nameField.text = cc.name;
             this.descField.text = cc.Desc;
             this.EPField.text = cc.TempEP.ToString();
-            this.typeField.text = cc.cardType.ToString() + Initializer.Ins.AttrLvInfos[cc.needAttrLevel].LvName;
+            this.typeField.text = cc.cardType.ToString() + Initializer.Ins.AttrLvInfos[cc.needAttrLevel-1].LvName;
             this.EpGameObject.SetActive(cc.UseOption() == false);
             switch (cc.connectionType)
             {

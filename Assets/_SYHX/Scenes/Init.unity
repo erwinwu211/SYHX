@@ -183,6 +183,71 @@ PrefabInstance:
       propertyPath: CharacterManager
       value: 
       objectReference: {fileID: 1805971134}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[0].RequireCount
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[1].RequireCount
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[2].RequireCount
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[3].RequireCount
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[5].LvName
+      value: "VI\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[4].LvName
+      value: "V\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[3].LvName
+      value: "IV\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[2].LvName
+      value: "III\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[1].LvName
+      value: "II\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[0].LvName
+      value: "I\u968E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[4].RequireCount
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033236345748359146, guid: 2414215cd64c68c4b9e8e6519e509718,
+        type: 3}
+      propertyPath: AttrLvInfos.Array.data[5].RequireCount
+      value: 9999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2414215cd64c68c4b9e8e6519e509718, type: 3}
 --- !u!1 &664872815
@@ -1980,7 +2045,7 @@ MonoBehaviour:
   Defend: 5
   Draw_count: 5
   Energy_max: 3
-  Force: 2
+  Force: 1
   Agile: 1
   Constitution: 1
   Fortune: 1

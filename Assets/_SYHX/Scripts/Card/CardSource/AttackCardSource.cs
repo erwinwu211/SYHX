@@ -24,17 +24,22 @@ namespace SYHX.Cards
                 {
                     case AttackTargetType.mark:
                         {
+                            Enemy temp = BattleManager.selectedEnemy;
                             Damage.CalculateAndApply(BattleManager.Hero, BattleManager.selectedEnemy, damageRate, DamageTrigger.ByCard);
+                            if (temp.IsAlive() == false) i = 999;
                             break;
                         }
                     case AttackTargetType.aoe:
-                        foreach (var enemy in BattleManager.enemyList)
+                        for (int j = 0;j<BattleManager.enemyList.Count;j++)
                         {
-                            Damage.CalculateAndApply(BattleManager.Hero, enemy, damageRate, DamageTrigger.ByCard);
+                            Enemy temp = BattleManager.enemyList[j];
+                            Damage.CalculateAndApply(BattleManager.Hero, temp, damageRate, DamageTrigger.ByCard);
+                            if (temp.IsAlive() == false) j--;
                         }
                         break;
                     case AttackTargetType.random:
-                        int r = Random.Range(0, BattleManager.enemyList.Count - 1);
+                        int r = Random.Range(0, BattleManager.enemyList.Count);
+                        Debug.Log("随机出了"+r);
                         Damage.CalculateAndApply(BattleManager.Hero, BattleManager.enemyList[r], damageRate, DamageTrigger.ByCard);
                         break;
                 }

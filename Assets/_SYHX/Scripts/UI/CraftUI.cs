@@ -66,7 +66,8 @@ public class CraftUI : MonoBehaviour
                     myLevel = CharacterInDungeon.Ins.Fortune.currentLv;
                     break;
             }
-            if (cc.needAttrLevel > myLevel) continue;
+            if (cc.needAttrLevel > myLevel) return;
+            //if (cc.owner.upgradeList.Count == 0) return;
             GameObject go = Instantiate(CardPrefab, CardChooseGroup.transform);
             go.GetComponent<CraftableCardUI>().SetCard(cc);
             go.GetComponent<Button>().onClick.AddListener(delegate ()

@@ -23,7 +23,8 @@ public class ButtonEffect : MonoBehaviour,
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TextPic.GetComponent<Image>().color = HighLight;
+        if (TextPic.GetComponent<Image>() != null) TextPic.GetComponent<Image>().color = HighLight;
+        if (TextPic.GetComponent<Text>() != null) TextPic.GetComponent<Text>().color = HighLight;
         BgPic.SetActive(true);
         BgPic.GetComponent<Image>().fillAmount = 0;
         StopCoroutine("UnFillBg");
@@ -36,7 +37,8 @@ public class ButtonEffect : MonoBehaviour,
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        TextPic.GetComponent<Image>().color = Normal;
+        if (TextPic.GetComponent<Image>() != null) TextPic.GetComponent<Image>().color = Normal;
+        if (TextPic.GetComponent<Text>() != null) TextPic.GetComponent<Text>().color = Normal;
         StopCoroutine("FillBg");
         StartCoroutine("UnFillBg");
     }

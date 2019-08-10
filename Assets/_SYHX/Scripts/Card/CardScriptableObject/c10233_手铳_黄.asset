@@ -19,7 +19,8 @@ MonoBehaviour:
   upgradeCost: 0
   cardType: 0
   connectionTypes: 02000000
-  rarity: 0
+  needAttrLevel: 1
+  unusable: 0
   upgradeList: []
   keyWords: []
   origin:
