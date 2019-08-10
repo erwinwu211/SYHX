@@ -10,9 +10,8 @@ public class GetResourceTalent : Talent
     public int AgileExp;
     public int ConstitutionExp;
     public int FortuneExp;
-    public override void OnActive()
+    public override void DoEffect()
     {
-        base.OnActive();
         DungeonManager.Ins.IncreaseDataFrag(ChipFormCount);
         CharacterInDungeon.Ins.GainExp(ExpCount);
         CharacterInDungeon.Ins.Force.GainExp(ForceExp);

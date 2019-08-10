@@ -24,8 +24,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
 
 
     #region 为了天赋效果用的一些属性
-    public float RestEfficiency = 0.15f;
-    public int CardOptionCount = 3;
+    public float RestEfficiency = 0.15f;//休息时的生命值恢复比例
+    public int CardOptionCount = 3;//战斗结束时显示卡牌的张数
+    public int ForceExp_Per_Training = 10;//强化力量时单次获得的经验
+    public int AgileExp_Per_Training = 10;//强化敏捷时单次获得的经验
+    public int ConstitutionExp_Per_Training = 10;//强化智力时单次获得的经验
+    public float Discount_For_UpgradeCard = 0;//升级卡牌时所需的花费打折
+
     #endregion
 
 
@@ -303,6 +308,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         int hp = Mathf.FloorToInt(CharacterInDungeon.Ins.maxHp * DungeonManager.Ins.RestEfficiency);
         CharacterInDungeon.Ins.IncreaseHpCurrect(hp);
+        foreach (Talent t in CharacterInDungeon.Ins.activeTalents)
+        {
+            t.OnRest();
+        }
     }
 
     public void ShowRestPanel()

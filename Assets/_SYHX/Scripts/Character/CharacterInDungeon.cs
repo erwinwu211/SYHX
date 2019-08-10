@@ -8,6 +8,11 @@ public enum BasicAttributeType
     Force, Aglie, Constitution, Fortune
 }
 
+public enum AttributeType
+{
+    Attack, Defend, EP, MaxHp, DrawCount
+}
+
 public class BasicAttribute
 {
     public BasicAttributeType type;
@@ -21,7 +26,7 @@ public class BasicAttribute
     {
         if (currentLv >= maxLv) return;
         currentExp += count;
-        Debug.Log("得到了"+count+type.ToString()+"经验");
+        Debug.Log("得到了" + count + type.ToString() + "经验");
         if (currentExp >= maxExp) LvUp();
     }
 
@@ -30,7 +35,7 @@ public class BasicAttribute
         if (currentLv >= maxLv) return;
         currentExp -= maxExp;
         currentLv++;
-        Debug.Log(type.ToString()+"升至了"+currentLv+"级");
+        Debug.Log(type.ToString() + "升至了" + currentLv + "级");
         DungeonManager.Ins.RefreshUI();
     }
 
@@ -66,7 +71,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public BasicAttribute Fortune { get; private set; }
     public List<CardContent> Deck { get; private set; }
     public List<TalentGroup> talentGroups { get; private set; }
-    public List<Talent> activeTalents{get;private set;}
+    public List<Talent> activeTalents { get; private set; }
     public GameObject LevelUpPanel;
 
     public void Start()
@@ -194,6 +199,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         maxHp += count;
+        currentHp += count;
         DungeonManager.Ins.RefreshUI();
     }
 
@@ -296,6 +302,33 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         Defend -= count;
+        DungeonManager.Ins.RefreshUI();
+    }
+
+    public void IncreaseEp(int count)
+    {
+        if (count < 0) return;
+        maxEp += count;
+        DungeonManager.Ins.RefreshUI();
+    }
+
+    public void DecreaseEp(int count)
+    {
+        if (count < 0) return;
+        maxEp -= count;
+        DungeonManager.Ins.RefreshUI();
+    }
+
+    public void IncreaseDrawCount(int count)
+    {
+        if (count < 0) return;
+        Draw_count += count;
+        DungeonManager.Ins.RefreshUI();
+    }
+    public void DecreaseDrawCount(int count)
+    {
+        if (count < 0) return;
+        Draw_count -= count;
         DungeonManager.Ins.RefreshUI();
     }
 

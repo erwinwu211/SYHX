@@ -19,3 +19,13 @@ public class ItemSourceAndCount
     public ItemSource item;
     public int count;
 }
+
+/// <summary>
+/// 包含了item和count两个属性
+/// </summary>
+[Serializable]
+public class AttrAndCount
+{
+    public AttributeType type;
+    public int count;
+}

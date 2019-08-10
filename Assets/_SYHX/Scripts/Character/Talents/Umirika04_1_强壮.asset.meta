@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 0c1820b673b55054c9813031e401bd34
+guid: 89a701edf7a9ebe40a86c444f5df74c2
+labels:
+- ChangeAttrTalent
+- Data
+- ScriptableObject
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -5,9 +5,8 @@ using UnityEngine;
 public class IncreaseCardOption : Talent
 {
     // Start is called before the first frame update
-    public override void OnActive()
+    public override void DoEffect()
     {
-        base.OnActive();
         DungeonManager.Ins.CardOptionCount ++;
     }
 }

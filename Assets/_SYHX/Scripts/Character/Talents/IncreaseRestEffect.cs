@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class IncreaseRestEffect : Talent
 {
-    // Start is called before the first frame update
-    public override void OnActive()
+    public float IncreaseRestEfficiency;
+    public int IncreaseForceExpPerTraining;
+    public int IncreaseAgileExpPerTraining;
+    public int IncreaseConstitutionExpPerTraining;
+
+    public override void DoEffect()
     {
-        base.OnActive();
-        DungeonManager.Ins.RestEfficiency = 0.25f;
+        DungeonManager.Ins.RestEfficiency += IncreaseRestEfficiency;
+        DungeonManager.Ins.ForceExp_Per_Training += IncreaseForceExpPerTraining;
+        DungeonManager.Ins.AgileExp_Per_Training += IncreaseAgileExpPerTraining;
+        DungeonManager.Ins.ConstitutionExp_Per_Training += IncreaseConstitutionExpPerTraining;
     }
 }
