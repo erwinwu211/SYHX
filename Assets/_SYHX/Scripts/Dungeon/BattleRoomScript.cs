@@ -23,6 +23,8 @@ public class BattleRoomScript : MonoBehaviour
 
     private static bool enableInput = true;
     public RoomEvent roomEvent;
+
+    public RoomType roomType;
     void Start()
     {
         thisRoomNum = System.Convert.ToInt32(string.Join("", this.name.ToCharArray().Where(char.IsDigit)));
@@ -101,4 +103,16 @@ public class BattleRoomScript : MonoBehaviour
         return flag;
     }
 
+}
+
+public enum RoomType
+{
+    battle_normal,
+    battle_elite,
+    battle_boss,
+    random_event,
+    rest,
+    craft,
+    next_floor,
+    no_happen,
 }

@@ -114,6 +114,7 @@ MonoBehaviour:
   DownRoom: {fileID: 0}
   hasLoaded: 0
   roomEvent: {fileID: 5011794501090026862}
+  roomType: 0
 --- !u!114 &1728212971230584784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 4221907679502992972}
   Back: {fileID: 2343987861317850574}
+  happenedCount: 0
+  maxHappenCount: 1
+  roomType: 7
 --- !u!1 &2343987861317850574
 GameObject:
   m_ObjectHideFlags: 0

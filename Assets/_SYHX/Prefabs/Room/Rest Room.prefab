@@ -484,6 +484,7 @@ MonoBehaviour:
   DownRoom: {fileID: 0}
   hasLoaded: 0
   roomEvent: {fileID: 8619427708873527554}
+  roomType: 0
 --- !u!114 &8619427708873527554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   Back: {fileID: 1046153087247247484}
   happenedCount: 0
   maxHappenCount: 1
+  roomType: 4
   item: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
 --- !u!114 &7334525597077091133
 MonoBehaviour:

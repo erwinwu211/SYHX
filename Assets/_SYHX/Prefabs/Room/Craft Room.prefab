@@ -380,6 +380,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
@@ -388,6 +390,7 @@ MonoBehaviour:
   DownRoom: {fileID: 0}
   hasLoaded: 0
   roomEvent: {fileID: 2415819024250036835}
+  roomType: 0
 --- !u!114 &2415819024250036835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +405,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 2886983516967642807}
   Back: {fileID: 4496847137751609924}
+  happenedCount: 0
+  maxHappenCount: 1
+  roomType: 5
 --- !u!1 &4496847137751609924
 GameObject:
   m_ObjectHideFlags: 0

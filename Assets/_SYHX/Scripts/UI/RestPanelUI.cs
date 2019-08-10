@@ -7,6 +7,7 @@ using SYHX.Cards;
 public class RestPanelUI : MonoBehaviour
 {
     public Button RestBtn;
+    public Text RestDesc;
     public Button ForceTrainingBtn;
     public Text ForceLevelCount;
     public Text ForceExp;
@@ -29,6 +30,8 @@ public class RestPanelUI : MonoBehaviour
     public Slider ConstitutionSlider;
     public void ShowRestRoomUI(BasicAttribute force, BasicAttribute agile, BasicAttribute constitution)
     {
+        RestDesc.text = "恢复"+DungeonManager.Ins.RestEfficiency*100+"%生命值";
+
         gameObject.SetActive(true);
         ForceLevelCount.text = "力量强化Lv."+force.currentLv + "";
         AgileLevelCount.text = "敏捷强化Lv."+agile.currentLv + "";

@@ -66,6 +66,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     public BasicAttribute Fortune { get; private set; }
     public List<CardContent> Deck { get; private set; }
     public List<TalentGroup> talentGroups { get; private set; }
+    public List<Talent> activeTalents{get;private set;}
     public GameObject LevelUpPanel;
 
     public void Start()
@@ -91,6 +92,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         this.Deck = new List<CardContent>();
         this.maxLv = cc.currentGrade.LvMax;
         this.currentLv = 1;
+        this.activeTalents = new List<Talent>();
         InitTalent();
         GainExp(cc.InitDungeonExp);
         foreach (var cs in cc.Deck)
@@ -369,6 +371,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         t.OnActive();
         t.Owner.ActiveTalent = t;
+        activeTalents.Add(t);
         DungeonManager.Ins.TalentPanelUI.Refresh(talentGroups);
     }
     #endregion

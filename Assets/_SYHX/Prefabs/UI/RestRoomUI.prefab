@@ -2564,6 +2564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RestBtn: {fileID: 5417479090481111298}
+  RestDesc: {fileID: 4688867230099895341}
   ForceTrainingBtn: {fileID: 1628051214806367465}
   ForceLevelCount: {fileID: 3046313412089044942}
   ForceExp: {fileID: 6838328050443027624}

@@ -13,7 +13,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public CharacterInDungeon dungeonCharacter => CharacterInDungeon.Ins;
     public DungeonUI DungeonUI;
     public RestPanelUI RestPanelUI;
-    public TalentPanelUI TalentPanelUI; 
+    public TalentPanelUI TalentPanelUI;
     public GenerateMap Generator;
     public GameObject player;
     public int Floor = 1;
@@ -21,7 +21,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public float difficultLevel = 1;
     private int mRestCount = 0;
     private int mRestCostGrowth = 5;
-    public float RestEfficiency = 0.25f;
+
+
+    #region 为了天赋效果用的一些属性
+    public float RestEfficiency = 0.15f;
+    public int CardOptionCount = 3;
+    #endregion
 
 
     public int currentRoomNum;
@@ -73,7 +78,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         InitDungeonCharacter(mCharacter);
         //刷新UI界面
         DungeonUI.RefreshUI();
-        Debug.Log("刷新天赋界面"+CharacterInDungeon.Ins.talentGroups.Count);
+        Debug.Log("刷新天赋界面" + CharacterInDungeon.Ins.talentGroups.Count);
         TalentPanelUI.Refresh(CharacterInDungeon.Ins.talentGroups);
     }
     #endregion
@@ -224,6 +229,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     {
         Enable();
         currentEvent.Finished();
+
         if (information.win)
         {
             CharacterInDungeon.Ins.currentHp = information.currentHp;
@@ -245,6 +251,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             {
                 CardContent cc = cs.GenerateCard();
                 CharacterInDungeon.Ins.JoinCard(cc);
+            }
+            foreach (Talent t in CharacterInDungeon.Ins.activeTalents)
+            {
+                t.OnBattleEnd();
             }
             DungeonUI.RefreshUI();
         }
@@ -278,12 +288,12 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         return list.Count > 0;
     }
 
-    public void IncreaseDataChip(int count)
+    public void IncreaseDataFrag(int count)
     {
         this.dataFrag.count += count;
         DungeonUI.RefreshUI();
     }
-    public void DecreaseDataChip(int count)
+    public void DecreaseDataFrag(int count)
     {
         this.dataFrag.count -= count;
         if (dataFrag.count < 0) dataFrag.count = 0;

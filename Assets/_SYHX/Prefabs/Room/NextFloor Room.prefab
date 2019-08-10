@@ -437,7 +437,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d122554b3e891204aa57444b82c13905, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -473,6 +473,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  thisRoomNum: 0
+  thisRoomType: 0
   thisRoomRaw: 0
   thisRoomColumn: 0
   RightRoom: {fileID: 0}
@@ -481,6 +483,7 @@ MonoBehaviour:
   DownRoom: {fileID: 0}
   hasLoaded: 0
   roomEvent: {fileID: 3560165903004440877}
+  roomType: 0
 --- !u!114 &3560165903004440877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,3 +498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 6085264115422838910}
   Back: {fileID: 2237032955476948560}
+  happenedCount: 0
+  maxHappenCount: 1
+  roomType: 6

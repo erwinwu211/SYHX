@@ -9,6 +9,7 @@ public class RoomEvent : MonoBehaviour
     public GameObject Back;
     public int happenedCount = 0; //该房间的该事件已经触发了的次数
     public int maxHappenCount = 1; //该房间的该事件最多可以触发的次数
+    public RoomType roomType;
 
     /// <summary>
     /// 初始化
@@ -19,7 +20,7 @@ public class RoomEvent : MonoBehaviour
         Back.SetActive(true);
     }
 
-    
+
     /// <summary>
     /// 进入房间时触发的事件，返回是否已超过事件发生次数
     /// </summary>
@@ -34,10 +35,14 @@ public class RoomEvent : MonoBehaviour
             return;
         }
         happenedCount += 1;
+        foreach (Talent t in CharacterInDungeon.Ins.activeTalents)
+        {
+            t.OnEnterRoom(this);
+        }
         EventHappen();
     }
 
-    public virtual void EventHappen() {}
+    public virtual void EventHappen() { }
 
     /// <summary>
     /// 在事件结束后，恢复地宫界面的鼠标接收
@@ -53,6 +58,10 @@ public class RoomEvent : MonoBehaviour
     /// </summary>
     public virtual void LeaveEvent()
     {
+        foreach (Talent t in CharacterInDungeon.Ins.activeTalents)
+        {
+            t.OnLeaveRoom(this);
+        }
     }
 
     /// <summary>

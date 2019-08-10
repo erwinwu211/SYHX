@@ -91,7 +91,7 @@ public class CraftManager : SingletonMonoBehaviour<CraftManager>
         {
             CardContent cc = targetCard.GenerateCard();
             CharacterInDungeon.Ins.ChangeCard(selectedCard, cc);
-            DungeonManager.Ins.DecreaseDataChip(targetCard.upgradeCost);
+            DungeonManager.Ins.DecreaseDataFrag(targetCard.upgradeCost);
             canUseFlag = false;
             LeaveCraft();
         }

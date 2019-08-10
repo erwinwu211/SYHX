@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fa9006600992146adde239aaae66a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f5532e3c4125bc4680738f43d7b203d, type: 3}
   m_Name: Umirika02_1
   m_EditorClassIdentifier: 
   IsUnlock: 1
   Owner: {fileID: 11400000, guid: d9d224449069e364fbcccb48904d4036, type: 2}
-  Name: "\u6D4B\u8BD5\u5929\u8D4B"
-  Desc: "\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B"
+  Name: "\u8D4F\u91D1\u730E\u4EBA"
+  Desc: "\u9009\u5956\u52B1\u5361\u724C\u65F6\u989D\u5916\u589E\u52A01\u5F20\u3002"
   Icon: {fileID: 21300000, guid: 5a622c9183811dc4fbbe8843d0208056, type: 3}

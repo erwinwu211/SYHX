@@ -16,6 +16,11 @@ public class Talent : ScriptableObject
 
     public virtual void OnActive()
     {
+        Debug.Log(Name+"天赋触发");
     }
+
+    public virtual void OnEnterRoom(RoomEvent _event){}
+    public virtual void OnLeaveRoom(RoomEvent _event){}
+    public virtual void OnBattleEnd(){}
 
 }

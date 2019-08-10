@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 8393ca46634f4014087945086e180e67
+guid: 7944dc38a9c4971448bc5d9930286b59
 labels:
 - Data
+- GetResourceTalent
 - ScriptableObject
-- Talent
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

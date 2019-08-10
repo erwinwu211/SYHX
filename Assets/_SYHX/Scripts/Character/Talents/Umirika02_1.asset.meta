@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 954fa78d246ed664b85ab7404dcf17f5
+guid: 95b88e74c5480584598bf28896cfef7a
+labels:
+- Data
+- IncreaseCardOption
+- ScriptableObject
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

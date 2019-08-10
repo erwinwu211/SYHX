@@ -391,6 +391,7 @@ MonoBehaviour:
   DownRoom: {fileID: 0}
   hasLoaded: 0
   roomEvent: {fileID: 2832428400723402221}
+  roomType: 0
 --- !u!114 &2832428400723402221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +408,7 @@ MonoBehaviour:
   Back: {fileID: 3605694267863172689}
   happenedCount: 0
   maxHappenCount: 1
+  roomType: 2
   EnemyGroup:
   - {fileID: 11400000, guid: 2f57ba6f13bfb3241ae2bd90a441a2c6, type: 2}
 --- !u!1 &8182681462274038462

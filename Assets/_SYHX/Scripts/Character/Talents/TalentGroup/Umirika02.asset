@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   needLv: 4
   talents:
-  - {fileID: 11400000, guid: 954fa78d246ed664b85ab7404dcf17f5, type: 2}
+  - {fileID: 11400000, guid: 95b88e74c5480584598bf28896cfef7a, type: 2}
   - {fileID: 11400000, guid: 86167dca5c674bc4bb37cd49fc465002, type: 2}
   - {fileID: 11400000, guid: 4683ea7d0ad73a14d80c2a93895108ac, type: 2}
   ActiveTalent: {fileID: 0}
