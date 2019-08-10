@@ -138,7 +138,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         //如果敌人群的奖励列表中有卡牌奖励的话
         if (dcrs)
         {
-            battleResultPanelUI.ShowCardChoosePanel(dcrs.GetCardSourceInPool(3));
+            battleResultPanelUI.ShowCardChoosePanel(dcrs.GetCardSourceInPool(DungeonManager.Ins.CardOptionCount));
         }
         else
         {

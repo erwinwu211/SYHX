@@ -194,6 +194,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         maxHp += count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -205,6 +206,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         if (count < 0) return;
         maxHp += count;
         currentHp += count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -223,6 +225,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         {
             //TODO:SendEvent("DungeonEnd");
         }
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -234,6 +237,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         if (count < 0) return;
         currentHp += count;
         if (currentHp > maxHp) currentHp = maxHp;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -248,6 +252,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
         {
             //TODO:SendEvent("DungeonEnd");
         }
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -258,6 +263,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         Attack += count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -268,6 +274,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         Attack -= count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -278,6 +285,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         Defend += count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -288,6 +296,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         if (count < 0) return;
         Defend -= count;
+        DungeonManager.Ins.RefreshUI();
     }
 
     /// <summary>
@@ -312,6 +321,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
                 this.Fortune.GainExp(count);
                 break;
         }
+        DungeonManager.Ins.RefreshUI();
     }
 
     #endregion

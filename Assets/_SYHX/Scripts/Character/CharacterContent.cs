@@ -13,7 +13,6 @@ public class CharacterContent : MonoBehaviour
     public virtual string Name { get; }
     public Grade currentGrade;//角色当前的阶级
     public List<Grade> gradeList;
-    public int Exp;
     public int Hp_max;
     public int Attack;
     public int Defend;

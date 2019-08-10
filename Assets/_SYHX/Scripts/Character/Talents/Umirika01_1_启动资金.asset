@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5622b004a689de541b15cc83bae6e6f0, type: 3}
-  m_Name: Umirika01_1
+  m_Name: "Umirika01_1_\u542F\u52A8\u8D44\u91D1"
   m_EditorClassIdentifier: 
   IsUnlock: 1
   Owner: {fileID: 11400000, guid: 0c069c4785c9f0244afe209c366d0c9b, type: 2}
