@@ -112,7 +112,7 @@ public class CraftUI : MonoBehaviour
             {
                 colorString = ColorUtility.ToHtmlStringRGB(Unenough);
             }
-            price.GetComponentInChildren<Text>().text = "数据碎片 <color=#" + colorString + ">" + Mathf.FloorToInt(cs.upgradeCost * (1 - DungeonManager.Ins.Discount_For_UpgradeCard)) + "</color>";
+            price.GetComponentInChildren<Text>().text = "数据碎片 <color=#" + colorString + ">" + cs.GetCost(DungeonManager.Ins.Discount_For_UpgradeCard) + "</color>";
             go.GetComponent<Button>().onClick.AddListener(delegate ()
             {
                 //CraftManager.Ins.SetTargetCard(cs);

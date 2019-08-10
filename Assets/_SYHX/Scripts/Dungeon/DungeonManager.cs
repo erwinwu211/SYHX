@@ -19,8 +19,6 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public int Floor = 1;
     public int score = 0;
     public float difficultLevel = 1;
-    private int mRestCount = 0;
-    private int mRestCostGrowth = 5;
 
 
     #region 为了天赋效果用的一些属性
@@ -59,6 +57,14 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         Floor = 1;
         difficultLevel = 1;
         dataFrag.count = cc.InitDataChip;
+        //---天赋效果用属性
+        RestEfficiency = 0.15f;//休息时的生命值恢复比例
+        CardOptionCount = 3;//战斗结束时显示卡牌的张数
+        ForceExp_Per_Training = 10;//强化力量时单次获得的经验
+        AgileExp_Per_Training = 10;//强化敏捷时单次获得的经验
+        ConstitutionExp_Per_Training = 10;//强化智力时单次获得的经验
+        Discount_For_UpgradeCard = 0;//升级卡牌时所需的花费打折
+        //---
         dungeonCharacter.Init(cc);
     }
 

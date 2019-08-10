@@ -38,6 +38,7 @@ namespace SYHX.Cards
         public string Name { get => mName; }
         public string Desc { get => mDesc; }
         public int EP { get => mEP; }
+        public int GetCost(float discount) =>Mathf.FloorToInt(upgradeCost * (1 - discount));
         #endregion
 
         public abstract void Init();
