@@ -1980,7 +1980,7 @@ MonoBehaviour:
   Defend: 5
   Draw_count: 5
   Energy_max: 3
-  Force: 1
+  Force: 2
   Agile: 1
   Constitution: 1
   Fortune: 1

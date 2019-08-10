@@ -24,28 +24,35 @@ public class TalentPanelUI : MonoBehaviour
             Transform tf = Instantiate(talentGO, talentGroupParent).transform;
             tf.gameObject.SetActive(true);
             GameObject selectedFrame = tf.Find("SelectedFrame").gameObject;
+            GameObject highLightFrame = tf.Find("HightLightFrame").gameObject;
             GameObject icon = tf.Find("Bg/Icon").gameObject;
             GameObject Lock = tf.Find("Lock").gameObject;
             GameObject needLvText = Lock.transform.Find("Text").gameObject;
             if (CharacterInDungeon.Ins.currentLv >= item.needLv)
             {
-                selectedFrame.SetActive(true);
+                highLightFrame.SetActive(true);
                 Lock.SetActive(false);
                 if (item.ActiveTalent != null)
                 {
-                    selectedFrame.SetActive(false);
+                    highLightFrame.SetActive(false);
+                    icon.SetActive(true);
                     icon.GetComponent<Image>().sprite = item.ActiveTalent.Icon;
                 }
             }
             else
             {
-                selectedFrame.SetActive(false);
+                highLightFrame.SetActive(false);
                 Lock.SetActive(true);
                 needLvText.GetComponent<Text>().text = item.needLv + "级解锁";
             }
             tf.gameObject.GetComponent<Button>().onClick.AddListener(delegate
             {
                 ShowTalentsInGroup(item);
+                foreach (Transform _tf in talentGroupParent)
+                {
+                    _tf.Find("SelectedFrame").gameObject.SetActive(false);
+                }
+                selectedFrame.SetActive(true);
             });
         }
     }

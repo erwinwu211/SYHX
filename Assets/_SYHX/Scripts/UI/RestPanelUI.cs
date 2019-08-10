@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SYHX.Cards;
 
 public class RestPanelUI : MonoBehaviour
 {
@@ -9,34 +10,41 @@ public class RestPanelUI : MonoBehaviour
     public Button ForceTrainingBtn;
     public Text ForceLevelCount;
     public Text ForceExp;
-    public GameObject ForceDesc;
+    public Text ForceRewardDesc;
+    public GameObject ForceTrainingDesc;
     public Slider ForceSlider;
 
     public Button AgileTrainingBtn;
     public Text AgileLevelCount;
     public Text AgileExp;
-    public GameObject AgileDesc;
+    public Text AgileRewardDesc;
+    public GameObject AgileTrainingDesc;
     public Slider AgileSlider;
 
     public Button ConstitutionTrainingBtn;
     public Text ConstitutionLevelCount;
     public Text ConstitutionExp;
-    public GameObject ConstitutionDesc;
+    public Text ConstitutionRewardDesc;
+    public GameObject ConstitutionTrainingDesc;
     public Slider ConstitutionSlider;
     public void ShowRestRoomUI(BasicAttribute force, BasicAttribute agile, BasicAttribute constitution)
     {
         gameObject.SetActive(true);
-        ForceLevelCount.text = force.currentLv + "";
-        AgileLevelCount.text = agile.currentLv + "";
-        ConstitutionLevelCount.text = constitution.currentLv + "";
+        ForceLevelCount.text = "力量强化Lv."+force.currentLv + "";
+        AgileLevelCount.text = "敏捷强化Lv."+agile.currentLv + "";
+        ConstitutionLevelCount.text = "智力强化Lv."+constitution.currentLv + "";
 
         ForceTrainingBtn.interactable = !force.IsMaxLv();
         AgileTrainingBtn.interactable = !agile.IsMaxLv();
         ConstitutionTrainingBtn.interactable = !constitution.IsMaxLv();
 
-        ForceDesc.SetActive(!force.IsMaxLv());
-        AgileDesc.SetActive(!agile.IsMaxLv());
-        ConstitutionDesc.SetActive(!constitution.IsMaxLv());
+        ForceTrainingDesc.SetActive(!force.IsMaxLv());
+        AgileTrainingDesc.SetActive(!agile.IsMaxLv());
+        ConstitutionTrainingDesc.SetActive(!constitution.IsMaxLv());
+
+        ForceRewardDesc.text = "当前效果\n最高可以将"+CardType.攻击+"卡升至"+Initializer.Ins.AttrLvInfos[CharacterInDungeon.Ins.Force.currentLv-1].LvName;
+        AgileRewardDesc.text = "当前效果\n最高可以将"+CardType.防御+"卡升至"+Initializer.Ins.AttrLvInfos[CharacterInDungeon.Ins.Agile.currentLv-1].LvName;
+        ConstitutionRewardDesc.text = "当前效果\n最高可以将"+CardType.技能+"卡升至"+Initializer.Ins.AttrLvInfos[CharacterInDungeon.Ins.Constitution.currentLv-1].LvName;
 
         if (force.IsMaxLv())
         {

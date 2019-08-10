@@ -14,14 +14,15 @@ public class BasicAttribute
     public int currentLv;
     public int maxLv = 5;
     public int currentExp;
-    public int maxExp => Initializer.Ins.AttrLvInfos[currentLv].RequireCount;
+    public int maxExp => Initializer.Ins.AttrLvInfos[currentLv - 1].RequireCount;
     public bool IsMaxLv() => currentLv >= maxLv;
 
     public void GainExp(int count)
     {
         if (currentLv >= maxLv) return;
         currentExp += count;
-        if (currentExp > maxExp) LvUp();
+        Debug.Log("得到了"+count+type.ToString()+"经验");
+        if (currentExp >= maxExp) LvUp();
     }
 
     public void LvUp()
@@ -29,6 +30,8 @@ public class BasicAttribute
         if (currentLv >= maxLv) return;
         currentExp -= maxExp;
         currentLv++;
+        Debug.Log(type.ToString()+"升至了"+currentLv+"级");
+        DungeonManager.Ins.RefreshUI();
     }
 
 
@@ -366,6 +369,7 @@ public class CharacterInDungeon : SingletonMonoBehaviour<CharacterInDungeon>
     {
         t.OnActive();
         t.Owner.ActiveTalent = t;
+        DungeonManager.Ins.TalentPanelUI.Refresh(talentGroups);
     }
     #endregion
 

@@ -320,6 +320,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
     public void RefreshUI()
     {
         DungeonUI.RefreshUI();
+        TalentPanelUI.Refresh(CharacterInDungeon.Ins.talentGroups);
     }
 }
 
