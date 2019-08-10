@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 using DG.Tweening;
 
 namespace SYHX.Cards
@@ -37,6 +38,10 @@ namespace SYHX.Cards
 
         public float duration = 1.0f;
         public float nextstep = 0.3f;
+
+        public Text deckCount;
+        public Text discardCount;
+        public Text exhaustCount;
 
         public CardContent[] safeDeckPile => handPile.ToArray();
         public CardContent[] safeDiscardPile => discardPile.ToArray();
@@ -138,7 +143,7 @@ namespace SYHX.Cards
             deckPile.Clear();
             foreach (CardContent card in temp)
             {
-                deckPile.Insert(Random.Range(0,deckPile.Count),card);
+                deckPile.Insert(Random.Range(0, deckPile.Count), card);
             }
         }
 
@@ -153,6 +158,9 @@ namespace SYHX.Cards
                 cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
                 yield return new WaitForSeconds(nextstep);
             }
+            deckCount.text = deckPile.Count + "";
+            discardCount.text = discardPile.Count + "";
+            exhaustCount.text = exhaustPile.Count + "";
             yield break;
         }
 
@@ -166,6 +174,9 @@ namespace SYHX.Cards
                 index++;
                 cc.bUI.transform.DOLocalMove(index * shiftPosition + zero, duration);
             }
+            deckCount.text = deckPile.Count + "";
+            discardCount.text = discardPile.Count + "";
+            exhaustCount.text = exhaustPile.Count + "";
         }
         #endregion
 
@@ -269,6 +280,7 @@ namespace SYHX.Cards
             }
             yield break;
         }
+
         //等决定动画后再逐步废除
         private void GoTo(CardContent cc, CardPosition position)
         {
@@ -333,7 +345,7 @@ namespace SYHX.Cards
         private void GenerateCardUI(CardContent cc)
         {
             var go = GameObject.Instantiate(cardGo, deckPos.transform.position, deckPos.transform.rotation, deckPos.transform);
-            go.SetCard(cc,false,false);
+            go.SetCard(cc, false, false);
             cc.bUI = go;
         }
 
