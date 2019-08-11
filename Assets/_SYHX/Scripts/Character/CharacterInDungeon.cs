@@ -46,6 +46,17 @@ public class BasicAttribute
         this.currentLv = initLv;
         this.currentExp = 0;
     }
+
+    public int Get_xDy(int max = 6, int min = 1)
+    {
+        if (max < 1) return 0;
+        int result = 0;
+        for (int i = 0; i < currentLv; i++)
+        {
+            result += Random.Range(min, max + 1);
+        }
+        return result;
+    }
 }
 
 /// <summary>

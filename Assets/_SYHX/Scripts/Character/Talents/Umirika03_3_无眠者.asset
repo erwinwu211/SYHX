@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9def875fc41589f4e9035949dd99aebc, type: 3}
-  m_Name: IncreaseRestEffect
+  m_Name: "Umirika03_3_\u65E0\u7720\u8005"
   m_EditorClassIdentifier: 
-  IsUnlock: 0
-  Owner: {fileID: 0}
-  Name: 
-  Desc: 
-  Icon: {fileID: 0}
+  IsUnlock: 1
+  Owner: {fileID: 11400000, guid: 73d17090848db6940895ed4efadd1d4e, type: 2}
+  Name: "\u65E0\u7720\u8005"
+  Desc: "\u6BCF\u6B21\u8FDB\u884C\u5F3A\u5316\u65F6\u53EF\u989D\u5916\u83B7\u5F975\u70B9\u7ECF\u9A8C"
+  Icon: {fileID: 21300000, guid: 698616930669a6a4aa88286d32ff6697, type: 3}
   type: 0
   IncreaseRestEfficiency: 0
-  IncreaseForceExpPerTraining: 0
-  IncreaseAgileExpPerTraining: 0
-  IncreaseConstitutionExpPerTraining: 0
+  IncreaseForceExpPerTraining: 5
+  IncreaseAgileExpPerTraining: 5
+  IncreaseConstitutionExpPerTraining: 5

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e2e949049d8d794fa20d2f20e60f703, type: 3}
-  m_Name: ChangeAttrTalent
+  m_Name: "Umirika04_1_\u5F3A\u58EE"
   m_EditorClassIdentifier: 
-  IsUnlock: 0
-  Owner: {fileID: 0}
-  Name: 
-  Desc: 
-  Icon: {fileID: 0}
+  IsUnlock: 1
+  Owner: {fileID: 11400000, guid: ccfaa4ece61528141bf2b0b5fc17cc85, type: 2}
+  Name: "\u5F3A\u58EE"
+  Desc: "\u63D0\u53472\u70B9\u653B\u51FB\u529B"
+  Icon: {fileID: 21300000, guid: 176b392012e6f1844b3e749d523edc54, type: 3}
   type: 0
-  IncreaseAttrlist: []
+  IncreaseAttrlist:
+  - type: 0
+    count: 2
   DecreaseAttrlist: []

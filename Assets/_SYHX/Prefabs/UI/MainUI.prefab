@@ -226,7 +226,6 @@ MonoBehaviour:
   BgPic: {fileID: 7078551516220203256}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &380944803163119062
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +452,6 @@ MonoBehaviour:
   BgPic: {fileID: 704869429789468382}
   Normal: {r: 0.9490197, g: 0.9490197, b: 0.9490197, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &684668407893081864
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +821,6 @@ MonoBehaviour:
   BgPic: {fileID: 5467592466178197476}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 9
 --- !u!1 &1096336643081239392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1194,6 @@ MonoBehaviour:
   BgPic: {fileID: 5806510967576573828}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &1986318934380517877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1637,6 @@ MonoBehaviour:
   BgPic: {fileID: 2235043410747256497}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-  FillSpeed: 9
 --- !u!1 &2907014836874018082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,8 +1709,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 635, y: 800}
+  m_AnchoredPosition: {x: -0.000036597, y: -82}
+  m_SizeDelta: {x: 195.5, y: 668.96}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5614105475401093964
 CanvasRenderer:
@@ -1745,7 +1740,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 24458109a22d29249aa9a24f672d1b86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88021bfea1b8128489fc663af69e5e9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2033,7 +2028,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 755930776289474285}
   m_HandleRect: {fileID: 0}
@@ -2382,7 +2377,6 @@ MonoBehaviour:
   BgPic: {fileID: 5332728607115403860}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 9
 --- !u!1 &4324423227733096940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,7 +3035,6 @@ MonoBehaviour:
   BgPic: {fileID: 8338579172126816160}
   Normal: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   HighLight: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
-  FillSpeed: 9
 --- !u!1 &5717908690956712976
 GameObject:
   m_ObjectHideFlags: 0

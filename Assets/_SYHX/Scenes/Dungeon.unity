@@ -4124,9 +4124,15 @@ MonoBehaviour:
   player: {fileID: 2014863287}
   Floor: 1
   score: 0
+  food: 0
   difficultLevel: 0
   RestEfficiency: 0.15
   CardOptionCount: 3
+  ForceExp_Per_Training: 10
+  AgileExp_Per_Training: 10
+  ConstitutionExp_Per_Training: 10
+  Discount_For_UpgradeCard: 0
+  Cost_Food_Per_Room: 1
   currentRoomNum: 0
   currentEvent: {fileID: 0}
   dataFrag: {fileID: 11400000, guid: 122b1194ef9cfae42ac3b9497b86c492, type: 2}
@@ -4160,7 +4166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3798b1690cc5ccf4d8e0dd2dac052cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mUI: {fileID: 1061453944113972066}
+  EUI: {fileID: 1061453944113972066}
 --- !u!1 &1213142353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 976056869789166108, guid: 9613a17ac3f3c844f91b1730ae862aa1,

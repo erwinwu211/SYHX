@@ -10,7 +10,7 @@ public class EventManager : SingletonMonoBehaviour<EventManager>
 
     private List<int> floorEventIDList = new List<int>();
     private List<int> permanentEventIDList = new List<int>();
-    public EventUI mUI;
+    public EventUI EUI;
 
     /// <summary>
     /// 接受一个事件，并将其注册进事件簿中
@@ -22,7 +22,7 @@ public class EventManager : SingletonMonoBehaviour<EventManager>
         this.context = context;
         if (e.floorCount != 0) floorEventIDList.Add(e.id);
         if (e.permanentCount != 0) permanentEventIDList.Add(e.id);
-        mUI.ShowEventUI(e);
+        EUI.ShowEventUI(e);
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class EventManager : SingletonMonoBehaviour<EventManager>
     {
         this._event = null;
         this.context.Finished();
-        mUI.EnhanceEventUI();
+        EUI.EnhanceEventUI();
     }
 
     /// <summary>

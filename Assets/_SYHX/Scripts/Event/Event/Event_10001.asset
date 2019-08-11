@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Event_10001
   m_EditorClassIdentifier: 
   id: 10001
-  title: "\u6D4B\u8BD5\u4E8B\u4EF6"
-  desc: "\u8FD9\u53EA\u662F\u4E00\u4E2A\u6D4B\u8BD5\u4E8B\u4EF6"
+  title: "\u836F\u5242\u5E08"
+  desc: "\u4F60\u9047\u89C1\u4E86\u4E00\u4E2A\u836F\u5242\u5E08\uFF0C\u5B83\u9012\u7ED9\u4E86\u4F60\u4E00\u74F6\u836F"
   pic: {fileID: 21300000, guid: 7868af0592558ce4989540191a12abe1, type: 3}
   optionSources:
+  - {fileID: 11400000, guid: 81069f7c2bb7b8d4db9c5efe4a3ea952, type: 2}
+  - {fileID: 11400000, guid: 2d598c2f03801154482235a55198d70c, type: 2}
   - {fileID: 11400000, guid: d6f12233c1ed1544a83a42c8081eb167, type: 2}
   permanentCount: 0
   floorCount: 1

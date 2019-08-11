@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fa9006600992146adde239aaae66a3, type: 3}
   m_Name: Umirika05_2
   m_EditorClassIdentifier: 
-  IsUnlock: 1
+  IsUnlock: 0
   Owner: {fileID: 11400000, guid: 36f1892953ed0f14197e21b3490e71cd, type: 2}
-  Name: "\u6D4B\u8BD5\u5929\u8D4B"
-  Desc: "\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B\u8FD9\u662F\u4E00\u4E2A\u6D4B\u8BD5\u5929\u8D4B"
+  Name: "\u6682\u672A\u5F00\u653E"
+  Desc: "\u4F1A\u5728\u540E\u7EED\u7248\u672C\u4E2D\u5F00\u653E"
   Icon: {fileID: 21300000, guid: 5a622c9183811dc4fbbe8843d0208056, type: 3}
+  type: 0

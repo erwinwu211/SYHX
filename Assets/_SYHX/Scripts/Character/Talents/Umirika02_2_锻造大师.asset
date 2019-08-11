@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 704b1bbe72361fd4da623101754040aa, type: 3}
-  m_Name: UpgradeCardDiscountTalent
+  m_Name: "Umirika02_2_\u953B\u9020\u5927\u5E08"
   m_EditorClassIdentifier: 
-  IsUnlock: 0
-  Owner: {fileID: 0}
-  Name: 
-  Desc: 
-  Icon: {fileID: 0}
+  IsUnlock: 1
+  Owner: {fileID: 11400000, guid: d9d224449069e364fbcccb48904d4036, type: 2}
+  Name: "\u953B\u9020\u5927\u5E08"
+  Desc: "\u5347\u7EA7\u5361\u724C\u65F6\u6240\u9700\u8D39\u7528\u964D\u4F4E10%"
+  Icon: {fileID: 21300000, guid: 176b392012e6f1844b3e749d523edc54, type: 3}
   type: 0
-  discount: 0
+  discount: 0.1

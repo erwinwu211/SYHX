@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5622b004a689de541b15cc83bae6e6f0, type: 3}
-  m_Name: GetResourceTalent
+  m_Name: "Umirika01_2_\u63A2\u9669\u8001\u624B"
   m_EditorClassIdentifier: 
-  IsUnlock: 0
-  Owner: {fileID: 0}
-  Name: 
-  Desc: 
-  Icon: {fileID: 0}
+  IsUnlock: 1
+  Owner: {fileID: 11400000, guid: 0c069c4785c9f0244afe209c366d0c9b, type: 2}
+  Name: "\u63A2\u9669\u8001\u624B"
+  Desc: "\u83B7\u5F9720\u70B9\u7ECF\u9A8C\u503C"
+  Icon: {fileID: 21300000, guid: 388f5026ee697dd49b71e94dd0ce7034, type: 3}
   type: 0
   ChipFormCount: 0
-  ExpCount: 0
+  ExpCount: 20
   ForceExp: 0
   AgileExp: 0
   ConstitutionExp: 0

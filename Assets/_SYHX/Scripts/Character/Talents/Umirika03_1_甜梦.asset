@@ -17,3 +17,8 @@ MonoBehaviour:
   Name: "\u751C\u68A6"
   Desc: "\u4F11\u606F\u65F6\u53EF\u4EE5\u6062\u590D25%\u751F\u547D\u503C"
   Icon: {fileID: 21300000, guid: 698616930669a6a4aa88286d32ff6697, type: 3}
+  type: 0
+  IncreaseRestEfficiency: 0.1
+  IncreaseForceExpPerTraining: 0
+  IncreaseAgileExpPerTraining: 0
+  IncreaseConstitutionExpPerTraining: 0

@@ -15,6 +15,6 @@ MonoBehaviour:
   needLv: 4
   talents:
   - {fileID: 11400000, guid: a7a0e8d097862a64a859d98f226f50fc, type: 2}
-  - {fileID: 11400000, guid: 86167dca5c674bc4bb37cd49fc465002, type: 2}
+  - {fileID: 11400000, guid: b8e732acf61c488479941efe6e67ca11, type: 2}
   - {fileID: 11400000, guid: 4683ea7d0ad73a14d80c2a93895108ac, type: 2}
   ActiveTalent: {fileID: 0}

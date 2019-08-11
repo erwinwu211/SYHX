@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UmirikaGrade_4
   m_EditorClassIdentifier: 
   currentGrade: 3
-  nextGrade: {fileID: 11400000}
+  nextGrade: {fileID: 11400000, guid: 911da36626aad704a9695b12d90c7b54, type: 2}
   LvMax: 18
   UpgradeRequireList:
   - item: {fileID: 11400000, guid: d5cef53a7609dbc459fae2ca111077ac, type: 2}
