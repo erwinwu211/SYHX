@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: bb04b257d6e765046932271448d8c19a
+labels:
+- BattleOption
+- Data
+- ScriptableObject
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

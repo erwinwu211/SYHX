@@ -270,6 +270,10 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             {
                 t.OnBattleEnd();
             }
+            if (information.option!= null)
+            {
+                information.option.AfterBattleEffect();
+            }
             DungeonUI.RefreshUI();
         }
         else
@@ -278,11 +282,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         }
     }
 
-    public void BattleHappen(EnemyGroup eg)
+    public void BattleHappen(EnemyGroup eg,OptionSource op = null)
     {
-        BattleManager.information = new PassedBattleInformation { enemyGroup = eg, difficultLevel = this.difficultLevel };
+        BattleManager.information = new PassedBattleInformation { enemyGroup = eg, difficultLevel = this.difficultLevel ,option = op};
         SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
     }
+
+    
 
 
 

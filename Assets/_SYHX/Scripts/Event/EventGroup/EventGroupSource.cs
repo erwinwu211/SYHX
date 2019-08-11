@@ -9,7 +9,8 @@ public class EventGroupSource : ScriptableObject
     {
         if (eventList.Count > 0)
         {
-            return eventList[Random.Range(0, eventList.Count - 1)];
+            int index = Random.Range(0,eventList.Count);
+            return eventList[index];
         }
         else
         {

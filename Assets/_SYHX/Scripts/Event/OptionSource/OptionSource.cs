@@ -6,4 +6,6 @@ public class OptionSource : ScriptableObject
 {
     public string desc;
     public virtual void Effect() { }
+
+    public virtual void AfterBattleEffect(){}
 }

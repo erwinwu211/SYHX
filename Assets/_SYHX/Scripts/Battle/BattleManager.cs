@@ -74,6 +74,7 @@ public partial class BattleManager : SingletonMonoBehaviour<BattleManager>
         BattleCharacterManager.Ins.GenerateEnemyGroup(information.enemyGroup, information.difficultLevel);
         //创建新的战斗结果数据
         resultInformation = new PassedResultInformation();
+        if (information.option!=null) resultInformation.option = information.option;
         resultInformation.cardSourceRward = new List<CardSource>();
     }
 
@@ -230,6 +231,7 @@ public struct PassedBattleInformation
 {
     public EnemyGroup enemyGroup;
     public float difficultLevel;
+    public OptionSource option;
 }
 
 /// <summary>
@@ -239,6 +241,7 @@ public struct PassedResultInformation
 {
     public int currentHp;
     public bool win;
+    public OptionSource option;
     public List<ItemSourceAndCount> resourceReward;
     public List<CardSource> cardSourceRward;
 }
