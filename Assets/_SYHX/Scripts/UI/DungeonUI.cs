@@ -7,6 +7,7 @@ using SYHX.Cards;
 public class DungeonUI : MonoBehaviour
 {
     public GameObject DeckInformationUI;
+    public GameObject DungeonInformationUI;
     public Text HpCount;
     public Text FloorCount;
     public Text DataFragCount;
@@ -69,5 +70,28 @@ public class DungeonUI : MonoBehaviour
         DungeonManager.Ins.Disable();
         GameObject go = Instantiate(DeckInformationUI, transform.parent);
         go.GetComponent<DeckInformationUI>().LoadDeckInfomation(CharacterInDungeon.Ins.Deck, true);
+    }
+    public void OnDungeonInformationBtnClick()
+    {
+        ShowDungeonInformationUI();
+    }
+
+    public void ShowDungeonInformationUI()
+    {
+        DungeonInformationUI.SetActive(true);
+    }
+
+    public void HideDungeonInformationUI()
+    {
+        DungeonInformationUI.SetActive(false);
+    }
+    public void OnCloseDungeonInformationBtnClick()
+    {
+        HideDungeonInformationUI();
+    }
+
+    public void OnLeaveBtnClick()
+    {
+        DungeonManager.Ins.LeaveDungeon();
     }
 }

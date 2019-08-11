@@ -1324,6 +1324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeckInformationUI: {fileID: 2216106562376988290, guid: 394c38a344feb5c4c897492416ae224a,
     type: 3}
+  DungeonInformationUI: {fileID: 0}
   HpCount: {fileID: 5475082879154660015}
   FloorCount: {fileID: 7848940036409431707}
   DataFragCount: {fileID: 8709373960460330007}
@@ -1947,7 +1948,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5831165683241197927}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3158262675920464673}
+        m_MethodName: OnDungeonInformationBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &3402853644945816818

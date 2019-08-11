@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efa9813a30d58a4782644b1c9ebe897, type: 3}
-  m_Name: ChangeResourceOption(0)
+  m_Name: Event_10003_Option_2
   m_EditorClassIdentifier: 
-  desc: 
+  desc: "\u6CBF\u7740\u6CB3\u5CB8\u8D70[\u83B7\u5F97\u6570\u636E\u788E\u7247]"
   ChipFormCount_Increase: 0
   FoodCount_Increase: 0
-  ChipFormCount_Decrease: 0
+  Hp_Increase: 0
+  ChipFormCount_Decrease: 20
   FoodCount_Decrease: 0
+  Hp_Decrease: 0
   ExpCount: 0
   ForceExp: 0
   AgileExp: 0
   ConstitutionExp: 0
   FortuneExp: 0
-  result: 
+  result: "\u4F60\u6CBF\u7740\u6CB3\u5CB8\u8D70\uFF0C\u6700\u540E\u53D1\u73B0\u4E86\u88AB\u4EBA\u9057\u5F03\u4E86\u768420\u4E2A\u6570\u636E\u788E\u7247"

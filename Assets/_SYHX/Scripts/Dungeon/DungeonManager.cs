@@ -229,6 +229,26 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         EventManager.Ins.ClearFloorList();
         DungeonUI.RefreshUI();
     }
+
+     /// <summary>
+    /// 离开地宫，跳转到地宫结算界面
+    /// </summary>
+    public void LeaveDungeon()
+    {
+        //做一些离开前的重置行为
+        EventManager.Ins.ClearPermanentList();
+        Generator.clearMap();
+
+        //传递结算信息
+        DungeonResultInformation dungeonResult = new DungeonResultInformation();
+        DungeonResultStatus status = new DungeonResultStatus(SceneStatusManager.Ins);
+        status.information = dungeonResult;
+
+
+        //结算
+        SceneStatusManager.Ins.SetSceneStatus(status);
+    }
+
     #endregion
 
     protected override void UnityAwake() { }
@@ -270,7 +290,7 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
             {
                 t.OnBattleEnd();
             }
-            if (information.option!= null)
+            if (information.option != null)
             {
                 information.option.AfterBattleEffect();
             }
@@ -282,13 +302,13 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         }
     }
 
-    public void BattleHappen(EnemyGroup eg,OptionSource op = null)
+    public void BattleHappen(EnemyGroup eg, OptionSource op = null)
     {
-        BattleManager.information = new PassedBattleInformation { enemyGroup = eg, difficultLevel = this.difficultLevel ,option = op};
+        BattleManager.information = new PassedBattleInformation { enemyGroup = eg, difficultLevel = this.difficultLevel, option = op };
         SceneStatusManager.Ins.SetSceneStatus(new BattleStatus(SceneStatusManager.Ins), true, true);
     }
 
-    
+
 
 
 
@@ -344,23 +364,9 @@ public class DungeonManager : SingletonMonoBehaviour<DungeonManager>
         RestPanelUI.ShowRestRoomUI(CharacterInDungeon.Ins.Force, CharacterInDungeon.Ins.Agile, CharacterInDungeon.Ins.Constitution);
     }
 
-    /// <summary>
-    /// 离开地宫，跳转到地宫结算界面
-    /// </summary>
-    public void LeaveDungeon()
-    {
-        //做一些离开前的重置行为
-        EventManager.Ins.ClearPermanentList();
+    
 
-        //传递结算信息
-        DungeonResultInformation dungeonResult = new DungeonResultInformation();
-        DungeonResultStatus status = new DungeonResultStatus(SceneStatusManager.Ins);
-        status.information = dungeonResult;
-
-        //结算
-        SceneStatusManager.Ins.SetSceneStatus(status);
-    }
-
+   
     public void RefreshUI()
     {
         DungeonUI.RefreshUI();

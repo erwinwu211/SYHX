@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59644450e8e41ec4fa2c4b4ade2a7d96, type: 3}
-  m_Name: LeaveOption
+  m_Name: RefuseOption
   m_EditorClassIdentifier: 
-  desc: 
+  desc: "\u62D2\u7EDD"
