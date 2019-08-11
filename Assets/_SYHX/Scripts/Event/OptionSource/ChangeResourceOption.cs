@@ -6,8 +6,10 @@ public class ChangeResourceOption : OptionSource
 {
     public int ChipFormCount_Increase;
     public int FoodCount_Increase;
+    public int Hp_Increase;
     public int ChipFormCount_Decrease;
     public int FoodCount_Decrease;
+    public int Hp_Decrease;
     public int ExpCount;
     public int ForceExp;
     public int AgileExp;
