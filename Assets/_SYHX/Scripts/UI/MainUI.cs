@@ -60,7 +60,7 @@ public class MainUI : SingletonMonoBehaviour<MainUI>
     /// </summary>
     public void OnQuitBtnClick()
     {
-
+        Application.Quit();
     }
 
     /// <summary>
